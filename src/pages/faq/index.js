@@ -1,11 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { twMerge } from "tailwind-merge";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { motion } from "framer-motion";
 
-const FAQ = [{ question: "Apakah benar bro", ans: "benar bro" }];
+const FAQ = [
+  {
+    question: "Apakah benar bro",
+    ans: "benar bro benar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar bro",
+  },
+  { question: "Apakah ril cuy", ans: "ril cuy" },
+];
 
 const CATEGORY = [
   {
@@ -15,14 +22,21 @@ const CATEGORY = [
     title: "Lomba",
   },
   {
-    title: "We-binar",
+    title: "Webinar",
   },
 ];
 
 export default function FAQPage() {
   const [searched, setSearched] = useState("");
   const [category, setCategory] = useState("");
-  const [faqIndex, setFaqIndex] = useState(FAQ.length);
+  const [faqIndex, setFaqIndex] = useState([]);
+
+  const displayedFaq = useMemo(() => {
+    return FAQ.filter((f) =>
+      f.question.toLowerCase().includes(searched.toLowerCase())
+    );
+  }, [searched]);
+
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen overflow-auto bg-background-skyblue">
       <h1 className="font-GameOfSquid text-5xl font-[400]">FAQ</h1>
@@ -55,32 +69,46 @@ export default function FAQPage() {
           </div>
         ))}
       </div>
-      <div className="flex flex-col w-[80%] mt-10">
-        {FAQ.map((f, idx) => (
-          <div
-            className={twMerge(
-              "w-full flex flex-row items-center justify-between py-2 h-fit text-white font-Montserrat font-[700] bg-secondary-blue rounded-lg px-5 text-sm transition-all duration-300",
-              faqIndex == idx && "bg-shade-black"
-            )}
-          >
-            <div className="flex-1">
-              <p>{f.question}</p>
-              {faqIndex == idx && <p className="mt-10">{f.ans}</p>}
-            </div>
+      <div className="flex flex-col w-[80%] mt-10 h-fit gap-y-5">
+        {displayedFaq.map((f, idx) => (
+          <>
             <div
-              className="cursor-pointer"
-              onClick={() => {
-                const newIndex = faqIndex == idx ? FAQ.length : idx;
-                setFaqIndex(newIndex);
-              }}
-            >
-              {faqIndex == idx ? (
-                <IoMdArrowDropup size={30} />
-              ) : (
-                <IoMdArrowDropdown size={30} />
+              className={twMerge(
+                "w-full flex flex-row items-center justify-between py-2 h-fit text-white font-Montserrat font-[700] bg-secondary-blue rounded-lg px-5 text-sm transition-all duration-300",
+                faqIndex.includes(idx) && "bg-shade-black"
               )}
+            >
+              <div className={twMerge("flex-1 flex-col")}>
+                <div>{f.question}</div>
+                <div
+                  className={twMerge(
+                    "grid transition-all duration-300",
+                    faqIndex.includes(idx)
+                      ? "grid-rows-[1fr]"
+                      : "grid-rows-[0fr]"
+                  )}
+                >
+                  <p className="overflow-hidden">{f.ans}</p>
+                </div>
+              </div>
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  if (faqIndex.includes(idx)) {
+                    setFaqIndex((arr) => arr.filter((a) => a !== idx));
+                  } else {
+                    setFaqIndex((arr) => [...arr, idx]);
+                  }
+                }}
+              >
+                {faqIndex.includes(idx) ? (
+                  <IoMdArrowDropup size={30} />
+                ) : (
+                  <IoMdArrowDropdown size={30} />
+                )}
+              </div>
             </div>
-          </div>
+          </>
         ))}
       </div>
     </div>
