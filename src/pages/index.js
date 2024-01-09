@@ -16,7 +16,9 @@ export default function Home() {
       </Head>
       <main className="bg-black">
         <div className="w-full h-full bg-black">
-          <h1 className="text-xl text-success-500 font-GameOfSquid font-bold underline">Hello world!</h1>
+          <h1 className="text-xl font-bold underline text-success-500 font-GameOfSquid">
+            Hello world!
+          </h1>
         </div>
       </main>
     </>
