@@ -5,7 +5,7 @@ import Card from "./Card";
 export default function index() {
   return (
     <AdminDashboadrLayout>
-      <div className='bg-primary-500 p-5 rounded-md list-disc'>
+      <div className='bg-primary-500 p-5 rounded-md border-2 border-black'>
         <ul className='font-Montserrat text-[14px] flex text-center overflow-x-auto font-bold mb-5'>
           <li className='p-2 bg-white rounded-md mr-1 cursor-pointer h-fit'>
             ALL

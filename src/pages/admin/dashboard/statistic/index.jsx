@@ -47,7 +47,7 @@ export default function index() {
   return (
     <AdminDashboadrLayout>
       <div
-        className={`bg-primary-500 w-full  md:grid md:grid-cols-3 lg:grid-cols-4 transition duration-300 `}>
+        className={`bg-primary-500 w-full  md:grid md:grid-cols-3 lg:grid-cols-4 transition duration-300 p-5 rounded-md border-2 border-black`}>
         <div className='hidden lg:flex transition duration-300'></div>
         {data.map((items, i) => {
           return (

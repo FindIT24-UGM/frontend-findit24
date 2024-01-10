@@ -2,7 +2,7 @@ import React from "react";
 
 function AdminDashboadrLayout({ children }) {
   return (
-    <div className='bg-background-skyblue min-h-screen lg:flex px-5 lg:p-10'>
+    <div className='bg-background-skyblue min-h-screen lg:flex lg:p-10 md:p-8'>
       <div className='lg:w-[20%] px-5 pb-5'>
         <h2 className='font-Montserrat font-bold text-white text-[20px] pt-5 py-8'>
           Dashboard
