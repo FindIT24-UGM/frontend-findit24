@@ -1,17 +1,32 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { twMerge } from "tailwind-merge";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
-import { motion } from "framer-motion";
+
+const LOMBA = [
+  "Capture the flag",
+  "Competitive Programming",
+  "UX Competition",
+  "Data analysis",
+  "Hackaton",
+  "E-Sports",
+  "Informatics Competition",
+];
 
 const FAQ = [
   {
-    question: "Apakah benar bro",
+    question: "ctf",
     ans: "benar bro benar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar bro",
+    category: "Capture the flag",
   },
-  { question: "Apakah ril cuy", ans: "ril cuy" },
+  {
+    question: "Apakah ux",
+    ans: "ril cuy",
+    category: "UX Competition",
+  },
+  { question: "webinar", ans: "iya", category: "Webinar" },
 ];
 
 const CATEGORY = [
@@ -32,10 +47,14 @@ export default function FAQPage() {
   const [faqIndex, setFaqIndex] = useState([]);
 
   const displayedFaq = useMemo(() => {
-    return FAQ.filter((f) =>
+    const searchedVal = FAQ.filter((f) =>
       f.question.toLowerCase().includes(searched.toLowerCase())
     );
-  }, [searched]);
+    if (category == "" || category == "All") {
+      return searchedVal;
+    }
+    return searchedVal.filter((s) => s.category == category);
+  }, [searched, category]);
 
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen overflow-auto bg-background-skyblue">
@@ -56,16 +75,42 @@ export default function FAQPage() {
           className="absolute text-black -translate-x-1/2 -translate-y-1/2 right-3 top-1/2"
         />
       </div>
-      <div className="flex flex-row items-center justify-center w-[50%] p-2 bg-shade-black rounded-xl border-2 border-black mt-5 gap-x-2">
+      <div className="flex flex-row items-center justify-center w-[50%] p-2 bg-[#233E51] rounded-xl border-2 border-black mt-5 gap-x-2">
         {CATEGORY.map((c) => (
           <div
             className={twMerge(
-              "flex items-center justify-center flex-1 cursor-pointer font-GameOfSquid text-neutral-300 hover:text-white hover:bg-orange-300 transition-all duration-300 rounded-lg border-2 border-black py-1",
-              category == c.title && "bg-orange-500 text-white"
+              "flex items-center justify-center flex-1 rounded-lg cursor-pointer font-GameOfSquid text-neutral-300 hover:text-white hover:bg-orange-300 transition-all duration-300  py-1",
+              category == c.title &&
+                "bg-orange-500 text-white  border-2 border-black",
+              c.title == "Lomba" && "group relative"
             )}
             onClick={() => setCategory(c.title)}
           >
-            {c.title}
+            <p className="mx-auto">{c.title}</p>
+            {c.title == "Lomba" && <IoMdArrowDropdown size={30} />}
+            {c.title == "Lomba" && (
+              <div
+                className={twMerge(
+                  "absolute top-[150%] flex flex-col w-[300%] h-fit bg-[#233E51] rounded-lg px-5 py-6",
+                  "opacity-0 -z-10",
+                  c.title == category && "opacity-100 z-10",
+                  "group-hover:opacity-100 group-hover:z-10",
+                  "transition-all duration-500"
+                )}
+              >
+                {LOMBA.map((l) => (
+                  <div
+                    className="flex items-center justify-center flex-1 w-full py-2 rounded-lg hover:text-white hover:bg-orange-300 font-Montserrat"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCategory(l);
+                    }}
+                  >
+                    {l}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -75,24 +120,11 @@ export default function FAQPage() {
             <div
               className={twMerge(
                 "w-full flex flex-row items-center justify-between py-2 h-fit text-white font-Montserrat font-[700] bg-secondary-blue rounded-lg px-5 text-sm transition-all duration-300",
-                faqIndex.includes(idx) && "bg-shade-black"
+                faqIndex.includes(idx) && "bg-[#233E51]"
               )}
             >
-              <div className={twMerge("flex-1 flex-col")}>
-                <div>{f.question}</div>
-                <div
-                  className={twMerge(
-                    "grid transition-all duration-300",
-                    faqIndex.includes(idx)
-                      ? "grid-rows-[1fr]"
-                      : "grid-rows-[0fr]"
-                  )}
-                >
-                  <p className="overflow-hidden">{f.ans}</p>
-                </div>
-              </div>
               <div
-                className="cursor-pointer"
+                className={twMerge("flex-1 flex-col cursor-pointer")}
                 onClick={() => {
                   if (faqIndex.includes(idx)) {
                     setFaqIndex((arr) => arr.filter((a) => a !== idx));
@@ -101,12 +133,23 @@ export default function FAQPage() {
                   }
                 }}
               >
-                {faqIndex.includes(idx) ? (
-                  <IoMdArrowDropup size={30} />
-                ) : (
-                  <IoMdArrowDropdown size={30} />
-                )}
+                <div>{f.question}</div>
+                <div
+                  className={twMerge(
+                    "grid transition-all duration-500",
+                    faqIndex.includes(idx)
+                      ? "grid-rows-[1fr]"
+                      : "grid-rows-[0fr]"
+                  )}
+                >
+                  <p className="overflow-hidden">{f.ans}</p>
+                </div>
               </div>
+              {faqIndex.includes(idx) ? (
+                <IoMdArrowDropup size={30} />
+              ) : (
+                <IoMdArrowDropdown size={30} />
+              )}
             </div>
           </>
         ))}
