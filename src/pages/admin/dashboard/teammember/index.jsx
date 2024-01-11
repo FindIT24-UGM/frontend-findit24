@@ -68,6 +68,7 @@ export default function index() {
             Anggota
           </h2>
           <div>
+            {/* bikin parameter datanya nanti aja */}
             <Accordion />
             <Accordion />
             <Accordion />
