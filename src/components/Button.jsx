@@ -22,9 +22,9 @@ export default function Button({
   const btnVariant = useMemo(() => {
     switch (variant) {
       case "primary":
-        return `bg-primary-300 ${widthStyle} cursor-pointer font-GameOfSquid rounded-md hover:bg-primary-500`;
+        return `bg-primary-300 ${widthStyle} cursor-pointer font-GameOfSquid rounded-md hover:border-black hover:border-[2px] active:bg-primary-500 active:border-[4px]`;
       case "secondary":
-        return `bg-transparent ${widthStyle} cursor-pointer border-primary-500 border-[3px] font-GameOfSquid`;
+        return `bg-transparent ${widthStyle} cursor-pointer rounded-md border-primary-300 border-[3px] font-GameOfSquid text-primary-300 hover:opacity-[80%] hover:border-2 active:border-[3px] active:border-primary-500 active:opacity-[100%] active:text-primary-500`;
       default:
         return;
     }
@@ -33,15 +33,15 @@ export default function Button({
   const btnSize = useMemo(() => {
     switch (size) {
       case "sm":
-        return "px-[21px] py-[9px] h-[100px]";
+        return "flex justify-center items-center px-[21px] py-[9px] text-[16px]";
       case "md":
-        return "px-[30px] py-2";
+        return "flex justify-center items-center px-[30px] py-[16px]";
       case "lg":
-        return "px-12 py-4";
+        return "flex justify-center items-center px-12 py-4";
       default:
         return;
     }
-  });
+  }, [size]);
 
   if (!disabled) {
     return (
@@ -62,7 +62,9 @@ export default function Button({
     } else {
       return (
         <button
-          className={`${widthStyle} h-min font-GameOfSquid font-semibold bg-transparent border-pink-200 rounded-full disabled:text-dark-100 drop-shadow-none shadow-transparent opacity-70 cursor-not-allowed ${customClass}`}
+          className={`${
+            widthStyle + btnVariant
+          } font-GameOfSquid font-semibold opacity-60 disabled:text-dark-100 opacity-70 disabled:cursor-not-allowed ${customClass}`}
           disabled
         >
           <p className={btnSize}>{text}</p>
