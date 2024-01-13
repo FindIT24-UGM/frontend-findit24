@@ -16,12 +16,8 @@
     "next": "14.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-<<<<<<< HEAD
-    "react-icons": "^5.0.0"
-=======
     "react-icons": "^4.12.0",
     "tailwind-merge": "^2.2.0"
->>>>>>> 67536ba9004c313dbcda87b3303cb3db473f65c6
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
