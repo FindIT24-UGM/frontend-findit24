@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+<<<<<<< HEAD
+  content: ['./pages/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,jsx,ts,tsx}',],
+=======
   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./src/**/*.js"],
+>>>>>>> 67536ba9004c313dbcda87b3303cb3db473f65c6
   theme: {
     extend: {
       transitionProperty: {
