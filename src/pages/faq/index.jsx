@@ -6,6 +6,7 @@ import Question from "../../components/Faq/Question";
 import Header from "../../components/Faq/Header";
 import Category from "../../components/Faq/Category";
 import QuestionSearch from "../../components/Faq/QuestionSearch";
+import RootLayout from "../layout.jsx";
 
 const FAQ = [
   {
@@ -38,28 +39,30 @@ export default function FAQPage() {
   }, [searched, selected]);
 
   return (
-    <div className="flex flex-col items-center justify-center w-screen min-h-screen px-5 py-20 overflow-auto bg-background-skyblue lg:px-12 md:px-8">
-      {/* the header and input section*/}
-      <Header />
-      <QuestionSearch searched={searched} setSearched={setSearched} />
-      {/* the category section */}
-      <Category
-        setCompetition={setCompetition}
-        competition={competition}
-        setSelected={setSelected}
-      />
-      {/* the question section */}
-      {displayedFaq.length > 0 && (
-        <Question
-          displayedFaq={displayedFaq}
-          faqIndex={faqIndex}
-          selected={selected}
-          setFaqIndex={setFaqIndex}
+    <RootLayout>
+      <div className="flex flex-col items-center justify-center w-screen min-h-screen px-5 py-20 overflow-auto bg-background-skyblue lg:px-12 md:px-8">
+        {/* the header and input section*/}
+        <Header />
+        <QuestionSearch searched={searched} setSearched={setSearched} />
+        {/* the category section */}
+        <Category
+          setCompetition={setCompetition}
+          competition={competition}
+          setSelected={setSelected}
         />
-      )}
+        {/* the question section */}
+        {displayedFaq.length > 0 && (
+          <Question
+            displayedFaq={displayedFaq}
+            faqIndex={faqIndex}
+            selected={selected}
+            setFaqIndex={setFaqIndex}
+          />
+        )}
 
-      {/* no question found section */}
-      {displayedFaq.length == 0 && <NoQuestion />}
-    </div>
+        {/* no question found section */}
+        {displayedFaq.length == 0 && <NoQuestion />}
+      </div>
+    </RootLayout>
   );
 }
