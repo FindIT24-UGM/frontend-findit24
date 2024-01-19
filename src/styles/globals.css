@@ -50,3 +50,18 @@ a {
     color-scheme: dark;
   }
 }
+
+
+.slider-track {
+  animation: sliding 35s linear infinite;
+}
+
+@keyframes sliding {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-250px * 9))
+  }
+}
