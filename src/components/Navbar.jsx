@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -12,6 +12,7 @@ const Navbar = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [activePath, setActivePath] = useState("Webinar");
   const [isSideNav, setIsSideNav] = useState(false);
+
   return (
     <>
       <div
@@ -31,7 +32,7 @@ const Navbar = () => {
         />
         {/* navbar button */}
         <motion.button
-          className="lg-hidden"
+          className="lg:hidden"
           key={isSideNav}
           onClick={() => setIsSideNav(!isSideNav)}
           variants={{
@@ -49,7 +50,7 @@ const Navbar = () => {
           />
         </motion.button>
         <motion.button
-          className={twMerge(!isSideNav && "hidden", "lg-hidden")}
+          className={twMerge(!isSideNav && "hidden", "lg:hidden")}
           variants={{
             hidden: { scale: 0, opacity: 0, rotate: -180 },
             visible: { scale: 1, opacity: 1, rotate: 180 },
@@ -70,7 +71,10 @@ const Navbar = () => {
       </div>
       {/* dark background */}
       <motion.div
-        className="w-full h-full absolute bg-text-placeholder-dark z-[20]"
+        className={twMerge(
+          "w-full h-full absolute bg-text-placeholder-dark z-[20]",
+          !isSideNav && "hidden"
+        )}
         variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.7 } }}
         initial={isSideNav ? "hidden" : "visible"}
         animate={isSideNav ? "visible" : "hidden"}
