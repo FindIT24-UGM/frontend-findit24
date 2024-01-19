@@ -1,8 +1,8 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import { IoMdArrowDropdown } from "react-icons/io";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
-const Question = ({ displayedFaq, faqIndex }) => {
+const Question = ({ displayedFaq, faqIndex, setFaqIndex }) => {
   return (
     <div className="flex flex-col w-[80%] mt-20 h-fit gap-y-5">
       {displayedFaq.map((f, idx) => (
