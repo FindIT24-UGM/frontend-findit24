@@ -1,6 +1,5 @@
 import React from "react";
 import AdminDashboadrLayout from "../layout";
-import Button from "../../../../components/Button";
 import Anouncement from "./Anouncement";
 
 export default function index() {
