@@ -62,6 +62,9 @@ module.exports = {
         GameOfSquid: ["Game Of Squid"],
         CreatoDisplay: ["Creato Display"],
       },
+      dropShadow: {
+        competitions: ["0 0px 6px rgba(255, 255, 255, 1)"],
+      },
     },
   },
   plugins: [],
