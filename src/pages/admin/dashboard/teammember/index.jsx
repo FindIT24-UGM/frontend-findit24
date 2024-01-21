@@ -36,16 +36,55 @@ export default function index() {
             </div>
           </div>
           <div className='flex space-x-10 font-Montserrat text-[17px] font-bold pb-8 border border-x-0 border-t-0 border-b-neutral-300 mb-8'>
-            <div className='flex flex-col space-y-2'>
-              <p>Tanggal Pembayaran</p>
-              <p>Bukti Pembayaran</p>
+            <div className='flex flex-col space-y-4'>
+              <p className='flex flex-row items-center h-[60px] md:h-fit'>
+                Tanggal Pembayaran
+              </p>
+              <p className='flex flex-row items-center h-[60px] md:h-fit'>
+                Nama Pengirim
+              </p>
+              <p className='flex flex-row items-center h-[60px] md:h-fit'>
+                No. Rek
+              </p>
+              <p className='flex flex-row items-center h-[60px] md:h-fit'>
+                Bank
+              </p>
+              <p className='flex flex-row items-center h-[60px] md:h-fit'>
+                Bukti Pembayaran
+              </p>
+              <p className='flex flex-row items-center h-[60px] md:h-fit'>
+                Bukti Twibon
+              </p>
             </div>
-            <div className='flex flex-col space-y-2'>
+            <div className='flex flex-col space-y-4'>
               {/* for date */}
-              <p>12 Jnuari 2024</p>
-              <button className='text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue'>
-                Lihat
-              </button>
+              <p className='flex flex-row items-center h-[60px] md:h-fit'>
+                12/01/2024
+              </p>
+              {/* name of the sander */}
+              <p className='flex flex-row items-center h-[60px] md:h-fit'>
+                Jerome Polin
+              </p>
+              {/* account number */}
+              <p className='flex flex-row items-center h-[60px] md:h-fit'>
+                6301 8888 8888
+              </p>
+              {/* account name */}
+              <p className='flex flex-row items-center h-[60px] md:h-fit'>
+                BCA
+              </p>
+              {/*  payment */}
+              <div className='flex flex-row items-center h-[60px] md:h-fit'>
+                <button className='text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue w-3/4'>
+                  Lihat
+                </button>
+              </div>
+              {/* twibon upload */}
+              <div className='flex flex-row items-center h-[60px] md:h-fit'>
+                <button className='text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue w-3/4'>
+                  Lihat
+                </button>
+              </div>
             </div>
           </div>
           <div className='font-bold font-Montserrat text-[17px] space-y-2 pb-8 mb-3'>
