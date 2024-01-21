@@ -65,6 +65,20 @@ module.exports = {
       dropShadow: {
         competitions: ["0 0px 6px rgba(255, 255, 255, 1)"],
       },
+      keyframes: {
+        swipeRight1: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
+        swipeRight2: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      animation: {
+        swipeRight1: 'swipeRight1 30s linear infinite',
+        swipeRight2: 'swipeRight2 30s linear infinite',
+      },
     },
   },
   plugins: [],

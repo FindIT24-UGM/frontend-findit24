@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import AutoSlider from "../components/AutoSlider";
 import CompetitionsList from "../components/LandingPage/CompetitionsList";
+import OurPartner from "../components/LandingPage/OurPartner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +17,7 @@ export default function Home() {
           </h1>
           <AutoSlider />
           <CompetitionsList />
+          <OurPartner />
         </div>
       </main>
     </>
