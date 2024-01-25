@@ -4,8 +4,13 @@ import Navbar from "../components/Navbar";
 const RootLayout = ({ children }) => {
   return (
     <>
-      <Navbar />
-      {children}
+      <main className="relative flex flex-col h-screen pt-[100px]">
+        <div className="absolute top-0 w-full">
+          <Navbar />
+        </div>
+
+        {children}
+      </main>
     </>
   );
 };
