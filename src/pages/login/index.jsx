@@ -5,7 +5,6 @@ import RootLayout from "../layout.jsx";
 import { MdEmail } from "react-icons/md";
 import { IoKey } from "react-icons/io5";
 import { IoMdEye } from "react-icons/io";
-import { twMerge } from "tailwind-merge";
 import Button from "../../components/Button.jsx";
 import Image from "next/image.js";
 import Link from "next/link.js";
@@ -32,7 +31,8 @@ const LoginPage = () => {
       <div className="flex flex-col items-center justify-center w-screen h-full px-5 py-20 overflow-auto bg-background-skyblue lg:px-12 md:px-8">
         <h1 className="text-4xl font-GameOfSquid">Sign in</h1>
         <h2>Log in with your data that you entered during your registration</h2>
-        <div className="flex flex-col gap-y-3 w-full lg:w-[37%] mt-10">
+        <div className="flex flex-col gap-y-3 w-[80%] lg:w-[37%] mt-10">
+          {/* email input */}
           <div className="flex flex-row items-center gap-x-2">
             <MdEmail size={25} />
             <p className="font-bold text-md">E-mail</p>
@@ -43,6 +43,7 @@ const LoginPage = () => {
             placeholder="johndoe@email.com"
             className="flex items-center justify-center w-full px-4 py-3 text-sm text-black bg-white rounded-lg font-Montserrat h-fit"
           />
+          {/* password input */}
           <div className="flex flex-row items-center gap-x-2">
             <IoKey size={25} />
             <p className="font-bold text-md">Password</p>
@@ -85,7 +86,7 @@ const LoginPage = () => {
         </div>
         <div className="flex flex-row items-center my-2 mt-4 font-thin gap-x-1">
           <p className="">Don't have an account ?</p>
-          <Link href={"/"} className="cursor-pointer text-primary-300">
+          <Link href={"/signup"} className="cursor-pointer text-primary-300">
             Create an account
           </Link>
         </div>
