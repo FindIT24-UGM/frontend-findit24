@@ -8,7 +8,6 @@ const RootLayout = ({ children }) => {
         <div className="absolute top-0 w-full">
           <Navbar />
         </div>
-
         {children}
       </main>
     </>
