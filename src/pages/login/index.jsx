@@ -92,7 +92,10 @@ const LoginPage = () => {
         </div>
         <div className="flex flex-row font-thin gap-x-1">
           <p className="">Forgot Password ?</p>
-          <Link href={"/"} className="cursor-pointer text-primary-300">
+          <Link
+            href={"/login/resetPassword"}
+            className="cursor-pointer text-primary-300"
+          >
             Reset password
           </Link>
         </div>
