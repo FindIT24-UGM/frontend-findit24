@@ -102,6 +102,11 @@ export default function index() {
                 className='p-2 w-full font-light border-2'></textarea>
             </div>
           </div>
+          <div>
+            <textarea
+              rows='8'
+              className='p-2 w-full font-light border-2d'></textarea>
+          </div>
           <button className='font-GameOfSquid font-bold text-[16px] flex items-center py-2 justify-center w-full rounded bg-primary-300 space-x-2'>
             <IoIosSave />
             <span>SIMPAN</span>

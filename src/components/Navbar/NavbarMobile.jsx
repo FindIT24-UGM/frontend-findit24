@@ -1,0 +1,81 @@
+"use client";
+
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { twMerge } from "tailwind-merge";
+import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io";
+
+const LOMBA = [
+  "Capture the flag",
+  "Competitive Programming",
+  "UX Competition",
+  "Data analysis",
+  "Hackaton",
+  "E-Sports",
+  "Informatics Competition",
+];
+
+const NavbarMobile = ({ isSideNav, isLogin, setIsLogin }) => {
+  const [isCompetition, setIsCompetition] = useState(false);
+  return (
+    <motion.div
+      className="absolute z-[999] right-0 top-[104%] w-fit  pt-10 h-screen bg-text-placeholder-dark flex flex-col items-end font-GameOfSquid "
+      variants={{
+        hidden: { x: "200%", opacity: 0 },
+        visible: { x: "0%", opacity: 1 },
+      }}
+      transition={{ duration: 0.5 }}
+      animate={isSideNav ? "visible" : "hidden"}
+      initial={isSideNav ? "hidden" : "visible"}
+    >
+      <div className="flex flex-col items-end ml-32 mr-8 text-lg gap-y-10">
+        <p className="text-white transition-all duration-300 cursor-pointer hover:text-primary-500">
+          Webinar
+        </p>
+        <div
+          className="flex flex-col items-end gap-y-3-2 "
+          onClick={() => setIsCompetition(!isCompetition)}
+        >
+          <div className="flex flex-row justify-end cursor-pointer gap-x-2">
+            <p className="text-white transition-all duration-100 cursor-pointer hover:text-primary-500">
+              Competition
+            </p>
+            {isCompetition ? (
+              <IoMdArrowDropup size={20} />
+            ) : (
+              <IoMdArrowDropdown size={20} />
+            )}
+          </div>
+          <div
+            className={twMerge(
+              "grid transition-all duration-500",
+              isCompetition ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+            )}
+          >
+            <div className="flex flex-col overflow-hidden gap-y-2">
+              {LOMBA.map((l) => (
+                <p>{l}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+        <p className="text-white transition-all duration-300 cursor-pointer hover:text-primary-500">
+          About Us
+        </p>
+        <p className="text-white transition-all duration-300 cursor-pointer hover:text-primary-500">
+          FAQ
+        </p>
+      </div>
+      <button
+        className={twMerge(
+          "w-[80%] h-fit py-3 text-black rounded-lg bg-primary-300 mx-auto mt-16 hover:bg-primary-500 duration-300 transition-all"
+        )}
+        onClick={() => setIsLogin(!isLogin)}
+      >
+        {isLogin ? "Sign Out" : "Sign in"}
+      </button>
+    </motion.div>
+  );
+};
+
+export default NavbarMobile;
