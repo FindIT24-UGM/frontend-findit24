@@ -5,6 +5,7 @@ import AutoSlider from "../components/AutoSlider";
 import CompetitionsList from "../components/LandingPage/CompetitionsList";
 import RootLayout from "./layout";
 import OurPartner from "../components/LandingPage/OurPartner";
+import PersonalInfo from "./PersonInfo/PersonalInfo";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function Home() {
           <AutoSlider />
           <CompetitionsList />
           <OurPartner />
+          <PersonalInfo />
         </div>
       </main>
     </RootLayout>
