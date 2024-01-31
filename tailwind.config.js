@@ -12,9 +12,7 @@ module.exports = {
           500: "#EE8478",
         },
         secondary: {
-          green: "#58D3AC",
           blue: "#92C2D0",
-          purple: "#CA45C5",
         },
         "text-placeholder": {
           dark: "#233E51",
@@ -22,6 +20,7 @@ module.exports = {
         },
         background: {
           skyblue: "#2A93C2",
+          circuitblue: "#2985B0",
         },
         success: {
           100: "#9FE7CB",
@@ -53,8 +52,13 @@ module.exports = {
         },
         shade: {
           black: "#000000",
+          gray: "#D9D9D9",
           white: "#FFFFFF",
         },
+      },
+      backgroundImage: {
+        'primary-gradient': "url('/assets/images/primaryGradient.svg')",
+        'secondary-gradient': "url('/assets/images/secondaryGradient.svg')",
       },
       fontFamily: {
         Montserrat: ["Montserrat", "sans-serif"],
