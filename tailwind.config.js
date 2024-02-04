@@ -59,6 +59,7 @@ module.exports = {
       backgroundImage: {
         'primary-gradient': "url('/assets/images/primaryGradient.svg')",
         'secondary-gradient': "url('/assets/images/secondaryGradient.svg')",
+        'radial-gradient': "radial-gradient(var(--tw-gradient-stops))",
       },
       fontFamily: {
         Montserrat: ["Montserrat", "sans-serif"],
