@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import RootLayout from '../layout.jsx';
 import { BsPersonBadgeFill, BsCalendarDateFill, BsCalendar2PlusFill, BsPinMapFill } from 'react-icons/bs';
 import { IoMdArrowDropdown } from 'react-icons/io';
@@ -18,6 +18,22 @@ const PersonalInfo = () => {
   const [instansi, setInstansi] = useState(undefined);
   const [number, setNumber] = useState(undefined);
   const [message, setMessage] = useState("");
+
+  const dropdownProvinsiRef = useRef();
+  const dropdownStatusRef = useRef();
+
+  useEffect (() => {
+    const handler = (e) => {
+      if(!dropdownProvinsiRef.current.contains(e.target)){
+        setOpenProvinsi(false)
+      }
+      if(!dropdownStatusRef.current.contains(e.target)){
+        setOpenStatus(false)
+      }
+    };
+    document.body.addEventListener("click", handler);
+    return () => document.body.removeEventListener("click", handler);
+  })
 
   const onSubmit = async () => {
     try {
@@ -241,13 +257,16 @@ const PersonalInfo = () => {
               Asal Provinsi
             </h2>
           </div>
-          <div className='w-full text-base font-medium font-Montserrat text-[#B6B7BA] mt-2 relative'>
+          <div 
+            className='w-full text-base font-medium font-Montserrat text-[#B6B7BA] mt-2 relative'
+            ref={dropdownProvinsiRef}
+          >
             <div 
             className='w-full relative flex items-center justify-end'
             onClick={() => setOpenProvinsi(!openProvinsi)}
             >
               <input
-                className={`w-full bg-white py-[15px] pl-8 ${openProvinsi ? "rounded-t-lg" : 'rounded-lg'}`}
+                className={`w-full bg-white py-[15px] pl-8 cursor-pointer ${openProvinsi ? "rounded-t-lg" : 'rounded-lg'}`}
                 placeholder='Pilih Provinsi'
                 value={provinsiSelected}
                 onChange={(e) => setProvinsiSelected(e.currentTarget.value)}
@@ -256,21 +275,22 @@ const PersonalInfo = () => {
               <IoMdArrowDropdown className={`size-[35px] fill-[#233E51] absolute mr-[22px] ${openProvinsi && 'rotate-180'}`}/>
             </div>
             <ul
-              className={`w-full bg-[#F1A56A] overflow-y-auto absolute z-20 ${openProvinsi ? "max-h-[222px] rounded-b-lg scrollbar scrollbar-w-[10px] scrollbar-thumb-black scrollbar-thumb-rounded-md" : "max-h-0 rounded-none" }`}
+              className={`w-full bg-[#F1A56A] overflow-y-auto absolute z-10 ${openProvinsi ? "max-h-[222px] rounded-b-lg scrollbar scrollbar-w-[10px] scrollbar-thumb-black scrollbar-thumb-rounded-md" : "max-h-0 rounded-none" }`}
             >
-              {provinsies?.map((provinsi) => (
-                <li
-                  key={provinsi?.name}
-                  className={`bg-[#F1A56A] border-r-transparent border-[0.5px] border-[#FCFCFC] text-[#FCFCFC] py-[15px] pl-8`}
-                  onClick={() => {
-                    setProvinsiSelected(provinsi?.name);
-                    setOpenProvinsi(false);
-                  }}
-                  
-                >
-                  {provinsi?.name}
-                </li>
-              ))}
+              <div className='w-full h-auto relative'>
+                {provinsies?.map((provinsi) => (
+                  <li
+                    key={provinsi?.name}
+                    className={`bg-[#F1A56A] relative text-[#FCFCFC] py-[15px] pl-8 cursor-pointer before:h-[1px] before:w-auto before:bg-white before:absolute before:left-[10px] before:right-0 before:bottom-0 `}
+                    onClick={() => {
+                      setProvinsiSelected(provinsi?.name);
+                      setOpenProvinsi(false);
+                    }}
+                  >
+                    {provinsi?.name}
+                  </li>
+                ))}
+              </div>
             </ul>
           </div>
         </div>
@@ -281,13 +301,16 @@ const PersonalInfo = () => {
               Status
             </h2>
           </div>
-          <div className='w-full text-base font-medium font-Montserrat text-[#B6B7BA] mt-2 relative'>
+          <div 
+            className='w-full text-base font-medium font-Montserrat text-[#B6B7BA] mt-2 relative'
+            ref={dropdownStatusRef}
+          >
             <div
               className='w-full relative flex items-center justify-end'
               onClick={() => setOpenStatus(!openStatus)}
-              >
+            >
               <input
-                className={`w-full bg-white py-[15px] pl-8 ${openStatus ? "rounded-t-lg" : 'rounded-lg'}`}
+                className={`w-full bg-white py-[15px] pl-8 cursor-pointer ${openStatus ? "rounded-t-lg" : 'rounded-lg'}`}
                 placeholder='Pilih Status'
                 value={statusSelected}
                 onChange={(e) => setStatusSelected(e.currentTarget.value)}
@@ -301,7 +324,7 @@ const PersonalInfo = () => {
               {statuses?.map((status) => (
                 <li
                   key={status?.name}
-                  className={`bg-[#F1A56A] border-[0.5px] border-[#FCFCFC] text-[#FCFCFC] py-[15px] pl-8`}
+                  className={`bg-[#F1A56A] relative text-[#FCFCFC] py-[15px] pl-8 cursor-pointer before:h-[1px] before:w-auto before:bg-white before:absolute before:left-[10px] before:right-[10px] before:bottom-0 `}
                   onClick={() => {
                     setStatusSelected(status?.name);
                     setOpenStatus(false);
@@ -344,8 +367,8 @@ const PersonalInfo = () => {
           ></input>
         </div>
       </div>
-      <div className="w-full flex flex-row items-center justify-center my-5">
-        <p className={"text-red-600 font-Montserrat font-bold text-center"}>
+      <div className="relative flex flex-col items-center justify-center my-5">
+        <p className={"text-red-600 font-Montserrat font-bold text-center text-nowrap absolute"}>
           {message}
         </p>
       </div>
