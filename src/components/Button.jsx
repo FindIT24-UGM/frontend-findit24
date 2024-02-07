@@ -22,9 +22,9 @@ export default function Button({
   const btnVariant = useMemo(() => {
     switch (variant) {
       case "primary":
-        return `bg-primary-300 ${widthStyle} cursor-pointer font-GameOfSquid rounded-md hover:border-black hover:border-[2px] active:bg-primary-500 active:border-[4px]`;
+        return `bg-primary-300 ${widthStyle} cursor-pointer font-GameOfSquid rounded-md hover:border-black hover:border-[2px] hover:-m-[2px] active:-m-[4px] active:bg-primary-500 active:border-[4px]`;
       case "secondary":
-        return `bg-transparent ${widthStyle} cursor-pointer rounded-md border-primary-300 border-[3px] font-GameOfSquid text-primary-300 hover:opacity-[80%] hover:border-2 active:border-[3px] active:border-primary-500 active:opacity-[100%] active:text-primary-500`;
+        return `bg-transparent ${widthStyle} cursor-pointer rounded-md border-primary-300 border-[3px] font-GameOfSquid text-primary-300 hover:-m-[2px] active:-m-[3px]  hover:opacity-[80%] hover:border-2 active:border-[3px] active:border-primary-500 active:opacity-[100%] active:text-primary-500`;
       default:
         return;
     }

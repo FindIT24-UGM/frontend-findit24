@@ -1,0 +1,11 @@
+.timelinedotContainer {
+    background-color: #000000;
+    padding: 0.313vw;
+    clip-path: polygon(23% 0%, 77% 0, 100% 50%, 77% 100%, 23% 100%, 0% 50%);
+    aspect-ratio: 1/1;
+}
+.timelinedotLayer {
+    background-color: #92C2D0;
+    clip-path: polygon(23% 0%, 77% 0, 100% 50%, 77% 100%, 23% 100%, 0% 50%);
+    aspect-ratio: 1/1;
+}
