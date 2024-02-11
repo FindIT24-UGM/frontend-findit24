@@ -47,8 +47,8 @@ export default function CompetitionsList() {
   }
 
   return (
-    <div className="min-h-screen flex justify-center">
-      <div className="w-[80%] flex flex-col items-center border-x-8 border-[#92C2D0]">
+    <div className="min-h-screen flex justify-center lg:px-[54px]">
+      <div className="w-[80%] flex flex-col items-center border-x-[6px] border-[#92C2D0] pb-20">
         <div className="flex flex-col items-center">
           <div className="w-[70%] pt-20">
             <div className="flex justify-center">

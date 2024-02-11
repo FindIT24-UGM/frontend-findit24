@@ -1,5 +1,5 @@
 import React from "react";
-import heroImage from "../../assets/Logo/maskot(bakalganti).svg";
+import heroImage from "../../assets/Logo/maskot(bakalganti).png";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
@@ -27,7 +27,7 @@ const HeroComp = () => {
   }, []);
 
   return (
-    <div className="min-h-dvh">
+    <div className="min-h-[100vh]">
       <div className="w-full relative">
         <div className="absolute -z-20">
           <Image
@@ -47,7 +47,7 @@ const HeroComp = () => {
                 ? StarsMobile
                 : windowWidth > 860
                 ? StarsDesktop
-                : BackgroundTablet
+                : StarsTablet
             }
           />
         </div>
