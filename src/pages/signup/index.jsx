@@ -8,6 +8,8 @@ import { IoMdEye } from "react-icons/io";
 import Button from "../../components/Button.jsx";
 import Image from "next/image.js";
 import Link from "next/link.js";
+import { toast } from "react-hot-toast";
+import axios from "axios";
 
 const SignUpPage = () => {
   const [email, setEmail] = useState(undefined);
@@ -32,7 +34,11 @@ const SignUpPage = () => {
       if (confirmPassword !== password) {
         return setMessage("Both password should match");
       }
-    } catch (err) {}
+      const res = await axios.post("http://localhost:5000/auth/register");
+    } catch (err) {
+      const customMessage = err.response?.data.message || err.message;
+      toast.error(customMessage);
+    }
   };
 
   return (
@@ -50,7 +56,7 @@ const SignUpPage = () => {
             value={email}
             onChange={(e) => setEmail(e.currentTarget.value)}
             placeholder="johndoe@email.com"
-            className="flex items-center justify-center w-full px-4 py-3 text-sm text-black bg-white rounded-lg font-Montserrat h-fit"
+            className="relative flex items-center justify-center w-full px-4 py-3 text-sm text-black bg-white rounded-lg font-Montserrat h-fit"
           />
           {/* password input */}
           <div className="flex flex-row items-center gap-x-2">
