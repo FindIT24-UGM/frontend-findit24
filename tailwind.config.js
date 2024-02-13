@@ -57,9 +57,9 @@ module.exports = {
         },
       },
       backgroundImage: {
-        'primary-gradient': "url('/assets/images/primaryGradient.svg')",
-        'secondary-gradient': "url('/assets/images/secondaryGradient.svg')",
-        'radial-gradient': "radial-gradient(var(--tw-gradient-stops))",
+        "primary-gradient": "url('/assets/images/primaryGradient.svg')",
+        "secondary-gradient": "url('/assets/images/secondaryGradient.svg')",
+        "radial-gradient": "radial-gradient(var(--tw-gradient-stops))",
       },
       fontFamily: {
         Montserrat: ["Montserrat", "sans-serif"],
@@ -72,21 +72,24 @@ module.exports = {
       },
       keyframes: {
         swipeRight1: {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(0%)' },
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0%)" },
         },
         swipeRight2: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(100%)' },
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+        sliderTrack: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(calc(-250px * 8))" },
         },
       },
       animation: {
-        swipeRight1: 'swipeRight1 30s linear infinite',
-        swipeRight2: 'swipeRight2 30s linear infinite',
+        swipeRight1: "swipeRight1 30s linear infinite",
+        swipeRight2: "swipeRight2 30s linear infinite",
+        sliderTrack: "sliderTrack 35s linear infinite",
       },
     },
   },
-  plugins: [
-    require('tailwind-scrollbar')({ nocompatible: true }),
-  ],
+  plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
 };

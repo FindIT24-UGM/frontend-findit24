@@ -7,7 +7,7 @@ export default function AutoSlider() {
     <div className="w-full">
       <div className="slider">
         <div className="w-full border-y-8 border-[#92C2D0]">
-          <div className="slider-track flex gap-x-6 font-GameOfSquid text-[52.72px] whitespace-nowrap">
+          <div className="animate-sliderTrack flex gap-x-6 font-GameOfSquid text-[52.72px] whitespace-nowrap">
             <Image src={Prize} sizes="60vw" alt="Win A TotalPrize" />
             <Image src={Prize} sizes="60vw" alt="Win A TotalPrize" />
             <Image src={Prize} sizes="60vw" alt="Win A Total Prize" />

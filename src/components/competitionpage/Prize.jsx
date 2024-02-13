@@ -5,27 +5,26 @@ import { useState } from "react";
 
 export default function Prize({ prizeArray }) {
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-[#FF8C5A] to-[#F95949]">
+    <div className="min-h-screen w-full bg-[url('https://i.ibb.co/0F9wh1L/Bg-Oren-Comp-Page-Mobile.png')] md:bg-[url('https://i.ibb.co/7bzwNYP/Bg-Oren-Comp-Page-Tab.png)'] lg:bg-[url('https://i.ibb.co/kyY5TTZ/Bg-Oren-Comp-Page-Desktop.png')] bg-cover">
       <div className="relative pt-2 pb-40 sm:pt-20 gap-y-20 flex flex-col font-bold text-white ">
         {/* Beyond The Sky */}
-        <p className="absolute font-Ava text-[3.33vw] rotate-90 leading-[4vw] font-normal bottom-80 -left-48 leading-[4vw] drop-shadow-[0_4px_12px_rgba(255,255,255,1)] opacity-50">
+        <p className="absolute font-Ava text-[8.889vw] md:text-[5vw] lg:text-[3.33vw] lg:rotate-90 leading-[4vw] font-normal bottom-16 lg:bottom-96 lg:-left-48 leading-[4vw] drop-shadow-[0_4px_12px_rgba(255,255,255,1)] opacity-50">
           //Beyond The Sky
         </p>
-        <div className="mx-auto lg:mx-36 font-GameOfSquid text-[2.5vw]">
+        <div className="mx-auto mt-8 lg:mt-0 flex sm:justify-center sm:items-center lg:justify-start lg:items-start lg:mx-36 font-GameOfSquid text-[6.667vw] md:text-[4.167vw] lg:text-[2.5vw]">
           {" "}
           Prize Pool
         </div>
-        <div className="flex flex-col items-center gap-y-40 ">
+        <div className="flex flex-col items-center gap-y-8 lg:gap-y-20 ">
           <PrizeCard type="1st place" prize="Juara 1" />
-          <div className="flex gap-x-12 items-center justify-center tracking-widesr">
+          <div className="flex flex-col lg:flex-row gap-y-8 gap-x-12 items-center justify-center tracking-widesr">
             <PrizeCard type="2nd place" prize="Juara 2" />
             <PrizeCard type="3rd place" prize="Juara 3" />
           </div>
         </div>
         <Image
           src={Roket}
-          width={500}
-          className="absolute right-0 -bottom-60 z-30"
+          className="absolute right-0 md:-bottom-48 lg:-bottom-60 z-30 w-[55vw] md:w-[45vw] lg:w-[25vw]"
         ></Image>
       </div>
     </div>

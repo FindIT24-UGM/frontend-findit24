@@ -3,10 +3,10 @@ import React from "react";
 const HeroPlaceHolder = () => {
   return (
     <div className="flex flex-col items-center">
-      <div className="bg-[url('https://i.ibb.co/JvWVDbJ/placeholdersm.png')] lg:bg-[url('https://i.ibb.co/mhbzqmQ/placeholder.png')] md:bg-[url('https://i.ibb.co/WHD48Jx/placeholdermd.png')] bg-cover h-[275px] w-[492px] md:w-[701.27px] md:h-[245px] lg:w-[890px] lg:h-[222.5px]">
+      <div className="bg-[url('https://i.ibb.co/JvWVDbJ/placeholdersm.png')] lg:bg-[url('https://i.ibb.co/mhbzqmQ/placeholder.png')] md:bg-[url('https://i.ibb.co/WHD48Jx/placeholdermd.png')] bg-cover h-[275px] w-[492px] md:w-[701.27px] md:h-[245px] lg:w-[72vw] lg:h-[350px] lg:flex lg:justify-between lg:items-center">
         <div className="lg:flex lg:justify-between lg:items-center">
-          <div className="lg:flex lg:flex-col justify-center items-center lg:pt-14 pt-10 px-20 lg:w-[50%]">
-            <p className="text-text-placeholder-light font-Montserrat text-[13px] md:text-[16px] lg:text-[15px] text-center">
+          <div className="lg:flex lg:flex-col justify-center items-center pt-10 px-28 lg:w-[47%]">
+            <p className="text-text-placeholder-light font-Montserrat text-[13px] md:text-[16px] lg:text-[1.042vw] text-center">
               <span className="font-bold">
                 Future Innovations and Discovery IT,{" "}
               </span>{" "}
@@ -18,7 +18,7 @@ const HeroPlaceHolder = () => {
             </p>
           </div>
           <div className="px-20 lg:w-[50%] lg:pt-14">
-            <div className="text-text-placeholder-light text-[13px] md:text-[16px] lg:text-[14px] font-Montserrat hidden space-x-1 lg:space-x-0 lg:flex lg:flex-col">
+            <div className="text-text-placeholder-light text-center text-[13px] md:text-[16px] lg:text-[1.042vw] font-Montserrat hidden space-x-1 lg:space-x-0 lg:flex lg:flex-col">
               <span>Siapkan diri anda untuk berinovasi dan</span>
               <span className="font-bold">melampaui batas imajinasi.</span>
             </div>

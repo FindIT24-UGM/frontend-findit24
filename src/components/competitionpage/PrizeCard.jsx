@@ -19,20 +19,22 @@ export default function PrizeCard({ type, prize }) {
       additionalStyle = "bg-[#82512C]";
   }
   return (
-    <div className="w-[532px] relative h-[305px] relative bg-[url('https://i.ibb.co/0Kk6kWb/Mask-group-Prize-Container.png')] bg-cover flex flex-col justify-center items-center gap-y-4">
-      <div className="w-[300px] flex flex-col text-end font-Montserrat italic text-[1.25vw]">
+    <div className="w-[280px] h-[160px] lg:w-[532px] relative lg:h-[305px] relative bg-[url('https://i.ibb.co/0Kk6kWb/Mask-group-Prize-Container.png')] bg-cover flex flex-col justify-center items-center gap-y-4">
+      <div className="w-[47.778vw] md:w-[20.833vw] lg:w-[14.5vw] flex flex-col text-end font-Montserrat italic text-[18px] lg:text-[1.25vw]">
         {type}
       </div>
       <Image
         src={Piala_Gold}
-        sizes={200}
-        className="absolute z-10 left-[10px]"
+        className="absolute z-10 left-[10px] mx-3 md:mx-0 w-[28.611vw] md:w-[13.411vw] lg:w-[10.417vw]"
+        alt="Piala.png"
       />
       <div
-        className={`z-0 w-[17.5vw] h-[3vw] ${additionalStyle} font-GameOfSquid text-black text-[0.7vw] font-normal flex items-center justify-end border-y-4 border-black`}
+        className={`z-0 w-[47.778vw] md:w-[20.833vw] lg:w-[14.5vw] h-[36px] lg:h-[3vw] ${additionalStyle} font-GameOfSquid text-black lg:text-[0.7vw] font-normal flex items-center justify-end  border-y-4 border-black`}
       >
         Rp
-        <div className="text-[1.875vw]">{prize}</div>
+        <div className="text-[5vw] md:text-[2.344vw] lg:text-[1.667vw] lg:mr-4">
+          {prize}
+        </div>
       </div>
     </div>
   );
