@@ -8,6 +8,7 @@ import { IoMdEye } from "react-icons/io";
 import Button from "../../components/Button.jsx";
 import Image from "next/image.js";
 import Link from "next/link.js";
+import axios from "axios";
 
 const SignUpPage = () => {
   const [email, setEmail] = useState(undefined);
@@ -32,7 +33,15 @@ const SignUpPage = () => {
       if (confirmPassword !== password) {
         return setMessage("Both password should match");
       }
-    } catch (err) {}
+      /*  ? Fetch:  POST /auth/register 
+          ? Desc: register account -> email verification  */
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, 
+      { email, password, confirmPassword }, 
+      { withCredentials: true}
+      )
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

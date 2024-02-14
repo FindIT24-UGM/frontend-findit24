@@ -8,6 +8,7 @@ import { IoMdEye } from "react-icons/io";
 import Button from "../../components/Button.jsx";
 import Image from "next/image.js";
 import Link from "next/link.js";
+import axios from "axios";
 
 const LoginPage = () => {
   const [email, setEmail] = useState(undefined);
@@ -23,6 +24,12 @@ const LoginPage = () => {
       if (!password) {
         return setMessage("Password field is missing!");
       }
+
+      // ? Fetch:  POST /auth/login
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, 
+      { email, password }, 
+      { withCredentials: true } 
+      )
     } catch (err) {}
   };
 

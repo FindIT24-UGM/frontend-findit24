@@ -7,6 +7,7 @@ import { HiPhone } from 'react-icons/hi';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
 import Button from '../../components/Button.jsx';
+import axios from 'axios';
 
 const PersonalInfo = () => {
   const [name, setName] = useState(undefined); 
