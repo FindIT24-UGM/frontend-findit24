@@ -15,40 +15,39 @@ import heroImage from "../../../assets/Logo/mascotHeroFindIT24.png";
 
 const HeroComp = () => {
   return (
-    <div className=" min-h-[100vh]">
-      <div className="relative w-full bg-background-skyblue -z-30 pb-10">
+    <div className="w-full">
+      <div className="relative">
         {/* background */}
         <Image
           alt="bg"
           src={HeroBackgroundDesktop}
-          className="bg-cover absolute -z-10 hidden lg:flex h-[100vh]"
+          className="bg-cover absolute -z-10 hidden lg:flex h-fit"
         />
         <Image
           alt="bg"
           src={StarsDesktop}
-          className="bg-cover absolute -z-10 hidden lg:flex h-[100vh]"
+          className="bg-cover absolute -z-10 hidden lg:flex h-fit"
         />
         <Image
           alt="bg"
           src={HeroBackgroundTab}
-          className="bg-cover absolute -z-10 hidden md:flex lg:hidden h-[100vh]"
+          className="bg-cover absolute -z-10 hidden md:flex lg:hidden h-fit"
         />
         <Image
           alt="bg"
           src={StarsTab}
-          className="bg-cover absolute -z-10 hidden md:flex lg:hidden h-[100vh]"
+          className="bg-cover absolute -z-10 hidden md:flex lg:hidden h-fit"
         />
         <Image
           alt="bg"
           src={HeroBackgroundMobile}
-          className="bg-cover absolute -z-10 flex md:hidden lg:hidden h-[100vh]"
+          className="bg-cover absolute -z-10 flex md:hidden lg:hidden h-fit"
         />
         <Image
           alt="bg"
           src={StarsMobile}
-          className="bg-cover absolute -z-10 flex md:hidden lg:hidden h-[100vh]"
+          className="bg-cover absolute -z-10 flex md:hidden lg:hidden h-fit"
         />
-
         {/* content */}
         <div>
           <h2 className="font-Ava lg:text-[50px] md:text-[48px] text-[28px] text-center text-secondary-blue">
@@ -64,7 +63,7 @@ const HeroComp = () => {
               <div className="h-fit">FIND</div>
               <div className="h-fit">IT!</div>
             </div>
-            <div className="flex justify-center items-center pt-28 pb-20 lg:pt-0 lg:pb-0 animate-bounce">
+            <div className="flex justify-center items-center pt-[111px] pb-20 lg:pt-0 lg:pb-0 animate-bounce">
               <Image
                 alt="heroImage"
                 src={heroImage}
