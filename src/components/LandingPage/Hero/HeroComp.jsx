@@ -15,38 +15,38 @@ import heroImage from "../../../assets/Logo/mascotHeroFindIT24.png";
 
 const HeroComp = () => {
   return (
-    <div className="relative">
-      <div className="w-full">
+    <div className=" min-h-[100vh]">
+      <div className="relative w-full bg-background-skyblue -z-30 pb-10">
         {/* background */}
         <Image
           alt="bg"
           src={HeroBackgroundDesktop}
-          className="bg-cover absolute -z-10 hidden lg:flex h-fit"
+          className="bg-cover absolute -z-10 hidden lg:flex h-[100vh]"
         />
         <Image
           alt="bg"
           src={StarsDesktop}
-          className="bg-cover absolute -z-10 hidden lg:flex h-fit"
+          className="bg-cover absolute -z-10 hidden lg:flex h-[100vh]"
         />
         <Image
           alt="bg"
           src={HeroBackgroundTab}
-          className="bg-cover absolute -z-10 hidden md:flex lg:hidden h-fit"
+          className="bg-cover absolute -z-10 hidden md:flex lg:hidden h-[100vh]"
         />
         <Image
           alt="bg"
           src={StarsTab}
-          className="bg-cover absolute -z-10 hidden md:flex lg:hidden h-fit"
+          className="bg-cover absolute -z-10 hidden md:flex lg:hidden h-[100vh]"
         />
         <Image
           alt="bg"
           src={HeroBackgroundMobile}
-          className="bg-cover absolute -z-10 flex md:hidden lg:hidden h-fit"
+          className="bg-cover absolute -z-10 flex md:hidden lg:hidden h-[100vh]"
         />
         <Image
           alt="bg"
           src={StarsMobile}
-          className="bg-cover absolute -z-10 flex md:hidden lg:hidden h-fit"
+          className="bg-cover absolute -z-10 flex md:hidden lg:hidden h-[100vh]"
         />
 
         {/* content */}
