@@ -4,7 +4,7 @@ import Prize from "../assets/Prize.png";
 
 export default function AutoSlider() {
   return (
-    <div className="w-full">
+    <div className="w-full bg-background-skyblue">
       <div className="slider">
         <div className="w-full border-y-8 border-[#92C2D0]">
           <div className="animate-sliderTrack flex gap-x-6 font-GameOfSquid text-[52.72px] whitespace-nowrap">

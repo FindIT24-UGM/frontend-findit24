@@ -4,19 +4,19 @@ import Image from "next/image";
 
 import { FaArrowRight } from "react-icons/fa6";
 
-import webinarLogoDesktop from "../../assets/Logo/AssetWebinarDesktop.svg";
-import webinarLogoTablet from "../../assets/Logo/AssetWebinarTablet.svg";
-import webinarLogoMobile from "../../assets/Logo/AssetWebinarMobile.svg";
+import webinarLogoDesktop from "../../../assets/Logo/AssetWebinarDesktop.svg";
+import webinarLogoTablet from "../../../assets/Logo/AssetWebinarTablet.svg";
+import webinarLogoMobile from "../../../assets/Logo/AssetWebinarMobile.svg";
 
-import webinarPlaceholderDesktop from "../../assets/background/WebinarPlaceholderDesktop.svg";
-import webinarPlaceholderTablet from "../../assets/background/WebinarPlaceholderTab.svg";
-import webinarPlaceholderMobile from "../../assets/background/WebinarPlaceholderMobile.svg";
+import webinarPlaceholderDesktop from "../../../assets/background/WebinarPlaceholderDesktop.svg";
+import webinarPlaceholderTablet from "../../../assets/background/WebinarPlaceholderTab.svg";
+import webinarPlaceholderMobile from "../../../assets/background/WebinarPlaceholderMobile.svg";
 
-import LineSeparatorDesktop from "../../assets/background/LineSeparatorWebinarDesktop.png";
-import LineSeparatorTablet from "../../assets/background/LineSeparatorWebinarTab.png";
-import LineSeparatorMobile from "../../assets/background/LineSeparatorWebinarMobile.png";
+import LineSeparatorDesktop from "../../../assets/background/LineSeparatorWebinarDesktop.png";
+import LineSeparatorTablet from "../../../assets/background/LineSeparatorWebinarTab.png";
+import LineSeparatorMobile from "../../../assets/background/LineSeparatorWebinarMobile.png";
 
-import sidePattern from "../../assets/background/sidePattern.png";
+import sidePattern from "../../../assets/background/sidePattern.png";
 
 const WebinarComp = () => {
   const [windowWidth, setWindowWidth] = useState(null);

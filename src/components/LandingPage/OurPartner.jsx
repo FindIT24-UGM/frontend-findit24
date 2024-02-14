@@ -41,7 +41,7 @@ export default function OurPartner () {
   ]
 
   return (
-    <div className='flex flex-col mt-[110px] sm:mt-[280px] pb-96'>
+    <div className='flex flex-col mt-[110px] sm:mt-[280px] pb-96 bg-background-skyblue'>
       <div className='flex justify-center items-center '>
         <div className='flex flex-col lg:flex-row justify-center lg:justify-between lg:items-center w-[74vw]'>
           <div className=' text-[#FCFCFC] text-[9vw] lg:text-[4.470vw] flex justify-center'>

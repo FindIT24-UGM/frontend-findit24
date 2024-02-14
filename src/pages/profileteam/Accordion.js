@@ -20,7 +20,7 @@ export default function Accordion() {
           <p>1.</p>
           <p>Han Jipyeong</p>
         </div>
-        <MdPlayArrow className={`text-xl delay-100 ${isExpand ? 'rotate-90' : ''} delay-100`} />
+        <MdPlayArrow className={`text-xl delay-100 ${isExpand ? 'transition rotate-90' : ''} delay-100`} />
       </div>
       <div className={`${isExpand ? "" : "hidden"}`}>
         <div className="px-4 pt-3">
