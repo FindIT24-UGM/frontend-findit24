@@ -44,6 +44,12 @@ const SignUpPage = () => {
     }
   };
 
+  const googleSignupHandler = async () => {
+    try {
+      window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google/login`;
+    } catch (err) {}
+  };
+
   return (
     <RootLayout>
       <div className="flex flex-col items-center justify-center w-screen h-full px-5 py-20 overflow-auto bg-background-skyblue lg:px-12 md:px-8">
@@ -114,7 +120,7 @@ const SignUpPage = () => {
             customClass={"font-Montserrat text-black font-semibold"}
             text="Sign Up"
           />
-          <button className="relative flex flex-row items-center w-full px-3 py-2 text-black bg-white rounded-lg">
+          <button onClick={googleSignupHandler} className="relative flex flex-row items-center w-full px-3 py-2 text-black bg-white rounded-lg">
             <Image
               src={"/assets/images/google.png"}
               width={20}

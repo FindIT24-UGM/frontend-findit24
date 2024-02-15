@@ -33,6 +33,11 @@ const LoginPage = () => {
       );
     } catch (err) {}
   };
+  const googleLoginHandler = async () => {
+    try {
+      window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google/login`;
+    } catch (err) {}
+  };
 
   return (
     <RootLayout>
@@ -84,7 +89,7 @@ const LoginPage = () => {
             customClass={"font-Montserrat text-black font-semibold"}
             text="Sign in"
           />
-          <button className="relative flex flex-row items-center w-full px-3 py-2 text-black bg-white rounded-lg">
+          <button onClick={googleLoginHandler} className="relative flex flex-row items-center w-full px-3 py-2 text-black bg-white rounded-lg">
             <Image
               src={"/assets/images/google.png"}
               width={20}
