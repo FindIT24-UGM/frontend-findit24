@@ -25,7 +25,7 @@ export default function CompetitionCard(props) {
     <div className="w-full flex lg:justify-center lg:items-center">
       <div className="w-[150%] lg:w-[100%] lg:relative bg-gradient-to-b from-[#ED7C80] to-[#F9C883] h-[400px] border-4 border-black p-4 lg:p-12 rounded-xl flex flex-col lg:grid lg:grid-cols-3">
         <div className="flex flex-col gap-y-4">
-          <div className="flex lg:flex-col bg-black">
+          <div className="flex lg:flex-col">
             <div className="font-GameOfSquid text-white text-[4.44vw] md:text-[2.266vw] lg:text-[1.25vw]">
               <div>"Stratigize. Conquer.</div>
               <div>{name}"</div>

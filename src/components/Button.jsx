@@ -22,9 +22,9 @@ export default function Button({
   const btnVariant = useMemo(() => {
     switch (variant) {
       case "primary":
-        return `bg-primary-300 ${widthStyle} cursor-pointer font-GameOfSquid rounded-md hover:border-black hover:border-[2px] hover:-m-[2px] active:-m-[4px] active:bg-primary-500 active:border-[4px]`;
+        return `bg-primary-300 ${widthStyle} cursor-pointer font-GameOfSquid rounded-md border border-transparent hover:border-black hover:border-[2px] active:border-black active:border-[2px]`;
       case "secondary":
-        return `bg-transparent ${widthStyle} cursor-pointer rounded-md border-primary-300 border-[3px] font-GameOfSquid text-primary-300 hover:-m-[2px] active:-m-[3px]  hover:opacity-[80%] hover:border-2 active:border-[3px] active:border-primary-500 active:opacity-[100%] active:text-primary-500`;
+        return `bg-transparent ${widthStyle} cursor-pointer rounded-md border-primary-300 border-[3px] font-GameOfSquid text-primary-300 hover:border-black hover:border-[2px] active:border-black active:border-[2px]`;
       default:
         return;
     }
@@ -33,11 +33,11 @@ export default function Button({
   const btnSize = useMemo(() => {
     switch (size) {
       case "sm":
-        return "flex justify-center items-center px-[21px] py-[9px] text-[16px]";
+        return "px-[21px] py-[9px] text-[16px]";
       case "md":
-        return "flex justify-center items-center px-[30px] py-[16px]";
+        return "px-[30px] py-[16px]";
       case "lg":
-        return "flex justify-center items-center px-12 py-4";
+        return "px-12 py-4";
       default:
         return;
     }
@@ -45,31 +45,21 @@ export default function Button({
 
   if (!disabled) {
     return (
-      <button className={`${btnVariant} ${customClass}`} onClick={onClick}>
-        <p className={btnSize}>{text}</p>
+      <button
+        className={`${btnVariant} ${btnSize} ${customClass}`}
+        onClick={onClick}
+      >
+        <p>{text}</p>
       </button>
     );
   } else {
-    if (variant == "primary") {
-      return (
-        <button
-          className={`${btnVariant} font-GameOfSquid font-semibold opacity-60 disabled:cursor-not-allowed ${customClass}`}
-          disabled
-        >
-          <p className={btnSize}>{text}</p>
-        </button>
-      );
-    } else {
-      return (
-        <button
-          className={`${
-            widthStyle + btnVariant
-          } font-GameOfSquid font-semibold opacity-60 disabled:text-dark-100 opacity-70 disabled:cursor-not-allowed ${customClass}`}
-          disabled
-        >
-          <p className={btnSize}>{text}</p>
-        </button>
-      );
-    }
+    return (
+      <button
+        className={`${btnVariant} ${btnSize} font-GameOfSquid font-semibold opacity-60 disabled:cursor-not-allowed ${customClass}`}
+        disabled
+      >
+        <p>{text}</p>
+      </button>
+    );
   }
 }
