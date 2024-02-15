@@ -35,8 +35,8 @@ function HorizontalTextBot() {
 
 export default function Timeline() {
   return (
-    <div className="flex flex-col w-full h-fit gap-y-[1.75vw]">
-      <h2 className="font-GameOfSquid text-white mt-12">Timeline</h2>
+    <div className="flex flex-col justify-center w-full h-fit gap-y-[1.75vw] py-24">
+      <h2 className="font-GameOfSquid text-white">Timeline</h2>
       <div className="grid grid-cols-7 gap-y-[1.75vw]">
         <div></div>
         <div className="flex flex-col justify-end">

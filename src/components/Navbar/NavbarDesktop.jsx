@@ -52,7 +52,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, setIsLogin }) => {
             </button>
             <div
               className={twMerge(
-                "absolute top-[400%] left-0 -translate-x-[25%] flex flex-col w-[300%] h-fit bg-text-placeholder-dark rounded-lg px-5 py-6",
+                "absolute top-[250%] left-0 -translate-x-[25%] flex flex-col w-[300%] h-fit bg-text-placeholder-dark rounded-lg px-5 py-6",
                 "opacity-0 -z-10",
                 isCompetition && "opacity-100 ",
                 "transition-all duration-500"

@@ -198,13 +198,13 @@ export default function CompetitionsList() {
             </div>
           </div>
         </div>
-        <div className="w-full mt-16">
+        <div className="w-full mt-16 pl-4 lg:pl-0">
           <Swiper
             slidesPerView={1.25}
             centeredSlides={true}
             breakpoints={{
               0: {
-                slidesPerView: 1.7,
+                slidesPerView: 1.5,
                 centeredSlides: false,
               },
               770: {
@@ -224,7 +224,7 @@ export default function CompetitionsList() {
               return (
                 <SwiperSlide
                   key={card.name}
-                  className="py-10 flex flex-col items-center justify-center p-0"
+                  className="py-10 flex flex-col items-center justify-center"
                   onClick={() => handleSlideClick(card.ownIndex)}
                 >
                   <CompetitionCard {...card} activeIndex={activeIndex} />

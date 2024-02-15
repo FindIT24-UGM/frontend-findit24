@@ -17,7 +17,7 @@ const Navbar = () => {
     <>
       <div
         className={twMerge(
-          "h-20 border-b-4 w-full border-black bg-text-placeholder-dark font-GameOfSquid flex flex-row justify-center px-7 items-center py-12",
+          "h-20 z-[999] border-b-4 w-full border-black bg-text-placeholder-dark font-GameOfSquid flex flex-row justify-center px-7 items-center py-12",
           "max-lg:justify-between",
           "lg:gap-x-20",
           "relative"
@@ -72,7 +72,7 @@ const Navbar = () => {
       {/* dark background */}
       <motion.div
         className={twMerge(
-          "w-full h-full absolute bg-text-placeholder-dark z-[20]",
+          "w-full h-full absolute bg-text-placeholder-dark z-[999]",
           !isSideNav && "hidden"
         )}
         variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.7 } }}
