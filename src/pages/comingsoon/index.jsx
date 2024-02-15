@@ -1,24 +1,42 @@
-import React from "react";
+import React from 'react';
+import ElectricPattern from './ElectricPattern';
+import RootLayout from '../layout';
 import Button from "../../components/Button";
-import RootLayout from "../layout";
+import { useRouter } from 'next/router';
+import { HiArrowRight } from 'react-icons/hi';
 
-export default function ComingSoon() {
+const Index = () => {
+  const router = useRouter();
+
+  const goToHomepage = () => {
+    router.push('/');
+  };
+
   return (
-    <div className="overflow-hidden">
       <RootLayout>
-        <div className="min-h-screen w-full bg-gradient-to-r from-[#2A93C2] via-[#217196] to-[#2A93C2] flex flex-col justify-center items-center gap-y-8">
-          <p className="font-GameOfSquid text-[8.889vw] md:text-[7.776vw] lg:text-[4.5vw] text-white drop-shadow-[0_0_4px_rgba(252,252,252,1)]">
-            Coming Soon
-          </p>
-          <div className="flex flex-col md:flex-row font-Montserrat font-medium gap-x-1 justify-center text-white text-[5.210vw] md:text-[2.604vw] lg:text-[1.042vw]">
-            <p className="">Oh, dear! it looks like the page</p>
-            <p className="text-center">is under maintenance.</p>
-          </div>
-          <div className="w-[13.177vw] h-[2.917vw]">
-            <Button fullW={true} text="Go To Homepage =>" />
-          </div>
-        </div>
+        <ElectricPattern backgroundColor="bg-gradient-to-r from-background-skyblue via-[#217196] to-background-skyblue">
+            <div className='w-full min-h-full flex flex-col justify-center items-center gap-8'>
+              <h1 className='font-GameOfSquid text-[32px] sm:text-6xl lg:text-[86px] text-text-placeholder-light drop-shadow-competitions text-center'>coming soon</h1>
+              <p className='font-Montserrat font-medium text-base sm:text-lg lg:text-xl text-text-placeholder-light text-center mx-5'>Oh, dear! it looks like the page is under maintenance. </p>
+              <div className='lg:w-3/4 w-full flex items-center justify-center gap-1'>
+                <div className='relative w-full h-5 sm:flex hidden items-center bg-radial-gradient from-primary-300 to-transparent'>
+                  <div className='absolute right-0 w-full h-3 bg-gradient-to-l from-[#217196] to-background-skyblue'/>
+                </div>
+                <Button 
+                  text={<>
+                    Go to Homepage
+                  </>} 
+                  onClick={goToHomepage}
+                  customClass={"text-shade-black w-4/5 sm:w-full min-w-[245px]"}
+                />
+                <div className='relative w-full h-5 sm:flex hidden items-center bg-radial-gradient from-primary-300 to-transparent'>
+                  <div className='absolute w-full h-3 bg-gradient-to-l from-background-skyblue to-[#217196]'/>
+                </div>
+              </div>
+            </div>
+        </ElectricPattern>
       </RootLayout>
-    </div>
   );
 }
+
+export default Index;
