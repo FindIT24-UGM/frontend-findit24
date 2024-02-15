@@ -47,11 +47,11 @@ export default function CompetitionCard(props) {
             </div>
           )}
         </div>
-        <div className="w-full flex items-center justify-center lg:relative lg:bottom-[130px] z-30 mt-30">
+        <div className="w-full flex items-center justify-center lg:relative lg:bottom-[130px] z-30 mt-4">
           {icon}
         </div>
 
-        <div className="flex flex-col justify-center font-Montserrat text-white text-[1.25vw]">
+        <div className="flex flex-col justify-center font-Montserrat text-white text-[1.25vw] lg:mb-20">
           <div>Tertarik mendaftar</div>
           <div>{name},</div>
           <div className="font-bold">Hackers? </div>
@@ -60,7 +60,7 @@ export default function CompetitionCard(props) {
               <Button
                 variant="primary"
                 text="See More ->"
-                customClass="bg-[#000000]"
+                customClass="bg-black"
               />
             </Link>
           </div>

@@ -1,9 +1,8 @@
-"use client";
-
 import React, { useState } from "react";
 import Image from "next/image";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { twMerge } from "tailwind-merge";
+import Link from "next/link";
 
 const LOMBA = [
   "Capture the flag",
@@ -25,15 +24,17 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, setIsLogin }) => {
             "absolute flex flex-row w-fit h-20 items-center -translate-x-[100%] -translate-y-[50%] gap-x-14 max-lg:hidden"
           )}
         >
-          <p
-            className={twMerge(
-              "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
-              activePath == "Webinar" && "text-primary-500"
-            )}
-            onClick={() => setActivePath("Webinar")}
-          >
-            Webinar
-          </p>
+          <Link href="/webinar">
+            <p
+              className={twMerge(
+                "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
+                activePath == "Webinar" && "text-primary-500"
+              )}
+              onClick={() => setActivePath("Webinar")}
+            >
+              Webinar
+            </p>
+          </Link>
           <div className="relative flex flex-row items-center gap-x-3">
             <p
               className={twMerge(
@@ -59,14 +60,21 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, setIsLogin }) => {
               )}
             >
               {LOMBA.map((l) => (
-                <div
-                  className="flex items-center justify-center flex-1 w-full py-2 rounded-lg hover:text-white hover:bg-primary-300 font-Montserrat"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
+                <Link
+                  key={l}
+                  href={
+                    "/competition" + `/${l.split(" ").join("-").toLowerCase()}`
+                  }
                 >
-                  {l}
-                </div>
+                  <p
+                    className="flex items-center justify-center flex-1 w-full py-2 rounded-lg hover:text-white hover:bg-primary-300 font-Montserrat cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  >
+                    {l}
+                  </p>
+                </Link>
               ))}
             </div>
           </div>

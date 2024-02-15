@@ -41,7 +41,7 @@ export default function CompetitionsList() {
         <Image
           src={Ui_Ux_Lalu}
           alt="logo"
-          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw]"
+          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw] h-full"
         />
       ),
       desc: "UX Competition adalah kompetisi desain pengalaman pengguna sebuah produk aplikasi mobile. Peserta akan mengembangkan produk dalam bentuk prototipe sesuai dengan tema.",
@@ -53,15 +53,8 @@ export default function CompetitionsList() {
       icon: (
         <Image
           src={CP_Lalu}
-          sizes={
-            windowWidth < 400
-              ? "(max-width: 100vw)"
-              : windowWidth < 800
-              ? "(max-width: 33vw)"
-              : "(max-width: 20vw)"
-          }
           alt="logo"
-          className="unselectable"
+          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw]"
         />
       ),
       desc: "Competitive Programming adalah kompetisi yang menguji kemampuan berpikir logis demi menyelesaikan masalah dengan suatu program komputer.",
@@ -73,15 +66,8 @@ export default function CompetitionsList() {
       icon: (
         <Image
           src={DAC_Lalu}
-          sizes={
-            windowWidth < 400
-              ? "(max-width: 100vw)"
-              : windowWidth < 800
-              ? "(max-width: 33vw)"
-              : "(max-width: 20vw)"
-          }
           alt="logo"
-          className="unselectable"
+          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw]"
         />
       ),
       desc: "Data Analytics Competition merupakan kompetisi menganalisis data khususnya big data guna memberi solusi dari sebuah permasalahan yang telah disediakan.",
@@ -93,15 +79,8 @@ export default function CompetitionsList() {
       icon: (
         <Image
           src={Hackathon_Lalu}
-          sizes={
-            windowWidth < 400
-              ? "(max-width: 100vw)"
-              : windowWidth < 800
-              ? "(max-width: 33vw)"
-              : "(max-width: 20vw)"
-          }
           alt="logo"
-          className="unselectable"
+          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw]"
         />
       ),
       desc: "Hackathon adalah kompetisi pembuatan inovasi berupa produk teknologi informasi dalam jangka waktu tertentu dan sesuai tema yang sudah ditentukan.",
@@ -113,15 +92,8 @@ export default function CompetitionsList() {
       icon: (
         <Image
           src={CTF_Lalu}
-          sizes={
-            windowWidth < 400
-              ? "(max-width: 100vw)"
-              : windowWidth < 800
-              ? "(max-width: 33vw)"
-              : "(max-width: 20vw)"
-          }
           alt="logo"
-          className="unselectable"
+          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw]"
         />
       ),
       desc: "Capture the Flag adalah kompetisi cyber security yang menguji peserta dalam berpikir terstruktur dan kreatif dalam mencari sebuah informasi tersembunyi yang disebut flag.",
@@ -133,15 +105,8 @@ export default function CompetitionsList() {
       icon: (
         <Image
           src={Esport_lalu}
-          sizes={
-            windowWidth < 400
-              ? "(max-width: 100vw)"
-              : windowWidth < 800
-              ? "(max-width: 33vw)"
-              : "(max-width: 20vw)"
-          }
           alt="logo"
-          className="unselectable"
+          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw]"
         />
       ),
       desc: "Sebuah kompetisi yang menguji kemampuan peserta dalam bermain game kompetitif secara online. Terdapat dua pilihan game yaitu Mobile Legends dan Valorant.",
@@ -153,15 +118,8 @@ export default function CompetitionsList() {
       icon: (
         <Image
           src={Logic_Comp_lalu}
-          sizes={
-            windowWidth < 400
-              ? "(max-width: 100vw)"
-              : windowWidth < 800
-              ? "(max-width: 33vw)"
-              : "(max-width: 20vw)"
-          }
           alt="logo"
-          className="unselectable"
+          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw]"
         />
       ),
       desc: "Informatics Competition merupakan kompetisi yang bertujuan untuk menguji kecerdasan dan pemahaman logika matematika melalui pengerjaan soal matematika dan problem solving.",
@@ -198,7 +156,7 @@ export default function CompetitionsList() {
             </div>
           </div>
         </div>
-        <div className="w-full mt-16 pl-4 lg:pl-0">
+        <div className="w-full h-fit mt-16 pl-4 lg:pl-0">
           <Swiper
             slidesPerView={1.25}
             centeredSlides={true}

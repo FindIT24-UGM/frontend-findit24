@@ -26,10 +26,11 @@ const LoginPage = () => {
       }
 
       // ? Fetch:  POST /auth/login
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, 
-      { email, password }, 
-      { withCredentials: true } 
-      )
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+        { email, password },
+        { withCredentials: true }
+      );
     } catch (err) {}
   };
 
@@ -40,10 +41,12 @@ const LoginPage = () => {
         <h2>Log in with your data that you entered during your registration</h2>
         <div className="flex flex-col gap-y-3 w-[80%] lg:w-[37%] mt-10">
           {/* email input */}
-          <div className="flex flex-row items-center gap-x-2">
-            <MdEmail size={25} />
-            <p className="font-bold text-md">E-mail</p>
-          </div>
+          <label htmlFor="email">
+            <div className="flex flex-row items-center gap-x-2">
+              <MdEmail size={25} />
+              <p className="font-bold text-md">E-mail</p>
+            </div>
+          </label>
           <input
             value={email}
             onChange={(e) => setEmail(e.currentTarget.value)}

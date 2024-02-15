@@ -10,19 +10,12 @@ export default function Button({
   customClass,
   onClick = () => {},
 }) {
-  // variant: primary, secondary, tertiary,
-  // color: blue, pink
-  // size : sm, md, lg
-  // text : text to display
-  // onClick : function to call on click
-
-  // fullW: set width of button (either full or fit)
   const widthStyle = fullW ? "w-full" : "w-fit";
 
   const btnVariant = useMemo(() => {
     switch (variant) {
       case "primary":
-        return `bg-primary-300 ${widthStyle} cursor-pointer font-GameOfSquid rounded-md border border-transparent hover:border-black hover:border-[2px] active:border-black active:border-[2px]`;
+        return `bg-primary-300 ${widthStyle} cursor-pointer font-GameOfSquid rounded-md border border-primary-300 hover:border-black hover:border-[2px] active:border-black active:border-[2px]`;
       case "secondary":
         return `bg-transparent ${widthStyle} cursor-pointer rounded-md border-primary-300 border-[3px] font-GameOfSquid text-primary-300 hover:border-black hover:border-[2px] active:border-black active:border-[2px]`;
       default:
