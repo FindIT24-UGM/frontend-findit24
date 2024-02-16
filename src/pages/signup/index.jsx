@@ -9,8 +9,10 @@ import Button from "../../components/Button.jsx";
 import Image from "next/image.js";
 import Link from "next/link.js";
 import axios from "axios";
+import { useRouter } from "next/router.js";
 
 const SignUpPage = () => {
+  const router = useRouter()
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [confirmPassword, setConfirmPassword] = useState(undefined);
@@ -19,7 +21,7 @@ const SignUpPage = () => {
     useState(false);
   const [message, setMessage] = useState("");
 
-  const onSubmit = async () => {
+  const signupHandler = async () => {
     try {
       if (!email) {
         return setMessage("Email field is missing!");
@@ -39,8 +41,12 @@ const SignUpPage = () => {
       { email, password, confirmPassword }, 
       { withCredentials: true}
       )
+      router.push('/signup/check')
     } catch (err) {
-      console.log(err);
+      //LOGIC IF ERROR (EMAIL IS TAKEN / PASSWORD KRG BAIK)
+      if(err.response.data.errors){
+        setMessage(err.response.data.errors)
+      }
     }
   };
 
@@ -116,7 +122,7 @@ const SignUpPage = () => {
           </div>
           <Button
             fullW
-            onClick={onSubmit}
+            onClick={signupHandler}
             customClass={"font-Montserrat text-black font-semibold"}
             text="Sign Up"
           />
