@@ -7,7 +7,7 @@ export default function Button({
   color,
   fullW = false,
   disabled = false,
-  customClass,
+  customClass = "", // Pastikan ada nilai default untuk customClass
   onClick = () => {},
 }) {
   const widthStyle = fullW ? "w-full" : "w-fit";
@@ -36,19 +36,20 @@ export default function Button({
     }
   }, [size]);
 
+  const buttonClasses = useMemo(() => {
+    return `${btnVariant} ${btnSize} ${customClass}`.trim(); // Hapus spasi ekstra jika customClass kosong
+  }, [btnVariant, btnSize, customClass]);
+
   if (!disabled) {
     return (
-      <button
-        className={`${btnVariant} ${btnSize} ${customClass}`}
-        onClick={onClick}
-      >
+      <button className={buttonClasses} onClick={onClick}>
         <p>{text}</p>
       </button>
     );
   } else {
     return (
       <button
-        className={`${btnVariant} ${btnSize} font-GameOfSquid font-semibold opacity-60 disabled:cursor-not-allowed ${customClass}`}
+        className={`${buttonClasses} font-GameOfSquid font-semibold opacity-60 disabled:cursor-not-allowed`}
         disabled
       >
         <p>{text}</p>

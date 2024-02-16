@@ -41,7 +41,7 @@ export default function CompetitionsList() {
         <Image
           src={Ui_Ux_Lalu}
           alt="logo"
-          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw] h-full"
+          className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
       desc: "UX Competition adalah kompetisi desain pengalaman pengguna sebuah produk aplikasi mobile. Peserta akan mengembangkan produk dalam bentuk prototipe sesuai dengan tema.",
@@ -54,7 +54,7 @@ export default function CompetitionsList() {
         <Image
           src={CP_Lalu}
           alt="logo"
-          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw]"
+          className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
       desc: "Competitive Programming adalah kompetisi yang menguji kemampuan berpikir logis demi menyelesaikan masalah dengan suatu program komputer.",
@@ -67,7 +67,7 @@ export default function CompetitionsList() {
         <Image
           src={DAC_Lalu}
           alt="logo"
-          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw]"
+          className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
       desc: "Data Analytics Competition merupakan kompetisi menganalisis data khususnya big data guna memberi solusi dari sebuah permasalahan yang telah disediakan.",
@@ -80,7 +80,7 @@ export default function CompetitionsList() {
         <Image
           src={Hackathon_Lalu}
           alt="logo"
-          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw]"
+          className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
       desc: "Hackathon adalah kompetisi pembuatan inovasi berupa produk teknologi informasi dalam jangka waktu tertentu dan sesuai tema yang sudah ditentukan.",
@@ -93,7 +93,7 @@ export default function CompetitionsList() {
         <Image
           src={CTF_Lalu}
           alt="logo"
-          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw]"
+          className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
       desc: "Capture the Flag adalah kompetisi cyber security yang menguji peserta dalam berpikir terstruktur dan kreatif dalam mencari sebuah informasi tersembunyi yang disebut flag.",
@@ -106,7 +106,7 @@ export default function CompetitionsList() {
         <Image
           src={Esport_lalu}
           alt="logo"
-          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw]"
+          className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
       desc: "Sebuah kompetisi yang menguji kemampuan peserta dalam bermain game kompetitif secara online. Terdapat dua pilihan game yaitu Mobile Legends dan Valorant.",
@@ -119,7 +119,7 @@ export default function CompetitionsList() {
         <Image
           src={Logic_Comp_lalu}
           alt="logo"
-          className="unselectable w-[62.5vw] md:w-[13.2vw] lg:w-[20vw]"
+          className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
       desc: "Informatics Competition merupakan kompetisi yang bertujuan untuk menguji kecerdasan dan pemahaman logika matematika melalui pengerjaan soal matematika dan problem solving.",
@@ -156,7 +156,7 @@ export default function CompetitionsList() {
             </div>
           </div>
         </div>
-        {windowWidth < 400 ? (
+        {windowWidth < 450 ? (
           <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
             <Swiper
               slidesPerView={1.15}
@@ -183,8 +183,41 @@ export default function CompetitionsList() {
                 );
               })}
             </Swiper>
-            <div className="mt-8 flex flex-col items-center">
-              <div className="font-Ava text-white text-[3.9vw]">
+            <div className="flex flex-col items-center">
+              <div className="font-Ava text-white text-[10.278vw] md:text-[6.48vw] 2xl:text-[3.9vw]">
+                {cards[activeIndex].name}
+              </div>
+            </div>
+          </div>
+        ) : windowWidth <= 860 ? (
+          <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
+            <Swiper
+              slidesPerView={1.25}
+              centeredSlides={true}
+              onSlideChange={(swiper) => {
+                setActiveIndex(swiper.activeIndex);
+                console.log(`slide change[${swiper.activeIndex}]`);
+                console.log(cards.name);
+              }}
+              onSwiper={setSwiper}
+              spaceBetween="40vw"
+              grabCursor={true}
+              className="w-full"
+            >
+              {cards.map((card) => {
+                return (
+                  <SwiperSlide
+                    key={card.name}
+                    className="py-10 flex flex-col items-center justify-center"
+                    onClick={() => handleSlideClick(card.ownIndex)}
+                  >
+                    <CompetitionCard {...card} activeIndex={activeIndex} />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <div className="flex flex-col items-center">
+              <div className="font-Ava text-white text-[10.278vw] md:text-[6.48vw] 2xl:text-[3.9vw]">
                 {cards[activeIndex].name}
               </div>
             </div>
@@ -207,7 +240,7 @@ export default function CompetitionsList() {
                 return (
                   <SwiperSlide
                     key={card.name}
-                    className="py-10 flex flex-col items-center justify-center"
+                    className="lg:py-10 flex flex-col items-center justify-center"
                     onClick={() => handleSlideClick(card.ownIndex)}
                   >
                     <CompetitionCard {...card} activeIndex={activeIndex} />
@@ -215,8 +248,8 @@ export default function CompetitionsList() {
                 );
               })}
             </Swiper>
-            <div className="mt-8 flex flex-col items-center">
-              <div className="font-Ava text-white text-[3.9vw]">
+            <div className="2xl:mt-8 flex flex-col items-center">
+              <div className="font-Ava text-white text-[37px] md:text-[6.48vw] 2xl:text-[3.9vw]">
                 {cards[activeIndex].name}
               </div>
             </div>
