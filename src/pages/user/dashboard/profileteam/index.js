@@ -29,28 +29,28 @@ const index = () => {
 
       <div className="space-y-5 md:space-y-0 md:flex md:flex-row md:justify-between md:gap-x-5 lg:flex-col lg:gap-y-5 lg:order-2">
         {/* deadline verif box */}
-        <div className="bg-text-placeholder-light px-5 py-5 rounded-md border-4 border-black md:order-2 md:w-[40%] lg:w-full">
+        <div className="bg-text-placeholder-light px-5 py-5 rounded-md border-4 border-black md:order-2 lg:order-1 md:w-[40%] lg:w-full">
           <div className="flex items-center space-x-2">
             <IoTime />
             <h2 className="font-Montserrat font-bold">Deadline Verifikasi</h2>
           </div>
           <div className="flex justify-between my-5 md:flex md:flex-col lg:flex-row">
-            <div className="bg-gradient-to-b from-orange-400 to-red-400 rounded p-2 w-1/3 mx-2 text-white space-y-2 md:w-full md:flex md:items-center md:justify-between md:my-1 lg:w-1/3">
-              <h2 className="font-GameOfSquid text-[28px]">20</h2>
+            <div className="bg-gradient-to-b from-orange-400 to-red-400 rounded p-2 w-1/3 mx-2 md:mx-[2px] text-white space-y-2 md:w-full md:flex md:items-center md:justify-between md:my-1 lg:w-1/3">
+              <h2 className="font-GameOfSquid text-[26px]">20</h2>
               <p className="font-Montserrat font-bold text-[16px]">Hari</p>
             </div>
-            <div className="bg-gradient-to-b from-orange-400 to-red-400 rounded p-2 w-1/3 mx-2 text-white space-y-2 md:w-full md:flex md:items-center md:justify-between md:my-1 lg:w-1/3">
-              <h2 className="font-GameOfSquid text-[28px]">22</h2>
+            <div className="bg-gradient-to-b from-orange-400 to-red-400 rounded p-2 w-1/3 mx-2 md:mx-[2px] text-white space-y-2 md:w-full md:flex md:items-center md:justify-between md:my-1 lg:w-1/3">
+              <h2 className="font-GameOfSquid text-[26px]">22</h2>
               <p className="font-Montserrat font-bold text-[16px]">Jam</p>
             </div>
-            <div className="bg-gradient-to-b from-orange-400 to-red-400 rounded p-2 w-1/3 mx-2 text-white space-y-2 md:w-full md:flex md:items-center md:justify-between md:my-1 lg:w-1/3">
-              <h2 className="font-GameOfSquid text-[28px]">14</h2>
+            <div className="bg-gradient-to-b from-orange-400 to-red-400 rounded p-2 w-1/3 mx-2 md:mx-[2px] text-white space-y-2 md:w-full md:flex md:items-center md:justify-between md:my-1 lg:w-1/3">
+              <h2 className="font-GameOfSquid text-[26px]">14</h2>
               <p className="font-Montserrat font-bold text-[16px]">Menit</p>
             </div>
           </div>
         </div>
         {/* komentar admn box */}
-        <div className="bg-text-placeholder-light px-5 py-5 rounded-md border-4 border-black space-y-4 md:order-1 md:w-[60%] lg:w-full lg:h-full">
+        <div className="bg-text-placeholder-light px-5 py-5 rounded-md border-4 border-black space-y-4 md:order-1 lg:order-2 md:w-[60%] lg:w-full lg:h-full">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <BsChatSquareTextFill />

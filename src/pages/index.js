@@ -6,6 +6,7 @@ import CompetitionsList from "../components/LandingPage/CompetitionsList";
 import RootLayout from "./layout";
 import OurPartner from "../components/LandingPage/OurPartner";
 import HeroComp from "../components/LandingPage/Hero/HeroComp";
+import WebinarComp from "../components/LandingPage/Webinar/WebinarComp";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,7 @@ export default function Home() {
           <HeroComp />
           <AutoSlider />
           <CompetitionsList />
+          <WebinarComp />
           <OurPartner />
         </div>
       </main>
