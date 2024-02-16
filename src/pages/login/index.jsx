@@ -9,14 +9,16 @@ import Button from "../../components/Button.jsx";
 import Image from "next/image.js";
 import Link from "next/link.js";
 import axios from "axios";
+import { useRouter } from "next/router.js";
 
 const LoginPage = () => {
+  const router = useRouter()
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [message, setMessage] = useState("");
 
-  const onSubmit = async () => {
+  const loginHandler = async () => {
     try {
       if (!email) {
         return setMessage("Email field is missing!");
@@ -31,6 +33,16 @@ const LoginPage = () => {
         { email, password },
         { withCredentials: true }
       );
+      router.push('/')
+    } catch (err) {
+      if(err.response.data){
+        setMessage('Email not found or password incorrect')
+      }
+    }
+  };
+  const googleLoginHandler = async () => {
+    try {
+      window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google/login`;
     } catch (err) {}
   };
 
@@ -80,11 +92,11 @@ const LoginPage = () => {
           </div>
           <Button
             fullW
-            onClick={onSubmit}
+            onClick={loginHandler}
             customClass={"font-Montserrat text-black font-semibold"}
             text="Sign in"
           />
-          <button className="relative flex flex-row items-center w-full px-3 py-2 text-black bg-white rounded-lg">
+          <button onClick={googleLoginHandler} className="relative flex flex-row items-center w-full px-3 py-2 text-black bg-white rounded-lg">
             <Image
               src={"/assets/images/google.png"}
               width={20}

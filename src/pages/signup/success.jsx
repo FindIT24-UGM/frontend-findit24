@@ -2,6 +2,8 @@ import React from "react";
 import RootLayout from "../layout";
 import Button from "../../components/Button";
 
+//NIH CODE NYA KUPINDAHIN KE /activate/[token].jsx 
+
 const Success = () => {
   return (
     <RootLayout>
