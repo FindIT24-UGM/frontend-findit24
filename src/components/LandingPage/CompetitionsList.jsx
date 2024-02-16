@@ -135,12 +135,12 @@ export default function CompetitionsList() {
 
   return (
     <div className="min-h-screen flex justify-center lg:px-[54px] bg-background-skyblue">
-      <div className="hidden lg:flex absolute left-0">
+      {/* <div className="hidden lg:flex absolute left-0">
         <Image src={Vector_Kiri}></Image>
-      </div>
-      <div className="hidden lg:flex absolute right-0">
+      </div> */}
+      {/* <div className="hidden lg:flex absolute right-0">
         <Image src={Vector_Kanan}></Image>
-      </div>
+      </div> */}
       <div className="w-[90%] lg:w-[80%] flex flex-col items-center border-x-[6px] border-[#92C2D0] pb-20">
         <div className="flex flex-col items-center">
           <div className="lg:w-[70%] pt-20">

@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import leftBottom from "../../assets/background/Group240.png";
-import rightTop from "../../assets/background/Group241.png";
+import leftBottom from "../../../../assets/background/Group240.png";
+import rightTop from "../../../../assets/background/Group241.png";
 
 const TeamProfileLayout = ({ children }) => {
   return (
