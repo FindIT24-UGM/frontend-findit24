@@ -156,46 +156,72 @@ export default function CompetitionsList() {
             </div>
           </div>
         </div>
-        <div className="w-full h-fit mt-16 pl-4 lg:pl-0">
-          <Swiper
-            slidesPerView={1.25}
-            centeredSlides={true}
-            breakpoints={{
-              0: {
-                slidesPerView: 1.5,
-                centeredSlides: false,
-              },
-              770: {
-                centeredSlides: true,
-              },
-            }}
-            onSlideChange={(swiper) => {
-              setActiveIndex(swiper.activeIndex);
-              console.log(`slide change[${swiper.activeIndex}]`);
-              console.log(cards.name);
-            }}
-            onSwiper={setSwiper}
-            spaceBetween="100vw"
-            grabCursor={true}
-          >
-            {cards.map((card) => {
-              return (
-                <SwiperSlide
-                  key={card.name}
-                  className="py-10 flex flex-col items-center justify-center"
-                  onClick={() => handleSlideClick(card.ownIndex)}
-                >
-                  <CompetitionCard {...card} activeIndex={activeIndex} />
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-          <div className="mt-8 flex flex-col items-center">
-            <div className="font-Ava text-white text-[3.9vw]">
-              {cards[activeIndex].name}
+        {windowWidth < 400 ? (
+          <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
+            <Swiper
+              slidesPerView={1.15}
+              centeredSlides={false}
+              onSlideChange={(swiper) => {
+                setActiveIndex(swiper.activeIndex);
+                console.log(`slide change[${swiper.activeIndex}]`);
+                console.log(cards.name);
+              }}
+              onSwiper={setSwiper}
+              spaceBetween="15vw"
+              grabCursor={true}
+              className="w-full"
+            >
+              {cards.map((card) => {
+                return (
+                  <SwiperSlide
+                    key={card.name}
+                    className="py-10 flex flex-col items-center justify-center"
+                    onClick={() => handleSlideClick(card.ownIndex)}
+                  >
+                    <CompetitionCard {...card} activeIndex={activeIndex} />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <div className="mt-8 flex flex-col items-center">
+              <div className="font-Ava text-white text-[3.9vw]">
+                {cards[activeIndex].name}
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="w-full h-fit mt-16 pl-4 lg:pl-0">
+            <Swiper
+              slidesPerView={1.25}
+              centeredSlides={true}
+              onSlideChange={(swiper) => {
+                setActiveIndex(swiper.activeIndex);
+                console.log(`slide change[${swiper.activeIndex}]`);
+                console.log(cards.name);
+              }}
+              onSwiper={setSwiper}
+              spaceBetween="100vw"
+              grabCursor={true}
+            >
+              {cards.map((card) => {
+                return (
+                  <SwiperSlide
+                    key={card.name}
+                    className="py-10 flex flex-col items-center justify-center"
+                    onClick={() => handleSlideClick(card.ownIndex)}
+                  >
+                    <CompetitionCard {...card} activeIndex={activeIndex} />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <div className="mt-8 flex flex-col items-center">
+              <div className="font-Ava text-white text-[3.9vw]">
+                {cards[activeIndex].name}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
