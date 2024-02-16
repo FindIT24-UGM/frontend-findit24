@@ -4,7 +4,7 @@ import UserDashboardLayout from './layout';
 const Index = () => {
     return (
         <UserDashboardLayout>
-
+            
         </UserDashboardLayout>
     );
 }
