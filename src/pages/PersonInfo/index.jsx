@@ -8,8 +8,10 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
 import Button from '../../components/Button.jsx';
 import axios from 'axios';
+import { useRouter } from 'next/router.js';
 
 const PersonalInfo = () => {
+  const router = useRouter();
   const [name, setName] = useState(undefined); 
   const [date, setDate] = useState(undefined);
   const [openProvinsi, setOpenProvinsi] = useState(false);
@@ -56,7 +58,24 @@ const PersonalInfo = () => {
       if(!number) {
         return setMessage("Please fill Nomor HP")
       }
-    } catch (err) {}
+      /*  ? Fetch:  PATCH /user/ */
+      const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/user`, 
+      { name, 
+        phone: number, 
+        dateOfBirth: date,
+        // address,
+        province: provinsiSelected,
+        institutionName: instansi,
+        status: statusSelected,
+        // lineContact
+      }, 
+      { withCredentials: true}
+      )
+      setMessage('Update user successfully')
+      router.push('/user/dashboard')
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const CustomInput = ({value, onClick}) => {
@@ -195,13 +214,13 @@ const PersonalInfo = () => {
   ]
   const statuses = [
     {
-      name : 'Universitas/Institut'
+      name : 'mahasiswa'
     },
     {
       name : 'SMA'
     },
     {
-      name : 'Umum'
+      name : 'umum'
     }
   ]
 
