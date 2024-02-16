@@ -1,17 +1,27 @@
 "use client";
 
-import { applyMiddleware } from "@reduxjs/toolkit";
 import axios from "axios";
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 const SessionContext = createContext({
+  // declare variable
   session: {
     status: "loading",
-    user: { username: undefined, position: undefined },
+    user: {
+      email: undefined,
+      name: undefined,
+      phone: undefined,
+      lineContact: undefined,
+      role: undefined,
+      address: undefined,
+      province: undefined,
+      dateOfBirth: undefined,
+      institutionName: undefined,
+      status: undefined,
+    },
   },
   setSession: (session) => {},
-  login: async (credentials) => {},
-  logout: async () => {},
+  vari: 0,
 });
 
 const SessionProvider = ({ children }) => {
@@ -20,16 +30,19 @@ const SessionProvider = ({ children }) => {
     user: {},
   });
 
+  const [vari, setVar] = useState(1);
+
   useEffect(() => {
+    // fecthing
     const fetchSession = async () => {
       try {
         const response = await axios.get(
-          process.env.NEXT_PUBLIC_API_URL + "/auth/login",
+          process.env.NEXT_PUBLIC_API_URL + "/auth/session",
           {
             withCredentials: true,
           }
         );
-
+        console.log(response);
         if (response.status >= 200 && response.status < 305) {
           setSession({ status: "authenticated", user: response.data.user });
         } else {
@@ -44,7 +57,7 @@ const SessionProvider = ({ children }) => {
   }, []);
 
   return (
-    <SessionContext.Provider value={{ session, setSession }}>
+    <SessionContext.Provider value={{ session, setSession, vari }}>
       {children}
     </SessionContext.Provider>
   );
