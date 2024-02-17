@@ -7,6 +7,7 @@ import Header from "../../components/Faq/Header";
 import Category from "../../components/Faq/Category";
 import QuestionSearch from "../../components/Faq/QuestionSearch";
 import RootLayout from "../layout.jsx";
+import Footer from "../../components/footer.js";
 
 const FAQ = [
   {
@@ -63,6 +64,7 @@ export default function FAQPage() {
         {/* no question found section */}
         {displayedFaq.length == 0 && <NoQuestion />}
       </div>
+      <Footer />
     </RootLayout>
   );
 }

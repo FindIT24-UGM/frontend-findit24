@@ -6,6 +6,7 @@ import RootLayout from "./layout";
 import OurPartner from "../components/LandingPage/OurPartner";
 import HeroComp from "../components/LandingPage/Hero/HeroComp";
 import WebinarComp from "../components/LandingPage/Webinar/WebinarComp";
+import Footer from "../components/footer";
 import { useSession } from "../session/SessionProvider";
 import { useEffect } from "react";
 
@@ -25,6 +26,7 @@ export default function Home() {
           <OurPartner />
         </div>
       </main>
+      <Footer />
     </RootLayout>
   );
 }

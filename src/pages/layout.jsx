@@ -8,7 +8,6 @@ const RootLayout = ({ children }) => {
     <main className="relative flex flex-col h-full">
       <Navbar />
       <SessionProvider>{children}</SessionProvider>
-      <Footer />
     </main>
   );
 };
