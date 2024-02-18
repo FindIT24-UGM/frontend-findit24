@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const LOMBA = [
   "Capture the flag",
@@ -14,8 +15,32 @@ const LOMBA = [
   "Informatics Competition",
 ];
 
-const NavbarDesktop = ({ activePath, setActivePath, isLogin, setIsLogin }) => {
-  const [isCompetition, setIsCompetition] = useState(false);
+const NavbarDesktop = ({ activePath, setActivePath, setIsLogin }) => {
+  const [opacityCompetition, setopacityCompetition] = useState(false);
+  const [hideCompetition, setHideCompetition] = useState(true);
+  const [spanCompetition, setSpanCompetition] = useState(false);
+  const router = useRouter();
+  const isLogin = true;
+  // naufal tolong cek isLogin dengan redux toolkit ya
+
+  const onSignClick = useCallback(() => {
+    if (isLogin) {
+      // fungsi logout
+    } else {
+      router.push("/signup");
+    }
+  }, [isLogin]);
+
+  useEffect(() => {
+    if (spanCompetition) {
+      setHideCompetition(false);
+      setTimeout(() => setopacityCompetition(true), 100);
+    } else {
+      setopacityCompetition(false);
+      setTimeout(() => setHideCompetition(true), 400);
+    }
+  }, [spanCompetition]);
+
   return (
     <>
       <div className="relative">
@@ -43,19 +68,25 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, setIsLogin }) => {
               )}
               onClick={() => {
                 setActivePath("Competition");
-                setIsCompetition(!isCompetition);
+                setSpanCompetition(!spanCompetition);
               }}
             >
               Competition
             </p>
-            <button>
+            <button
+              className={twMerge(
+                spanCompetition && "rotate-180",
+                "transition-all duration-300"
+              )}
+            >
               <IoMdArrowDropdown size={25} />
             </button>
             <div
               className={twMerge(
-                "absolute top-[250%] left-0 -translate-x-[25%] flex flex-col w-[300%] h-fit bg-text-placeholder-dark rounded-lg px-5 py-6",
-                "opacity-0 -z-10",
-                isCompetition && "opacity-100 ",
+                "absolute top-[260%] left-0 -translate-x-[25%] flex flex-col w-[300%] h-fit bg-text-placeholder-dark rounded-lg px-5 py-6",
+                hideCompetition && "hidden",
+                !opacityCompetition && "opacity-0",
+                opacityCompetition && "opacity-100",
                 "transition-all duration-500"
               )}
             >
@@ -67,7 +98,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, setIsLogin }) => {
                   }
                 >
                   <p
-                    className="flex items-center justify-center flex-1 w-full py-2 rounded-lg hover:text-white hover:bg-primary-300 font-Montserrat cursor-pointer"
+                    className="flex items-center justify-center flex-1 w-full py-2 rounded-lg cursor-pointer hover:text-white hover:bg-primary-300 font-Montserrat"
                     onClick={(e) => {
                       e.stopPropagation();
                     }}
@@ -115,7 +146,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, setIsLogin }) => {
       {/* sign in button */}
       <button
         className="absolute right-[50px] transition-all duration-300 hover:bg-primary-500 max-lg:hidden font-GameOfSquid bg-primary-300 rounded-lg text-black p-2 text-sm"
-        onClick={() => setIsLogin(!isLogin)}
+        onClick={onSignClick}
       >
         {isLogin ? "Sign Out" : "Sign In"}
       </button>
