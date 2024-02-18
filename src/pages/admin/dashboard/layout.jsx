@@ -1,31 +1,50 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../../../components/footer";
 import RootLayout from "../../layout";
+import { IoIosBasketball } from 'react-icons/io';
+import ElectricPattern from "../../../components/ElectricPattern";
 
 function AdminDashboadrLayout({ children }) {
-  const router = useRouter()
+  const router = useRouter();
+  const path = router.asPath;
+
+  const menuItems = [
+      { path: '/admin/dashboard/statistic', icon: <IoIosBasketball size={20} color='black' />, label: 'Statistik' },
+      { path: '/admin/dashboard/team', icon: <IoIosBasketball size={20} color='black' />, label: 'Team' },
+      { path: '/admin/dashboard/broadcast', icon: <IoIosBasketball size={20} color='black' />, label: 'Broadcast' },
+  ];
+
+  useEffect(() => {
+    if (router.asPath === '/admin/dashboard') {
+        router.replace('/admin/dashboard/statistic');
+    }
+  }, [router]);
+
   return (
     <RootLayout>
-      <div className='bg-background-skyblue min-h-screen lg:flex lg:p-10 md:p-8'>
-        <div className='lg:w-[20%] px-5 pb-5'>
-          <h2 className='font-Montserrat font-bold text-white text-[20px] pt-5 py-8'>
-            Dashboard
-          </h2>
-          <div className='flex justify-between space-x-3 text-[16px] font-GameOfSquid lg:flex-col lg:space-x-0 lg:space-y-5 overflow-x-auto'>
-            <div className='p-3 rounded bg-primary-300 w-1/3 lg:w-full min-w-fit text-center cursor-pointer min-h-5' onClick={() => router.push('/admin/dashboard/statistic')}>
-              STATISTIK
-            </div>
-            <div className='p-3 rounded bg-primary-300 w-1/3 lg:w-full min-w-fit text-center cursor-pointer min-h-5' onClick={() => router.push('/admin/dashboard/team')}>
-              TEAM
-            </div>
-            <div className='p-3 rounded bg-primary-300 w-1/3 lg:w-full min-w-fit text-center cursor-pointer min-h-5' onClick={() => router.push('/admin/dashboard/broadcast')}>
-              BROADCAST
+      <ElectricPattern backgroundColor="bg-background-skyblue">
+        <div className='relative lg:flex lg:p-10 md:p-8'>
+          <div className='lg:w-1/5 px-5 pb-5'>
+            <h2 className='font-CreatoDisplay font-bold text-text-placeholder-light text-4xl pt-5 py-8'>
+              Dashboard
+            </h2>
+            <div className='flex flex-row lg:flex-col gap-2 lg:gap-4'>
+              {menuItems.map((item) => (
+                <div
+                  key={item.path}
+                  className={`py-3 px-5 rounded-md font-GameOfSquid ${path === item.path ? 'bg-primary-500 border-[3px] border-shade-black' : 'bg-primary-300'} w-full cursor-pointer min-h-5 flex items-center gap-2`}
+                  onClick={() => router.push(item.path)}
+                >
+                  {item.icon}
+                  <p className='text-shade-black text-center'>{item.label}</p>
+                </div>
+                  ))}
             </div>
           </div>
+          <main className='lg:w-4/5 px-5 py-5 w-full'>{children}</main>
         </div>
-        <main className='lg:w-[80%] px-5 py-5'>{children}</main>
-      </div>
+      </ElectricPattern>
       <Footer />
     </RootLayout>
   );

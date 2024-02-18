@@ -8,6 +8,7 @@ import Category from "../../components/Faq/Category";
 import QuestionSearch from "../../components/Faq/QuestionSearch";
 import RootLayout from "../layout.jsx";
 import Footer from "../../components/footer.js";
+import ElectricPattern from "../comingsoon/ElectricPattern.jsx";
 
 const FAQ = [
   {
@@ -41,29 +42,31 @@ export default function FAQPage() {
 
   return (
     <RootLayout>
-      <div className="flex flex-col items-center justify-center w-screen min-h-screen px-5 py-20 overflow-auto bg-background-skyblue lg:px-12 md:px-8">
-        {/* the header and input section*/}
-        <Header />
-        <QuestionSearch searched={searched} setSearched={setSearched} />
-        {/* the category section */}
-        <Category
-          setCompetition={setCompetition}
-          competition={competition}
-          setSelected={setSelected}
-        />
-        {/* the question section */}
-        {displayedFaq.length > 0 && (
-          <Question
-            displayedFaq={displayedFaq}
-            faqIndex={faqIndex}
-            selected={selected}
-            setFaqIndex={setFaqIndex}
+      <ElectricPattern>
+        <div className="flex flex-col items-center justify-center w-screen min-h-screen px-5 py-20 overflow-auto lg:px-12 md:px-8 relative">
+          {/* the header and input section*/}
+          <Header />
+          <QuestionSearch searched={searched} setSearched={setSearched} />
+          {/* the category section */}
+          <Category
+            setCompetition={setCompetition}
+            competition={competition}
+            setSelected={setSelected}
           />
-        )}
+          {/* the question section */}
+          {displayedFaq.length > 0 && (
+            <Question
+              displayedFaq={displayedFaq}
+              faqIndex={faqIndex}
+              selected={selected}
+              setFaqIndex={setFaqIndex}
+            />
+          )}
 
-        {/* no question found section */}
-        {displayedFaq.length == 0 && <NoQuestion />}
-      </div>
+          {/* no question found section */}
+          {displayedFaq.length == 0 && <NoQuestion />}
+        </div>
+      </ElectricPattern>
       <Footer />
     </RootLayout>
   );
