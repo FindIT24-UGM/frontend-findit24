@@ -1,14 +1,14 @@
 import React from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
 
-const ModalJoinTeam = () => {
+const ModalJoinTeam = ({content, onClose}) => {
   return (
     <div>
       <div className="flex justify-end">
-        <IoCloseCircleSharp className="text-2xl cursor-pointer" />
+        <IoCloseCircleSharp className="text-2xl cursor-pointer" onClick={onClose} />
       </div>
       <h2 className="font-CreatoDisplay font-bold text-center text-[24px] mt-2 mb-10">
-        Mendaftar CTF
+        {content}
       </h2>
       <p className="text-center">
         Anda dapat membuat <span className="font-bold">Tim Baru</span> atau memasukkan <span className="font-bold">Invitation Code</span> milik teman

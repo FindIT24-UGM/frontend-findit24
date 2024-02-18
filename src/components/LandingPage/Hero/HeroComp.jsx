@@ -60,12 +60,12 @@ const HeroComp = () => {
                 Tech Horizon: Beyond the Digital Sky
               </q>
             </div>
-            <div className="flex flex-col lg:relative">
+            <div className="flex flex-col">
               <div className="font-GameOfSquid lg:text-[150px] md:text-[100px] text-[60px] flex items-center justify-center space-x-8 md:space-x-16 text-text-placeholder-light z-10">
                 <div className="h-fit">FIND</div>
                 <div className="h-fit">IT!</div>
               </div>
-              <div className="flex justify-center items-center pt-[111px] pb-20 lg:pt-0 lg:pb-0">
+              <div className="flex justify-center items-center pt-[111px] pb-20 lg:pt-0 lg:pb-0 z-20">
                 <Image
                   alt="heroImage"
                   src={heroImage}
