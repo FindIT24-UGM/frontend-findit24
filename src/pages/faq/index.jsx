@@ -10,28 +10,16 @@ import RootLayout from "../layout.jsx";
 import Footer from "../../components/footer.js";
 import ElectricPattern from "../comingsoon/ElectricPattern.jsx";
 
-const FAQ = [
-  {
-    question: "ctf",
-    ans: "benar bro benar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar brobenar bro",
-    category: "Capture the flag",
-  },
-  {
-    question: "Apakah ux",
-    ans: "ril cuy",
-    category: "UX Competition",
-  },
-  { question: "webinar", ans: "iya", category: "Webinar" },
-];
+import faqQuestion from "./faqQuestion.json";
 
 export default function FAQPage() {
   const [searched, setSearched] = useState("");
-  const [selected, setSelected] = useState("All");
+  const [selected, setSelected] = useState("General");
   const [faqIndex, setFaqIndex] = useState([]);
   const [competition, setCompetition] = useState("Lomba");
 
   const displayedFaq = useMemo(() => {
-    const searchedVal = FAQ.filter((f) =>
+    const searchedVal = faqQuestion.filter((f) =>
       f.question.toLowerCase().includes(searched.toLowerCase())
     );
     if (selected == "" || selected == "All") {
