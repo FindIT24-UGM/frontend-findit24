@@ -1,12 +1,12 @@
 import React from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
 
-const ModalInvitationCode = () => {
+const ModalInvitationCode = ({onClose}) => {
   return (
     <div>
       <div className="bg-primary-500 pb-5 pt-2 px-2">
         <div className="flex justify-end">
-          <IoCloseCircleSharp className="text-2xl cursor-pointer text-white" />
+          <IoCloseCircleSharp className="text-2xl cursor-pointer text-white" onClick={onClose} />
         </div>
         <div className="px-8 text-white">
           <h2 className="font-CreatoDisplay font-bold text-center text-[24px] mt-2 mb-10">

@@ -3,7 +3,6 @@ import React, {
   useEffect,
   useRef,
   useLayoutEffect,
-  Fragment,
 } from "react";
 import RootLayout from "../../../layout";
 import { useRouter } from "next/router";
@@ -32,6 +31,8 @@ const ProfilDiri = () => {
   const [noInstitusi, setNoInstitusi] = useState(undefined);
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
 
   const router = useRouter();
 
@@ -224,12 +225,6 @@ const ProfilDiri = () => {
     updateSize();
     return () => window.removeEventListener("resize", updateSize);
   }, []);
-
-  const showModal = () => {
-    {
-      /* Tampilkan modal simpan */
-    }
-  };
 
   return (
     <RootLayout>
@@ -509,7 +504,7 @@ const ProfilDiri = () => {
             <div className="w-full flex justify-center">
               <button
                 className="flex items-center justify-center gap-2 w-full lg:w-1/3 bg-background-skyblue py-2 lg:py-3 rounded-lg"
-                onClick={showModal}
+                onClick={() => setShowModal(true)}
               >
                 <IoSaveSharp size={17.5} color="black" />
                 <p className="font-GameOfSquid text-shade-black">Simpan</p>
@@ -517,9 +512,6 @@ const ProfilDiri = () => {
             </div>
           </div>
         </div>
-        <ModalParent>
-          <ModalVerification />
-        </ModalParent>
       </div>
     </RootLayout>
   );
@@ -532,3 +524,7 @@ export default ProfilDiri;
 {/* <ModalParent customStyle={"p-1"}>
   <ModalInvitationCode />
 </ModalParent>; */}
+
+{/* <ModalParent isVisible={showModal} onClose={() => setShowModal(false)}>
+  <ModalJoinTeam onClose={() => setShowModal(false)} content={'Cyber Security'} />
+</ModalParent> */}
