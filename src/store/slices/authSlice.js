@@ -4,20 +4,20 @@ import authService from "../services/authService";
 import { toast } from "react-toastify";
 import { Router } from "next/router";
 let user = {};
-let token = {};
+// let token = {};
 if (typeof window !== "undefined") {
   user = JSON.parse(localStorage.getItem("user"));
-  token = JSON.parse(localStorage.getItem("token"));
+  // token = JSON.parse(localStorage.getItem("token"));
 }
 
 const initialState = {
-  isAuthenticated: token ? true : false,
+  isAuthenticated: user ? true : false,
   user: user ? user : null,
   isLoading: false,
   isError: false,
   isSuccess: false,
   message: "",
-  token: "",
+  // token: "",
 };
 // register user
 export const signup = createAsyncThunk(
@@ -39,22 +39,22 @@ export const signup = createAsyncThunk(
   }
 );
 // activate user
-export const activate = createAsyncThunk(
-  "auth/activate",
-  async (token, thunkAPI) => {
-    try {
-      const payload = await authService.activate(token);
-      return payload;
-    } catch (error) {
-      const message = error?.response?.data?.errors;
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
+// export const activate = createAsyncThunk(
+//   "auth/activate",
+//   async (token, thunkAPI) => {
+//     try {
+//       const payload = await authService.activate(token);
+//       return payload;
+//     } catch (error) {
+//       const message = error?.response?.data?.errors;
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
 // Login user
-export const signin = createAsyncThunk("auth/login", async (user, thunkAPI) => {
+export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   try {
-    const payload = await authService.signin(user);
+    const payload = await authService.login(user);
     return payload;
   } catch (error) {
     const message = error?.response?.data?.errors;
@@ -79,7 +79,7 @@ export const getUserData = createAsyncThunk(
           className: "toast-error",
         });
         authService.logout();
-        Router.replace("/signin");
+        Router.replace("/login");
       }
       return thunkAPI.rejectWithValue(message);
     }
@@ -120,17 +120,17 @@ export const authSlice = createSlice({
         state.message = action.payload;
         state.user = null;
       })
-      .addCase(signin.pending, (state) => {
+      .addCase(login.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(signin.fulfilled, (state, action) => {
+      .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.isAuthenticated = true;
         state.user = action.payload.user;
         state.token = action.payload.token;
       })
-      .addCase(signin.rejected, (state, action) => {
+      .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

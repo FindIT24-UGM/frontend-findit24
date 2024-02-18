@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { signin } from "../../store/slices/authSlice";
+import { login } from "../../store/slices/authSlice";
 import { loadingStart, loadingEnd } from "../../store/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router.js";
@@ -14,12 +14,10 @@ import { IoMdEye } from "react-icons/io";
 import Button from "../../components/Button.jsx";
 import Image from "next/image.js";
 import Link from "next/link.js";
-import axios from "axios";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [user, setUser] = useState({});
   const { isAuthenticated, isLoading } = useSelector((state) => state.auth);
 
   const [email, setEmail] = useState(undefined);
@@ -27,68 +25,29 @@ const LoginPage = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [message, setMessage] = useState("");
 
-  const loginHandler = async () => {
-    try {
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace('/user/dashboard/beranda')
+    }
+  }, [isAuthenticated, router])
+  const loginHandler = (e) => {
+    e.preventDefault();
       if (!email) {
         return setMessage("Email field is missing!");
       }
       if (!password) {
         return setMessage("Password field is missing!");
       }
-
-      // ? Fetch:  POST /auth/login
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
-        { email, password },
-        { withCredentials: true }
-      );
-      router.push("/");
-    } catch (err) {
-      if (err.response.data) {
-        setMessage("Email not found or password incorrect");
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      router.replace("/user/dashboard");
-    }
-  }, [isAuthenticated, router]);
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(loadingStart());
-
-    const loginData = {
-      ...user,
-    };
-    dispatch(signin(loginData))
-      .unwrap()
-      .then((res) => {
-        // ! ERROR READING "CONTENT"
-        dispatch(loadingEnd());
-        router.push("/user/dashboard");
-      })
-      .catch((e) => {
-        dispatch(loadingEnd());
-        if (e.response?.status === 400 || e.response?.status === 422)
-          toast.error("Wrong Email / password");
-        else toast.error(e, "Something went wrong. Please Try again");
-      });
-  };
-
-  const changeHandler = (e) => {
-    const name = e.target.id;
-    const value = e.target.value;
-
-    setUser(() => {
-      return {
-        ...user,
-        [name]: value,
-      };
-      console.log(user);
-    });
+      // ? Fetch:  POST /auth/login (DISPATCH (RTK))
+      dispatch(login({ email, password }))
+        .unwrap()
+        .then((res) => {
+          dispatch(loadingEnd());
+          router.push("/user/dashboard/beranda");
+        })
+        .catch = (er) => {
+          setMessage("Email not found or password incorrect");
+        }
   };
 
   const googleLoginHandler = async () => {
@@ -112,7 +71,7 @@ const LoginPage = () => {
           </label>
           <input
             value={email}
-            onChange={changeHandler}
+            onChange={(e) => setEmail(e.currentTarget.value)}
             placeholder="johndoe@email.com"
             className="flex items-center justify-center w-full px-4 py-3 text-sm text-black bg-white rounded-lg font-Montserrat h-fit"
           />
@@ -143,7 +102,7 @@ const LoginPage = () => {
           </div>
           <Button
             fullW
-            onClick={submitHandler}
+            onClick={loginHandler}
             customClass={"font-Montserrat text-black font-semibold"}
             text="Sign in"
           />
