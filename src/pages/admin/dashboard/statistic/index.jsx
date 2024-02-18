@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import AdminDashboadrLayout from "../layout";
 import axios from "axios";
 
-export default function index({ categories }) {
+export default function index() {
   const [statistics, setStatistics] = useState([]);
   useEffect(() => {
     const getStatistic = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/admin/statistics`,
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/stat`,
           { withCredentials: true }
         );
         if (response.data) {
@@ -19,7 +19,9 @@ export default function index({ categories }) {
       }
     };
     getStatistic();
+
   }, []);
+  
   return (
     <AdminDashboadrLayout>
       <div
