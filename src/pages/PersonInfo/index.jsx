@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import RootLayout from '../layout.jsx';
-import { BsPersonBadgeFill, BsCalendarDateFill, BsCalendar2PlusFill, BsPinMapFill } from 'react-icons/bs';
+import { BsPersonBadgeFill, BsCalendarDateFill, BsCalendar2PlusFill, BsPinMapFill, BsLine } from 'react-icons/bs';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { IoSchool } from 'react-icons/io5';
 import { HiPhone } from 'react-icons/hi';
@@ -20,6 +20,7 @@ const PersonalInfo = () => {
   const [statusSelected, setStatusSelected] = useState(undefined);
   const [instansi, setInstansi] = useState(undefined);
   const [number, setNumber] = useState(undefined);
+  const [IDLine, setIDLine] = useState(undefined);
   const [message, setMessage] = useState("");
 
   const dropdownProvinsiRef = useRef();
@@ -57,6 +58,9 @@ const PersonalInfo = () => {
       }
       if(!number) {
         return setMessage("Please fill Nomor HP")
+      }
+      if(!IDLine) {
+        return setMessage("Please fill ID Line")
       }
       /*  ? Fetch:  PATCH /user/ */
       const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/user`, 
@@ -253,7 +257,7 @@ const PersonalInfo = () => {
         </div>
         <div className='w-full'>
           <div className='flex gap-[10px] items-center'>
-            <BsCalendarDateFill className='size-8 text-[#FCFCFC]'/>
+            <BsCalendarDateFill className='size-[25px] text-[#FCFCFC]'/>
             <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
               Tanggal Lahir
             </h2>
@@ -272,7 +276,7 @@ const PersonalInfo = () => {
         </div>
         <div className='w-full'>
           <div className='flex gap-[10px] items-center'>
-            <BsPinMapFill className='size-8 text-[#FCFCFC]'/>
+            <BsPinMapFill className='size-[25px] text-[#FCFCFC]'/>
             <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
               Asal Provinsi
             </h2>
@@ -373,7 +377,7 @@ const PersonalInfo = () => {
         </div>
         <div className='w-full'>
           <div className='flex gap-[10px] items-center'>
-            <HiPhone className='size-8 text-[#FCFCFC]'/>
+            <HiPhone className='size-7 text-[#FCFCFC]'/>
             <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
               Nomor HP
             </h2>
@@ -384,6 +388,21 @@ const PersonalInfo = () => {
             placeholder='08123456789'
             value={number}
             onChange={(e) => setNumber(e.currentTarget.value)}
+          ></input>
+        </div>
+        <div className='w-full'>
+          <div className='flex gap-[10px] items-center'>
+            <BsLine className='size-[27px] text-[#FCFCFC]'/>
+            <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
+              ID Line
+            </h2>
+          </div>
+          <input
+            className=' w-full mt-2 text-base font-Montserrat font-medium text-[#B6B7BA] py-[15px] pl-8 rounded-lg'
+            type="text" 
+            placeholder='Grok_'
+            value={IDLine}
+            onChange={(e) => setIDLine(e.currentTarget.value)}
           ></input>
         </div>
       </div>
