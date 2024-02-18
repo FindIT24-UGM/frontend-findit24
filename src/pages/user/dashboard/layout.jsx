@@ -35,14 +35,13 @@ const UserDashboardLayout = ({ children }) => {
           setUser(res)
         })
     }, [user, router]);
-
     return (
         <RootLayout>
             <ElectricPattern>
                 <div className='bg-background-skyblue min-h-screen lg:flex lg:p-10 md:p-8'>
                     <div className='lg:w-1/5 px-5 pb-5'>
                         <h2 className='font-CreatoDisplay font-bold text-text-placeholder-light text-4xl pt-5 py-8'>
-                            Hai, {user}
+                            Hai, {user?.name}
                         </h2>
                         <div className='flex flex-row lg:flex-col gap-2 lg:gap-4'>
                             {menuItems.map((item) => (
