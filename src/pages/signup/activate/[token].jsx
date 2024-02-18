@@ -4,6 +4,9 @@ import Button from "../../../components/Button";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { activate } from "../../../store/slices/authSlice";
+import { loadingEnd } from "../../../store/action";
 
 const Success = () => {
     const linkLogin = `${process.env.NEXT_PUBLIC_FE_URL}/login`;
@@ -12,6 +15,7 @@ const Success = () => {
     const { token } = router.query;
 
     useEffect(() => {
+
         axios
           .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/activation`, {
             token,

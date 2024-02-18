@@ -30,7 +30,7 @@ const SessionProvider = ({ children }) => {
     user: {},
   });
 
-  const [vari, setVar] = useState(1);
+  const [vari, setVari] = useState(1);
 
   useEffect(() => {
     // fecthing

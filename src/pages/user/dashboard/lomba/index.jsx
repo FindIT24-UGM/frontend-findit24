@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useEffect } from 'react'
 import UserDashboardLayout from '../layout'
 import { useState } from 'react'
 import { HiExclamationCircle } from 'react-icons/hi'
@@ -15,22 +16,76 @@ import HackatonLogo from '../../../../assets/Logo/DashboardLomba/HackatonLogo.js
 import EsportLogo from '../../../../assets/Logo/DashboardLomba/EsportLogo.jsx'
 import IcLogo from '../../../../assets/Logo/DashboardLomba/IcLogo.jsx'
 import ArrowRight from '../../../../assets/Logo/DashboardLomba/ArrowRight.jsx'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserTeam } from '../../../../store/slices/userSlice.js'
+import { loadingEnd } from '../../../../store/action.js'
+import axios from 'axios'
 
 
 const Index = () => {
 
-  const [countLomba, setCountLomba] = useState(2);
+  const [countLomba, setCountLomba] = useState(null);
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const [openInvitation, setOpenInvitation] = useState(false);
   const [inputCode, setInputCode] = useState(undefined);
+  
   //discover team untk mencocokan code team (true = cocok dg code invitation || false = tdak cocok dg code invitation)
-  const [discoverTeam, setDiscoverTeam] = useState(true);
+  const [discoverTeam, setDiscoverTeam] = useState([]);
   const [openTimDitemukan, setOpenTimDitemukan] = useState(false);
   const [openTimTdkKetemu, setOpenTimTdkKetemu] = useState(false);
   const haveJoined = (countLomba !== 0);
+  
+  const [teams, setTeams] = useState([])
+  const dispatch = useDispatch()
+  useEffect(() => {
+
+    dispatch(getUserTeam())
+    .unwrap()
+    .then((res) => {
+      dispatch(loadingEnd())
+      setTeams(res.asMember)
+      setCountLomba(res.asMember.length)
+    })
+}, [teams]);
+
+
+  const searchTeam = () => {
+    axios.
+      get(`${process.env.NEXT_PUBLIC_API_URL}/team/join/search?teamCode=${inputCode}`, {withCredentials: true})
+      .then((response) => {
+        setDiscoverTeam(response.data)
+        setOpenInvitation(false);
+        setOpenTimDitemukan(true)
+      })
+      .catch(err => {
+        setOpenTimDitemukan(false)
+        // setOpenInvitation(true);
+        setOpenTimTdkKetemu(true)
+        setDiscoverTeam([])
+        
+      })
+  }
+
+  const joinTeam = ( eventId, teamId, teamLeaderId ) => {
+    axios.post(`${process.env.NEXT_PUBLIC_API_URL}/team/join/`,
+    {
+      eventId,
+      teamId,
+      teamLeaderId
+    }, {
+      withCredentials: true
+    })
+    .then(res => {
+      console.log(res.data.message);
+      setOpenInvitation(false);
+      setOpenTimDitemukan(false)
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
 
   const { width } = useWindowSize();
-
   function TeamCard({competition, teamName, verify}) {
     return (
       <div className='bg-white w-full rounded-lg py-4 px-3 lg:px-8 lg:py-4 flex justify-between items-center gap-[17px] mt-[14px]'>
@@ -45,7 +100,7 @@ const Index = () => {
         <div className='basis-1/2 flex items-center justify-end gap-4 lg:gap-12'>
           {width < 640 ? (
             <>
-              {verify ? (
+              {verify === "VERIFIED" ? (
                 <div className='w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2'>
                   <div className='p-[6px] bg-success-900 rounded'/>
                   <p className='font-bold font-Montserrat text-xs text-success-900'>
@@ -72,7 +127,7 @@ const Index = () => {
                   16 Feb 2024
                 </p>
               </div>
-              {verify ? (
+              {verify === "VERIFIED" ? (
                 <div className='w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2'>
                   <div className='p-[6px] bg-success-900 rounded'/>
                   <p className='font-bold font-Montserrat text-xs text-success-900'>
@@ -153,7 +208,7 @@ const Index = () => {
   return (
     <>
       <UserDashboardLayout>
-        <div className='w-full min-h-screen flex justify-center'>
+        <div className='w-full min-h-screen flex justify-center relative'>
           <div className='bg-white w-[91.389vw] sm:w-[88.672vw] lg:w-[73vw] h-fit lg:rounded-[14px] rounded-xl border-[3px] border-black lg:p-6 p-3'>
             <div className=" w-full bg-primary-500 lg:p-10 p-3 rounded-[13px] h-64 lg:h-[400px]">
               <p className='w-auto text-white font-CreatoDisplay sm:text-left text-center font-bold text-base lg:text-[28px] lg:leading-8 py-[9px] lg:py-0'>
@@ -169,26 +224,15 @@ const Index = () => {
                 }
                 {haveJoined &&
                   <div className='w-full h-auto'>
-                    <TeamCard
-                      competition='Hackaton'
-                      teamName={'Samsan Tech'}
-                      verify={true}
-                    />
-                    <TeamCard
-                      competition={'CP'}
-                      teamName={'Samsan Tech'}
-                      verify={false}
-                    />
-                    <TeamCard
-                      competition={'CP'}
-                      teamName={'Samsan Tech'}
-                      verify={false}
-                    />
-                    <TeamCard
-                      competition={'CP'}
-                      teamName={'Samsan Tech'}
-                      verify={false}
-                    />
+                    {teams && teams.map((team) => {
+                    return (
+                      <TeamCard
+                        competition={team.eventId.eventName}
+                        teamName={team.teamId.teamName}
+                        
+                        verify={team.teamId.status}
+                      />
+                    )})}
                   </div>
                 }
               </div>
@@ -398,11 +442,13 @@ const Index = () => {
                   fullW
                   text='Cek Tim'
                   customClass={'px-4 lg:px-[23px] lg:py-[3px] rounded-md bg-[#2A93C2] border border-[#F1A56A] lg:border-none'}
-                  onClick={() => {
-                    setOpenInvitation(false);
-                    setOpenTimDitemukan(true);
-                    setOpenTimTdkKetemu(true);
-                  }}
+                  onClick={searchTeam}
+                  //   {
+                  //   setOpenInvitation(false);
+                  //   setOpenTimDitemukan(true);
+                  //   setOpenTimTdkKetemu(true);
+                  // }
+                // }
                 />
               </div>
             </div>
@@ -416,8 +462,8 @@ const Index = () => {
               Tim Ditemukan!
             </p>
             <p className='text-sm lg:text-base font-bold text-text-placeholder-dark font-Montserrat text-center text-balance'>
-              Nama Tim: Samshan Tech <br />
-              Ketua Tim: John Doe
+              Nama Tim: {discoverTeam.team.teamName} <br />
+              Ketua Tim: {discoverTeam.team.teamLeader}
             </p>
             <p className='w-[269px] lg:w-[480px] font-Montserrat text-sm lg:text-base font-medium text-center text-text-placeholder-dark'>
             Apabila anda yakin ini adalah tim yang benar, silakan klik Gabung Tim
@@ -427,6 +473,7 @@ const Index = () => {
                 <Button
                   fullW
                   customClass={'lg:py-1'}
+                  onClick={() => joinTeam(discoverTeam.team.eventId, discoverTeam.team._id, discoverTeam.team.teamLeaderId)}
                   text='Gabung tim'
                 />
               </div>
@@ -443,6 +490,7 @@ const Index = () => {
           </div>
         </div>
       }
+      {/* INI GA KE RENDER GATAU DAH */}
       {!discoverTeam && openTimTdkKetemu &&
         <div className='fixed inset-0 w-full flex justify-center items-center bg-black/70 z-50'>
           <div className='flex justify-center items-center p-3 lg:p-2 rounded-lg lg:rounded-[15px] border-[3px] lg:border-none border-black bg-text-placeholder-light'>

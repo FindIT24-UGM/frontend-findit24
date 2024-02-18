@@ -1,13 +1,17 @@
-import React, { useState, useLayoutEffect } from "react";
-import UserDashboardLayout from "../layout";
+"use client"
+import React, { useState, useLayoutEffect, useEffect } from "react";
+import UserDashboardLayout, {useUser} from "../layout";
 import { AiFillNotification } from "react-icons/ai";
 import { IoWarningSharp } from "react-icons/io5";
 import { HiUser } from "react-icons/hi";
 import { AiFillEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
 import getLocaleDate from "../../../../components/HelperFunctions/getLocalDate";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Index = () => {
+
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [announcementListReverse, setAnnouncementListReverse] = useState([
@@ -41,6 +45,8 @@ const Index = () => {
     },
   ]);
 
+  const user = useSelector((state) => state.auth.user);
+  
   const router = useRouter();
 
   const handleEditProfile = () => {
@@ -73,7 +79,7 @@ const Index = () => {
 
   return (
     <UserDashboardLayout>
-      <div className="w-full h-full flex sm:flex-row flex-col gap-2">
+      <div className="w-full h-full flex sm:flex-row flex-col gap-2 relative">
         {isSmallScreen && (
           <div className="w-full flex items-center gap-2 bg-primary-500 border-[3px] border-shade-black rounded-xl px-4 lg:px-8 py-4">
             <IoWarningSharp size={18} />
@@ -137,10 +143,10 @@ const Index = () => {
               <div className="flex justify-between">
                 <div className="flex flex-col gap-2">
                   <p className="font-CreatoDisplay font-bold text-2xl lg:text-5xl text-shade-black">
-                    John Doe
+                    {user.name}
                   </p>
                   <p className="font-Montserrat font-bold text-sm text-shade-black">
-                    johndoe@gmail.com
+                    {user.email}
                   </p>
                 </div>
                 <div>
@@ -165,7 +171,7 @@ const Index = () => {
                   </div>
                   <div className="flex-1">
                     <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      g49dfh4s
+                      {user._id}
                     </p>
                   </div>
                 </div>
@@ -176,9 +182,15 @@ const Index = () => {
                     </p>
                   </div>
                   <div className="flex-1">
-                    <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      D.I. Yogyakarta
+                    {user.province ? (
+                      <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                        {user.province}
+                      </p>
+                    ) : (
+                      <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                      kosong
                     </p>
+                    )}
                   </div>
                 </div>
                 <div className="w-full flex gap-4 xl:gap-0">
@@ -188,10 +200,15 @@ const Index = () => {
                     </p>
                   </div>
                   <div className="flex-1">
+                  {user.address ? (
                     <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      Jl. Grafika No.2, Sendowo, Sinduadi, Kec. Mlati, Kabupaten
-                      Sleman, D.I Yogyakarta 55281
+                    {user.address}
+                  </p>
+                    ) : (
+                      <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                      belum diisi
                     </p>
+                    )}
                   </div>
                 </div>
                 <div className="w-full flex gap-4 xl:gap-0">
@@ -213,9 +230,15 @@ const Index = () => {
                     </p>
                   </div>
                   <div className="flex-1">
+                  {user.phone ? (
                     <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      08123456789
+                    {user.phone}
+                  </p>
+                    ) : (
+                      <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                      belum diisi
                     </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -229,7 +252,7 @@ const Index = () => {
                   </div>
                   <div className="flex-1">
                     <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      Mahasiswa
+                      {user.status}
                     </p>
                   </div>
                 </div>
@@ -240,9 +263,15 @@ const Index = () => {
                     </p>
                   </div>
                   <div className="flex-1">
+                    {user.institutionName ? (
                     <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      Universitas Diponegoro
+                    {user.institutionName}
+                  </p>
+                    ) : (
+                      <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                      belum diisi
                     </p>
+                    )}
                   </div>
                 </div>
                 <div className="w-full flex gap-4 xl:gap-0">
@@ -252,9 +281,15 @@ const Index = () => {
                     </p>
                   </div>
                   <div className="flex-1">
+                  {user.institutionNumber ? (
                     <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      20/54366/TK/09833
+                    {user.institutionNumber}
+                  </p>
+                    ) : (
+                      <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                      belum diisi
                     </p>
+                    )}
                   </div>
                 </div>
                 <div className="w-full flex gap-4 xl:gap-0">

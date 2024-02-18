@@ -15,7 +15,7 @@ const Index = () => {
   return (
       <RootLayout>
         <ElectricPattern backgroundColor="bg-gradient-to-r from-background-skyblue via-[#217196] to-background-skyblue">
-            <div className='w-full min-h-full flex flex-col justify-center items-center gap-8'>
+            <div className='w-full min-h-full flex flex-col justify-center items-center gap-8 relative'>
               <h1 className='font-GameOfSquid text-[32px] sm:text-6xl lg:text-[86px] text-text-placeholder-light drop-shadow-competitions text-center'>coming soon</h1>
               <p className='font-Montserrat font-medium text-base sm:text-lg lg:text-xl text-text-placeholder-light text-center mx-5'>Oh, dear! it looks like the page is under maintenance. </p>
               <div className='lg:w-3/4 w-full flex items-center justify-center gap-1'>

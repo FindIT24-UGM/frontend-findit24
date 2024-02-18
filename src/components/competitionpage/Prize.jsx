@@ -24,7 +24,7 @@ export default function Prize({ prizeArray }) {
         </div>
         <Image
           src={Roket}
-          className="absolute right-0 md:-bottom-48 lg:-bottom-60 z-30 w-[55vw] md:w-[45vw] lg:w-[25vw]"
+          className="absolute right-0 -bottom-60 z-30 w-[55vw] md:w-[45vw] lg:w-[25vw]"
         ></Image>
       </div>
     </div>

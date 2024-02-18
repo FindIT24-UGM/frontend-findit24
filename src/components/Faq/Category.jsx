@@ -12,10 +12,10 @@ const LOMBA = [
   { full: "Informatics Competition", short: "IC" },
 ];
 
-const CATEGORY = ["All", "Lomba", "Webinar"];
+const CATEGORY = ["General", "Lomba", "Webinar"];
 
 const SELECTION = [
-  "All",
+  "General",
   "Lomba",
   "Webinar",
   "Capture the flag",
@@ -40,7 +40,7 @@ const Category = ({ setSelected, setCompetition, competition, selected }) => {
                 selected == sel &&
                 "bg-primary-500 text-white  border-2 border-black",
               sel == "Lomba" &&
-                selected !== "All" &&
+                selected !== "General" &&
                 selected !== "Webinar" &&
                 "bg-primary-500 text-white  border-2 border-black",
               sel == "Lomba" && "group relative"
@@ -55,7 +55,7 @@ const Category = ({ setSelected, setCompetition, competition, selected }) => {
             {sel == "Lomba" && (
               <div
                 className={twMerge(
-                  "absolute top-[150%] flex flex-col w-[300%] h-fit bg-text-placeholder-dark rounded-lg px-5 py-6",
+                  "absolute top-[150%] flex flex-col w-[300%] h-fit bg-text-placeholder-dark rounded-lg px-5 py-6 -translate-y-2",
                   "opacity-0 -z-10",
                   sel == selected && "opacity-100 z-10",
                   "group-hover:opacity-100 group-hover:z-10",
