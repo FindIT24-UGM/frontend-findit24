@@ -5,6 +5,7 @@ import RootLayout from "../../layout";
 
 function AdminDashboadrLayout({ children }) {
   const router = useRouter()
+
   return (
     <RootLayout>
       <div className='bg-background-skyblue min-h-screen lg:flex lg:p-10 md:p-8'>

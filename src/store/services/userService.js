@@ -14,14 +14,11 @@ const getAnnouncements = async (token) => {
 };
 
 // GET USER TEAM BY FIND TEAM
-const getUserTeam = async (token) => {
+const getUserTeam = async () => {
   const response = await axios.get(
     process.env.NEXT_PUBLIC_API_URL + "/user/find-team",
     {
-      user: user,
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
+      withCredentials: true
     }
   );
   return response.data;

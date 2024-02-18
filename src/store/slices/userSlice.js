@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import userService from "../services/userService.js";
 
+let user = {};
+
 const initialState = {
   userTeam: [],
   announcementList: [],
@@ -9,13 +11,12 @@ const initialState = {
   message: "",
 };
 
-let user = {};
-let token = {};
+// let token = {};
 
-if (typeof window !== "undefined") {
-  user = JSON.parse(localStorage.getItem(user));
-  token = JSON.parse(localStorage.getItem(token));
-}
+// if (typeof window !== "undefined") {
+//   user = JSON.parse(localStorage.getItem(user));
+//   token = JSON.parse(localStorage.getItem(token));
+// }
 
 export const getAllAnnouncements = createAsyncThunk(
   "admin/announcement",
@@ -35,7 +36,8 @@ export const getUserTeam = createAsyncThunk(
   "user/find-team",
   async (token, thunkAPI) => {
     try {
-      const payload = await userService.getUserTeam(user, token);
+      const payload = await userService.getUserTeam();
+      return payload
     } catch (e) {
       const message =
         e.response?.data?.message || error.message || error.toString();
@@ -44,7 +46,7 @@ export const getUserTeam = createAsyncThunk(
   }
 );
 
-export const userSlice = createAsyncThunk({
+export const userSlice = createSlice({
   name: "user",
   initialState,
 
@@ -67,7 +69,7 @@ export const userSlice = createAsyncThunk({
         state.isLoading = true;
       })
       .addCase(getUserTeam.fulfilled, (state, action) => {
-        state.userTeam = action.payload.asMember;
+        state.userTeam = action.payload;
         state.isLoading = false;
         state.isError = false;
       })

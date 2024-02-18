@@ -22,24 +22,26 @@ const login = async (userData) => {
       withCredentials: true
     }
   );
-  if (!response.data.error == true && typeof window !== "undefined") {
-    console.log(response.data);
-    localStorage.setItem("user", JSON.stringify(response.data));
-    // localStorage.setItem("token", JSON.stringify(response.data.token));
-    // axios.defaults.headers.common[
-    //   "Authorization"
-    // ] = `Bearer ${response.data.token}`;
-    // Cookies.set("AuthToken", response.data.token);
-  }
+  // if (!response.data.error == true && typeof window !== "undefined") {
+  //   localStorage.setItem("user", JSON.stringify(response.data));
+  //   localStorage.setItem("token", JSON.stringify(response.data.token));
+  //   axios.defaults.headers.common[
+  //     "Authorization"
+  //   ] = `Bearer ${response.data.token}`;
+  //   Cookies.set("AuthToken", response.data.token);
+  // }
   return response.data;
 };
 
 // ACTIVATE ACCOUNT
 const activate = async (token) => {
   const response = await axios.post(
-    process.env.NEXT_PUBLIC_API_URL + "/api/v1/auth/activation",
+    process.env.NEXT_PUBLIC_API_URL + "/auth/activation",
     token
   );
+  if (!response.data.error == true && typeof window !== "undefined") {
+    // localStorage.setItem("user", JSON.stringify(response.data));
+  }
   return response.data;
 };
 
@@ -55,12 +57,8 @@ const logout = async () => {
 };
 
 // GET USER INFO
-const getUser = async (user) => {
+const getUser = async () => {
   const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + "/user", {
-    user,
-    // headers: {
-    //   authorization: `Bearer ${token}`,
-    // },
     withCredentials: true
   });
   return response.data;

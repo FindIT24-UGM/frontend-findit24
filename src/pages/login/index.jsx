@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { login } from "../../store/slices/authSlice";
+import { getUserData, login } from "../../store/slices/authSlice";
 import { loadingStart, loadingEnd } from "../../store/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router.js";
@@ -14,6 +14,7 @@ import { IoMdEye } from "react-icons/io";
 import Button from "../../components/Button.jsx";
 import Image from "next/image.js";
 import Link from "next/link.js";
+import axios from "axios";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,12 @@ const LoginPage = () => {
     if (isAuthenticated) {
       router.replace('/user/dashboard/beranda')
     }
+    dispatch(getUserData())
+      .unwrap()
+      .then((res) => {
+        dispatch(loadingEnd())
+      })
+
   }, [isAuthenticated, router])
   const loginHandler = (e) => {
     e.preventDefault();
@@ -43,17 +50,28 @@ const LoginPage = () => {
         .unwrap()
         .then((res) => {
           dispatch(loadingEnd());
+          setMessage("Login successfully")
           router.push("/user/dashboard/beranda");
         })
-        .catch = (er) => {
+        .catch ((err) => {
           setMessage("Email not found or password incorrect");
-        }
+          dispatch(loadingEnd());
+        })
   };
 
-  const googleLoginHandler = async () => {
-    try {
-      window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google/login`;
-    } catch (err) {}
+  const googleLoginHandler = async (e) => {
+    // e.preventDefault();
+    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google/login`;
+    // localStorage.setItem("user", JSON.stringify(res.data.user.name, res.data.user.email, res.data.user.role));
+    // try {
+    //   axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/google/login`)
+    //     .then(res => {
+
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     })
+    // } catch (err) {}
   };
 
   return (
@@ -96,9 +114,15 @@ const LoginPage = () => {
             </button>
           </div>
           <div className="relative flex flex-row items-center justify-center my-5">
+            {message === "Login successfully" ? (
+              <p className={"text-green-500 font-bold text-center absolute"}>
+                {message}
+              </p>
+            ) : (
             <p className={"text-red-600 font-bold text-center absolute"}>
               {message}
             </p>
+            )}
           </div>
           <Button
             fullW

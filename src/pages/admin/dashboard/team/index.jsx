@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AdminDashboadrLayout from "../layout";
 import Card from "./Card";
+import axios from "axios";
+import Link from "next/link";
 
 export default function index() {
+  const [teams, setTeams] = useState([])
+  const [count, setCount] = useState(null)
+  useEffect(() => {
+    const getAllTeam = async() => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/admin/teams`, { withCredentials: true})
+        if(response.data){
+          setTeams(response.data.teams)
+          setCount(response.data.total)
+        }
+      } catch(err){
+        console.log(err);
+      }
+    }
+    getAllTeam()
+  }, [])
   return (
     <AdminDashboadrLayout>
       <div className='bg-primary-500 p-5 rounded-md border-2 border-black'>
-        <ul className='font-Montserrat text-[14px] flex text-center overflow-x-auto font-bold mb-5'>
+        <ul className='font-Montserrat text-[14px] flex text-center text-black overflow-x-auto font-bold mb-5'>
           <li className='p-2 bg-white rounded-md mr-1 cursor-pointer h-fit'>
             ALL
           </li>
@@ -33,57 +51,19 @@ export default function index() {
           </li>
         </ul>
         <h2 className='text-white font-bold font-Montserrat mb-2'>
-          8 teams found
+          {count} teams found
         </h2>
-        <div>
-          <Card
-            name={"SamSan Tech"}
-            desc={"3 people"}
-            date={"16 Feb 2023"}
-            isverified={1}
-          />
-          <Card
-            name={"SamSan Tech"}
-            desc={"3 people"}
-            date={"16 Feb 2023"}
-            isverified={0}
-          />
-          <Card
-            name={"SamSan Tech"}
-            desc={"3 people"}
-            date={"16 Feb 2023"}
-            isverified={0}
-          />
-          <Card
-            name={"SamSan Tech"}
-            desc={"3 people"}
-            date={"16 Feb 2023"}
-            isverified={1}
-          />
-          <Card
-            name={"SamSan Tech"}
-            desc={"3 people"}
-            date={"16 Feb 2023"}
-            isverified={1}
-          />
-          <Card
-            name={"SamSan Tech"}
-            desc={"3 people"}
-            date={"16 Feb 2023"}
-            isverified={0}
-          />
-          <Card
-            name={"SamSan Tech"}
-            desc={"3 people"}
-            date={"16 Feb 2023"}
-            isverified={1}
-          />
-          <Card
-            name={"SamSan Tech"}
-            desc={"3 people"}
-            date={"16 Feb 2023"}
-            isverified={0}
-          />
+        <div className="text-black">
+          {teams && teams?.map((team) => (
+            <Link href={`${process.env.NEXT_PUBLIC_FE_URL}/admin/dashboard/teammember/detail/${team._id}`}>
+                <Card key={team._id}
+                name={team.teamName}
+                desc={team.teamMember.length}
+                date={team.createdAt}
+                isverified={team.verified}
+              />
+            </Link>
+          ))}
         </div>
       </div>
     </AdminDashboadrLayout>

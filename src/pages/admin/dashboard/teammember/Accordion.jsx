@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { TiChevronRight } from "react-icons/ti";
 
-export default function Accordion() {
+export default function Accordion({name, email, dateOfBirth, address, phone, status, institutionName, institutionNumber, institutionFile}) {
   const [expand, setExpand] = useState(0);
   return (
     <div
-      className={`bg-white p-2 rounded-lg my-4 overflow-hidden ${
+      className={`bg-white p-2 rounded-lg my-4 text-black overflow-hidden ${
         expand ? "h-fit" : "h-10"
       } duration-200`}>
       <div
@@ -21,37 +21,36 @@ export default function Accordion() {
         <div className='md:w-1/2'>
           <div className='py-2'>
             <h2 className='font-bold'>Email</h2>
-            <p>JohnDoe@gmail.com</p>
+            <p>{email}</p>
           </div>
           <div className='py-2'>
             <h2 className='font-bold'>Tanggal Lahir</h2>
-            <p>10 Oktober 2022</p>
+            <p>{dateOfBirth}</p>
           </div>
           <div className='py-2'>
             <h2 className='font-bold'>Alamat</h2>
             <p>
-              Jl. Grafika No.2, Sendowo, Sinduadi, Kec. Mlati, Kabupaten Sleman,
-              D.I Yogyakarta 55281
+              {address}
             </p>
           </div>
           <div className='py-2'>
             <h2 className='font-bold'>Nomor HP</h2>
-            <p>+62 044144015</p>
+            <p>{phone}</p>
           </div>
         </div>
         {/* contain status, institusi, no.institusi, kartu institusi */}
         <div className='md:w-1/2'>
           <div className='py-2'>
             <h2 className='font-bold'>Status</h2>
-            <p>Mahasiswa</p>
+            <p>{status}</p>
           </div>
           <div className='py-2'>
             <h2 className='font-bold'>Institusi</h2>
-            <p>Universitas Diponegoro</p>
+            <p>{institutionName}</p>
           </div>
           <div className='py-2'>
             <h2 className='font-bold'>Nomor Institusi</h2>
-            <p>1548824-2554-887</p>
+            <p>{institutionNumber}</p>
           </div>
           <div className='py-2'>
             <h2 className='font-bold'>Kartu Institusi</h2>
