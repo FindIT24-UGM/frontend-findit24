@@ -20,6 +20,8 @@ const Gap = () => {
       {/* title */}
       <div className="w-full flex flex-col items-center absolute">
         <Image src={LogoFindIT} className="w-[15%] lg:w-[12%] md:w-[18%]" />
+        <Image src={AwanKiriAtas} className="w-[20%] right-[75vw] top-[20vh] absolute" />
+        <Image src={AwanKananAtas} className="w-[20%] left-[70vw] top-[40vh] absolute" />
         <h2 className="font-Montserrat lg:text-[30px] text-transparent bg-gradient-to-b from-orange-400 to-red-500 bg-clip-text">
           WHEN INNOVATION
         </h2>
