@@ -79,7 +79,7 @@ const Index = () => {
 
   return (
     <UserDashboardLayout>
-      <div className="w-full h-full flex sm:flex-row flex-col gap-2">
+      <div className="w-full h-full flex sm:flex-row flex-col gap-2 relative">
         {isSmallScreen && (
           <div className="w-full flex items-center gap-2 bg-primary-500 border-[3px] border-shade-black rounded-xl px-4 lg:px-8 py-4">
             <IoWarningSharp size={18} />

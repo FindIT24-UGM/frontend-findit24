@@ -10,6 +10,7 @@ import Image from "next/image.js";
 import Link from "next/link.js";
 import axios from "axios";
 import { useRouter } from "next/router.js";
+import ElectricPattern from "../../components/ElectricPattern.jsx";
 
 const SignUpPage = () => {
   const router = useRouter()
@@ -58,91 +59,93 @@ const SignUpPage = () => {
 
   return (
     <RootLayout>
-      <div className="flex flex-col items-center justify-center w-screen h-full px-5 py-20 overflow-auto bg-background-skyblue lg:px-12 md:px-8">
-        <h1 className="text-4xl font-GameOfSquid">Sign up</h1>
-        <h2>Create your Account</h2>
-        <div className="flex flex-col gap-y-3 w-[80%] lg:w-[37%] mt-10">
-          {/* email input */}
-          <div className="flex flex-row items-center gap-x-2">
-            <MdEmail size={25} />
-            <p className="font-bold text-md">E-mail</p>
-          </div>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.currentTarget.value)}
-            placeholder="johndoe@email.com"
-            className="flex items-center justify-center w-full px-4 py-3 text-sm text-black bg-white rounded-lg font-Montserrat h-fit"
-          />
-          {/* password input */}
-          <div className="flex flex-row items-center gap-x-2">
-            <IoKey size={25} />
-            <p className="font-bold text-md">Password</p>
-          </div>
-          <div className="relative flex items-center justify-center w-full">
+      <ElectricPattern>
+        <div className="flex flex-col items-center justify-center w-screen h-full px-5 py-20 overflow-auto bg-background-skyblue lg:px-12 md:px-8">
+          <h1 className="text-4xl font-GameOfSquid">Sign up</h1>
+          <h2>Create your Account</h2>
+          <div className="flex flex-col gap-y-3 w-[80%] lg:w-[37%] mt-10">
+            {/* email input */}
+            <div className="flex flex-row items-center gap-x-2">
+              <MdEmail size={25} />
+              <p className="font-bold text-md">E-mail</p>
+            </div>
             <input
-              value={password}
-              onChange={(e) => setPassword(e.currentTarget.value)}
-              placeholder="at least 8 characters"
-              type={isPasswordVisible ? "text" : "password"}
-              className="w-full px-4 py-3 text-black bg-white rounded-lg font-Montserrat text-md"
+              value={email}
+              onChange={(e) => setEmail(e.currentTarget.value)}
+              placeholder="johndoe@email.com"
+              className="flex items-center justify-center w-full px-4 py-3 text-sm text-black bg-white rounded-lg font-Montserrat h-fit"
             />
-            <button
-              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-              className="flex items-center justify-center"
-            >
-              <IoMdEye size={25} className="absolute text-black right-4" />
+            {/* password input */}
+            <div className="flex flex-row items-center gap-x-2">
+              <IoKey size={25} />
+              <p className="font-bold text-md">Password</p>
+            </div>
+            <div className="relative flex items-center justify-center w-full">
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.currentTarget.value)}
+                placeholder="at least 8 characters"
+                type={isPasswordVisible ? "text" : "password"}
+                className="w-full px-4 py-3 text-black bg-white rounded-lg font-Montserrat text-md"
+              />
+              <button
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                className="flex items-center justify-center"
+              >
+                <IoMdEye size={25} className="absolute text-black right-4" />
+              </button>
+            </div>
+            {/* password confirmation input */}
+            <div className="flex flex-row items-center gap-x-2">
+              <IoKey size={25} />
+              <p className="font-bold text-md">Confirm Password</p>
+            </div>
+            <div className="relative flex items-center justify-center w-full">
+              <input
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.currentTarget.value)}
+                placeholder="at least 8 characters"
+                type={isConfirmPasswordVisible ? "text" : "password"}
+                className="w-full px-4 py-3 text-black bg-white rounded-lg font-Montserrat text-md"
+              />
+              <button
+                onClick={() =>
+                  setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
+                }
+                className="flex items-center justify-center"
+              >
+                <IoMdEye size={25} className="absolute text-black right-4" />
+              </button>
+            </div>
+            <div className="relative flex flex-row items-center justify-center my-5">
+              <p className={"text-red-600 font-bold text-center absolute"}>
+                {message}
+              </p>
+            </div>
+            <Button
+              fullW
+              onClick={signupHandler}
+              customClass={"font-Montserrat text-black font-semibold"}
+              text="Sign Up"
+            />
+            <button onClick={googleSignupHandler} className="relative flex flex-row items-center w-full px-3 py-2 text-black bg-white rounded-lg">
+              <Image
+                src={"/assets/images/google.png"}
+                width={20}
+                height={20}
+                className="absolute left-3"
+              />
+              <p className="mx-auto font-semibold">Sign Up with Google</p>
             </button>
           </div>
-          {/* password confirmation input */}
-          <div className="flex flex-row items-center gap-x-2">
-            <IoKey size={25} />
-            <p className="font-bold text-md">Confirm Password</p>
+          <div className="flex flex-row items-center my-2 mt-4 font-thin gap-x-1">
+            <p className="">Already have an account ?</p>
+            <Link href={"/login"} className="cursor-pointer text-primary-300">
+              Sign In
+            </Link>
           </div>
-          <div className="relative flex items-center justify-center w-full">
-            <input
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.currentTarget.value)}
-              placeholder="at least 8 characters"
-              type={isConfirmPasswordVisible ? "text" : "password"}
-              className="w-full px-4 py-3 text-black bg-white rounded-lg font-Montserrat text-md"
-            />
-            <button
-              onClick={() =>
-                setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
-              }
-              className="flex items-center justify-center"
-            >
-              <IoMdEye size={25} className="absolute text-black right-4" />
-            </button>
-          </div>
-          <div className="relative flex flex-row items-center justify-center my-5">
-            <p className={"text-red-600 font-bold text-center absolute"}>
-              {message}
-            </p>
-          </div>
-          <Button
-            fullW
-            onClick={signupHandler}
-            customClass={"font-Montserrat text-black font-semibold"}
-            text="Sign Up"
-          />
-          <button onClick={googleSignupHandler} className="relative flex flex-row items-center w-full px-3 py-2 text-black bg-white rounded-lg">
-            <Image
-              src={"/assets/images/google.png"}
-              width={20}
-              height={20}
-              className="absolute left-3"
-            />
-            <p className="mx-auto font-semibold">Sign Up with Google</p>
-          </button>
         </div>
-        <div className="flex flex-row items-center my-2 mt-4 font-thin gap-x-1">
-          <p className="">Already have an account ?</p>
-          <Link href={"/login"} className="cursor-pointer text-primary-300">
-            Sign In
-          </Link>
-        </div>
-      </div>
+      </ElectricPattern>
     </RootLayout>
   );
 };

@@ -5,11 +5,11 @@ import rightTop from "../../assets/background/Group241.png";
 
 const ElectricPattern = ({children, backgroundColor}) => {
     return (
-        <div className={`bg-background-skyblue min-h-screen w-full lg:relative ${backgroundColor}`}>
-            <div className="lg:absolute lg:left-0 lg:bottom-0 lg:w-[150px] lg:flex hidden z-2">
+        <div className={`bg-background-skyblue min-h-screen w-full relative ${backgroundColor}`}>
+            <div className="absolute left-0 bottom-0 lg:w-[150px] md:w-[125px] w-[100px] flex">
                 <Image src={leftBottom} />
             </div>
-            <div className="lg:absolute lg:right-0 lg:top-0 lg:w-[150px] lg:flex hidden z-2">
+            <div className="absolute right-0 top-0 lg:w-[150px] md:w-[125px] w-[100px] flex">
                 <Image src={rightTop} />
             </div>
             <div className='min-h-screen flex'>

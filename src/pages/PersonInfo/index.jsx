@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css"
 import Button from '../../components/Button.jsx';
 import axios from 'axios';
 import { useRouter } from 'next/router.js';
+import ElectricPattern from '../../components/ElectricPattern.jsx';
 
 const PersonalInfo = () => {
   const router = useRouter();
@@ -80,10 +81,10 @@ const PersonalInfo = () => {
 
   const CustomInput = ({value, onClick}) => {
     return (
-      <div className='w-[66.66667vw] sm:w-[50vw] lg:w-[33.3333333vw] '>
+      <div className='w-[66.66667vw] sm:w-[50vw] lg:w-[33.3333333vw]'>
         <div className='w-full h-auto mt-2 relative flex justify-end items-center'>
         <input 
-            className='w-full text-base font-Montserrat font-medium text-[#B6B7BA] py-[15px] pl-8 rounded-lg'
+            className='w-full text-base font-Montserrat font-medium text-[#B6B7BA] py-[15px] pl-8 rounded-lg bg-shade-white'
             type="text"
             placeholder='DD/MM/YYYY'
             value={value}
@@ -226,181 +227,183 @@ const PersonalInfo = () => {
 
   return (
     <RootLayout>
-    <div className='flex flex-col items-center justify-center w-screen min-h-screen overflow-auto bg-background-skyblue'>
-      <div className=' text-center mt-[68px]'>
-        <h1 className='font-GameOfSquid text-6xl leading-[50px] text-[#FCFCFC] drop-shadow-[0_0px_6px_rgba(255,255,255,1)]'>
-          DATA DIRI
-        </h1>
-        <h2 className=' font-Montserrat text-base text-[#FFF] mt-2 font-medium'>
-          Please fill the form correctly
-        </h2>
-      </div>
-      <div className='mt-6 w-2/3 sm:w-1/2 lg:w-1/3 flex flex-col gap-4'>
-        <div className='w-full'>
-          <div className='flex gap-[10px] items-center'>
-            <BsPersonBadgeFill className='size-8 text-[#FCFCFC]'/>
-            <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
-              Nama Lengkap
-            </h2>
-          </div>
-          <input
-            className=' w-full mt-2 text-base font-Montserrat font-medium text-[#B6B7BA] py-[15px] pl-8 rounded-lg'
-            type="text"
-            placeholder='John Doe'
-            value={name}
-            onChange={(e) => setName(e.currentTarget.value)}
-          ></input>
+      <ElectricPattern>
+        <div className='flex flex-col items-center justify-center w-screen min-h-screen overflow-auto bg-background-skyblue'>
+        <div className=' text-center mt-[68px]'>
+          <h1 className='font-GameOfSquid text-6xl leading-[50px] text-[#FCFCFC] drop-shadow-[0_0px_6px_rgba(255,255,255,1)]'>
+            DATA DIRI
+          </h1>
+          <h2 className=' font-Montserrat text-base text-[#FFF] mt-2 font-medium'>
+            Please fill the form correctly
+          </h2>
         </div>
-        <div className='w-full'>
-          <div className='flex gap-[10px] items-center'>
-            <BsCalendarDateFill className='size-8 text-[#FCFCFC]'/>
-            <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
-              Tanggal Lahir
-            </h2>
-          </div>
-          <DatePicker
-            selected={date}
-            onChange={(e) => setDate(e)}
-            customInput = {<CustomInput />}
-            dateFormat="dd/MM/yyyy"
-            placeholderText='MM/DD/YYYY'
-            showMonthDropdown
-            showYearDropdown
-            yearDropdownItemNumber={50}
-            scrollableYearDropdown
-          />
-        </div>
-        <div className='w-full'>
-          <div className='flex gap-[10px] items-center'>
-            <BsPinMapFill className='size-8 text-[#FCFCFC]'/>
-            <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
-              Asal Provinsi
-            </h2>
-          </div>
-          <div 
-            className='w-full text-base font-medium font-Montserrat text-[#B6B7BA] mt-2 relative'
-            ref={dropdownProvinsiRef}
-          >
-            <div 
-            className='w-full relative flex items-center justify-end'
-            onClick={() => setOpenProvinsi(!openProvinsi)}
-            >
-              <input
-                className={`w-full bg-white py-[15px] pl-8 cursor-pointer ${openProvinsi ? "rounded-t-lg" : 'rounded-lg'}`}
-                placeholder='Pilih Provinsi'
-                value={provinsiSelected}
-                onChange={(e) => setProvinsiSelected(e.currentTarget.value)}
-              >
-              </input>
-              <IoMdArrowDropdown className={`size-[35px] fill-[#233E51] absolute mr-[22px] ${openProvinsi && 'rotate-180'}`}/>
+        <div className='mt-6 w-2/3 sm:w-1/2 lg:w-1/3 flex flex-col gap-4'>
+          <div className='w-full'>
+            <div className='flex gap-[10px] items-center'>
+              <BsPersonBadgeFill className='size-8 text-[#FCFCFC]'/>
+              <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
+                Nama Lengkap
+              </h2>
             </div>
-            <ul
-              className={`w-full bg-[#F1A56A] overflow-y-auto absolute z-10 ${openProvinsi ? "max-h-[222px] rounded-b-lg scrollbar scrollbar-w-[10px] scrollbar-thumb-black scrollbar-thumb-rounded-md" : "max-h-0 rounded-none" }`}
+            <input
+              className=' w-full mt-2 text-base font-Montserrat font-medium bg-shade-white text-[#B6B7BA] py-[15px] pl-8 rounded-lg'
+              type="text"
+              placeholder='John Doe'
+              value={name}
+              onChange={(e) => setName(e.currentTarget.value)}
+            ></input>
+          </div>
+          <div className='w-full'>
+            <div className='flex gap-[10px] items-center'>
+              <BsCalendarDateFill className='size-8 text-[#FCFCFC]'/>
+              <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
+                Tanggal Lahir
+              </h2>
+            </div>
+            <DatePicker
+              selected={date}
+              onChange={(e) => setDate(e)}
+              customInput = {<CustomInput />}
+              dateFormat="dd/MM/yyyy"
+              placeholderText='MM/DD/YYYY'
+              showMonthDropdown
+              showYearDropdown
+              yearDropdownItemNumber={50}
+              scrollableYearDropdown
+            />
+          </div>
+          <div className='w-full'>
+            <div className='flex gap-[10px] items-center'>
+              <BsPinMapFill className='size-8 text-[#FCFCFC]'/>
+              <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
+                Asal Provinsi
+              </h2>
+            </div>
+            <div 
+              className='w-full text-base font-medium font-Montserrat text-[#B6B7BA] mt-2 relative'
+              ref={dropdownProvinsiRef}
             >
-              <div className='w-full h-auto relative'>
-                {provinsies?.map((provinsi) => (
+              <div 
+              className='w-full relative flex items-center justify-end'
+              onClick={() => setOpenProvinsi(!openProvinsi)}
+              >
+                <input
+                  className={`w-full bg-white py-[15px] pl-8 cursor-pointer ${openProvinsi ? "rounded-t-lg" : 'rounded-lg'}`}
+                  placeholder='Pilih Provinsi'
+                  value={provinsiSelected}
+                  onChange={(e) => setProvinsiSelected(e.currentTarget.value)}
+                >
+                </input>
+                <IoMdArrowDropdown className={`size-[35px] fill-[#233E51] absolute mr-[22px] ${openProvinsi && 'rotate-180'}`}/>
+              </div>
+              <ul
+                className={`w-full bg-[#F1A56A] overflow-y-auto absolute z-10 ${openProvinsi ? "max-h-[222px] rounded-b-lg scrollbar scrollbar-w-[10px] scrollbar-thumb-black scrollbar-thumb-rounded-md" : "max-h-0 rounded-none" }`}
+              >
+                <div className='w-full h-auto relative'>
+                  {provinsies?.map((provinsi) => (
+                    <li
+                      key={provinsi?.name}
+                      className={`bg-[#F1A56A] relative text-[#FCFCFC] py-[15px] pl-8 cursor-pointer before:h-[1px] before:w-auto before:bg-white before:absolute before:left-[10px] before:right-0 before:bottom-0 `}
+                      onClick={() => {
+                        setProvinsiSelected(provinsi?.name);
+                        setOpenProvinsi(false);
+                      }}
+                    >
+                      {provinsi?.name}
+                    </li>
+                  ))}
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div className='w-full'>
+            <div className='flex gap-[10px] items-center'>
+              <BsPersonBadgeFill className='size-8 text-[#FCFCFC]'/>
+              <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
+                Status
+              </h2>
+            </div>
+            <div 
+              className='w-full text-base font-medium font-Montserrat text-[#B6B7BA] mt-2 relative'
+              ref={dropdownStatusRef}
+            >
+              <div
+                className='w-full relative flex items-center justify-end'
+                onClick={() => setOpenStatus(!openStatus)}
+              >
+                <input
+                  className={`w-full bg-white py-[15px] pl-8 cursor-pointer ${openStatus ? "rounded-t-lg" : 'rounded-lg'}`}
+                  placeholder='Pilih Status'
+                  value={statusSelected}
+                  onChange={(e) => setStatusSelected(e.currentTarget.value)}
+                >
+                </input>
+                <IoMdArrowDropdown className={`size-[35px] fill-[#233E51] absolute mr-[22px] ${openStatus && 'rotate-180'}`}/>
+              </div>
+              <ul
+                className={`w-full bg-[#F1A56A] overflow-y-auto absolute z-10 ${openStatus ? "max-h-[222px] rounded-b-lg scrollbar scrollbar-w-[10px] scrollbar-thumb-black scrollbar-thumb-rounded-md" : "max-h-0 rounded-none" }`}
+              >
+                {statuses?.map((status) => (
                   <li
-                    key={provinsi?.name}
-                    className={`bg-[#F1A56A] relative text-[#FCFCFC] py-[15px] pl-8 cursor-pointer before:h-[1px] before:w-auto before:bg-white before:absolute before:left-[10px] before:right-0 before:bottom-0 `}
+                    key={status?.name}
+                    className={`bg-[#F1A56A] relative text-[#FCFCFC] py-[15px] pl-8 cursor-pointer before:h-[1px] before:w-auto before:bg-white before:absolute before:left-[10px] before:right-[10px] before:bottom-0 `}
                     onClick={() => {
-                      setProvinsiSelected(provinsi?.name);
-                      setOpenProvinsi(false);
+                      setStatusSelected(status?.name);
+                      setOpenStatus(false);
                     }}
                   >
-                    {provinsi?.name}
+                    {status?.name}
                   </li>
                 ))}
-              </div>
-            </ul>
-          </div>
-        </div>
-        <div className='w-full'>
-          <div className='flex gap-[10px] items-center'>
-            <BsPersonBadgeFill className='size-8 text-[#FCFCFC]'/>
-            <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
-              Status
-            </h2>
-          </div>
-          <div 
-            className='w-full text-base font-medium font-Montserrat text-[#B6B7BA] mt-2 relative'
-            ref={dropdownStatusRef}
-          >
-            <div
-              className='w-full relative flex items-center justify-end'
-              onClick={() => setOpenStatus(!openStatus)}
-            >
-              <input
-                className={`w-full bg-white py-[15px] pl-8 cursor-pointer ${openStatus ? "rounded-t-lg" : 'rounded-lg'}`}
-                placeholder='Pilih Status'
-                value={statusSelected}
-                onChange={(e) => setStatusSelected(e.currentTarget.value)}
-              >
-              </input>
-              <IoMdArrowDropdown className={`size-[35px] fill-[#233E51] absolute mr-[22px] ${openStatus && 'rotate-180'}`}/>
+              </ul>
             </div>
-            <ul
-              className={`w-full bg-[#F1A56A] overflow-y-auto absolute z-10 ${openStatus ? "max-h-[222px] rounded-b-lg scrollbar scrollbar-w-[10px] scrollbar-thumb-black scrollbar-thumb-rounded-md" : "max-h-0 rounded-none" }`}
-            >
-              {statuses?.map((status) => (
-                <li
-                  key={status?.name}
-                  className={`bg-[#F1A56A] relative text-[#FCFCFC] py-[15px] pl-8 cursor-pointer before:h-[1px] before:w-auto before:bg-white before:absolute before:left-[10px] before:right-[10px] before:bottom-0 `}
-                  onClick={() => {
-                    setStatusSelected(status?.name);
-                    setOpenStatus(false);
-                  }}
-                >
-                  {status?.name}
-                </li>
-              ))}
-            </ul>
+          </div>
+          <div className='w-full'>
+            <div className='flex gap-[10px] items-center'>
+              <IoSchool className='size-8 text-[#FCFCFC]'/>
+              <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
+                Instansi
+              </h2>
+            </div>
+            <input
+              className=' w-full mt-2 text-base font-Montserrat font-medium bg-shade-white text-[#B6B7BA] py-[15px] pl-8 rounded-lg'
+              type="text"
+              placeholder='Universitas Gadjah Mada'
+              value={instansi}
+              onChange={(e) => setInstansi(e.currentTarget.value)}
+            ></input>
+          </div>
+          <div className='w-full'>
+            <div className='flex gap-[10px] items-center'>
+              <HiPhone className='size-8 text-[#FCFCFC]'/>
+              <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
+                Nomor HP
+              </h2>
+            </div>
+            <input
+              className=' w-full mt-2 text-base font-Montserrat font-medium bg-shade-white text-[#B6B7BA] py-[15px] pl-8 rounded-lg'
+              type="text" 
+              placeholder='08123456789'
+              value={number}
+              onChange={(e) => setNumber(e.currentTarget.value)}
+            ></input>
           </div>
         </div>
-        <div className='w-full'>
-          <div className='flex gap-[10px] items-center'>
-            <IoSchool className='size-8 text-[#FCFCFC]'/>
-            <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
-              Instansi
-            </h2>
-          </div>
-          <input
-            className=' w-full mt-2 text-base font-Montserrat font-medium text-[#B6B7BA] py-[15px] pl-8 rounded-lg'
-            type="text"
-            placeholder='Universitas Gadjah Mada'
-            value={instansi}
-            onChange={(e) => setInstansi(e.currentTarget.value)}
-          ></input>
+        <div className="relative flex flex-col items-center justify-center my-5">
+          <p className={"text-red-600 font-Montserrat font-bold text-center text-nowrap absolute"}>
+            {message}
+          </p>
         </div>
-        <div className='w-full'>
-          <div className='flex gap-[10px] items-center'>
-            <HiPhone className='size-8 text-[#FCFCFC]'/>
-            <h2 className='text-base text-[#FCFCFC] font-Montserrat text-center font-bold'>
-              Nomor HP
-            </h2>
-          </div>
-          <input
-            className=' w-full mt-2 text-base font-Montserrat font-medium text-[#B6B7BA] py-[15px] pl-8 rounded-lg'
-            type="text" 
-            placeholder='08123456789'
-            value={number}
-            onChange={(e) => setNumber(e.currentTarget.value)}
-          ></input>
+        <div className='w-1/3'>
+        <Button
+          fullW
+          onClick={onSubmit}
+          customClass={"font-Montserrat text-black font-bold"}
+          text="Continue"
+        />
         </div>
       </div>
-      <div className="relative flex flex-col items-center justify-center my-5">
-        <p className={"text-red-600 font-Montserrat font-bold text-center text-nowrap absolute"}>
-          {message}
-        </p>
-      </div>
-      <div className='w-1/3'>
-      <Button
-        fullW
-        onClick={onSubmit}
-        customClass={"font-Montserrat text-black font-bold"}
-        text="Continue"
-      />
-      </div>
-    </div>
+      </ElectricPattern>
     </RootLayout>
   )
 }

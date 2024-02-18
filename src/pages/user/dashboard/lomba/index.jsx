@@ -208,7 +208,7 @@ const Index = () => {
   return (
     <>
       <UserDashboardLayout>
-        <div className='w-full min-h-screen flex justify-center'>
+        <div className='w-full min-h-screen flex justify-center relative'>
           <div className='bg-white w-[91.389vw] sm:w-[88.672vw] lg:w-[73vw] h-fit lg:rounded-[14px] rounded-xl border-[3px] border-black lg:p-6 p-3'>
             <div className=" w-full bg-primary-500 lg:p-10 p-3 rounded-[13px] h-64 lg:h-[400px]">
               <p className='w-auto text-white font-CreatoDisplay sm:text-left text-center font-bold text-base lg:text-[28px] lg:leading-8 py-[9px] lg:py-0'>
