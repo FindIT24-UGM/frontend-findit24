@@ -5,6 +5,7 @@ import RootLayout from "../../layout";
 import { useContext } from "react";
 import TeamModalContext from "../../../utilities/TeamModalContext";
 import TeamModal from "../../../components/TeamModal";
+import Second from "../../../components/competitionpage/Second";
 import Title from "../../../components/competitionpage/Title";
 import CP_Lalu from "../../../assets/Logo/CPLalu.png";
 import Image from "next/image";
@@ -79,6 +80,7 @@ function CompetitiveProgramming() {
               </div>
             </div>
           </div>
+          <Second />
           <Prize />
           <Timeline />
         </div>
