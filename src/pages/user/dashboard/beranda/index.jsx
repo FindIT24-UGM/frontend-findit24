@@ -63,6 +63,10 @@ const Index = () => {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
+  const seeInstitutionFile = () => {
+    router.push(`${user.institutionFile}`)
+  }
+
   function AnnouncementItem({ title, announcedTo, content, createdAt }) {
     return (
       <div className="font-Montserrat">
@@ -251,9 +255,15 @@ const Index = () => {
                     </p>
                   </div>
                   <div className="flex-1">
+                    {user.status ? (
                     <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
                       {user.status}
                     </p>
+                    ) : ( 
+                    <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                      belum diisi
+                    </p>
+                    )}
                   </div>
                 </div>
                 <div className="w-full flex gap-4 xl:gap-0">
@@ -299,7 +309,7 @@ const Index = () => {
                     </p>
                   </div>
                   <div className="flex-1">
-                    <button className="border-2 border-background-skyblue rounded px-6 lg:px-8 py-0.5 lg:py-1 opacity-50">
+                    <button onClick={seeInstitutionFile} className="border-2 border-background-skyblue rounded px-6 lg:px-8 py-0.5 lg:py-1 opacity-50">
                       <p className="font-Montserrat font-bold text-xs lg:text-sm text-background-skyblue text-center">
                         Lihat
                       </p>
