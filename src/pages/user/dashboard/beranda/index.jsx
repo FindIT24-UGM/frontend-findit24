@@ -138,7 +138,7 @@ const Index = () => {
                   Lengkapi Data
                 </p>
               </div>
-            </div>
+            </div>{user && (
             <div className="flex flex-col">
               <div className="flex justify-between">
                 <div className="flex flex-col gap-2">
@@ -308,6 +308,7 @@ const Index = () => {
                 </div>
               </div>
             </div>
+            )}
           </div>
         </div>
       </div>

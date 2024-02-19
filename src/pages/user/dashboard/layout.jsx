@@ -8,7 +8,7 @@ import RootLayout from '../../layout';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData } from '../../../store/slices/authSlice';
-import { loadingEnd } from '../../../store/action';
+import { loadingEnd, loadingStart } from '../../../store/action';
 
 import ElectricPattern from '../../../components/ElectricPattern';
 
@@ -16,7 +16,7 @@ const UserDashboardLayout = ({ children }) => {
     const router = useRouter();
     const path = router.asPath;
     const dispatch = useDispatch()
-
+    const { isAuthenticated } = useSelector((state) => state.auth);
     const [user, setUser] = useState(null);
     const menuItems = [
         { path: '/user/dashboard/beranda', icon: <HiHome size={20} color='black' />, label: 'Beranda' },
@@ -28,6 +28,10 @@ const UserDashboardLayout = ({ children }) => {
         if (router.asPath === '/user/dashboard') {
             router.replace('/user/dashboard/beranda');
         }
+        if(!isAuthenticated){
+            router.push("/login")
+        }
+        dispatch(loadingStart())
         dispatch(getUserData())
         .unwrap()
         .then((res) => {
@@ -40,9 +44,15 @@ const UserDashboardLayout = ({ children }) => {
             <ElectricPattern>
                 <div className='bg-background-skyblue min-h-screen lg:flex lg:p-10 md:p-8'>
                     <div className='lg:w-1/5 px-5 pb-5'>
-                        <h2 className='font-CreatoDisplay font-bold text-text-placeholder-light text-4xl pt-5 py-8'>
-                            Hai, {user?.name}
-                        </h2>
+                        {isAuthenticated && user ? (
+                            <h2 className='font-CreatoDisplay font-bold text-text-placeholder-light text-4xl pt-5 py-8'>
+                                Hai, {user?.name}
+                            </h2>
+                        ) : (
+                            <h2 className='font-CreatoDisplay font-bold text-text-placeholder-light text-4xl pt-5 py-8'>
+                                Hai, 
+                            </h2>
+                        )}
                         <div className='flex flex-row lg:flex-col gap-2 lg:gap-4'>
                             {menuItems.map((item) => (
                                 <div

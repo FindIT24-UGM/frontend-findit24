@@ -30,6 +30,7 @@ const LoginPage = () => {
     if (isAuthenticated) {
       router.replace('/user/dashboard/beranda')
     }
+    dispatch(loadingStart())
     dispatch(getUserData())
       .unwrap()
       .then((res) => {

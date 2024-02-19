@@ -10,11 +10,11 @@ import NavbarMobile from "./Navbar/NavbarMobile";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/slices/authSlice";
-import { loadingEnd } from "../store/action";
+import { loadingEnd, loadingStart } from "../store/action";
 
 const Navbar = () => {
   // ubah isLogin di sini ya naufal
-  const { isAuthenticated, user, isLoading } = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch()
 
   const isLogin = false;
@@ -65,7 +65,7 @@ const Navbar = () => {
   const onSignClick = useCallback(() => {
     if (isAuthenticated || user) {
       // fungsi logout
-      console.log(isAuthenticated);
+      dispatch(loadingStart())
       dispatch(logout())
       .unwrap()
       .then((res) => {
@@ -76,7 +76,6 @@ const Navbar = () => {
       router.push("/login");
     }
   }, [isAuthenticated]);
-  console.log(isAuthenticated);
   return (
     <>
       <div
