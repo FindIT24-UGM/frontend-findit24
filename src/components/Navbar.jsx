@@ -1,18 +1,81 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import NavbarDesktop from "./Navbar/NavbarDesktop";
 import { RxCross1 } from "react-icons/rx";
 import NavbarMobile from "./Navbar/NavbarMobile";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/slices/authSlice";
+import { loadingEnd, loadingStart } from "../store/action";
 
 const Navbar = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  // ubah isLogin di sini ya naufal
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
+
+  const isLogin = false;
+  const router = useRouter();
   const [activePath, setActivePath] = useState("Webinar");
   const [isSideNav, setIsSideNav] = useState(false);
+  const [isLarge, setIsLarge] = useState(true);
 
+  const widthTracker = () => {
+    if (window.innerWidth >= 1024) {
+      setIsLarge(true);
+    } else {
+      setIsLarge(false);
+    }
+  };
+
+  const disableScroll = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+
+    window.onscroll = function () {
+      window.scrollTo(scrollLeft, scrollTop);
+    };
+  };
+
+  const enableScroll = () => {
+    window.onscroll = function () {};
+  };
+
+  useEffect(() => {
+    if (isSideNav) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+  }, [isSideNav]);
+
+  useEffect(() => {
+    if (isLarge) {
+      setIsSideNav(false);
+    }
+  }, [isLarge]);
+
+  useEffect(() => {
+    window.addEventListener("resize", widthTracker);
+  }, []);
+
+  const onSignClick = useCallback(() => {
+    if (isAuthenticated || user) {
+      // fungsi logout
+      dispatch(loadingStart())
+      dispatch(logout())
+      .unwrap()
+      .then((res) => {
+        dispatch(loadingEnd())
+        router.push("/")
+      })
+    } else {
+      router.push("/login");
+    }
+  }, [isAuthenticated]);
   return (
     <>
       <div
@@ -27,8 +90,8 @@ const Navbar = () => {
         <NavbarDesktop
           activePath={activePath}
           setActivePath={setActivePath}
-          isLogin={isLogin}
-          setIsLogin={setIsLogin}
+          isLogin={isAuthenticated}
+          onSignClick={onSignClick}
         />
         {/* navbar button */}
         <motion.button
@@ -65,15 +128,16 @@ const Navbar = () => {
         {/* navbar mobile */}
         <NavbarMobile
           isSideNav={isSideNav}
-          isLogin={isLogin}
-          setIsLogin={setIsLogin}
+          isLogin={isAuthenticated}
+          onSignClick={onSignClick}
         />
       </div>
       {/* dark background */}
       <motion.div
         className={twMerge(
-          "w-full h-full absolute bg-text-placeholder-dark z-[999]",
-          !isSideNav && "hidden"
+          "w-full h-full absolute bg-text-placeholder-dark z-[50]",
+          !isSideNav && "hidden",
+          "lg:hidden"
         )}
         variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.7 } }}
         initial={isSideNav ? "hidden" : "visible"}

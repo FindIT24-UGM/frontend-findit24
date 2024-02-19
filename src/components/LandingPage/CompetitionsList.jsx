@@ -134,7 +134,7 @@ export default function CompetitionsList() {
   }
 
   return (
-    <div className="min-h-screen flex justify-center lg:px-[54px] bg-background-skyblue">
+    <div className="min-h-screen flex justify-center bg-background-skyblue">
       {/* <div className="hidden lg:flex absolute left-0">
         <Image src={Vector_Kiri}></Image>
       </div> */}
@@ -183,7 +183,7 @@ export default function CompetitionsList() {
                 );
               })}
             </Swiper>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center ">
               <div className="font-Ava text-white text-[10.278vw] md:text-[6.48vw] 2xl:text-[3.9vw]">
                 {cards[activeIndex].name}
               </div>

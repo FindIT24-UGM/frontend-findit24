@@ -3,7 +3,7 @@ import Image from "next/image";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import LogoFindIT from "../../assets/Logo/logoFindit.png";
 
 const LOMBA = [
   "Capture the flag",
@@ -15,21 +15,10 @@ const LOMBA = [
   "Informatics Competition",
 ];
 
-const NavbarDesktop = ({ activePath, setActivePath, setIsLogin }) => {
+const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
   const [opacityCompetition, setopacityCompetition] = useState(false);
   const [hideCompetition, setHideCompetition] = useState(true);
   const [spanCompetition, setSpanCompetition] = useState(false);
-  const router = useRouter();
-  const isLogin = true;
-  // naufal tolong cek isLogin dengan redux toolkit ya
-
-  const onSignClick = useCallback(() => {
-    if (isLogin) {
-      // fungsi logout
-    } else {
-      router.push("/signup");
-    }
-  }, [isLogin]);
 
   useEffect(() => {
     if (spanCompetition) {
@@ -113,9 +102,9 @@ const NavbarDesktop = ({ activePath, setActivePath, setIsLogin }) => {
       </div>
       <Image
         className="max-lg:mr-auto"
-        src={"/assets/images/logoFINDIT.png"}
-        width={80}
-        height={80}
+        src={LogoFindIT}
+        width={70}
+        height={70}
       />
       <div className="relative">
         <div

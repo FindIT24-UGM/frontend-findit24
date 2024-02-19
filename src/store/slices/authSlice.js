@@ -11,7 +11,7 @@ let user = {};
 // }
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: user === null || {} ? false : true,
   user: user ? user : null,
   isLoading: false,
   isError: false,
@@ -137,6 +137,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+        state.isAuthenticated = false;
         state.user = null;
         state.token = "";
       })
@@ -152,6 +153,7 @@ export const authSlice = createSlice({
       .addCase(getUserData.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
+        state.isAuthenticated = false; 
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;

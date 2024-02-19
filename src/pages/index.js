@@ -7,6 +7,7 @@ import OurPartner from "../components/LandingPage/OurPartner";
 import Question from "../components/LandingPage/Question";
 import HeroComp from "../components/LandingPage/Hero/HeroComp";
 import WebinarComp from "../components/LandingPage/Webinar/WebinarComp";
+import CompetitionComp from "../components/LandingPage/Competition/CompetitionComp";
 import Footer from "../components/footer";
 import { useSession } from "../session/SessionProvider";
 
@@ -19,7 +20,8 @@ export default function Home() {
         <div className="w-full h-full">
           <HeroComp />
           <AutoSlider />
-          <CompetitionsList />
+          <CompetitionComp />
+          {/* <CompetitionsList /> */}
           <WebinarComp />
           <OurPartner />
           <Question />
