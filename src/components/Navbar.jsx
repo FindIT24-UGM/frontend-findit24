@@ -1,17 +1,68 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import NavbarDesktop from "./Navbar/NavbarDesktop";
 import { RxCross1 } from "react-icons/rx";
 import NavbarMobile from "./Navbar/NavbarMobile";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  // ubah isLogin di sini ya naufal
+  const isLogin = false;
+  const router = useRouter();
   const [activePath, setActivePath] = useState("Webinar");
   const [isSideNav, setIsSideNav] = useState(false);
+  const [isLarge, setIsLarge] = useState(true);
+
+  const widthTracker = () => {
+    if (window.innerWidth >= 1024) {
+      setIsLarge(true);
+    } else {
+      setIsLarge(false);
+    }
+  };
+
+  const disableScroll = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+
+    window.onscroll = function () {
+      window.scrollTo(scrollLeft, scrollTop);
+    };
+  };
+
+  const enableScroll = () => {
+    window.onscroll = function () {};
+  };
+
+  useEffect(() => {
+    if (isSideNav) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+  }, [isSideNav]);
+
+  useEffect(() => {
+    if (isLarge) {
+      setIsSideNav(false);
+    }
+  }, [isLarge]);
+
+  useEffect(() => {
+    window.addEventListener("resize", widthTracker);
+  }, []);
+
+  const onSignClick = useCallback(() => {
+    if (isLogin) {
+      // fungsi logout
+    } else {
+      router.push("/signup");
+    }
+  }, [isLogin]);
 
   return (
     <>
@@ -28,7 +79,7 @@ const Navbar = () => {
           activePath={activePath}
           setActivePath={setActivePath}
           isLogin={isLogin}
-          setIsLogin={setIsLogin}
+          onSignClick={onSignClick}
         />
         {/* navbar button */}
         <motion.button
@@ -66,14 +117,15 @@ const Navbar = () => {
         <NavbarMobile
           isSideNav={isSideNav}
           isLogin={isLogin}
-          setIsLogin={setIsLogin}
+          onSignClick={onSignClick}
         />
       </div>
       {/* dark background */}
       <motion.div
         className={twMerge(
-          "w-full h-full absolute bg-text-placeholder-dark z-[999]",
-          !isSideNav && "hidden"
+          "w-full h-full absolute bg-text-placeholder-dark z-[50]",
+          !isSideNav && "hidden",
+          "lg:hidden"
         )}
         variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.7 } }}
         initial={isSideNav ? "hidden" : "visible"}
