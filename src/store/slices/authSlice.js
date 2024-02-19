@@ -11,7 +11,7 @@ let user = {};
 // }
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: user ? true : false,
   user: user ? user : null,
   isLoading: false,
   isError: false,

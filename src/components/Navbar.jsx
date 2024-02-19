@@ -8,9 +8,15 @@ import NavbarDesktop from "./Navbar/NavbarDesktop";
 import { RxCross1 } from "react-icons/rx";
 import NavbarMobile from "./Navbar/NavbarMobile";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/slices/authSlice";
+import { loadingEnd } from "../store/action";
 
 const Navbar = () => {
   // ubah isLogin di sini ya naufal
+  const { isAuthenticated, user, isLoading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
+
   const isLogin = false;
   const router = useRouter();
   const [activePath, setActivePath] = useState("Webinar");
@@ -57,13 +63,20 @@ const Navbar = () => {
   }, []);
 
   const onSignClick = useCallback(() => {
-    if (isLogin) {
+    if (isAuthenticated || user) {
       // fungsi logout
+      console.log(isAuthenticated);
+      dispatch(logout())
+      .unwrap()
+      .then((res) => {
+        dispatch(loadingEnd())
+        router.push("/")
+      })
     } else {
-      router.push("/signup");
+      router.push("/login");
     }
-  }, [isLogin]);
-
+  }, [isAuthenticated]);
+  console.log(isAuthenticated);
   return (
     <>
       <div
@@ -78,7 +91,7 @@ const Navbar = () => {
         <NavbarDesktop
           activePath={activePath}
           setActivePath={setActivePath}
-          isLogin={isLogin}
+          isLogin={isAuthenticated}
           onSignClick={onSignClick}
         />
         {/* navbar button */}
@@ -116,7 +129,7 @@ const Navbar = () => {
         {/* navbar mobile */}
         <NavbarMobile
           isSideNav={isSideNav}
-          isLogin={isLogin}
+          isLogin={isAuthenticated}
           onSignClick={onSignClick}
         />
       </div>
