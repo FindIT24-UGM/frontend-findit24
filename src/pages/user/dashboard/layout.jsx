@@ -30,7 +30,7 @@ const UserDashboardLayout = ({ children }) => {
         }
         if(!isAuthenticated){
             router.push("/login")
-        }
+        } 
         dispatch(loadingStart())
         dispatch(getUserData())
         .unwrap()
@@ -38,7 +38,7 @@ const UserDashboardLayout = ({ children }) => {
           dispatch(loadingEnd())
           setUser(res)
         })
-    }, [user, router]);
+    }, [isAuthenticated, router]);
     return (
         <RootLayout>
             <ElectricPattern>

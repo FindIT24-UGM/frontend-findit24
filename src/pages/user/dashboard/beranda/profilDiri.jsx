@@ -18,6 +18,7 @@ import ModalParent from "../../modal/modalparent";
 import ModalVerification from "../../modal/modalverif";
 import ModalJoinTeam from "../../modal/modaljointeam";
 import ModalInvitationCode from "../../modal/modalinvitationcode";
+import axios from "axios";
 
 const ProfilDiri = () => {
   const [name, setName] = useState(undefined);
@@ -28,7 +29,7 @@ const ProfilDiri = () => {
   const [address, setAddress] = useState(undefined);
   const [openStatus, setOpenStatus] = useState(false);
   const [statusSelected, setStatusSelected] = useState(undefined);
-  const [institusi, setinstitusi] = useState(undefined);
+  const [institusi, setInstitusi] = useState(undefined);
   const [noInstitusi, setNoInstitusi] = useState(undefined);
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -194,6 +195,41 @@ const ProfilDiri = () => {
     },
   ];
 
+  const [imagePreview, setImagePreview] = useState("");
+  const [institutionFile, setInstitutionFile] = useState(undefined);
+  const formData = new FormData();
+  formData.append("institutionFile", institutionFile);
+  const uploadInstitutionFile = (e) => {
+
+    const regex = /\.(jpg|jpeg|png)$/i;
+    // if (regex.test(e.target.value)) {
+    //   const reader = new FileReader();
+    //   reader.onload = (e) => {
+    //     setImagePreview(e.target.result);
+    //   };
+    //   reader.readAsDataURL(e.target.files[0]);
+    // }
+    uploadFile()
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+  async function uploadFile() {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_API_URL + "/user/upload-file",
+      formData,
+      {
+        withCredentials: true
+      }
+    );
+    return res;
+  }
+
+
+
   const CustomInput = ({ value, onClick }) => {
     return (
       <div className="w-full">
@@ -228,6 +264,14 @@ const ProfilDiri = () => {
   const showModal = () => {
     {
       /* Tampilkan modal simpan */
+      <ModalParent>
+      <ModalVerification
+        quest="Simpan perubahan sebelum keluar?"
+        declare="Anda dapat mengeditnya lagi nanti"
+        confirm="Keluar & Simpan"
+        cancel="Batal"
+      />
+    </ModalParent>
     }
   };
 
@@ -450,7 +494,7 @@ const ProfilDiri = () => {
                       id="institusi"
                       name="institusi"
                       value={institusi}
-                      onChange={(e) => setinstitusi(e.currentTarget.value)}
+                      onChange={(e) => setInstitusi(e.currentTarget.value)}
                     />
                   </div>
                   <div className="flex flex-col gap-2 relative">
@@ -472,18 +516,22 @@ const ProfilDiri = () => {
                     <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
                       Kartu Institusi
                     </p>
-                    <button className="rounded border-2 border-text-placeholder-light px-6 py-1">
+                    <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
                       <input
                         className="hidden"
                         type="file"
+                        id="institutionFile"
+                        name="institutionFile"
+                        value={institutionFile}
+                        accept="image/*"
                         onChange={(e) => {
-                          /* Upload image ke database */
+                          uploadInstitutionFile()
                         }}
                       />
                       <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
                         Unggah
                       </p>
-                    </button>
+                    </label>
                   </div>
                 </div>
                 {isSmallScreen && (

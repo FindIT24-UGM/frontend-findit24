@@ -309,11 +309,35 @@ const Index = () => {
                     </p>
                   </div>
                   <div className="flex-1">
+                    {user.institutionFile != null ? (
+                      <div                     
+                      className="flex items-center gap-3"
+                      onClickCapture={(e) => {
+                        e.preventDefault;
+                      }}>
+                        <a
+                        target="_blank"
+                        rel="norel noopener noreferrer"
+                        className="hover:underline"
+                        href={user.institutionFile.viewLink}
+                      >                    
+                      <button rel="norel noopener noreferrer" onClick={seeInstitutionFile} className="border-2 border-background-skyblue rounded px-6 lg:px-8 py-0.5 lg:py-1 opacity-50">
+                      <p className="font-Montserrat font-bold text-xs lg:text-sm text-background-skyblue text-center">
+                      Lihat
+                    </p>
+                    </button></a>
+
+
+                      </div>
+                    ) : (
+
                     <button onClick={seeInstitutionFile} className="border-2 border-background-skyblue rounded px-6 lg:px-8 py-0.5 lg:py-1 opacity-50">
                       <p className="font-Montserrat font-bold text-xs lg:text-sm text-background-skyblue text-center">
                         Lihat
                       </p>
                     </button>
+                    ) }
+                    
                   </div>
                 </div>
               </div>

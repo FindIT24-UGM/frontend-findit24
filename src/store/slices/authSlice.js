@@ -11,7 +11,8 @@ let user = {};
 // }
 
 const initialState = {
-  isAuthenticated: user === null || {} ? false : true,
+  // isAuthenticated: user === null || {} ? false : true,
+  isAuthenticated: false,
   user: user ? user : null,
   isLoading: false,
   isError: false,
@@ -131,7 +132,6 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.isAuthenticated = true;
         state.user = action.payload.user;
-        state.token = action.payload.token;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
@@ -139,7 +139,6 @@ export const authSlice = createSlice({
         state.message = action.payload;
         state.isAuthenticated = false;
         state.user = null;
-        state.token = "";
       })
       .addCase(getUserData.pending, (state) => {
         state.isLoading = true;
