@@ -518,7 +518,12 @@ const ProfilDiri = () => {
           </div>
         </div>
         <ModalParent>
-          <ModalVerification />
+          <ModalVerification
+            quest="Simpan perubahan sebelum keluar?"
+            declare="Anda dapat mengeditnya lagi nanti"
+            confirm="Keluar & Simpan"
+            cancel="Batal"
+          />
         </ModalParent>
       </div>
     </RootLayout>
@@ -527,8 +532,9 @@ const ProfilDiri = () => {
 
 export default ProfilDiri;
 
-
 // contoh make modal
-{/* <ModalParent customStyle={"p-1"}>
+{
+  /* <ModalParent customStyle={"p-1"}>
   <ModalInvitationCode />
-</ModalParent>; */}
+</ModalParent>; */
+}
