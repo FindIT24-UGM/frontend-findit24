@@ -57,7 +57,7 @@ const LoginPage = () => {
         .then((res) => {
           dispatch(loadingEnd());
           setMessage("Login successfully")
-          router.push("/user/dashboard/beranda");
+          // router.push("/user/dashboard/beranda");
         })
         .catch ((err) => {
           setMessage("Email not found or password incorrect");
