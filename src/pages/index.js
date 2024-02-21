@@ -16,11 +16,11 @@ export default function Home() {
   return (
     <RootLayout>
       <main>
-        <div className="w-full h-full">
+        <div className="w-full h-full bg-background-skuyblue">
           <HeroComp />
           <AutoSlider />
           <CompetitionComp />
-          {/* <CompetitionsList /> */}
+          <CompetitionsList />
           <WebinarComp />
           <OurPartner />
         </div>

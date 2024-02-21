@@ -46,7 +46,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
               )}
               onClick={() => setActivePath("Webinar")}
             >
-              Webinar
+              Workshop
             </p>
           </Link>
           <div className="relative flex flex-row items-center gap-x-3">

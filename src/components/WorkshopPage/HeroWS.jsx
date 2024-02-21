@@ -1,0 +1,93 @@
+import BG_WS from "../../assets/workshoppage/BG_WS.png";
+import React from "react";
+import Image from "next/image";
+import { BiMouse } from "react-icons/bi";
+import { useState, useEffect } from "react";
+
+function HeroWS() {
+  const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeRemaining(calculateTimeRemaining());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  function calculateTimeRemaining() {
+    const changingDate = new Date("4 Mar 2024");
+    const currentDate = new Date();
+    const totalSeconds = Math.max((changingDate - currentDate) / 1000, 0);
+
+    const days = Math.floor(totalSeconds / 3600 / 24);
+    const hours = Math.floor(totalSeconds / 3600) % 24;
+    const minutes = Math.floor(totalSeconds / 60) % 60;
+
+    return { days, hours, minutes };
+  }
+
+  return (
+    <div className="min-h-screen w-full bg-[#233E51] flex justify-center">
+      <Image src={BG_WS} className="absolute top-0 w-[75vw]"></Image>
+      <div className="flex flex-col justify-center items-center gap-y-8">
+        <p className="font-Ava text-white text-[20px] lg:text-[1.25vw]">
+          //Workshop
+        </p>
+        <div className="font-GameOfSquid text-center text-[20px] lg:text-[1.25vw] bg-gradient-to-b from-[#FF8C5A] to-[#F95949] bg-clip-text text-transparent">
+          <p>"Exploring Blockchain :</p>
+          <p>Embracing Future</p>
+          <p>Technology</p>
+        </div>
+        <div className="mt-8 font-GameOfSquid text-white text-[12px] lg:text-[0.8333vw]">
+          <div className="flex flex-col text-[0.833vw]">
+            <p>Benefit</p>
+            <div className="font-Montserrat lg:text-[0.833vw]">
+              <ul>Sertifikat</ul>
+              <ul>Knowledge</ul>
+              <ul>E-Money</ul>
+            </div>
+          </div>
+        </div>
+        <div className="mt-4 font-GameOfSquid text-white">
+          Sisa waktu pendaftaran
+        </div>
+        <div className="flex text-white">
+          <h4 className="font-GameOfSquid text-[#EE8478] text-[4.44vw] md:text-[3.125vw] lg:text-[1.25vw]">
+            {timeRemaining.days}
+          </h4>
+          <h4 className="font-Montserrat flex items-center text-[3.214vw] lg:text-[0.72vw]">
+            &nbsp;hari
+          </h4>
+          <h4 className="font-GameOfSquid  text-[#EE8478] text-[4.44vw] md:text-[3.125vw] lg:text-[1.25vw]">
+            &nbsp;|&nbsp;{timeRemaining.hours}
+          </h4>
+          <h4 className="font-Montserrat flex items-center text-[3.214vw] lg:text-[0.72vw]">
+            &nbsp;jam
+          </h4>
+          <h4 className="font-GameOfSquid text-[#EE8478] text-[4.44vw] md:text-[3.125vw] lg:text-[1.25vw]">
+            &nbsp;|&nbsp;{timeRemaining.minutes}
+          </h4>
+          <h4 className="font-Montserrat flex items-center text-[3.214vw] lg:text-[0.72vw]">
+            &nbsp;menit
+          </h4>
+        </div>
+        <div className="flex gap-x-2">
+          <button className="flex justify-center items-center p-3 w-fit rounded-xl bg-gradient-to-b from-[#FF8C5A] to-[#F95949] ">
+            <div className="text-white font-GameOfSquid">Daftar</div>
+          </button>
+          <button className="flex justify-center items-center p-3 w-fit rounded-xl bg-white">
+            <div className="text-black font-GameOfSquid">Guidebook</div>
+          </button>
+        </div>
+
+        <div className="flex justify-center items-center absolute bottom-0 flex gap-x-2">
+          <BiMouse />
+          <p className="font-Montserrat text-white">Gulir ke bawah</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default HeroWS;

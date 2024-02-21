@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "../Button";
 import CP_lalu from "../../assets/Logo/CPLalu.png";
+import { HiArrowRight } from "react-icons/hi";
 
 export default function CompetitionCard(props) {
   const { name, desc, icon, link, ownIndex, activeIndex } = props;
@@ -25,7 +26,7 @@ export default function CompetitionCard(props) {
     <>
       {windowWidth <= 450 ? (
         <div className="w-full flex lg:justify-center lg:items-center">
-          <div className="w-[150%] lg:w-[100%] lg:relative bg-gradient-to-b from-[#ED7C80] to-[#F9C883] h-[50vh] border-4 border-black p-6 lg:p-12 rounded-xl flex flex-col lg:grid lg:grid-cols-3">
+          <div className="w-[150%] lg:w-[100%] bg-gradient-to-b from-[#ED7C80] to-[#F9C883] h-[50vh] border-4 border-black p-6 lg:p-12 rounded-xl flex flex-col lg:grid lg:grid-cols-3">
             <div className="w-full flex flex-col gap-y-4">
               <div className="flex justify-between lg:flex-col">
                 <div className="font-GameOfSquid text-white text-[3.5vw] md:text-[2.266vw] lg:text-[1.25vw]">
@@ -47,16 +48,15 @@ export default function CompetitionCard(props) {
 
             <div className="w-full h-full relative bottom-2">
               <div className="w-full items-center font-Montserrat text-white text-center">
-                <Link href={link}>
-                  <div className="mt-8">
-                    <Button
-                      variant="primary"
-                      text="See More ->"
-                      fullW={true}
-                      customClass="h-fit bg-[#000000] w-[47.5vw] text-[10.5px] text-center border-0 max-h-[40px]"
-                    />
-                  </div>
-                </Link>
+                <div className="flex justify-center mt-8">
+                  <Link
+                    href={link}
+                    className="flex justify-center w-fit space-x-3 px-2 py-3 text-white text-[10.5px] bg-black rounded-md"
+                  >
+                    <p className="font-GameOfSquid font-bold bg">see more</p>
+                    <HiArrowRight />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function CompetitionCard(props) {
       ) : windowWidth <= 860 ? (
         <>
           <div className="w-full flex lg:justify-center lg:items-center">
-            <div className="w-[150%] lg:w-[100%] lg:relative bg-gradient-to-b from-[#ED7C80] to-[#F9C883] h-[400px] border-4 border-black p-12 rounded-xl md:grid md:grid-cols-2">
+            <div className="w-[150%] lg:w-[100%] bg-gradient-to-b from-[#ED7C80] to-[#F9C883] h-[400px] border-4 border-black p-12 rounded-xl md:grid md:grid-cols-2">
               <div className="w-full flex flex-col gap-y-8">
                 <div className="flex justify-between lg:flex-col gap-y-8">
                   <div className="font-GameOfSquid text-white text-[1.8vw]">
@@ -76,13 +76,13 @@ export default function CompetitionCard(props) {
                   {desc}
                   <div></div>
                 </div>
-                <div className="">
-                  <Link href={link}>
-                    <Button
-                      variant="primary"
-                      text="See More ->"
-                      customClass="bg-[#000000] w-[47.5vw] text-[10.5px] text-center text-white"
-                    />
+                <div className="flex justify-center mt-4">
+                  <Link
+                    href={link}
+                    className="flex justify-center w-fit space-x-3 px-2 py-3 text-white text-[10.5px] bg-black rounded-md"
+                  >
+                    <p className="font-GameOfSquid font-bold bg">see more</p>
+                    <HiArrowRight />
                   </Link>
                 </div>
               </div>
@@ -95,7 +95,7 @@ export default function CompetitionCard(props) {
         </>
       ) : (
         <div className="w-full flex lg:justify-center lg:items-center">
-          <div className="w-[150%] lg:w-[100%] lg:relative bg-gradient-to-b from-[#ED7C80] to-[#F9C883] h-[400px] border-4 border-black p-12 rounded-xl flex flex-col lg:grid lg:grid-cols-3">
+          <div className="w-[150%] lg:w-[100%] bg-gradient-to-b from-[#ED7C80] to-[#F9C883] h-[400px] border-4 border-black p-12 rounded-xl flex flex-col lg:grid lg:grid-cols-3">
             <div className="w-full flex flex-col gap-y-4">
               <div className="flex justify-between lg:flex-col">
                 <div className="font-GameOfSquid text-white text-[3.5vw] md:text-[2.266vw] lg:text-[1.25vw]">
@@ -118,12 +118,12 @@ export default function CompetitionCard(props) {
               <div>{name},</div>
               <div className="font-bold">Hackers? </div>
               <div className="mt-4">
-                <Link href={link}>
-                  <Button
-                    variant="primary"
-                    text="See More ->"
-                    customClass="bg-[#000000]"
-                  />
+                <Link
+                  href={link}
+                  className="flex items-center w-fit space-x-3 px-2 py-3 text-white text-xl bg-black rounded-md"
+                >
+                  <p className="font-GameOfSquid font-bold bg">see more</p>
+                  <HiArrowRight />
                 </Link>
               </div>
             </div>
