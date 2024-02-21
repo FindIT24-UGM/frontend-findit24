@@ -35,7 +35,7 @@ function HorizontalTextBot() {
 
 function LineV1() {
   return (
-    <div className="h-full w-[20px] bg-[#1A1A1A]">
+    <div className="h-full w-[1.65vw] bg-[#1A1A1A]">
       <div className="w-[6.6667vw] aspect-square bg-[#1A1A1A] rounded-full mx-[-2.5vw] mt-[-0.277vw]"></div>
     </div>
   );
