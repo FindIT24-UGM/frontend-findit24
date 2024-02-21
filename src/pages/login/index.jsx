@@ -19,7 +19,7 @@ import ElectricPattern from "../../components/ElectricPattern.jsx";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { isAuthenticated, isLoading } = useSelector((state) => state.auth);
+  const { isAuthenticated, user, isLoading } = useSelector((state) => state.auth);
 
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
@@ -27,14 +27,20 @@ const LoginPage = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    if (isAuthenticated) {
-      router.replace('/user/dashboard/beranda')
+    if(isAuthenticated){
+      dispatch(loadingStart())
+      dispatch(getUserData())
+        .unwrap()
+        .then((res) => {
+          dispatch(loadingEnd())
+        })
+      if(user?.role !== process.env.NEXT_PUBLIC_ADMIN_ROLE){
+        router.replace('/user/dashboard/beranda')
+      }
+      if(user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE){
+        router.replace('/admin/dashboard/statistic')
+      }
     }
-    dispatch(getUserData())
-      .unwrap()
-      .then((res) => {
-        dispatch(loadingEnd())
-      })
 
   }, [isAuthenticated, router])
   const loginHandler = (e) => {
@@ -51,7 +57,7 @@ const LoginPage = () => {
         .then((res) => {
           dispatch(loadingEnd());
           setMessage("Login successfully")
-          router.push("/user/dashboard/beranda");
+          // router.push("/user/dashboard/beranda");
         })
         .catch ((err) => {
           setMessage("Email not found or password incorrect");

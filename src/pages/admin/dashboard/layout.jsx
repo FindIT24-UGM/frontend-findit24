@@ -31,21 +31,12 @@ function AdminDashboadrLayout({ children }) {
   ];
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    if (user?.role !== process.env.NEXT_PUBLIC_ADMIN_ROLE) {
-      toast.error("Admin Resources! Access Denied!", {
-        className: "toast-error",
-      });
-      router.push("/dashboard");
-    }
-
     if (router.asPath === "/admin/dashboard") {
       router.replace("/admin/dashboard/statistic");
     }
   }, [router]);
 
-  if (user?.role == process.env.NEXT_PUBLIC_ADMIN_ROLE) {
+  // if (user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE) {
     return (
       <RootLayout>
         <ElectricPattern backgroundColor="bg-background-skyblue">
@@ -77,7 +68,7 @@ function AdminDashboadrLayout({ children }) {
         <Footer />
       </RootLayout>
     );
-  }
+  // }
 }
 
 export default AdminDashboadrLayout;

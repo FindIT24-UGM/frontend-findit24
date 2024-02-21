@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const LOMBA = [
   "Capture the flag",
@@ -18,7 +19,7 @@ const LOMBA = [
 
 const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
   const [isCompetition, setIsCompetition] = useState(false);
-
+  const router = useRouter();
   return (
     <motion.div
       className="absolute z-[1000] right-0 top-[104%] w-fit  pt-10 h-screen bg-text-placeholder-dark flex flex-col items-end font-GameOfSquid lg:hidden"
@@ -82,6 +83,7 @@ const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
           </p>
         </Link>
       </div>
+
       <button
         className={twMerge(
           "w-[80%] h-fit py-3 text-black rounded-lg bg-primary-300 mx-auto mt-16 hover:bg-primary-500 duration-300 transition-all"
@@ -90,6 +92,16 @@ const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
       >
         {isLogin ? "Sign Out" : "Sign in"}
       </button>
+      {isLogin && (
+        <button
+          className={twMerge(
+            "w-[80%] h-fit py-3 text-black rounded-lg bg-primary-300 mx-auto mt-5 hover:bg-primary-500 duration-300 transition-all"
+          )}
+          onClick={() => router.push("/admin/dashboard")}
+        >
+          Dashboard
+        </button>
+      )}
     </motion.div>
   );
 };

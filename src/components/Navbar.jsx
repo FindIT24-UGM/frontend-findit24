@@ -9,15 +9,15 @@ import { RxCross1 } from "react-icons/rx";
 import NavbarMobile from "./Navbar/NavbarMobile";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../store/slices/authSlice";
-import { loadingEnd } from "../store/action";
+import { getUserData, logout } from "../store/slices/authSlice";
+import { loadingEnd, loadingStart } from "../store/action";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
   // ubah isLogin di sini ya naufal
-  const { isAuthenticated, user, isLoading } = useSelector((state) => state.auth);
-  const dispatch = useDispatch()
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  const isLogin = false;
   const router = useRouter();
   const [activePath, setActivePath] = useState("Webinar");
   const [isSideNav, setIsSideNav] = useState(false);
@@ -63,20 +63,30 @@ const Navbar = () => {
   }, []);
 
   const onSignClick = useCallback(() => {
-    if (isAuthenticated || user) {
+    if (isAuthenticated) {
       // fungsi logout
-      console.log(isAuthenticated);
+      dispatch(loadingStart());
       dispatch(logout())
-      .unwrap()
-      .then((res) => {
-        dispatch(loadingEnd())
-        router.push("/")
-      })
+        .unwrap()
+        .then((res) => {
+          dispatch(loadingEnd());
+          router.push("/");
+        });
     } else {
       router.push("/login");
     }
   }, [isAuthenticated]);
-  console.log(isAuthenticated);
+
+  useEffect(() => {
+    dispatch(loadingStart());
+    dispatch(getUserData())
+      .unwrap()
+      .then((res) => {
+        dispatch(loadingEnd());
+      })
+      .catch((err) => {});
+  }, [isAuthenticated]);
+
   return (
     <>
       <div
@@ -107,11 +117,7 @@ const Navbar = () => {
           animate={isSideNav ? "hidden" : "visible"}
           initial={isSideNav ? "visible" : "hidden"}
         >
-          <Image
-            src={"assets/images/menu-hamburger.svg"}
-            height={40}
-            width={40}
-          />
+          <GiHamburgerMenu size={40} />
         </motion.button>
         <motion.button
           className={twMerge(!isSideNav && "hidden", "lg:hidden")}
