@@ -85,9 +85,10 @@ module.exports = {
         },
       },
       animation: {
-        swipeRight1: "swipeRight1 30s linear infinite",
-        swipeRight2: "swipeRight2 30s linear infinite",
+        swipeRight1: "swipeRight1 20s linear infinite",
+        swipeRight2: "swipeRight2 20s linear infinite",
         sliderTrack: "sliderTrack 35s linear infinite",
+        cloudsTrack: "swipeRight2 25s linear infinite",
       },
     },
   },
