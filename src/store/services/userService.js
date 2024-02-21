@@ -1,13 +1,12 @@
 import axios from "axios";
 
 // GET ANNOUNCEMENT FOR USER SERVICE
-const getAnnouncements = async (token) => {
-  const response = await axios.get(
-    process.env.NEXT_PUBLIC_API_URL + "/admin/announcement",
+const getAnnouncements = async (eventIds) => {
+  const response = await axios.post(
+    process.env.NEXT_PUBLIC_API_URL + "/admin/announcement/get",
+    { eventId: [...eventIds] },
     {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
+      withCredentials: true
     }
   );
   return response.data;
@@ -24,6 +23,16 @@ const getUserTeam = async () => {
   return response.data;
 };
 
-const userService = { getAnnouncements, getUserTeam };
+//GET ALL TEAMS OF THE EVENT
+const getTeamsOfEvent = async (eventId) => {
+  const response = await axios.post(
+    process.env.NEXT_PUBLIC_API_URL + "/team/search-teams", 
+    { eventId },
+    { withCredentials: true }
+  );
+  return response.data;
+}
+
+const userService = { getAnnouncements, getUserTeam, getTeamsOfEvent };
 
 export default userService;

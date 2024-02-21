@@ -17,13 +17,14 @@ import EsportLogo from '../../../../assets/Logo/DashboardLomba/EsportLogo.jsx'
 import IcLogo from '../../../../assets/Logo/DashboardLomba/IcLogo.jsx'
 import ArrowRight from '../../../../assets/Logo/DashboardLomba/ArrowRight.jsx'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserTeam } from '../../../../store/slices/userSlice.js'
+import { getTeamsToSearch, getUserTeam } from '../../../../store/slices/userSlice.js'
 import { loadingEnd } from '../../../../store/action.js'
 import axios from 'axios'
 
 
 const Index = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const { userTeam } = useSelector((state) => state.user);
 
   const [countLomba, setCountLomba] = useState(0);
   const [openConfirmation, setOpenConfirmation] = useState(false);
@@ -36,19 +37,19 @@ const Index = () => {
   const [openTimTdkKetemu, setOpenTimTdkKetemu] = useState(false);
   const haveJoined = (countLomba !== 0);
   
-  const [teams, setTeams] = useState([])
   const dispatch = useDispatch()
   useEffect(() => {
-
-    dispatch(getUserTeam())
+    if(userTeam){
+      setCountLomba(userTeam?.asMember?.length)
+    }
+    dispatch(getTeamsToSearch(process.env.NEXT_PUBLIC_COMPETITION_ID_CTF))
     .unwrap()
     .then((res) => {
       dispatch(loadingEnd())
-      setTeams(res.asMember)
-      setCountLomba(res.asMember.length)
+      console.log(res);
+      // setCountLomba(res.asMember.length)
     })
 }, [isAuthenticated]);
-
 
   const searchTeam = () => {
     axios.
@@ -77,7 +78,7 @@ const Index = () => {
       withCredentials: true
     })
     .then(res => {
-      console.log(res.data.message);
+      // console.log(res.data.message);
       setOpenInvitation(false);
       setOpenTimDitemukan(false)
     })
@@ -250,7 +251,7 @@ const Index = () => {
       </>
     )
   }
-  
+
   return (
     <>
       <UserDashboardLayout>
@@ -270,7 +271,7 @@ const Index = () => {
                 }
                 {haveJoined &&
                   <div className='w-full h-auto'>
-                    {teams && teams.map((team) => {
+                    {userTeam && userTeam?.asMember?.map((team) => {
                     return (
                       <TeamCard
                         competition={team.eventId.eventName}
