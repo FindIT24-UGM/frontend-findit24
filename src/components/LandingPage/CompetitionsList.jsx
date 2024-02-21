@@ -5,13 +5,14 @@ import CompetitionCard from "./CompetitionCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
-import CP_Lalu from "../../assets/Logo/CPLalu.png";
-import DAC_Lalu from "../../assets/Logo/DACLalu.png";
-import Esport_lalu from "../../assets/Logo/EsportLalu.png";
-import Hackathon_Lalu from "../../assets/Logo/HackatonLalu.png";
-import Logic_Comp_lalu from "../../assets/Logo/Logic_Comp_Lalu.png";
-import Ui_Ux_Lalu from "../../assets/Logo/Ui_Ux_Lalu.png";
-import CTF_Lalu from "../../assets/Logo/CTF_Lalu.png";
+import { HiArrowRight } from "react-icons/hi";
+import CTF from "../../assets/Logo/CTF.png";
+import CP from "../../assets/Logo/CP.png";
+import UX from "../../assets/Logo/UX.png";
+import DAC from "../../assets/Logo/DAC.png";
+import Hackathon from "../../assets/Logo/Hackathon.png";
+import ESP from "../../assets/Logo/ESP.png";
+import IC from "../../assets/Logo/IC.png";
 import Vector_Kiri from "../../assets/landingpage/Vector_Kiri.png";
 import Vector_Kanan from "../../assets/landingpage/Vector_Kanan.png";
 import sidePattern from "../../assets/background/sidePattern.png";
@@ -39,12 +40,12 @@ export default function CompetitionsList() {
       ownIndex: 0,
       icon: (
         <Image
-          src={Ui_Ux_Lalu}
+          src={UX}
           alt="logo"
           className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
-      desc: "UX Competition adalah kompetisi desain pengalaman pengguna sebuah produk aplikasi mobile. Peserta akan mengembangkan produk dalam bentuk prototipe sesuai dengan tema.",
+      desc: "Kompetisi desain pengalaman pengguna sebuah produk aplikasi mobile. Peserta akan mengembangkan produk dalam bentuk prototipe sesuai dengan tema.",
       link: "/competition/ui-ux",
     },
     {
@@ -52,12 +53,12 @@ export default function CompetitionsList() {
       ownIndex: 1,
       icon: (
         <Image
-          src={CP_Lalu}
+          src={CP}
           alt="logo"
           className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
-      desc: "Competitive Programming adalah kompetisi yang menguji kemampuan berpikir logis demi menyelesaikan masalah dengan suatu program komputer.",
+      desc: "Kompetisi yang menguji kemampuan berpikir logis demi menyelesaikan masalah dengan suatu program komputer.",
       link: "/competition/competitive-programming",
     },
     {
@@ -65,12 +66,12 @@ export default function CompetitionsList() {
       ownIndex: 2,
       icon: (
         <Image
-          src={DAC_Lalu}
+          src={DAC}
           alt="logo"
           className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
-      desc: "Data Analytics Competition merupakan kompetisi menganalisis data khususnya big data guna memberi solusi dari sebuah permasalahan yang telah disediakan.",
+      desc: "Kompetisi menganalisis data khususnya big data guna memberi solusi dari sebuah permasalahan yang telah disediakan.",
       link: "/competition/data-analytics",
     },
     {
@@ -78,12 +79,12 @@ export default function CompetitionsList() {
       ownIndex: 3,
       icon: (
         <Image
-          src={Hackathon_Lalu}
+          src={Hackathon}
           alt="logo"
           className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
-      desc: "Hackathon adalah kompetisi pembuatan inovasi berupa produk teknologi informasi dalam jangka waktu tertentu dan sesuai tema yang sudah ditentukan.",
+      desc: "Kompetisi pembuatan inovasi berupa produk teknologi informasi dalam jangka waktu tertentu dan sesuai tema yang sudah ditentukan.",
       link: "/competition/hackathon",
     },
     {
@@ -91,12 +92,12 @@ export default function CompetitionsList() {
       ownIndex: 4,
       icon: (
         <Image
-          src={CTF_Lalu}
+          src={CTF}
           alt="logo"
           className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
-      desc: "Capture the Flag adalah kompetisi cyber security yang menguji peserta dalam berpikir terstruktur dan kreatif dalam mencari sebuah informasi tersembunyi yang disebut flag.",
+      desc: "Kompetisi cyber security yang menguji peserta dalam berpikir terstruktur dan kreatif dalam mencari sebuah informasi tersembunyi yang disebut flag.",
       link: "/competition/capture-the-flag",
     },
     {
@@ -104,12 +105,12 @@ export default function CompetitionsList() {
       ownIndex: 5,
       icon: (
         <Image
-          src={Esport_lalu}
+          src={ESP}
           alt="logo"
           className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
-      desc: "Sebuah kompetisi yang menguji kemampuan peserta dalam bermain game kompetitif secara online. Terdapat dua pilihan game yaitu Mobile Legends dan Valorant.",
+      desc: "Kompetisi yang menguji kemampuan peserta dalam bermain game kompetitif secara online. Terdapat dua pilihan game yaitu Mobile Legends dan Valorant.",
       link: "/competition/esports",
     },
     {
@@ -117,12 +118,12 @@ export default function CompetitionsList() {
       ownIndex: 6,
       icon: (
         <Image
-          src={Logic_Comp_lalu}
+          src={IC}
           alt="logo"
           className="unselectable w-[50vw] md:w-[15vw] lg:w-[20vw] h-full"
         />
       ),
-      desc: "Informatics Competition merupakan kompetisi yang bertujuan untuk menguji kecerdasan dan pemahaman logika matematika melalui pengerjaan soal matematika dan problem solving.",
+      desc: "Kompetisi yang bertujuan untuk menguji kecerdasan dan pemahaman logika matematika melalui pengerjaan soal matematika dan problem solving.",
       link: "/competition/informatics-competition",
     },
   ];
@@ -134,14 +135,14 @@ export default function CompetitionsList() {
   }
 
   return (
-    <div className="min-h-screen flex justify-center bg-background-skyblue">
+    <div className="min-h-screen flex justify-center lg:px-[54px] bg-background-skyblue">
       {/* <div className="hidden lg:flex absolute left-0">
         <Image src={Vector_Kiri}></Image>
       </div> */}
       {/* <div className="hidden lg:flex absolute right-0">
         <Image src={Vector_Kanan}></Image>
       </div> */}
-      <div className="w-[90%] lg:w-[80%] flex flex-col items-center border-x-[6px] border-[#92C2D0] pb-20">
+      <div className="w-[90%] lg:w-[80%] flex flex-col justify-center items-center border-x-[6px] border-[#92C2D0] pb-20">
         <div className="flex flex-col items-center">
           <div className="lg:w-[70%] pt-20">
             <div className="flex flex-col items-center mx-auto">

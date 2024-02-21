@@ -4,6 +4,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import LogoFindIT from "../../assets/Logo/logoFindit.png";
+import { useRouter } from "next/navigation";
 
 const LOMBA = [
   "Capture the flag",
@@ -19,7 +20,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
   const [opacityCompetition, setopacityCompetition] = useState(false);
   const [hideCompetition, setHideCompetition] = useState(true);
   const [spanCompetition, setSpanCompetition] = useState(false);
-
+  const router = useRouter();
   useEffect(() => {
     if (spanCompetition) {
       setHideCompetition(false);
@@ -46,7 +47,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
               )}
               onClick={() => setActivePath("Webinar")}
             >
-              Webinar
+              Workshop
             </p>
           </Link>
           <div className="relative flex flex-row items-center gap-x-3">
@@ -132,6 +133,14 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
           </p>
         </div>
       </div>
+      {isLogin && (
+        <button
+          className="absolute right-[150px] transition-all duration-300 hover:bg-primary-500 max-lg:hidden font-GameOfSquid bg-primary-300 rounded-lg text-black p-2 text-sm"
+          onClick={() => router.push("/admin/dashboard")}
+        >
+          Dashboard
+        </button>
+      )}
       {/* sign in button */}
       <button
         className="absolute right-[50px] transition-all duration-300 hover:bg-primary-500 max-lg:hidden font-GameOfSquid bg-primary-300 rounded-lg text-black p-2 text-sm"
