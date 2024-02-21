@@ -11,11 +11,12 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserData, logout } from "../store/slices/authSlice";
 import { loadingEnd, loadingStart } from "../store/action";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
   // ubah isLogin di sini ya naufal
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const router = useRouter();
   const [activePath, setActivePath] = useState("Webinar");
@@ -64,29 +65,27 @@ const Navbar = () => {
   const onSignClick = useCallback(() => {
     if (isAuthenticated) {
       // fungsi logout
-      dispatch(loadingStart())
+      dispatch(loadingStart());
       dispatch(logout())
-      .unwrap()
-      .then((res) => {
-        dispatch(loadingEnd())
-        router.push("/")
-      })
+        .unwrap()
+        .then((res) => {
+          dispatch(loadingEnd());
+          router.push("/");
+        });
     } else {
       router.push("/login");
     }
   }, [isAuthenticated]);
 
   useEffect(() => {
-      dispatch(loadingStart())
-      dispatch(getUserData())
-        .unwrap()
-        .then((res) => {
-          dispatch(loadingEnd())
-        })
-        .catch(err =>{
-
-        })
-  },[isAuthenticated])
+    dispatch(loadingStart());
+    dispatch(getUserData())
+      .unwrap()
+      .then((res) => {
+        dispatch(loadingEnd());
+      })
+      .catch((err) => {});
+  }, [isAuthenticated]);
 
   return (
     <>
@@ -118,11 +117,7 @@ const Navbar = () => {
           animate={isSideNav ? "hidden" : "visible"}
           initial={isSideNav ? "visible" : "hidden"}
         >
-          <Image
-            src={"assets/images/menu-hamburger.svg"}
-            height={40}
-            width={40}
-          />
+          <GiHamburgerMenu size={40} />
         </motion.button>
         <motion.button
           className={twMerge(!isSideNav && "hidden", "lg:hidden")}
