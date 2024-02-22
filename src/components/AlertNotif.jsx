@@ -26,11 +26,11 @@ export default function AlertNotif({ variant = "success" }) {
   }
 
   return (
-    <div className={`w-[26vw] ${bgColor} p-6 rounded-lg border-4 border-black`}>
+    <div className={`w- md:w-[35vw] lg:w-[26vw] ${bgColor} p-6 rounded-lg border-4 border-black`}>
       <div className="flex flex-col">
         <div className="flex gap-x-[10px]">
           {icon}
-          <p className="font-GameOfSquid text-[1.62vw]">{variant}</p>
+          <p className="font-GameOfSquid text-[5vw] md:text-[3.5vw] lg:text-[1.62vw]">{variant}</p>
         </div>
         <div className="text-white font-medium font-Montserrat">{message}</div>
       </div>
