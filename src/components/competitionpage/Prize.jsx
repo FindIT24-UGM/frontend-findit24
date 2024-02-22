@@ -16,10 +16,10 @@ export default function Prize({ prizeArray }) {
           Prize Pool
         </div>
         <div className="flex flex-col items-center gap-y-8 lg:gap-y-20 ">
-          <PrizeCard type="1st place" prize="Juara 1" />
+          <PrizeCard type="1st place" />
           <div className="flex flex-col lg:flex-row gap-y-8 gap-x-12 items-center justify-center tracking-widesr">
-            <PrizeCard type="2nd place" prize="Juara 2" />
-            <PrizeCard type="3rd place" prize="Juara 3" />
+            <PrizeCard type="2nd place" />
+            <PrizeCard type="3rd place" />
           </div>
         </div>
         <Image

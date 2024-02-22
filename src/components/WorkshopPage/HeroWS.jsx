@@ -29,7 +29,10 @@ function HeroWS() {
 
   return (
     <div className="min-h-screen w-full bg-[#233E51] flex justify-center">
-      <Image src={BG_WS} className="absolute top-0 w-[75vw]"></Image>
+      <Image
+        src={BG_WS}
+        className="absolute top-0 w-[120vw] lg:w-[75vw]"
+      ></Image>
       <div className="flex flex-col justify-center items-center gap-y-8">
         <p className="font-Ava text-white text-[20px] lg:text-[1.25vw]">
           //Workshop
@@ -39,10 +42,10 @@ function HeroWS() {
           <p>Embracing Future</p>
           <p>Technology</p>
         </div>
-        <div className="mt-8 font-GameOfSquid text-white text-[12px] lg:text-[0.8333vw]">
-          <div className="flex flex-col text-[0.833vw]">
+        <div className="mt-8 font-GameOfSquid text-white text-center text-[12px] lg:text-[0.8333vw]">
+          <div className="flex flex-col text-[12px] lg:text-[0.833vw]">
             <p>Benefit</p>
-            <div className="font-Montserrat lg:text-[0.833vw]">
+            <div className="font-Montserrat text-[14px] lg:text-[0.9vw]">
               <ul>Sertifikat</ul>
               <ul>Knowledge</ul>
               <ul>E-Money</ul>

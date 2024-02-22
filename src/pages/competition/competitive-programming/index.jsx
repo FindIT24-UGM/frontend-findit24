@@ -67,15 +67,13 @@ function CompetitiveProgramming() {
                 <Title />
               </div>
               <div className="mx-10 md:mx-0 relative">
-                {typeof window !== "undefined" && (
-                  <Image
-                    src={CP_Lalu}
-                    width={545}
-                    height={532}
-                    className="relative z-40 w-full w-[50vw] md:w-[35.5vw] xl:w-[600px] mx-auto"
-                    priority
-                  />
-                )}
+                <Image
+                  src={CP_Lalu}
+                  width={545}
+                  height={532}
+                  className="relative z-40 w-full w-[50vw] md:w-[35.5vw] xl:w-[600px] mx-auto"
+                  priority
+                />
               </div>
             </div>
           </div>

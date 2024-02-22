@@ -21,13 +21,13 @@ export default function PrizeCard({ type, prize }) {
   }
   return (
     <div className="relative aspect-[532/305] w-[80vw] md:w-[40vw] relative bg-cover flex flex-col justify-center items-center gap-y-4">
-      <Image src={BGCard} fill alt="" />
-      <div className="w-[47.778vw] md:w-[20.833vw] lg:w-[14.5vw] flex flex-col text-end font-Montserrat italic text-[18px] lg:text-[1.25vw]">
+      <Image src={BGCard} fill alt="BG_Card.png" />
+      <div className="relative w-[47.778vw] md:w-[20.833vw] lg:w-[14.5vw] flex flex-col text-end font-Montserrat italic text-[18px] lg:text-[1.25vw]">
         {type}
       </div>
       <Image
         src={Piala_Gold}
-        className="absolute z-10 left-[10px] mx-3 md:mx-0 lg:mx-12 w-[28.611vw] md:w-[13.411vw] lg:w-[10.417vw]"
+        className="absolute z-10 left-[10px] mx-2 md:mx-4 lg:mx-24 w-[28.611vw] md:w-[13.411vw] lg:w-[10.417vw]"
         alt="Piala.png"
       />
       <div
