@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import userService from "../services/userService.js";
 
-let user = {};
 
 const initialState = {
   userTeam: [],
   announcementList: [],
+  allTeamsToJoin: [],
   isLoading: false,
   isError: false,
   message: "",
@@ -18,11 +18,11 @@ const initialState = {
 //   token = JSON.parse(localStorage.getItem(token));
 // }
 
-export const getAllAnnouncements = createAsyncThunk(
-  "admin/announcement",
-  async (token, thunkAPI) => {
+export const getTeamAnnouncements = createAsyncThunk(
+  "admin/announcement/get",
+  async (eventIds, thunkAPI) => {
     try {
-      const payload = await userService.getAnnouncements(token);
+      const payload = await userService.getAnnouncements(eventIds);
       return payload;
     } catch (e) {
       const message =
@@ -46,21 +46,35 @@ export const getUserTeam = createAsyncThunk(
   }
 );
 
+export const getTeamsToSearch = createAsyncThunk(
+  "team/search-teams",
+  async (eventId, thunkAPI) => {
+    try {
+      const payload = await userService.getTeamsOfEvent(eventId);
+      return payload
+    } catch (e) {
+      const message =
+        e.response?.data?.message || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+)
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
 
   extraReducers: (builder) => {
     builder
-      .addCase(getAllAnnouncements.pending, (state, action) => {
+      .addCase(getTeamAnnouncements.pending, (state, action) => {
         state.isLoading = true;
       })
-      .addCase(getAllAnnouncements.fulfilled, (state, action) => {
+      .addCase(getTeamAnnouncements.fulfilled, (state, action) => {
         state.announcementList = action.payload.announcements;
         state.isLoading = false;
         state.isError = false;
       })
-      .addCase(getAllAnnouncements.rejected, (state, action) => {
+      .addCase(getTeamAnnouncements.rejected, (state, action) => {
         state.message = action.payload;
         state.isLoading = false;
         state.isError = true;
@@ -76,6 +90,20 @@ export const userSlice = createSlice({
       .addCase(getUserTeam.rejected, (state, action) => {
         state.message = action.payload;
         state.userTeam = [];
+        state.isLoading = false;
+        state.isError = true;
+      })
+      .addCase(getTeamsToSearch.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getTeamsToSearch.fulfilled, (state, action) => {
+        state.allTeamsToJoin = action.payload;
+        state.isLoading = false;
+        state.isError = false;
+      })
+      .addCase(getTeamsToSearch.rejected, (state, action) => {
+        state.message = action.payload;
+        state.allTeamsToJoin = [];
         state.isLoading = false;
         state.isError = true;
       });

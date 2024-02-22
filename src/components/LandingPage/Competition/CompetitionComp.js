@@ -13,7 +13,7 @@ import UX from "../../../assets/Logo/UX.png";
 import DAC from "../../../assets/Logo/DAC.png";
 import Hackaton from "../../../assets/Logo/Hackathon.png";
 import ESP from "../../../assets/Logo/ESP.png";
-import IC from "../../../assets/Logo/IC.png"
+import IC from "../../../assets/Logo/IC.png";
 
 const CompetitionComp = () => {
   const [swiper, setSwiper] = useState(null);
@@ -24,51 +24,59 @@ const CompetitionComp = () => {
     {
       ownIndex: 0,
       name: "Capture The Flag",
-      mainDesc: "Kompetisi yang menguji kemampuan berpikir logis demi menyelesaikan masalah dengan suatu program komputer.",
+      mainDesc:
+        "Kompetisi cyber security yang menguji peserta dalam berpikir terstruktur dan kreatif dalam mencari sebuah informasi tersembunyi yang disebut flag.",
+
       secDesc: "Tertarik mendaftar Capture the Flag, Hackers?",
-      icon: (<Image src={CTF} className="w-[80%] unselectable" />)
+      icon: <Image src={CTF} className="w-[80%] unselectable" />,
     },
     {
       ownIndex: 1,
       name: "Competitive Programming",
-      mainDesc: "Kompetisi cyber security yang menguji peserta dalam berpikir terstruktur dan kreatif dalam mencari sebuah informasi tersembunyi yang disebut flag.",
+      mainDesc:
+        "Kompetisi yang menguji kemampuan berpikir logis demi menyelesaikan masalah dengan suatu program komputer.",
       secDesc: "Tertarik mendaftar, Programmer?",
-      icon: (<Image src={CP} className="w-[80%] unselectable" />)
+      icon: <Image src={CP} className="w-[80%] unselectable" />,
     },
     {
       ownIndex: 2,
       name: "UX Competition",
-      mainDesc: "Kompetisi desain pengalaman pengguna sebuah produk aplikasi mobile. Peserta akan mengembangkan produk dalam bentuk prototipe sesuai dengan tema.",
+      mainDesc:
+        "Kompetisi desain pengalaman pengguna sebuah produk aplikasi mobile. Peserta akan mengembangkan produk dalam bentuk prototipe sesuai dengan tema.",
       secDesc: "Tertarik mendaftar , Designer?",
-      icon: (<Image src={UX} className="w-[80%] unselectable" />)
+      icon: <Image src={UX} className="w-[80%] unselectable" />,
     },
     {
       ownIndex: 3,
       name: "Data Analytics",
-      mainDesc: "Kompetisi menganalisis data khususnya big data guna memberi solusi dari sebuah permasalahan yang telah disediakan.",
+      mainDesc:
+        "Kompetisi menganalisis data khususnya big data guna memberi solusi dari sebuah permasalahan yang telah disediakan.",
       secDesc: "Tertarik mendaftar, Data Analyst?",
-      icon: (<Image src={DAC} className="w-[80%] unselectable" />)
+      icon: <Image src={DAC} className="w-[80%] unselectable" />,
     },
     {
       ownIndex: 4,
-      name: "Heckaton",
-      mainDesc: "Kompetisi pembuatan inovasi berupa produk teknologi informasi dalam jangka waktu tertentu dan sesuai tema yang sudah ditentukan.",
+      name: "Hackathon",
+      mainDesc:
+        "Kompetisi pembuatan inovasi berupa produk teknologi informasi dalam jangka waktu tertentu dan sesuai tema yang sudah ditentukan.",
       secDesc: "Tertarik mendaftar, Hackaton Enthusiat?",
-      icon: (<Image src={Hackaton} className="w-[80%] unselectable" />)
+      icon: <Image src={Hackaton} className="w-[80%] unselectable" />,
     },
     {
       ownIndex: 5,
       name: "E-sports",
-      mainDesc: "Kompetisi yang menguji kemampuan peserta dalam bermain game kompetitif secara online. Terdapat dua pilihan game yaitu Mobile Legends dan Valorant.",
+      mainDesc:
+        "Kompetisi yang menguji kemampuan peserta dalam bermain game kompetitif secara online. Terdapat dua pilihan game yaitu Mobile Legends dan Valorant.",
       secDesc: "Tertarik mendaftar, Gamers?",
-      icon: (<Image src={ESP} className="w-[80%] unselectable" />)
+      icon: <Image src={ESP} className="w-[80%] unselectable" />,
     },
     {
       ownIndex: 6,
       name: "Informatics Competition",
-      mainDesc: "Kompetisi yang bertujuan untuk menguji kecerdasan dan pemahaman logika matematika melalui pengerjaan soal matematika dan problem solving.",
+      mainDesc:
+        "Kompetisi yang bertujuan untuk menguji kecerdasan dan pemahaman logika matematika melalui pengerjaan soal matematika dan problem solving.",
       secDesc: "Tertarik mendaftar, Logic Geeks?",
-      icon: (<Image src={IC} className="w-[80%] unselectable" />)
+      icon: <Image src={IC} className="w-[80%] unselectable" />,
     },
   ];
 
@@ -116,7 +124,14 @@ const CompetitionComp = () => {
                   className="py-10 flex flex-col items-center justify-center"
                   onClick={() => handleSlideClick(card.ownIndex)}
                 >
-                  <CompCard activeIndex={activeIndex} mainDesc={card.mainDesc} secDesc={card.secDesc} linkDestination={''} imageIcon={card.icon} />
+                  <CompCard
+                    name={card.name}
+                    activeIndex={activeIndex}
+                    mainDesc={card.mainDesc}
+                    secDesc={card.secDesc}
+                    linkDestination={""}
+                    imageIcon={card.icon}
+                  />
                 </SwiperSlide>
               );
             })}

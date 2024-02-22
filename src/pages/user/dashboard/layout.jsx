@@ -11,13 +11,14 @@ import { getUserData } from '../../../store/slices/authSlice';
 import { loadingEnd, loadingStart } from '../../../store/action';
 
 import ElectricPattern from '../../../components/ElectricPattern';
+import { getUserTeam } from '../../../store/slices/userSlice';
 
 const UserDashboardLayout = ({ children }) => {
     const router = useRouter();
     const path = router.asPath;
     const dispatch = useDispatch()
-    const { isAuthenticated } = useSelector((state) => state.auth);
-    const [user, setUser] = useState(null);
+    const { isAuthenticated, user } = useSelector((state) => state.auth);
+
     const menuItems = [
         { path: '/user/dashboard/beranda', icon: <HiHome size={20} color='black' />, label: 'Beranda' },
         { path: '/user/dashboard/lomba', icon: <AiFillTrophy size={20} color='black' />, label: 'Lomba' },
@@ -30,15 +31,15 @@ const UserDashboardLayout = ({ children }) => {
         }
         if(!isAuthenticated){
             router.push("/login")
-        }
+        } 
         dispatch(loadingStart())
-        dispatch(getUserData())
+        dispatch(getUserTeam())
         .unwrap()
         .then((res) => {
           dispatch(loadingEnd())
-          setUser(res)
         })
-    }, [user, router]);
+    }, [isAuthenticated, router]);
+
     return (
         <RootLayout>
             <ElectricPattern>

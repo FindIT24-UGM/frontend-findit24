@@ -5,6 +5,7 @@ import CompetitionsList from "../components/LandingPage/CompetitionsList";
 import RootLayout from "./layout";
 import OurPartner from "../components/LandingPage/OurPartner";
 import Question from "../components/LandingPage/Question";
+import OurPartnerComp from "../components/LandingPage/OurPartner/OurPartnerComp";
 import HeroComp from "../components/LandingPage/Hero/HeroComp";
 import WebinarComp from "../components/LandingPage/Webinar/WebinarComp";
 import CompetitionComp from "../components/LandingPage/Competition/CompetitionComp";
@@ -17,14 +18,15 @@ export default function Home() {
   return (
     <RootLayout>
       <main>
-        <div className="w-full h-full">
+        <div className="w-full h-full bg-background-skuyblue">
           <HeroComp />
           <AutoSlider />
           <CompetitionComp />
-          {/* <CompetitionsList /> */}
+          <CompetitionsList />
           <WebinarComp />
           <OurPartner />
           <Question />
+          <OurPartnerComp />
         </div>
       </main>
       <Footer />

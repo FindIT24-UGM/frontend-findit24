@@ -4,6 +4,7 @@ import React, {
   useRef,
   useLayoutEffect,
   Fragment,
+  useReducer,
 } from "react";
 import RootLayout from "../../../layout";
 import { useRouter } from "next/router";
@@ -18,18 +19,34 @@ import ModalParent from "../../modal/modalparent";
 import ModalVerification from "../../modal/modalverif";
 import ModalJoinTeam from "../../modal/modaljointeam";
 import ModalInvitationCode from "../../modal/modalinvitationcode";
+import axios from "axios";
+
+//INITIALIZE FOR useReducer
+const initialState = {
+  name: undefined,
+  dateOfBirth: undefined,
+  phone: undefined,
+  province: undefined,
+  address: undefined,
+  status: undefined,
+  institutionName: undefined,
+  institutionNumber: undefined
+};
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "UPDATE_FIELD":
+      return { ...state, [action.field]: action.value };
+    default:
+      return state;
+  }
+};  
+
 
 const ProfilDiri = () => {
-  const [name, setName] = useState(undefined);
-  const [date, setDate] = useState(undefined);
-  const [phoneNumber, setPhoneNumber] = useState(undefined);
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   const [openProvinsi, setOpenProvinsi] = useState(false);
-  const [provinsiSelected, setProvinsiSelected] = useState(undefined);
-  const [address, setAddress] = useState(undefined);
   const [openStatus, setOpenStatus] = useState(false);
-  const [statusSelected, setStatusSelected] = useState(undefined);
-  const [institusi, setinstitusi] = useState(undefined);
-  const [noInstitusi, setNoInstitusi] = useState(undefined);
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
@@ -194,6 +211,42 @@ const ProfilDiri = () => {
     },
   ];
 
+  /*----------BLM WORK BUAT UPLOAD INSTITUTION FILE---------- */
+  const [imagePreview, setImagePreview] = useState("");
+  const [institutionFile, setInstitutionFile] = useState(undefined);
+  const formData = new FormData();
+  formData.append("institutionFile", institutionFile);
+  const uploadInstitutionFile = (e) => {
+
+    const regex = /\.(jpg|jpeg|png)$/i;
+    // if (regex.test(e.target.value)) {
+    //   const reader = new FileReader();
+    //   reader.onload = (e) => {
+    //     setImagePreview(e.target.result);
+    //   };
+    //   reader.readAsDataURL(e.target.files[0]);
+    // }
+    uploadFile()
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+  async function uploadFile() {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_API_URL + "/user/upload-file",
+      formData,
+      {
+        withCredentials: true
+      }
+    );
+    return res;
+  }
+  /*----------------END------------------- */
+
+
   const CustomInput = ({ value, onClick }) => {
     return (
       <div className="w-full">
@@ -228,8 +281,37 @@ const ProfilDiri = () => {
   const showModal = () => {
     {
       /* Tampilkan modal simpan */
+      <ModalParent>
+      <ModalVerification
+        quest="Simpan perubahan sebelum keluar?"
+        declare="Anda dapat mengeditnya lagi nanti"
+        confirm="Keluar & Simpan"
+        cancel="Batal"
+      />
+    </ModalParent>
     }
   };
+/*---------HANDLE INPUT DATA (pake useReducer)------------ */
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    dispatch({ type: "UPDATE_FIELD", field: name, value });
+  };
+
+  const handleDateChange = (date) => {
+    dispatch({ type: "UPDATE_FIELD", field: "dateOfBirth", value: date });
+  };
+
+  const submitHandler = () => {
+    axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/user`, state, { withCredentials: true })
+    .then(res => {
+      //bisa diganti message atau apalah
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+/*----------------END------------------ */
 
   return (
     <RootLayout>
@@ -276,10 +358,10 @@ const ProfilDiri = () => {
                       placeholder="John Doe"
                       required
                       type="text"
-                      value={name}
-                      onChange={(e) => setName(e.currentTarget.value)}
-                      id="fullName"
-                      name="fullName"
+                      value={state.name}
+                      onChange={handleChange}
+                      id="name"
+                      name="name"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
@@ -287,8 +369,8 @@ const ProfilDiri = () => {
                       Tanggal Lahir
                     </p>
                     <DatePicker
-                      selected={date}
-                      onChange={(e) => setDate(e)}
+                      selected={state.dateOfBirth}
+                      onChange={handleDateChange}
                       customInput={<CustomInput />}
                       dateFormat="dd/MM/yyyy"
                       placeholderText="MM/DD/YYYY"
@@ -308,10 +390,10 @@ const ProfilDiri = () => {
                       required
                       type="text"
                       inputMode="numeric"
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.currentTarget.value)}
-                      id="phoneNumber"
-                      name="phoneNumber"
+                      value={state.phone}
+                      onChange={handleChange}
+                      id="phone"
+                      name="phone"
                     />
                   </div>
                 </div>
@@ -334,10 +416,8 @@ const ProfilDiri = () => {
                             openProvinsi ? "rounded-t-lg" : "rounded-lg"
                           }`}
                           placeholder="Pilih Provinsi"
-                          value={provinsiSelected}
-                          onChange={(e) =>
-                            setProvinsiSelected(e.currentTarget.value)
-                          }
+                          value={state.province}
+                          onChange={handleChange}
                         />
                         <IoMdArrowDropdown
                           size={30}
@@ -359,9 +439,8 @@ const ProfilDiri = () => {
                               key={provinsi?.name}
                               className={`bg-primary-300 relative text-text-placeholder-light py-[15px] pl-8 cursor-pointer before:h-[1px] before:w-auto before:bg-white before:absolute before:left-[10px] before:right-0 before:bottom-0 `}
                               onClick={() => {
-                                setProvinsiSelected(provinsi?.name);
-                                setOpenProvinsi(false);
-                              }}
+                                dispatch({ type: "UPDATE_FIELD", field: "province", value: provinsi.name })
+                                setOpenProvinsi(false)}}
                             >
                               {provinsi?.name}
                             </li>
@@ -380,8 +459,8 @@ const ProfilDiri = () => {
                       className="min-h-[132px] p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm resize-none"
                       placeholder="Jl. Grafika No.2, Sendowo, Sinduadi, Kec. Mlati, Kabupaten Sleman, D.I Yogyakarta 55281"
                       maxLength={100}
-                      value={address}
-                      onChange={(e) => setAddress(e.currentTarget.value)}
+                      value={state.address}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -404,10 +483,8 @@ const ProfilDiri = () => {
                             openStatus ? "rounded-t-lg" : "rounded-lg"
                           }`}
                           placeholder="Pilih Status"
-                          value={statusSelected}
-                          onChange={(e) =>
-                            setStatusSelected(e.currentTarget.value)
-                          }
+                          value={state.status}
+                          onChange={handleChange}
                         />
                         <IoMdArrowDropdown
                           size={30}
@@ -428,7 +505,7 @@ const ProfilDiri = () => {
                             key={status?.name}
                             className={`bg-primary-300 relative text-text-placeholder-light py-[15px] pl-8 cursor-pointer before:h-[1px] before:w-auto before:bg-white before:absolute before:left-[10px] before:right-[10px] before:bottom-0 `}
                             onClick={() => {
-                              setStatusSelected(status?.name);
+                              dispatch({ type: "UPDATE_FIELD", field: "status", value: status.name })
                               setOpenStatus(false);
                             }}
                           >
@@ -447,10 +524,10 @@ const ProfilDiri = () => {
                       placeholder="Universitas Diponegoro"
                       required
                       type="text"
-                      id="institusi"
-                      name="institusi"
-                      value={institusi}
-                      onChange={(e) => setinstitusi(e.currentTarget.value)}
+                      id="institutionName"
+                      name="institutionName"
+                      value={state.institutionName}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="flex flex-col gap-2 relative">
@@ -462,28 +539,32 @@ const ProfilDiri = () => {
                       placeholder="20/25425/TK/23541"
                       required
                       type="text"
-                      id="noInstitusi"
-                      name="noInstitusi"
-                      value={noInstitusi}
-                      onChange={(e) => setNoInstitusi(e.currentTarget.value)}
+                      id="institutionNumber"
+                      name="institutionNumber"
+                      value={state.institutionNumber}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="flex justify-between items-center w-full">
                     <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
                       Kartu Institusi
                     </p>
-                    <button className="rounded border-2 border-text-placeholder-light px-6 py-1">
+                    <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
                       <input
                         className="hidden"
                         type="file"
+                        id="institutionFile"
+                        name="institutionFile"
+                        value={institutionFile}
+                        accept="image/*"
                         onChange={(e) => {
-                          /* Upload image ke database */
+                          uploadInstitutionFile()
                         }}
                       />
                       <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
                         Unggah
                       </p>
-                    </button>
+                    </label>
                   </div>
                 </div>
                 {isSmallScreen && (
@@ -509,7 +590,7 @@ const ProfilDiri = () => {
             <div className="w-full flex justify-center">
               <button
                 className="flex items-center justify-center gap-2 w-full lg:w-1/3 bg-background-skyblue py-2 lg:py-3 rounded-lg"
-                onClick={showModal}
+                onClick={submitHandler}
               >
                 <IoSaveSharp size={17.5} color="black" />
                 <p className="font-GameOfSquid text-shade-black">Simpan</p>

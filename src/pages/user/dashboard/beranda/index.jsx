@@ -6,46 +6,49 @@ import { IoWarningSharp } from "react-icons/io5";
 import { HiUser } from "react-icons/hi";
 import { AiFillEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
-import getLocaleDate from "../../../../components/HelperFunctions/getLocalDate";
-import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getTeamAnnouncements, getUserTeam } from "../../../../store/slices/userSlice";
+import { loadingEnd, loadingStart } from "../../../../store/action";
+import { format } from "date-fns";
 
 const Index = () => {
+  const { userTeam, announcementList } = useSelector((state) => state.user);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+ const dispatch = useDispatch()
 
+  const [eventIds, setEventIds] = useState([]);
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [announcementListReverse, setAnnouncementListReverse] = useState([
-    {
-      title: "Announcement Title",
-      announcedTo: "Peserta Hackathon",
-      content:
-        "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet.  ",
-    },
-    {
-      title: "test",
-      content: "bang",
-    },
-    {
-      title: "Announcement Title",
-      announcedTo: "Peserta Hackathon",
-      content:
-        "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet.  ",
-    },
-    {
-      title: "Announcement Title",
-      announcedTo: "Peserta Hackathon",
-      content:
-        "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet.  ",
-    },
-    {
-      title: "Announcement Title",
-      announcedTo: "Peserta Hackathon",
-      content:
-        "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet.  ",
-    },
-  ]);
-
-  const user = useSelector((state) => state.auth.user);
+  // const [announcementListReverse, setAnnouncementListReverse] = useState([
+  //   {
+  //     title: "Announcement Title",
+  //     announcedTo: "Peserta Hackathon",
+  //     content:
+  //       "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet.  ",
+  //   },
+  //   {
+  //     title: "test",
+  //     content: "bang",
+  //   },
+  //   {
+  //     title: "Announcement Title",
+  //     announcedTo: "Peserta Hackathon",
+  //     content:
+  //       "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet.  ",
+  //   },
+  //   {
+  //     title: "Announcement Title",
+  //     announcedTo: "Peserta Hackathon",
+  //     content:
+  //       "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet.  ",
+  //   },
+  //   {
+  //     title: "Announcement Title",
+  //     announcedTo: "Peserta Hackathon",
+  //     content:
+  //       "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet.  ",
+  //   },
+  // ]);
   
   const router = useRouter();
 
@@ -67,19 +70,40 @@ const Index = () => {
     router.push(`${user.institutionFile}`)
   }
 
-  function AnnouncementItem({ title, announcedTo, content, createdAt }) {
+  function AnnouncementItem({ title, toEvent, content, createdAt }) {
+    const formattedDate = format(new Date(`${createdAt}`), 'dd MMMM y p');
     return (
-      <div className="font-Montserrat">
+      <div className="font-Montserrat text-black">
         <h1 className="text-[13px] 2xl:text-[0.868vw] font-bold">{title}</h1>
         <p className="text-[11.57px] font-bold leading-[200%]">
-          To: {announcedTo}
+          To: Peserta {toEvent}
         </p>
         <p className="font-semibold text-justify text-[13.39px]">{content}</p>
-        <p className="text-[12px] leading-[200%]">{getLocaleDate(createdAt)}</p>
+        <p className="text-[12px] leading-[200%]">{formattedDate}</p>
         <div className="w-full h-[1px] bg-black bg-opacity-60 mt-3 mb-5"></div>
       </div>
     );
   }
+
+  /*---------FETCH ANNOUNCEMENT DARI TEAM2 YG DIIKUTI USER----------- */
+  useEffect(() => {
+    if(isAuthenticated){
+      userTeam?.asMember?.forEach((team) => {
+        setEventIds(prevEventIds => [...prevEventIds, team.eventId._id]);
+      })
+    }
+    if(userTeam && eventIds) {
+      dispatch(getTeamAnnouncements(eventIds))
+        .unwrap()
+        .then((res) => {
+          dispatch(loadingEnd())
+        })
+        .catch(err=> {
+    
+        })
+    }
+  }, [isAuthenticated, userTeam])
+/*----------------END----------------- */
 
   return (
     <UserDashboardLayout>
@@ -107,17 +131,22 @@ const Index = () => {
                         */}
           </div>
           <div className="overflow-y-scroll mb-10 mt-[22px]">
-            {announcementListReverse?.length > 0 ? (
-              announcementListReverse?.map((announcement) => (
-                <AnnouncementItem key={announcement._id} {...announcement} />
+            {announcementList?.length > 0 ? (
+              announcementList?.map((announcement) => (
+                <AnnouncementItem 
+                  key={announcement._id} 
+                  title={announcement.title}
+                  toEvent={announcement.toEvent.eventName}
+                  content={announcement.content}
+                  createdAt={announcement.createdAt} />
               ))
             ) : (
               <div className="flex-1 flex justify-center items-center">
                 <p className="font-Montserrat text-sm lg:text-base lg:font-bold text-shade-black text-center">
                   Belum ada pengumuman
                 </p>
-              </div>
-            )}
+              </div>)}
+            
           </div>
         </div>
         <div className="w-full h-full flex flex-col gap-2">
@@ -222,9 +251,15 @@ const Index = () => {
                     </p>
                   </div>
                   <div className="flex-1">
+                    {user.dateOfBirth ? (
+                    <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                      {user.dateOfBirth}
+                    </p>
+                    ) : (
                     <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
                       -
                     </p>
+                    )}
                   </div>
                 </div>
                 <div className="w-full flex gap-4 xl:gap-0">
@@ -309,11 +344,35 @@ const Index = () => {
                     </p>
                   </div>
                   <div className="flex-1">
+                    {user.institutionFile != null ? (
+                      <div                     
+                      className="flex items-center gap-3"
+                      onClickCapture={(e) => {
+                        e.preventDefault;
+                      }}>
+                        <a
+                        target="_blank"
+                        rel="norel noopener noreferrer"
+                        className="hover:underline"
+                        href={user.institutionFile.viewLink}
+                      >                    
+                      <button rel="norel noopener noreferrer" onClick={seeInstitutionFile} className="border-2 border-background-skyblue rounded px-6 lg:px-8 py-0.5 lg:py-1 opacity-50">
+                      <p className="font-Montserrat font-bold text-xs lg:text-sm text-background-skyblue text-center">
+                      Lihat
+                    </p>
+                    </button></a>
+
+
+                      </div>
+                    ) : (
+
                     <button onClick={seeInstitutionFile} className="border-2 border-background-skyblue rounded px-6 lg:px-8 py-0.5 lg:py-1 opacity-50">
                       <p className="font-Montserrat font-bold text-xs lg:text-sm text-background-skyblue text-center">
                         Lihat
                       </p>
                     </button>
+                    ) }
+                    
                   </div>
                 </div>
               </div>

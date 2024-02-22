@@ -17,14 +17,16 @@ import EsportLogo from '../../../../assets/Logo/DashboardLomba/EsportLogo.jsx'
 import IcLogo from '../../../../assets/Logo/DashboardLomba/IcLogo.jsx'
 import ArrowRight from '../../../../assets/Logo/DashboardLomba/ArrowRight.jsx'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserTeam } from '../../../../store/slices/userSlice.js'
+import { getTeamsToSearch, getUserTeam } from '../../../../store/slices/userSlice.js'
 import { loadingEnd } from '../../../../store/action.js'
 import axios from 'axios'
 
 
 const Index = () => {
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { userTeam } = useSelector((state) => state.user);
 
-  const [countLomba, setCountLomba] = useState(null);
+  const [countLomba, setCountLomba] = useState(0);
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const [openInvitation, setOpenInvitation] = useState(false);
   const [inputCode, setInputCode] = useState(undefined);
@@ -35,19 +37,19 @@ const Index = () => {
   const [openTimTdkKetemu, setOpenTimTdkKetemu] = useState(false);
   const haveJoined = (countLomba !== 0);
   
-  const [teams, setTeams] = useState([])
   const dispatch = useDispatch()
   useEffect(() => {
-
-    dispatch(getUserTeam())
+    if(userTeam){
+      setCountLomba(userTeam?.asMember?.length)
+    }
+    dispatch(getTeamsToSearch(process.env.NEXT_PUBLIC_COMPETITION_ID_CTF))
     .unwrap()
     .then((res) => {
       dispatch(loadingEnd())
-      setTeams(res.asMember)
-      setCountLomba(res.asMember.length)
+      console.log(res);
+      // setCountLomba(res.asMember.length)
     })
-}, [teams]);
-
+}, [isAuthenticated]);
 
   const searchTeam = () => {
     axios.
@@ -76,7 +78,7 @@ const Index = () => {
       withCredentials: true
     })
     .then(res => {
-      console.log(res.data.message);
+      // console.log(res.data.message);
       setOpenInvitation(false);
       setOpenTimDitemukan(false)
     })
@@ -178,6 +180,51 @@ const Index = () => {
       )
     }
 
+/* */
+    const openConfirmation = ({competitionName}) => {
+      return (
+        <div className='fixed inset-0 w-full flex justify-center items-center bg-black/70 z-50'>
+        <div className='relative h-auto flex flex-col gap-[25px] lg:gap-11 items-center justify-center w-[330px] sm:w-[370px] lg:w-[570px] bg-text-placeholder-light rounded-lg lg:rounded-xl border-[3px] border-black py-8 px-[10px]'>
+          <IoCloseCircle 
+          className='absolute fill-text-placeholder-dark size-6 sm:size-8 lg:size-9 top-2 right-[10.5px] sm:top-[5px] sm:right-[7px] lg:top-[17px] lg:right-[21px]'
+          onClick={() => setOpenConfirmation(false)}
+          />
+          <p className='w-full h-auto font-bold lg:mt-[17.5px] text-text-placeholder-dark font-Montserrat lg:font-CreatoDisplay text-xl lg:text-2xl lg:leading-6 text-center'>
+            {competitionName}
+          </p>
+          <p className='text-sm lg:text-base font-medium text-text-placeholder-dark font-Montserrat text-center text-balance'>
+            Anda dapat membuat  
+              <span className='font-bold text-nowrap'> Tim Baru </span> 
+            atau memasukkan 
+              <span className='font-bold text-nowrap'> Invitation Code </span> 
+            milik teman anda untuk bergabung tim
+          </p>
+          <div className='w-full h-auto flex justify-center items-center flex-col lg:flex-row gap-[10px] sm:gap-3 lg:gap-4'>
+            <div className='w-[212px]'>
+              <Button
+                fullW
+                customClass={'lg:py-1'}
+                text='Buat Tim'
+              />
+            </div>
+            <div className='w-[212px]'>
+              <Button
+                fullW
+                onClick={() => {
+                  setOpenConfirmation(false);
+                  setOpenInvitation(true);
+                }}
+                customClass={'lg:py-1'}
+                text='Gabung Tim'
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      )
+    }
+/* */
+
     return (
       <>
         {width < 1024 ? (
@@ -204,7 +251,7 @@ const Index = () => {
       </>
     )
   }
-  
+
   return (
     <>
       <UserDashboardLayout>
@@ -224,7 +271,7 @@ const Index = () => {
                 }
                 {haveJoined &&
                   <div className='w-full h-auto'>
-                    {teams && teams.map((team) => {
+                    {userTeam && userTeam?.asMember?.map((team) => {
                     return (
                       <TeamCard
                         competition={team.eventId.eventName}
