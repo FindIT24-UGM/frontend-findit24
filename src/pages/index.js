@@ -3,6 +3,8 @@ import { Inter } from "@next/font/google";
 import AutoSlider from "../components/AutoSlider";
 import CompetitionsList from "../components/LandingPage/CompetitionsList";
 import RootLayout from "./layout";
+import OurPartner from "../components/LandingPage/OurPartner";
+import Question from "../components/LandingPage/Question";
 import OurPartnerComp from "../components/LandingPage/OurPartner/OurPartnerComp";
 import HeroComp from "../components/LandingPage/Hero/HeroComp";
 import WebinarComp from "../components/LandingPage/Webinar/WebinarComp";
@@ -22,6 +24,8 @@ export default function Home() {
           <CompetitionComp />
           <CompetitionsList />
           <WebinarComp />
+          <OurPartner />
+          <Question />
           <OurPartnerComp />
         </div>
       </main>
