@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import LogoFindIT from "../../assets/Logo/logoFindit.png";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
 
 const LOMBA = [
   "Capture the flag",
@@ -31,6 +32,8 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
     }
   }, [spanCompetition]);
 
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
   return (
     <>
       <div className="relative">
@@ -136,7 +139,13 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
       {isLogin && (
         <button
           className="absolute right-[150px] transition-all duration-300 hover:bg-primary-500 max-lg:hidden font-GameOfSquid bg-primary-300 rounded-lg text-black p-2 text-sm"
-          onClick={() => router.push("/admin/dashboard")}
+          onClick={() =>
+            router.push(
+              user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE
+                ? "/admin/dashboard"
+                : "/user/dashboard"
+            )
+          }
         >
           Dashboard
         </button>

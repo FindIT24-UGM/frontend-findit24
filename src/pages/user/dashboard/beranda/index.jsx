@@ -1,22 +1,25 @@
-"use client"
+"use client";
 import React, { useState, useLayoutEffect, useEffect } from "react";
-import UserDashboardLayout, {useUser} from "../layout";
+import UserDashboardLayout, { useUser } from "../layout";
 import { AiFillNotification } from "react-icons/ai";
 import { IoWarningSharp } from "react-icons/io5";
 import { HiUser } from "react-icons/hi";
 import { AiFillEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { getTeamAnnouncements, getUserTeam } from "../../../../store/slices/userSlice";
+import {
+  getTeamAnnouncements,
+  getUserTeam,
+} from "../../../../store/slices/userSlice";
 import { loadingEnd, loadingStart } from "../../../../store/action";
 import { format } from "date-fns";
 
 const Index = () => {
   const { userTeam, announcementList } = useSelector((state) => state.user);
   const { isAuthenticated, user } = useSelector((state) => state.auth);
- const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
- const [date, setDate] = useState(null)
+  const [date, setDate] = useState(null);
   const [eventIds, setEventIds] = useState([]);
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -50,7 +53,7 @@ const Index = () => {
   //       "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet.  ",
   //   },
   // ]);
-  
+
   const router = useRouter();
 
   const handleEditProfile = () => {
@@ -68,11 +71,11 @@ const Index = () => {
   }, []);
 
   const seeInstitutionFile = () => {
-    window.open(`${user.institutionFile}`, '_blank');
-  }
+    window.open(`${user.institutionFile}`, "_blank");
+  };
 
   function AnnouncementItem({ title, toEvent, content, createdAt }) {
-    const formattedDate = format(new Date(`${createdAt}`), 'dd MMMM y p');
+    const formattedDate = format(new Date(`${createdAt}`), "dd MMMM y p");
     return (
       <div className="font-Montserrat text-black">
         <h1 className="text-[13px] 2xl:text-[0.868vw] font-bold">{title}</h1>
@@ -88,25 +91,26 @@ const Index = () => {
 
   /*---------FETCH ANNOUNCEMENT DARI TEAM2 YG DIIKUTI USER----------- */
   useEffect(() => {
-    if(isAuthenticated){
+    if (isAuthenticated) {
       userTeam?.asMember?.forEach((team) => {
-        setEventIds(prevEventIds => [...prevEventIds, team.eventId._id]);
-      })
-      const formattedDateOfBirth = format(new Date(`${user?.dateOfBirth}`), 'dd MMMM y');
-      setDate(formattedDateOfBirth)
+        setEventIds((prevEventIds) => [...prevEventIds, team.eventId._id]);
+      });
+      const formattedDateOfBirth = format(
+        new Date(`${user?.dateOfBirth}`),
+        "dd MMMM y"
+      );
+      setDate(formattedDateOfBirth);
     }
-    if(userTeam && eventIds) {
+    if (userTeam && eventIds) {
       dispatch(getTeamAnnouncements(eventIds))
         .unwrap()
         .then((res) => {
-          dispatch(loadingEnd())
+          dispatch(loadingEnd());
         })
-        .catch(err=> {
-    
-        })
+        .catch((err) => {});
     }
-  }, [isAuthenticated, userTeam])
-/*----------------END----------------- */
+  }, [isAuthenticated, userTeam]);
+  /*----------------END----------------- */
 
   return (
     <UserDashboardLayout>
@@ -136,20 +140,21 @@ const Index = () => {
           <div className="overflow-y-scroll mb-10 mt-[22px]">
             {announcementList?.length > 0 ? (
               announcementList?.map((announcement) => (
-                <AnnouncementItem 
-                  key={announcement._id} 
+                <AnnouncementItem
+                  key={announcement._id}
                   title={announcement.title}
                   toEvent={announcement.toEvent.eventName}
                   content={announcement.content}
-                  createdAt={announcement.createdAt} />
+                  createdAt={announcement.createdAt}
+                />
               ))
             ) : (
               <div className="flex-1 flex justify-center items-center">
                 <p className="font-Montserrat text-sm lg:text-base lg:font-bold text-shade-black text-center">
                   Belum ada pengumuman
                 </p>
-              </div>)}
-            
+              </div>
+            )}
           </div>
         </div>
         <div className="w-full h-full flex flex-col gap-2">
@@ -174,211 +179,218 @@ const Index = () => {
                   Lengkapi Data
                 </p>
               </div>
-            </div>{user && (
-            <div className="flex flex-col">
-              <div className="flex justify-between">
-                <div className="flex flex-col gap-2">
-                  <p className="font-CreatoDisplay font-bold text-2xl lg:text-5xl text-shade-black">
-                    {user.name}
-                  </p>
-                  <p className="font-Montserrat font-bold text-sm text-shade-black">
-                    {user.email}
-                  </p>
-                </div>
-                <div>
-                  <button
-                    className="border-2 border-background-skyblue flex items-center gap-2 px-5 py-1 rounded"
-                    onClick={handleEditProfile}
-                  >
-                    <AiFillEdit size={16} color="#2A93C2" />
-                    <p className="font-Montserrat font-bold text-xs lg:text-sm text-background-skyblue">
-                      Edit
+            </div>
+            {user && (
+              <div className="flex flex-col">
+                <div className="flex justify-between">
+                  <div className="flex flex-col gap-2">
+                    <p className="font-CreatoDisplay font-bold text-2xl lg:text-5xl text-shade-black">
+                      {user.name}
                     </p>
-                  </button>
-                </div>
-              </div>
-              <div className="my-4 border border-neutral-300" />
-              <div className="flex flex-col gap-2">
-                <div className="w-full flex gap-4 xl:gap-0">
-                  <div className="w-1/4">
-                    <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
-                      ID Peserta
+                    <p className="font-Montserrat font-bold text-sm text-shade-black">
+                      {user.email}
                     </p>
                   </div>
-                  <div className="flex-1">
-                    <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      {user._id}
-                    </p>
-                  </div>
-                </div>
-                <div className="w-full flex gap-4 xl:gap-0">
-                  <div className="w-1/4">
-                    <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
-                      Asal Provinsi
-                    </p>
-                  </div>
-                  <div className="flex-1">
-                    {user.province ? (
-                      <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                        {user.province}
-                      </p>
-                    ) : (
-                      <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      kosong
-                    </p>
-                    )}
-                  </div>
-                </div>
-                <div className="w-full flex gap-4 xl:gap-0">
-                  <div className="w-1/4">
-                    <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
-                      Alamat Lengkap
-                    </p>
-                  </div>
-                  <div className="flex-1">
-                  {user.address ? (
-                    <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                    {user.address}
-                  </p>
-                    ) : (
-                      <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      belum diisi
-                    </p>
-                    )}
-                  </div>
-                </div>
-                <div className="w-full flex gap-4 xl:gap-0">
-                  <div className="w-1/4">
-                    <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
-                      Tanggal Lahir
-                    </p>
-                  </div>
-                  <div className="flex-1">
-                    {user.dateOfBirth ? 
-                    (
-                    <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      {date}
-                    </p>
-                    ) : (
-                    <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      -
-                    </p>
-                    )}
-                  </div>
-                </div>
-                <div className="w-full flex gap-4 xl:gap-0">
-                  <div className="w-1/4">
-                    <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
-                      Nomor HP
-                    </p>
-                  </div>
-                  <div className="flex-1">
-                  {user.phone ? (
-                    <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                    {user.phone}
-                  </p>
-                    ) : (
-                      <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      belum diisi
-                    </p>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className="my-4 border border-neutral-300" />
-              <div className="flex flex-col gap-2">
-                <div className="w-full flex gap-4 xl:gap-0">
-                  <div className="w-1/4">
-                    <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
-                      Status
-                    </p>
-                  </div>
-                  <div className="flex-1">
-                    {user.status ? (
-                    <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      {user.status}
-                    </p>
-                    ) : ( 
-                    <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      belum diisi
-                    </p>
-                    )}
-                  </div>
-                </div>
-                <div className="w-full flex gap-4 xl:gap-0">
-                  <div className="w-1/4">
-                    <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
-                      Institusi
-                    </p>
-                  </div>
-                  <div className="flex-1">
-                    {user.institutionName ? (
-                    <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                    {user.institutionName}
-                  </p>
-                    ) : (
-                      <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      belum diisi
-                    </p>
-                    )}
-                  </div>
-                </div>
-                <div className="w-full flex gap-4 xl:gap-0">
-                  <div className="w-1/4">
-                    <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
-                      Nomor Institusi
-                    </p>
-                  </div>
-                  <div className="flex-1">
-                  {user.institutionNumber ? (
-                    <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                    {user.institutionNumber}
-                  </p>
-                    ) : (
-                      <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      belum diisi
-                    </p>
-                    )}
-                  </div>
-                </div>
-                <div className="w-full flex gap-4 xl:gap-0">
-                  <div className="w-1/4">
-                    <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
-                      Kartu Institusi
-                    </p>
-                  </div>
-                  <div className="flex-1">
-                    {user.institutionFile != null ? (
-                      <div                     
-                      className="flex items-center gap-3"
-                      onClickCapture={(e) => {
-                        e.preventDefault;
-                      }}>
-                        <a
-                        target="_blank"
-                        rel="norel noopener noreferrer"
-                        className="hover:underline"
-                        href={user.institutionFile.viewLink}
-                      >                    
-                      <button rel="norel noopener noreferrer" onClick={seeInstitutionFile} className="border-2 border-background-skyblue rounded px-6 lg:px-8 py-0.5 lg:py-1 opacity-50">
-                      <p className="font-Montserrat font-bold text-xs lg:text-sm text-background-skyblue text-center">
-                      Lihat
-                      </p>
-                      </button></a>
-                      </div>
-                    ) : (
-
-                    <button onClick={seeInstitutionFile} className="border-2 border-background-skyblue rounded px-6 lg:px-8 py-0.5 lg:py-1 opacity-50">
-                      <p className="font-Montserrat font-bold text-xs lg:text-sm text-background-skyblue text-center">
-                        Lihat
+                  <div>
+                    <button
+                      className="border-2 border-background-skyblue flex items-center gap-2 px-5 py-1 rounded"
+                      onClick={handleEditProfile}
+                    >
+                      <AiFillEdit size={16} color="#2A93C2" />
+                      <p className="font-Montserrat font-bold text-xs lg:text-sm text-background-skyblue">
+                        Edit
                       </p>
                     </button>
-                    ) }
-                    
+                  </div>
+                </div>
+                <div className="my-4 border border-neutral-300" />
+                <div className="flex flex-col gap-2">
+                  <div className="w-full flex gap-4 xl:gap-0">
+                    <div className="w-1/4">
+                      <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
+                        ID Peserta
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                        {user._id}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="w-full flex gap-4 xl:gap-0">
+                    <div className="w-1/4">
+                      <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
+                        Asal Provinsi
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      {user.province ? (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          {user.province}
+                        </p>
+                      ) : (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          kosong
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="w-full flex gap-4 xl:gap-0">
+                    <div className="w-1/4">
+                      <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
+                        Alamat Lengkap
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      {user.address ? (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          {user.address}
+                        </p>
+                      ) : (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          belum diisi
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="w-full flex gap-4 xl:gap-0">
+                    <div className="w-1/4">
+                      <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
+                        Tanggal Lahir
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      {user.dateOfBirth ? (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          {date}
+                        </p>
+                      ) : (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          -
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="w-full flex gap-4 xl:gap-0">
+                    <div className="w-1/4">
+                      <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
+                        Nomor HP
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      {user.phone ? (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          {user.phone}
+                        </p>
+                      ) : (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          belum diisi
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="my-4 border border-neutral-300" />
+                <div className="flex flex-col gap-2">
+                  <div className="w-full flex gap-4 xl:gap-0">
+                    <div className="w-1/4">
+                      <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
+                        Status
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      {user.status ? (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          {user.status}
+                        </p>
+                      ) : (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          belum diisi
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="w-full flex gap-4 xl:gap-0">
+                    <div className="w-1/4">
+                      <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
+                        Institusi
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      {user.institutionName ? (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          {user.institutionName}
+                        </p>
+                      ) : (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          belum diisi
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="w-full flex gap-4 xl:gap-0">
+                    <div className="w-1/4">
+                      <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
+                        Nomor Institusi
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      {user.institutionNumber ? (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          {user.institutionNumber}
+                        </p>
+                      ) : (
+                        <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
+                          belum diisi
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="w-full flex gap-4 xl:gap-0">
+                    <div className="w-1/4">
+                      <p className="font-Montserrat font-bold text-shade-black text-sm lg:text-base">
+                        Kartu Institusi
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      {user.institutionFile != null ? (
+                        <div
+                          className="flex items-center gap-3"
+                          onClickCapture={(e) => {
+                            e.preventDefault;
+                          }}
+                        >
+                          <a
+                            target="_blank"
+                            rel="norel noopener noreferrer"
+                            className="hover:underline"
+                            href={user.institutionFile.viewLink}
+                          >
+                            <button
+                              rel="norel noopener noreferrer"
+                              onClick={seeInstitutionFile}
+                              className="border-2 border-background-skyblue rounded px-6 lg:px-8 py-0.5 lg:py-1 opacity-50"
+                            >
+                              <p className="font-Montserrat font-bold text-xs lg:text-sm text-background-skyblue text-center">
+                                Lihat
+                              </p>
+                            </button>
+                          </a>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={seeInstitutionFile}
+                          className="border-2 border-background-skyblue rounded px-6 lg:px-8 py-0.5 lg:py-1 opacity-50"
+                        >
+                          <p className="font-Montserrat font-bold text-xs lg:text-sm text-background-skyblue text-center">
+                            Lihat
+                          </p>
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             )}
           </div>
         </div>
