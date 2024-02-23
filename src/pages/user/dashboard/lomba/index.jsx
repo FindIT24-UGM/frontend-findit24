@@ -23,9 +23,9 @@ import {
 } from "../../../../store/slices/userSlice.js";
 import { loadingEnd } from "../../../../store/action.js";
 import axios from "axios";
-import Link from "next/link.js";
+import Link from "next/link";
 
-const Index = () => {
+const Index = (nameAbr) => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const { userTeam } = useSelector((state) => state.user);
 
@@ -70,6 +70,25 @@ const Index = () => {
         // setOpenInvitation(true);
         setOpenTimTdkKetemu(true);
         setDiscoverTeam([]);
+      });
+  };
+
+  const createNewTeam = (eventId, teamCode) => {
+    axios
+      .post(
+        `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
+        {
+          eventId,
+          teamCode,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log(res.data.message);
+        setOpenConfirmation(true);
+        setOpenInvitation(false);
       });
   };
 
@@ -189,7 +208,7 @@ const Index = () => {
     };
 
     /* */
-    const openConfirmation = ({ competitionName }) => {
+    const openConfirmation = ({ competitionName, nameAbr }) => {
       return (
         <div className="fixed inset-0 w-full flex justify-center items-center bg-black/70 z-50">
           <div className="relative h-auto flex flex-col gap-[25px] lg:gap-11 items-center justify-center w-[330px] sm:w-[370px] lg:w-[570px] bg-text-placeholder-light rounded-lg lg:rounded-xl border-[3px] border-black py-8 px-[10px]">
@@ -209,15 +228,21 @@ const Index = () => {
             </p>
             <div className="w-full h-auto flex justify-center items-center flex-col lg:flex-row gap-[10px] sm:gap-3 lg:gap-4">
               <div className="w-[212px]">
-                <Button
-                  fullW
-                  onClick={() => {
-                    setOpenConfirmation(false);
-                    setOpenInvitation(true);
-                  }}
-                  customClass={"lg:py-1"}
-                  text="Buat Tim"
-                />
+                <Link
+                  href={
+                    isAuthenticated ? "/competition/register/ctf" : "auth/login"
+                  }
+                >
+                  <Button
+                    fullW
+                    onClick={() => {
+                      setOpenConfirmation(false);
+                      setOpenInvitation(true);
+                    }}
+                    customClass={"lg:py-1"}
+                    text="Buat Tim"
+                  />
+                </Link>
               </div>
               <div className="w-[212px]">
                 <Button
@@ -460,15 +485,22 @@ const Index = () => {
             </p>
             <div className="w-full h-auto flex justify-center items-center flex-col lg:flex-row gap-[10px] sm:gap-3 lg:gap-4">
               <div className="w-[212px]">
-                <Button
-                  fullW
-                  onClick={() => {
-                    setOpenConfirmation(false);
-                    setOpenInvitation(true);
-                  }}
-                  customClass={"lg:py-1"}
-                  text="Buat Tim"
-                />
+                <Link
+                  href={
+                    isAuthenticated
+                      ? "user/dashboard/lomba/datatim"
+                      : "auth/login"
+                  }
+                >
+                  <Button
+                    fullW
+                    onClick={() => {
+                      createNewTeam();
+                    }}
+                    customClass={"lg:py-1"}
+                    text="Buat Tim"
+                  />
+                </Link>
               </div>
               <div className="w-[212px]">
                 <Button
@@ -569,8 +601,8 @@ const Index = () => {
           </div>
         </div>
       )}
-      {/* INI GA KE RENDER GATAU DAH */}
-      {!discoverTeam && openTimTdkKetemu && (
+      {/* Anjay udha disolve koor kelas */}
+      {discoverTeam !== "" && openTimTdkKetemu && (
         <div className="fixed inset-0 w-full flex justify-center items-center bg-black/70 z-50">
           <div className="flex justify-center items-center p-3 lg:p-2 rounded-lg lg:rounded-[15px] border-[3px] lg:border-none border-black bg-text-placeholder-light">
             <div className="relative h-auto flex flex-col gap-[25px] lg:gap-11 items-center justify-center w-[310px] sm:w-[370px] lg:w-[570px] bg-primary-500 rounded-[9px] lg:rounded-xl py-8 lg:py-11 px-4 lg:px-[10px]">
