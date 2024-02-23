@@ -20,6 +20,7 @@ import ModalVerification from "../../modal/modalverif";
 import ModalJoinTeam from "../../modal/modaljointeam";
 import ModalInvitationCode from "../../modal/modalinvitationcode";
 import axios from "axios";
+import Image from "next/image";
 
 //INITIALIZE FOR useReducer
 const initialState = {
@@ -29,6 +30,7 @@ const initialState = {
   province: undefined,
   address: undefined,
   status: undefined,
+  institutionFile: undefined,
   institutionName: undefined,
   institutionNumber: undefined
 };
@@ -213,36 +215,36 @@ const ProfilDiri = () => {
 
   /*----------BLM WORK BUAT UPLOAD INSTITUTION FILE---------- */
   const [imagePreview, setImagePreview] = useState("");
-  const [institutionFile, setInstitutionFile] = useState(undefined);
-  const formData = new FormData();
-  formData.append("institutionFile", institutionFile);
   const uploadInstitutionFile = (e) => {
-
+    const formData = new FormData();
+    const file = e.target.files[0]; 
+  
+    formData.append("institutionFile", file); 
+  
     const regex = /\.(jpg|jpeg|png)$/i;
-    // if (regex.test(e.target.value)) {
-    //   const reader = new FileReader();
-    //   reader.onload = (e) => {
-    //     setImagePreview(e.target.result);
-    //   };
-    //   reader.readAsDataURL(e.target.files[0]);
-    // }
-    uploadFile()
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
-  async function uploadFile() {
-    const res = await axios.post(
-      process.env.NEXT_PUBLIC_API_URL + "/user/upload-file",
-      formData,
-      {
-        withCredentials: true
-      }
-    );
-    return res;
+    if (regex.test(file.name)) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreview(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+    if(formData){
+      axios.post(
+        process.env.NEXT_PUBLIC_API_URL + "/user/upload-file",
+        formData,
+        {
+          withCredentials: true
+        }
+      ).then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+          console.log(formData);
+        })
+
+    }
   }
   /*----------------END------------------- */
 
@@ -299,6 +301,10 @@ const ProfilDiri = () => {
 
   const handleDateChange = (date) => {
     dispatch({ type: "UPDATE_FIELD", field: "dateOfBirth", value: date });
+  };
+
+  const handleFileChange = (e) => {
+    uploadInstitutionFile(e)
   };
 
   const submitHandler = () => {
@@ -550,16 +556,22 @@ const ProfilDiri = () => {
                       Kartu Institusi
                     </p>
                     <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
+                    {imagePreview && (
+                          <Image
+                            width={200}
+                            height={200}
+                            src={imagePreview}
+                            alt="kartu identitas"
+                            className="mb-4"
+                          />
+                        )}
                       <input
                         className="hidden"
                         type="file"
                         id="institutionFile"
                         name="institutionFile"
-                        value={institutionFile}
                         accept="image/*"
-                        onChange={(e) => {
-                          uploadInstitutionFile()
-                        }}
+                        onChange={handleFileChange}
                       />
                       <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
                         Unggah
