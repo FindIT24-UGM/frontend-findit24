@@ -49,7 +49,7 @@ const Index = (nameAbr) => {
       .unwrap()
       .then((res) => {
         dispatch(loadingEnd());
-        console.log(res);
+        // console.log(res);
         // setCountLomba(res.asMember.length)
       });
   }, [isAuthenticated]);
@@ -116,67 +116,69 @@ const Index = (nameAbr) => {
   };
 
   const { width } = useWindowSize();
-  function TeamCard({ competition, teamName, verify }) {
+  function TeamCard({ id, competition, teamName, verify }) {
     return (
-      <div className="bg-white w-full rounded-lg py-4 px-3 lg:px-8 lg:py-4 flex justify-between items-center gap-[17px] mt-[14px]">
-        <div className="basis-1/2">
-          <p className="font-bold font-Montserrat text-sm lg:text-base text-shade-black">
-            {competition}
-          </p>
-          <p className="font-medium font-Montserrat text-xs lg:text-sm text-neutral-700 ">
-            {teamName}
-          </p>
+      <Link href={`/user/dashboard/profileteam/${id}`}>
+        <div className="bg-white w-full rounded-lg py-4 px-3 lg:px-8 lg:py-4 flex justify-between items-center gap-[17px] mt-[14px]">
+          <div className="basis-1/2">
+            <p className="font-bold font-Montserrat text-sm lg:text-base text-shade-black">
+              {competition}
+            </p>
+            <p className="font-medium font-Montserrat text-xs lg:text-sm text-neutral-700 ">
+              {teamName}
+            </p>
+          </div>
+          <div className="basis-1/2 flex items-center justify-end gap-4 lg:gap-12">
+            {width < 640 ? (
+              <>
+                {verify === "VERIFIED" ? (
+                  <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2">
+                    <div className="p-[6px] bg-success-900 rounded" />
+                    <p className="font-bold font-Montserrat text-xs text-success-900">
+                      Verified
+                    </p>
+                  </div>
+                ) : (
+                  <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-error-100 rounded px-8 flex items-center justify-center gap-2">
+                    <div className="p-[6px] bg-warning-900 rounded" />
+                    <p className="font-bold font-Montserrat text-xs text-error-900">
+                      Unverified
+                    </p>
+                  </div>
+                )}
+                <ArrowRight />
+              </>
+            ) : (
+              <>
+                <div>
+                  <p className="font-bold font-Montserrat text-xs lg:text-sm text-neutral-900">
+                    Registered
+                  </p>
+                  <p className="font-medium text-xs lg:text-sm font-Montserrat text-neutral-700">
+                    16 Feb 2024
+                  </p>
+                </div>
+                {verify === "VERIFIED" ? (
+                  <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2">
+                    <div className="p-[6px] bg-success-900 rounded" />
+                    <p className="font-bold font-Montserrat text-xs text-success-900">
+                      Verified
+                    </p>
+                  </div>
+                ) : (
+                  <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-error-100 rounded px-8 flex items-center justify-center gap-2">
+                    <div className="p-[6px] bg-warning-900 rounded" />
+                    <p className="font-bold font-Montserrat text-xs text-error-900">
+                      Unverified
+                    </p>
+                  </div>
+                )}
+                <ArrowRight />
+              </>
+            )}
+          </div>
         </div>
-        <div className="basis-1/2 flex items-center justify-end gap-4 lg:gap-12">
-          {width < 640 ? (
-            <>
-              {verify === "VERIFIED" ? (
-                <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2">
-                  <div className="p-[6px] bg-success-900 rounded" />
-                  <p className="font-bold font-Montserrat text-xs text-success-900">
-                    Verified
-                  </p>
-                </div>
-              ) : (
-                <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-error-100 rounded px-8 flex items-center justify-center gap-2">
-                  <div className="p-[6px] bg-warning-900 rounded" />
-                  <p className="font-bold font-Montserrat text-xs text-error-900">
-                    Unverified
-                  </p>
-                </div>
-              )}
-              <ArrowRight />
-            </>
-          ) : (
-            <>
-              <div>
-                <p className="font-bold font-Montserrat text-xs lg:text-sm text-neutral-900">
-                  Registered
-                </p>
-                <p className="font-medium text-xs lg:text-sm font-Montserrat text-neutral-700">
-                  16 Feb 2024
-                </p>
-              </div>
-              {verify === "VERIFIED" ? (
-                <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2">
-                  <div className="p-[6px] bg-success-900 rounded" />
-                  <p className="font-bold font-Montserrat text-xs text-success-900">
-                    Verified
-                  </p>
-                </div>
-              ) : (
-                <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-error-100 rounded px-8 flex items-center justify-center gap-2">
-                  <div className="p-[6px] bg-warning-900 rounded" />
-                  <p className="font-bold font-Montserrat text-xs text-error-900">
-                    Unverified
-                  </p>
-                </div>
-              )}
-              <ArrowRight />
-            </>
-          )}
-        </div>
-      </div>
+      </Link>
     );
   }
 
@@ -315,6 +317,7 @@ const Index = (nameAbr) => {
                       userTeam?.asMember?.map((team) => {
                         return (
                           <TeamCard
+                            id={team.teamId._id}
                             competition={team.eventId.eventName}
                             teamName={team.teamId.teamName}
                             verify={team.teamId.status}

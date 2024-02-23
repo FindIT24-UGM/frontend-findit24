@@ -10,7 +10,7 @@ export default function index() {
   const [message, setMessage] = useState(null)
 
   const uploadAnnouncement = () => {
-    axios.post(`${process.env.NEXT_PUBLIC_API_URL}/admin/announcement`,
+    axios.post(`${process.env.NEXT_PUBLIC_API_URL}/admin/announcement/create`,
     {
       toEvent: selectedOption,
       title,
@@ -60,7 +60,7 @@ export default function index() {
             </button>
           </form>
         </div>
-        <div className='p-2 text-[16px] font-Montserrat lg:order-1 lg:w-1/3 lg:mr-5 lg:py-8'>
+        <div className='p-2 text-[16px] text-black font-Montserrat lg:order-1 lg:w-1/3 lg:mr-5 lg:py-8'>
           <h2 className='font-bold'>Broadcast History</h2>
           <Anouncement
             anouncementTitle={"Anouncement title"}
