@@ -149,7 +149,7 @@ export default function CompetitionsList() {
               <div className="font-GameOfSquid text-[#FCFCFC] text-[9.331vw] lg:text-[4.5vw] drop-shadow-competitions">
                 Competitions
               </div>
-              <div className="text-center font-CreatoDisplay text-[#92C2D0] font-normal text-[3.214vw] md:text-[2.604vw] lg:text-[1.25vw] font-bold">
+              <div className="text-center font-CreatoDisplay text-[#92C2D0] text-[3.214vw] md:text-[2.604vw] lg:text-[1.25vw] font-bold">
                 There are sevens competitions, each contributing to the
                 development of creativity and innovation in Information
                 Technology

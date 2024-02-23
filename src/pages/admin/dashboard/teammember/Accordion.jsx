@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import React, { useState } from "react";
 import { TiChevronRight } from "react-icons/ti";
 
@@ -12,6 +13,7 @@ export default function Accordion({
   institutionNumber,
   institutionFile,
 }) {
+  const formattedDateOfBirth = format(new Date(`${dateOfBirth}`), 'dd MMMM y');
   const [expand, setExpand] = useState(0);
   return (
     <div
@@ -37,7 +39,7 @@ export default function Accordion({
           </div>
           <div className="py-2">
             <h2 className="font-bold">Tanggal Lahir</h2>
-            <p>{dateOfBirth}</p>
+            <p>{formattedDateOfBirth}</p>
           </div>
           <div className="py-2">
             <h2 className="font-bold">Alamat</h2>

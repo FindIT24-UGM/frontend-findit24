@@ -3,8 +3,10 @@ import AdminDashboadrLayout from "../layout";
 import Card from "./Card";
 import axios from "axios";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 export default function index() {
+  const { isAuthenticated } = useSelector((state) => state.auth);
   const [teams, setTeams] = useState([])
   const [count, setCount] = useState(null)
   useEffect(() => {
@@ -20,7 +22,8 @@ export default function index() {
       }
     }
     getAllTeam()
-  }, [])
+  }, [isAuthenticated])
+
   return (
     <AdminDashboadrLayout>
       <div className='bg-primary-500 p-5 rounded-md border-2 border-black'>
@@ -54,7 +57,7 @@ export default function index() {
           {count} teams found
         </h2>
         <div className="text-black">
-          {teams && teams?.map((team) => (
+          {teams && teams.map((team) => (
             <Link href={`${process.env.NEXT_PUBLIC_FE_URL}/admin/dashboard/teammember/detail/${team._id}`}>
                 <Card key={team._id}
                 name={team.teamName}
