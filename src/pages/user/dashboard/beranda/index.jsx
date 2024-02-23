@@ -16,6 +16,7 @@ const Index = () => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
  const dispatch = useDispatch()
 
+ const [date, setDate] = useState(null)
   const [eventIds, setEventIds] = useState([]);
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -67,7 +68,7 @@ const Index = () => {
   }, []);
 
   const seeInstitutionFile = () => {
-    router.push(`${user.institutionFile}`)
+    window.open(`${user.institutionFile}`, '_blank');
   }
 
   function AnnouncementItem({ title, toEvent, content, createdAt }) {
@@ -91,6 +92,8 @@ const Index = () => {
       userTeam?.asMember?.forEach((team) => {
         setEventIds(prevEventIds => [...prevEventIds, team.eventId._id]);
       })
+      const formattedDateOfBirth = format(new Date(`${user?.dateOfBirth}`), 'dd MMMM y');
+      setDate(formattedDateOfBirth)
     }
     if(userTeam && eventIds) {
       dispatch(getTeamAnnouncements(eventIds))
@@ -251,9 +254,10 @@ const Index = () => {
                     </p>
                   </div>
                   <div className="flex-1">
-                    {user.dateOfBirth ? (
+                    {user.dateOfBirth ? 
+                    (
                     <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
-                      {user.dateOfBirth}
+                      {date}
                     </p>
                     ) : (
                     <p className="font-Montserrat font-medium text-shade-black text-sm lg:text-base">
@@ -359,10 +363,8 @@ const Index = () => {
                       <button rel="norel noopener noreferrer" onClick={seeInstitutionFile} className="border-2 border-background-skyblue rounded px-6 lg:px-8 py-0.5 lg:py-1 opacity-50">
                       <p className="font-Montserrat font-bold text-xs lg:text-sm text-background-skyblue text-center">
                       Lihat
-                    </p>
-                    </button></a>
-
-
+                      </p>
+                      </button></a>
                       </div>
                     ) : (
 
