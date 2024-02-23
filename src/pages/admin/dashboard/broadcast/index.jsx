@@ -1,13 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AdminDashboadrLayout from "../layout";
 import Anouncement from "./Anouncement";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function index() {
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
   const [selectedOption, setSelectedOption] = useState(null);
   const [title, setTitle] = useState(null);
   const [content, setContent] = useState(null);
   const [message, setMessage] = useState(null)
+  const [announcementList, setAnnouncementList] = useState([]);
+  const [countAnnouncements, setCountAnnouncements] = useState([]);
+
+  useEffect(() => {
+    const getAllAnnouncement = async() => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/admin/announcement`, { withCredentials: true})
+        if(response.data){
+          setAnnouncementList(response.data.announcements)
+          setCountAnnouncements(response.data.count)
+        }
+      } catch(err){
+        console.log(err);
+      }
+    }
+    getAllAnnouncement()
+  }, [isAuthenticated])
 
   const uploadAnnouncement = () => {
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}/admin/announcement/create`,
@@ -62,7 +82,15 @@ export default function index() {
         </div>
         <div className='p-2 text-[16px] text-black font-Montserrat lg:order-1 lg:w-1/3 lg:mr-5 lg:py-8'>
           <h2 className='font-bold'>Broadcast History</h2>
-          <Anouncement
+          {announcementList && announcementList.map((announcement) => (
+            <Anouncement
+              id={announcement._id}
+              anouncementTitle={announcement.title}
+              content={announcement.content}
+              date={announcement.createdAt}
+            />
+          ))}
+          {/* <Anouncement
             anouncementTitle={"Anouncement title"}
             content={
               "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet."
@@ -75,14 +103,7 @@ export default function index() {
               "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet."
             }
             date={"12 January 2024, 23:56:02"}
-          />
-          <Anouncement
-            anouncementTitle={"Anouncement title"}
-            content={
-              "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet."
-            }
-            date={"12 January 2024, 23:56:02"}
-          />
+          /> */}
         </div>
       </div>
     </AdminDashboadrLayout>
