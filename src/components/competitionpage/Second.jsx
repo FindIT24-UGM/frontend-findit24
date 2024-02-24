@@ -61,13 +61,24 @@ function LineH2() {
 
 function CardAll() {
     return (
-        <div className="relative w-[68%] flex items-center justify-center mt-14 mb-20 max-lg:flex-col flex-row max-md:w-[45%] max-md:my-0">
-            <div className="relative flex justify-between z-10 w-fit h-fit lg:flex-row flex-col max-md:h-[80vw] max-md:gap-[28vw] max-md:justify-normal max-sm:gap-[40vw]">
-                <div className="relative z-30 aspect-[150/80] w-[21.3vw] max-md:mx-auto max-md:my-0 max-md:w-[44vw] max-sm:w-[70vw]">
+        <div className="relative w-[68%] flex items-center justify-center mt-14 mb-20 max-md:flex-col flex-row md:w-[30%] md:my-0 md:gap-4">
+            <div className="relative flex justify-between z-10 w-fit h-fit gap-10 py-10 lg:flex-row flex-col max-md:h-[80vw] max-md:px-2vw max-md:justify-normal max-sm:gap-[40vw]">
+                {/* <div className="relative w-[50vw] flex flex-col justify-center items-center">
+                    <Image src={Cardcompe} width={50} height={40} alt="BG_Card.svg" className="w-[35.9vw]"/>
+                    <div className="absolute flex flex-col w-[80%] justify-center text-center items-center font-Montserrat mb-[1vw] text-[#233E51] text-[1vw]">
+                        <strong className="font-bold">Kategori Peserta</strong>
+                        <ul>
+                            <li className="list-disc">Sendiri</li>
+                            <li className="list-disc">Team (Max 3 orang)</li>
+                        </ul>
+                    </div>
+                </div>
+                 */}
+                 <div className="relative z-30 aspect-[150/80] w-[21.3vw] max-md:mx-auto max-md:my-0 max-md:w-[44vw] max-sm:w-[70vw]">
                     <Image
                         src={Cardcompe}
                         alt="card.png"
-                        className="absolute"
+                        className="absolute "
                         fill
                     />
                     <div className="absolute w-full text-black ml-[5vw] text-[1.12vw] max-md:text-[2.8vw] max-md:ml-[8vw] max-sm:text-[3.4vw] max-sm:ml-[14vw] max-sm:mt-[6vw] mt-[3vw]  text-left">
@@ -118,12 +129,37 @@ function CardAll() {
         </div>
     );
 }
+
+function Cardol(){
+    return(
+        <div className="w-[38.75vw] h-[22vw]">
+            <Image
+                src={Cardcompe}
+                width={50}
+                height={40}
+                className=" absolute w-[38.75vw]"
+            />
+            <div className="absolute text-[3.2vw] text-black text-left translate-x-[6vw] translate-y-[2vw] ">
+                <strong>Kategori Peserta</strong>
+                <ul>
+                    <li className="list-disc">Sendiri</li>
+                    <li className="list-disc">Team (Max 3 orang)</li>
+                </ul>
+            </div>
+            
+        </div>
+);
+}
+
+
+
+
 const MyComponent = () => {
     const [isVisible, setIsVisible] = useState(false);
   
     useEffect(() => {
       const handleResize = () => {
-        setIsVisible(window.innerWidth <= 768); 
+        setIsVisible(window.innerWidth <= 1024); 
       };
   
       handleResize();
@@ -161,9 +197,29 @@ export default function Second() {
             Kompetisi yang menguji kemampuan berpikir logis untuk menyelesaikan masalah menggunakan sebuah program komputer yang ditulis dalam batasan waktu dan memori yang ditentukan.
         </div>
         {MyComponent() && (
-            <div className=" w-full flex justify-center items-center mb-[16vw] max-sm:translate-x-[8vw] max-sm:gap-[3vw] max-sm:justify-normal">
-            <LineH2 />
-            <CardAll />
+            // <div className=" w-full flex justify-center items-center mb-[16vw] max-sm:translate-x-[8vw] max-sm:gap-[3vw] max-sm:justify-normal">
+            // <LineH2 />
+            // <CardAll />
+            // </div>
+            <div className="grid grid-cols-3 h-fit gap-[5vw]" >
+                {/*garis*/}
+                
+                <div className="grid-span-1 justify-center">
+                    <div className="w-full h-full flex place-self-center justify-end">
+                        <div className="w-[0.65vw] h-[75%] place-self-center bg-gradient-to-t from-[#FF8C5A] to-[#F95949] flex flex-col justify-between items-center z-10">
+                            <PolygonDot />
+                            <PolygonDot />
+                            <PolygonDot />
+                        </div>
+                </div>
+                    
+                </div>
+                
+                <div className="grid-span-2 flex flex-col gap-[3vw]">
+                    <Cardol/>
+                    <Cardol/>
+                    <Cardol/>
+                </div>
             </div>
         )}
         {!MyComponent() && (
