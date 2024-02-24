@@ -98,7 +98,7 @@ const index = () => {
               <Comment
                 key={announcement._id}
                 title={announcement.title}
-                destination={announcement.toTeam.teamName}
+                toTeam={announcement.toTeam.teamName}
                 content={announcement.content}
                 createdAt={announcement.createdAt}
               />

@@ -11,7 +11,9 @@ export default function Accordion({name, email, dateOfBirth, province, address, 
   const clickAccordion = () => {
     setIsExpand(!isExpand);
   };
-  const unggahOnclick = () => {};
+  const unggahOnclick = () => {
+    window.open(`${institutionFile}`, "_blank");
+  };
   return (
     <div className={`bg-shade-white rounded-md my-2 ${isExpand ? 'border-2 border-black' : ''}`}>
       <div
