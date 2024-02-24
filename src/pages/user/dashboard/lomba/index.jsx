@@ -45,13 +45,13 @@ const Index = (nameAbr) => {
     if (userTeam) {
       setCountLomba(userTeam?.asMember?.length);
     }
-    dispatch(getTeamsToSearch(process.env.NEXT_PUBLIC_COMPETITION_ID_CTF))
-      .unwrap()
-      .then((res) => {
-        dispatch(loadingEnd());
+    // dispatch(getTeamsToSearch(process.env.NEXT_PUBLIC_COMPETITION_ID_CTF))
+    //   .unwrap()
+    //   .then((res) => {
+    //     dispatch(loadingEnd());
         // console.log(res);
         // setCountLomba(res.asMember.length)
-      });
+      // });
   }, [isAuthenticated]);
 
   const searchTeam = () => {
@@ -315,14 +315,16 @@ const Index = (nameAbr) => {
                   <div className="w-full h-auto">
                     {userTeam &&
                       userTeam?.asMember?.map((team) => {
-                        return (
-                          <TeamCard
-                            id={team.teamId._id}
-                            competition={team.eventId.eventName}
-                            teamName={team.teamId.teamName}
-                            verify={team.teamId.status}
-                          />
-                        );
+                        if(team.teamId){
+                          return (
+                            <TeamCard
+                              id={team.teamId._id}
+                              competition={team.eventId.eventName}
+                              teamName={team.teamId.teamName}
+                              verify={team.teamId.status}
+                            />
+                          );                          
+                        }
                       })}
                   </div>
                 )}

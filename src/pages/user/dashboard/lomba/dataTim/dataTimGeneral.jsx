@@ -8,14 +8,17 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-const initialForm = {
-  status: undefined,
-  institusi: undefined,
-  namaTim: undefined,
-  tanggalBayar: undefined,
-  namaPengirim: undefined,
-  nomorRekening: undefined,
-};
+//KU COPAS KE INDEX.JSX
+
+const DataTimGeneral = () => {
+    const [institusi, setinstitusi] = useState(undefined);
+    const [namaTim, setNamaTim] = useState(undefined);
+    const [openStatus, setOpenStatus] = useState(false);
+    const [statusSelected, setStatusSelected] = useState(undefined);
+    const [date, setDate] = useState(undefined);
+    const [namaPengirim, setNamaPengirim] = useState(undefined);
+    const [noRekening, setNoRekening] = useState(undefined);
+    const [bank, setBank] = useState(undefined);
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -106,29 +109,15 @@ const DataTimGeneral = ({ cabangLomba }) => {
       const today = new Date();
       const earlyBird = new Date("2024-03-01");
 
-      if (lomba === "Capture The Flag") {
-        if (today >= earlyBird) {
-          setHarga("95.000");
-        } else {
-          setHarga("125.000");
-        }
-      } else if (lomba === "Competitive Programming") {
-        if (today >= earlyBird) {
-          setHarga("90.000");
-        } else {
-          setHarga("120.000");
-        }
-      } else if (lomba === "Data Analytics Competition") {
-        if (today >= earlyBird) {
-          setHarga("100.000");
-        } else {
-          setHarga("130.000");
-        }
-      } else if (lomba === "Informatics Competitions") {
-        if (today >= earlyBird) {
-          setHarga("60.000");
-        } else {
-          setHarga("90.000");
+    const statuses = [
+        {
+          name : 'Mahasiswa'
+        },
+        {
+          name : 'Pelajar'
+        },
+        {
+          name : 'Umum'
         }
       }
     }, [lomba]);

@@ -16,7 +16,6 @@ import CloudsDekstop from '../../../assets/background/awanSponsorsDekstop.png'
 import CloudsTablet from '../../../assets/background/awanSponsorsTablet.png'
 import CloudsMobile from '../../../assets/background/awanSponsorsMobile.png'
 
-
 const OurPartnerComp = () => {
   return (
     <div className='w-full lg:pt-8 pb-24 lg:pb-48 bg-background-skyblue'>
@@ -51,11 +50,6 @@ const OurPartnerComp = () => {
           alt="bg"
           src={PlanetLeft}
           className="absolute hidden top-[150px] left-[70px] lg:flex"
-        />
-        <Image
-          alt="bg"
-          src={PlanetRight}
-          className="absolute hidden bottom-[-230px] right-[232px] lg:flex"
         />
         <div className='min-w-fit h-auto absolute hidden lg:flex top-[418px]'>
           <div className='min-w-fit h-auto scale-125 flex relative object-none object-right'>
