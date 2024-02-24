@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserData, logout } from "../store/slices/authSlice";
 import { loadingEnd, loadingStart } from "../store/action";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   // ubah isLogin di sini ya naufal
@@ -63,15 +65,27 @@ const Navbar = () => {
   }, []);
 
   const onSignClick = useCallback(() => {
+    dispatch(loadingStart);
     if (isAuthenticated) {
-      // fungsi logout
-      dispatch(loadingStart());
-      dispatch(logout())
-        .unwrap()
-        .then((res) => {
-          dispatch(loadingEnd());
-          router.push("/");
-        });
+      const confirmSignOut = Swal.fire({
+        title: "Are you sure want to Logout?",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        customClass: {
+          actions: "my-actions",
+          cancelButton: "order-1 right-gap",
+          confirmButton: "order-2",
+          denyButton: "order-3",
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(logout());
+          Swal.fire("Logout", "", "success");
+        } else {
+          router.push("./");
+        }
+        dispatch(loadingEnd);
+      });
     } else {
       router.push("/login");
     }

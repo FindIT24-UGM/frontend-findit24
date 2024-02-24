@@ -3,8 +3,10 @@ import AdminDashboadrLayout from "../layout";
 import Card from "./Card";
 import axios from "axios";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 export default function index() {
+  const { isAuthenticated } = useSelector((state) => state.auth);
   const [teams, setTeams] = useState([])
   const [count, setCount] = useState(null)
   useEffect(() => {
@@ -20,7 +22,16 @@ export default function index() {
       }
     }
     getAllTeam()
-  }, [])
+  }, [isAuthenticated])
+
+  const selectCompetition = (competition) => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/admin/events/${competition}`, { withCredentials: true})
+      .then(teamsByEvent => {
+        setTeams(teamsByEvent.data.team)
+        setCount(teamsByEvent.data.team.length)
+      })
+  }
+
   return (
     <AdminDashboadrLayout>
       <div className='bg-primary-500 p-5 rounded-md border-2 border-black'>
@@ -28,37 +39,56 @@ export default function index() {
           <li className='p-2 bg-white rounded-md mr-1 cursor-pointer h-fit'>
             ALL
           </li>
-          <li className='p-2 min-w-[90px] bg-white rounded-md mx-1 cursor-pointer h-fit'>
-            E-Sports
-          </li>
-          <li className='p-2 min-w[120px] bg-white rounded-md mx-1 cursor-pointer h-fit'>
-            Informatics
-          </li>
-          <li className='p-2 min-w-[150px] bg-white rounded-md mx-1 cursor-pointer h-fit'>
-            Capture The Flag
-          </li>
-          <li className='p-2 min-w-[220px] bg-white rounded-md mx-1 cursor-pointer h-fit'>
-            Competitive Programming
-          </li>
-          <li className='p-2 bg-white rounded-md mx-1 cursor-pointer h-fit'>
-            UI/UX
-          </li>
-          <li className='p-2 bg-white rounded-md mx-1 cursor-pointer h-fit'>
-            Hacketon
-          </li>
-          <li className='p-2 min-w-[120px] bg-white rounded-md mx-1 cursor-pointer h-fit'>
-            Data Analyst
-          </li>
+          <button onClick={() => selectCompetition(process.env.NEXT_PUBLIC_COMPETITION_ID_ML)}>
+            <li className='p-2 min-w-[90px] bg-white rounded-md mx-1 cursor-pointer h-fit'>
+              MLBB
+            </li>
+          </button>
+          <button onClick={() => selectCompetition(process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT)}>
+            <li className='p-2 min-w-[90px] bg-white rounded-md mx-1 cursor-pointer h-fit'>
+              Valorant
+            </li>
+          </button>
+          <button onClick={() => selectCompetition(process.env.NEXT_PUBLIC_COMPETITION_ID_IC)}>
+            <li className='p-2 min-w[120px] bg-white rounded-md mx-1 cursor-pointer h-fit'>
+              Informatics
+            </li>
+          </button>
+          <button onClick={() => selectCompetition(process.env.NEXT_PUBLIC_COMPETITION_ID_CTF)}>
+            <li className='p-2 min-w-[150px] bg-white rounded-md mx-1 cursor-pointer h-fit'>
+              Capture The Flag
+            </li>
+          </button>
+          <button onClick={() => selectCompetition(process.env.NEXT_PUBLIC_COMPETITION_ID_CP)}>
+            <li className='p-2 min-w-[220px] bg-white rounded-md mx-1 cursor-pointer h-fit'>
+              Competitive Programming
+            </li>
+          </button>
+          <button onClick={() => selectCompetition(process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE)}>
+            <li className='p-2 bg-white rounded-md mx-1 cursor-pointer h-fit'>
+              UI/UX
+            </li>
+          </button>
+          <button onClick={() => selectCompetition(process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON)}>
+            <li className='p-2 bg-white rounded-md mx-1 cursor-pointer h-fit'>
+              Hackathon
+            </li>
+          </button>
+          <button onClick={() => selectCompetition(process.env.NEXT_PUBLIC_COMPETITION_ID_DAC)}>
+            <li className='p-2 min-w-[120px] bg-white rounded-md mx-1 cursor-pointer h-fit'>
+              Data Analyst
+            </li>
+          </button>
         </ul>
         <h2 className='text-white font-bold font-Montserrat mb-2'>
           {count} teams found
         </h2>
         <div className="text-black">
-          {teams && teams?.map((team) => (
+          {teams && teams.map((team) => (
             <Link href={`${process.env.NEXT_PUBLIC_FE_URL}/admin/dashboard/teammember/detail/${team._id}`}>
                 <Card key={team._id}
                 name={team.teamName}
-                desc={team.teamMember.length}
+                member={team.teamMember.length}
                 date={team.createdAt}
                 isverified={team.verified}
               />
