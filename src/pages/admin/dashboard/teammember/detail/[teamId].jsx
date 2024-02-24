@@ -17,15 +17,14 @@ const detail = () => {
           withCredentials: true,
         })
         .then((res) => {
-          setDataTeam(res.data);
+          setDataTeam(res.data.info);
         })
         .catch((err) => {
           console.log(err);
         });
     }
   }, [teamId]);
-    console.log(dataTeam);
-
+  console.log(dataTeam);
   return (
     <div className="bg-background-skyblue min-h-screen lg:flex py-20 px-5 lg:px-12 md:px-8">
       <div className="bg-white rounded-lg border-2 border-black py-10 px-5 lg:flex w-full justify-between">
@@ -36,25 +35,25 @@ const detail = () => {
               TEAM INFORMATION
             </span>
           </div>
-          {/* <div className="pb-8 border border-x-0 border-t-0 border-b-neutral-300 text-black mb-8">
+          <div className="pb-8 border border-x-0 border-t-0 border-b-neutral-300 text-black mb-8">
             <h2 className="font-CreatoDisplay font-bold text-[42px]">
-              {dataTeam.teamName}
+              {dataTeam?.teamName}
             </h2>
             <p className="font-Montserrat font-bold text-[16px]">
-              {dataTeam.event}
+              {dataTeam?.event}
             </p>
-          </div> */}
+          </div>
           <div className="flex space-x-10 font-Montserrat text-[17px] font-bold pb-8 border border-x-0 border-t-0 border-b-neutral-300 mb-8">
             <div className="flex flex-col space-y-2 text-black">
               <p>Team ID</p>
               <p>Code</p>
               <p>Leader</p>
             </div>
-            {/* <div className="flex flex-col space-y-2">
-              <p className="text-neutral-700">{dataTeam._id}</p>
-              <p className="text-background-skyblue">{dataTeam.teamCode}</p>
-              <p className="text-neutral-700">{dataTeam.teamLeader}</p>
-            </div> */}
+            <div className="flex flex-col space-y-2">
+              <p className="text-neutral-700">{dataTeam?._id}</p>
+              <p className="text-background-skyblue">{dataTeam?.teamCode}</p>
+              <p className="text-neutral-700">{dataTeam?.teamLeader}</p>
+            </div>
           </div>
           <div className="flex space-x-10 font-Montserrat text-[17px] font-bold pb-8 text-black border border-x-0 border-t-0 border-b-neutral-300 mb-8">
             <div className="flex flex-col space-y-2">
@@ -63,7 +62,7 @@ const detail = () => {
             </div>
             <div className="flex flex-col space-y-2">
               {/* for date */}
-              {/* <p>{dataTeam.paymentDate}</p> */}
+              <p>{dataTeam?.paymentDate}</p>
               <button className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue">
                 Lihat
               </button>
