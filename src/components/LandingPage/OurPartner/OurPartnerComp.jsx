@@ -51,11 +51,6 @@ const OurPartnerComp = () => {
           src={PlanetLeft}
           className="absolute hidden top-[150px] left-[70px] lg:flex"
         />
-        <Image
-          alt="bg"
-          src={PlanetRight}
-          className="absolute hidden bottom-[-230px] right-[232px] lg:flex"
-        />
         <div className='min-w-fit h-auto absolute hidden lg:flex top-[418px]'>
           <div className='min-w-fit h-auto scale-125 flex relative object-none object-right'>
             <Image
