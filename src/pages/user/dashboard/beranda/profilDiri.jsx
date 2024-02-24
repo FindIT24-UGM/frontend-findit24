@@ -7,7 +7,7 @@ import React, {
   useReducer,
 } from "react";
 import RootLayout from "../../../layout";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import { HiArrowLeft } from "react-icons/hi";
 import { BsCalendar2PlusFill } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -21,6 +21,7 @@ import ModalJoinTeam from "../../modal/modaljointeam";
 import ModalInvitationCode from "../../modal/modalinvitationcode";
 import axios from "axios";
 import Image from "next/image";
+import { getUserData } from "../../../../store/slices/authSlice";
 
 //INITIALIZE FOR useReducer
 const initialState = {
@@ -50,6 +51,7 @@ const ProfilDiri = () => {
   const [openStatus, setOpenStatus] = useState(false);
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [updateUser, setUpdateUser] = useState({});
 
   const router = useRouter();
 
@@ -202,15 +204,33 @@ const ProfilDiri = () => {
 
   const statuses = [
     {
-      name: "Universitas/Institut",
+      name: "Mahasiswa",
     },
     {
-      name: "SMA",
+      name: "Pelajar",
     },
     {
       name: "Umum",
     },
   ];
+
+  /* Gtau Bjir Routingnya */
+  // useEffect(() => {
+  //   axios.get(process.env.NEXT_PUBLIC_API_URL + "/user/").then((response) => {
+  //     dispatch(getUserData);
+  //     const profileData = response.data;
+  //     dispatch({
+  //       type: "UPDATE_FIELD",
+  //       field: "name",
+  //       value: profileData.name,
+  //     });
+  //     dispatch({
+  //       type: "UPDATE_FIELD",
+  //       field: "DateOfBirth",
+  //       value: new Date(profileData),
+  //     });
+  //   });
+  // });
 
   /*----------BLM WORK BUAT UPLOAD INSTITUTION FILE---------- */
   const [imagePreview, setImagePreview] = useState("");
@@ -292,6 +312,13 @@ const ProfilDiri = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch({ type: "UPDATE_FIELD", field: name, value });
+
+    setUpdateUser((prev) => {
+      return {
+        ...prev,
+        [type]: value,
+      };
+    });
   };
 
   const handleDateChange = (date) => {
@@ -304,9 +331,14 @@ const ProfilDiri = () => {
 
   const submitHandler = () => {
     axios
-      .patch(`${process.env.NEXT_PUBLIC_API_URL}/user`, state, {
-        withCredentials: true,
-      })
+      .patch(
+        `${process.env.NEXT_PUBLIC_API_URL}/user`,
+        state,
+        {
+          withCredentials: true,
+        },
+        router.push("/user/dashboard")
+      )
       .then((res) => {
         //bisa diganti message atau apalah
         console.log(res);
@@ -314,6 +346,10 @@ const ProfilDiri = () => {
       .catch((err) => {
         console.log(err);
       });
+
+    const updatedData = {
+      ...updateUser,
+    };
   };
   /*----------------END------------------ */
 

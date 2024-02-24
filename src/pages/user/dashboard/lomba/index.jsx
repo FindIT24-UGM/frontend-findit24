@@ -73,24 +73,24 @@ const Index = (nameAbr) => {
       });
   };
 
-  const createNewTeam = (eventId, teamCode) => {
-    axios
-      .post(
-        `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
-        {
-          eventId,
-          teamCode,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res.data.message);
-        setOpenConfirmation(true);
-        setOpenInvitation(false);
-      });
-  };
+  // const createNewTeam = (eventId, teamCode) => {
+  //   axios
+  //     .post(
+  //       `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
+  //       {
+  //         eventId,
+  //         teamCode,
+  //       },
+  //       {
+  //         withCredentials: true,
+  //       }
+  //     )
+  //     .then((res) => {
+  //       console.log(res.data.message);
+  //       setOpenConfirmation(true);
+  //       setOpenInvitation(false);
+  //     });
+  // };
 
   const joinTeam = (eventId, teamId, teamLeaderId) => {
     axios
@@ -488,18 +488,11 @@ const Index = (nameAbr) => {
                 <Link
                   href={
                     isAuthenticated
-                      ? "user/dashboard/lomba/datatim"
-                      : "auth/login"
+                      ? "/user/dashboard/lomba/datatim"
+                      : "/auth/login"
                   }
                 >
-                  <Button
-                    fullW
-                    onClick={() => {
-                      createNewTeam();
-                    }}
-                    customClass={"lg:py-1"}
-                    text="Buat Tim"
-                  />
+                  <Button fullW customClass={"lg:py-1"} text="Buat Tim" />
                 </Link>
               </div>
               <div className="w-[212px]">
