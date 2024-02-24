@@ -7,6 +7,8 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { useRouter } from 'next/router';
 
+//KU COPAS KE INDEX.JSX
+
 const DataTimGeneral = () => {
     const [institusi, setinstitusi] = useState(undefined);
     const [namaTim, setNamaTim] = useState(undefined);
@@ -31,10 +33,10 @@ const DataTimGeneral = () => {
 
     const statuses = [
         {
-          name : 'Universitas/Institut'
+          name : 'Mahasiswa'
         },
         {
-          name : 'SMA'
+          name : 'Pelajar'
         },
         {
           name : 'Umum'

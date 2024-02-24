@@ -46,19 +46,19 @@ export const getUserTeam = createAsyncThunk(
   }
 );
 
-export const getTeamsToSearch = createAsyncThunk(
-  "team/search-teams",
-  async (eventId, thunkAPI) => {
-    try {
-      const payload = await userService.getTeamsOfEvent(eventId);
-      return payload
-    } catch (e) {
-      const message =
-        e.response?.data?.message || error.message || error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-)
+// export const getTeamsToSearch = createAsyncThunk(
+//   "team/search-teams",
+//   async (eventId, thunkAPI) => {
+//     try {
+//       const payload = await userService.getTeamsOfEvent(eventId);
+//       return payload
+//     } catch (e) {
+//       const message =
+//         e.response?.data?.message || error.message || error.toString();
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// )
 
 export const userSlice = createSlice({
   name: "user",
@@ -93,20 +93,20 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
       })
-      .addCase(getTeamsToSearch.pending, (state, action) => {
-        state.isLoading = true;
-      })
-      .addCase(getTeamsToSearch.fulfilled, (state, action) => {
-        state.allTeamsToJoin = action.payload;
-        state.isLoading = false;
-        state.isError = false;
-      })
-      .addCase(getTeamsToSearch.rejected, (state, action) => {
-        state.message = action.payload;
-        state.allTeamsToJoin = [];
-        state.isLoading = false;
-        state.isError = true;
-      });
+      // .addCase(getTeamsToSearch.pending, (state, action) => {
+      //   state.isLoading = true;
+      // })
+      // .addCase(getTeamsToSearch.fulfilled, (state, action) => {
+      //   state.allTeamsToJoin = action.payload;
+      //   state.isLoading = false;
+      //   state.isError = false;
+      // })
+      // .addCase(getTeamsToSearch.rejected, (state, action) => {
+      //   state.message = action.payload;
+      //   state.allTeamsToJoin = [];
+      //   state.isLoading = false;
+      //   state.isError = true;
+      // });
   },
 });
 

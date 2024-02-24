@@ -25,10 +25,10 @@ const DataTimUX = () => {
 
     const statuses = [
         {
-          name : 'Universitas/Institut'
+          name : 'Mahasiswa'
         },
         {
-          name : 'SMA'
+          name : 'Pelajar'
         },
         {
           name : 'Umum'

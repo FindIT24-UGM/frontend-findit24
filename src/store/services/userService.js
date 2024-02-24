@@ -24,15 +24,15 @@ const getUserTeam = async () => {
 };
 
 //GET ALL TEAMS OF THE EVENT
-const getTeamsOfEvent = async (eventId) => {
-  const response = await axios.post(
-    process.env.NEXT_PUBLIC_API_URL + "/team/search-teams", 
-    { eventId },
-    { withCredentials: true }
-  );
-  return response.data;
-}
+// const getTeamsOfEvent = async (eventId) => {
+//   const response = await axios.post(
+//     process.env.NEXT_PUBLIC_API_URL + "/team/search-teams", 
+//     { eventId },
+//     { withCredentials: true }
+//   );
+//   return response.data;
+// }
 
-const userService = { getAnnouncements, getUserTeam, getTeamsOfEvent };
+const userService = { getAnnouncements, getUserTeam };
 
 export default userService;
