@@ -16,7 +16,6 @@ import CloudsDekstop from '../../../assets/background/awanSponsorsDekstop.png'
 import CloudsTablet from '../../../assets/background/awanSponsorsTablet.png'
 import CloudsMobile from '../../../assets/background/awanSponsorsMobile.png'
 
-
 const OurPartnerComp = () => {
   return (
     <div className='w-full lg:pt-8 pb-24 lg:pb-48 bg-background-skyblue'>
