@@ -7,7 +7,9 @@ import CompetitionComp from '../../components/LandingPage/Competition/Competitio
 const index = () => {
   return (
     <div>
+        <HeroComp />
         <CompetitionComp />
+        <WebinarComp />
     </div>
   )
 }
