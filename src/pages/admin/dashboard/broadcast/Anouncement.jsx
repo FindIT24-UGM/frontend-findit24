@@ -16,7 +16,7 @@ export default function Anouncement({ id, anouncementTitle, content, date }) {
       })
   }
   return (
-    <div className='font-Montserrat p-2'>
+    <div className='font-Montserrat px-2'>
       <h2 className='font-bold'>{anouncementTitle}</h2>
       <div className='text-[12px]'>{content}</div>
       <div className='flex justify-between items-center'>
