@@ -37,7 +37,7 @@ function HeroWS() {
         <p className="font-Ava text-white text-[20px] lg:text-[1.25vw]">
           //Workshop
         </p>
-        <div className="font-GameOfSquid text-center text-[70px] lg:text-[1.25vw] bg-gradient-to-b from-[#FF8C5A] to-[#F95949] bg-clip-text text-transparent">
+        <div className="font-GameOfSquid text-center text-[5.556vw] md:text-[3.125vw] lg:text-[1.25vw] bg-gradient-to-b from-[#FF8C5A] to-[#F95949] bg-clip-text text-transparent">
           <p>"Exploring Blockchain :</p>
           <p>Embracing Future</p>
           <p>Technology</p>

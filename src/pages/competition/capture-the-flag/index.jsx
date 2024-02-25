@@ -88,9 +88,9 @@ function CaptureTheFlag() {
               </div>
             </div>
           </div>
-          <Second 
-            cabangLomba="Capture The Flag" 
-            competitionDescription="Capture the Flag (CTF) adalah kompetisi keamanan jaringan/informasi yang menguji setiap peserta untuk berpikir terstruktur dan kreatif dalam mencari sebuah informasi berharga tersembunyi yang disebut flag dari berbagai permasalahan yang dibagi menjadi beberapa kategori yaitu cryptography, digital forensic, binary exploitation, reverse engineering, web exploitation, dan Open Source Intelligence (OSINT)." 
+          <Second
+            cabangLomba="Capture The Flag"
+            competitionDescription="Capture the Flag (CTF) adalah kompetisi keamanan jaringan/informasi yang menguji setiap peserta untuk berpikir terstruktur dan kreatif dalam mencari sebuah informasi berharga tersembunyi yang disebut flag dari berbagai permasalahan yang dibagi menjadi beberapa kategori yaitu cryptography, digital forensic, binary exploitation, reverse engineering, web exploitation, dan Open Source Intelligence (OSINT)."
             cardAllItems={CTFInformation}
           />
           <Prize />

@@ -42,13 +42,13 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
             "absolute flex flex-row w-fit h-20 items-center -translate-x-[100%] -translate-y-[50%] gap-x-14 max-lg:hidden"
           )}
         >
-          <Link href="/webinar">
+          <Link href="/workshop">
             <p
               className={twMerge(
                 "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
-                activePath == "Webinar" && "text-primary-500"
+                activePath == "Workshop" && "text-primary-500"
               )}
-              onClick={() => setActivePath("Webinar")}
+              onClick={() => setActivePath("Workshop")}
             >
               Workshop
             </p>
@@ -123,17 +123,19 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
             )}
             onClick={() => setActivePath("About Us")}
           >
-            About Us
+            <Link href="/aboutus">About Us</Link>
           </p>
-          <p
-            className={twMerge(
-              "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
-              activePath == "FAQ" && "text-primary-500"
-            )}
-            onClick={() => setActivePath("FAQ")}
-          >
-            FAQ
-          </p>
+          <Link href="/faq">
+            <p
+              className={twMerge(
+                "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
+                activePath == "FAQ" && "text-primary-500"
+              )}
+              onClick={() => setActivePath("FAQ")}
+            >
+              FAQ
+            </p>
+          </Link>
         </div>
       </div>
       {isLogin && (
@@ -142,8 +144,8 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
           onClick={() =>
             router.push(
               user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE
-                ? "/admin/dashboard"
-                : "/user/dashboard"
+                ? "/admin/dashboard/beranda"
+                : "/user/dashboard/beranda"
             )
           }
         >

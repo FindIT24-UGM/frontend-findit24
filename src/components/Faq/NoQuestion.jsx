@@ -14,6 +14,7 @@ const NoQuestion = () => {
         src={"assets/images/faq-Not-found asset.svg"}
         width={250}
         height={250}
+        alt="faq-not-found.svg"
       />
       <div className="flex flex-col text-center font-Montserrat">
         <p className="mb-5 text-xl font-GameOfSquid">No Result Found...</p>

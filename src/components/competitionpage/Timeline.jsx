@@ -14,6 +14,7 @@ function HexagonDot() {
         sizes={36}
         alt="Hexagon Dot.png"
         className="relative"
+        loading="lazy"
       ></Image>
     </div>
   );
@@ -50,7 +51,7 @@ const dummyData = [
 
 export default function Timeline() {
   return (
-    <div className="bg-background-skyblue min-h-screen w-full p-10">
+    <div className="bg-background-skyblue min-h-screen w-full p-10 ">
       <h2 className="font-GameOfSquid text-[48px] font-bold text-white text-center lg:text-left lg:pl-10 mb-14">
         Timeline
       </h2>

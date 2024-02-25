@@ -21,7 +21,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const router = useRouter();
-  const [activePath, setActivePath] = useState("Webinar");
+  const [activePath, setActivePath] = useState("");
   const [isSideNav, setIsSideNav] = useState(false);
   const [isLarge, setIsLarge] = useState(true);
 
@@ -81,7 +81,6 @@ const Navbar = () => {
         if (result.isConfirmed) {
           dispatch(logout());
           Swal.fire("Logout", "", "success");
-          router.push("/login");
         } else {
           router.push("./");
         }
