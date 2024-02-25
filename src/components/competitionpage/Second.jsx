@@ -9,11 +9,16 @@ import PatternTab from "../../assets/background/patternCepeTab.png";
 import PatternHP from "../../assets/background/patternCepeHP.png";
 import Image from "next/image";
 
-function NamaLomba({ content = "competitive programming" }) {
+function NamaLomba({ content }) {
   return (
     <div className="w-[120%] relative flex items-center text-center justify-center mt-32">
       <div className="absolute left-[-10vw] w-full h-[5vw] max-md:h-[6vw] bg-gradient-to-b border-4 border-black from-[#FF8C5A] to-[#F95949]"></div>
       <div className="relative whitespace-nowrap font-GameOfSquid text-[1.8vw] text-black flex justify-between w-full z-10">
+        {content}&emsp;
+        {content}&emsp;
+        {content}&emsp;
+        {content}&emsp;
+        {content}&emsp;
         {content}&emsp;
         {content}&emsp;
         {content}&emsp;
