@@ -29,7 +29,7 @@ const index = () => {
           withCredentials: true,
         })
         .then((res) => {
-          setDataTeam(res.data);
+          setDataTeam(res.data.info);
           axios
           .get(`${process.env.NEXT_PUBLIC_API_URL}/team/get-announcements/${teamId}`, {
             withCredentials: true,
@@ -51,7 +51,7 @@ const index = () => {
   const editOnclick = () => {};
   const unggahOnclick = () => {};
   const uploadOnclick = () => {};
-  
+console.log(dataTeam);
   return (
     <TeamProfileLayout>
       {/* header */}
@@ -135,7 +135,7 @@ const index = () => {
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Leader</h2>
-              <p className="h-full">{dataTeam?.teamLeader?.name}</p>
+              <p className="h-full">{dataTeam?.teamLeader}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <div className="font-bold w-[200px]">
@@ -154,7 +154,7 @@ const index = () => {
           <div className="space-y-3 border-b-[1px] pb-5 border-slate-600">
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Status</h2>
-              <p className="h-full text-left">{dataTeam?.teamLeader?.status}</p>
+              <p className="h-full text-left">{dataTeam?.teamLeaderStatus}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Asal Instansi</h2>
@@ -183,15 +183,15 @@ const index = () => {
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Nama Pengirim</h2>
-              <p>John Doe</p>
+              <p>{dataTeam?.paymentSender}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">No. Rek</h2>
-              <p>6301 8888 8888</p>
+              <p>{dataTeam?.bankAccountId}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Bank</h2>
-              <p>BCA</p>
+              <p>{dataTeam?.bankName}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <div className="w-[200px]">

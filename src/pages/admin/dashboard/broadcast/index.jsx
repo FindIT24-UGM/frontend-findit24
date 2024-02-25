@@ -83,7 +83,6 @@ export default function index() {
                   <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT}>Esport - Valorant</option>
                   <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_IC}>Informatics Competitions</option>
                   <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE}>UX Competition</option>
-                  <option value="">Options X</option>
                 </select>
                 {isOpen ? (
                   <IoMdArrowDropdown size={20} color="black" className="absolute right-3 top-3 cursor-pointer" />
