@@ -15,6 +15,21 @@ import Second from "../../../components/competitionpage/Second";
 import Footer from "../../../components/footer";
 
 function CaptureTheFlag() {
+  const CTFInformation = [
+    {
+      title: "Kategori Peserta",
+      items: ["Tim (Maksimal 3 orang)"],
+    },
+    {
+      title: "Biaya Pendaftaran",
+      items: ["Early Bird: Rp95.000", "Regular: Rp125.000"],
+    },
+    {
+      title: "Informasi Tambahan",
+      items: ["Whasapp: 0819 0537 8266", "Line: deren211204"],
+    },
+  ];
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -73,7 +88,11 @@ function CaptureTheFlag() {
               </div>
             </div>
           </div>
-          <Second cabangLomba="Capture The Flag" />
+          <Second 
+            cabangLomba="Capture The Flag" 
+            competitionDescription="Capture the Flag (CTF) adalah kompetisi keamanan jaringan/informasi yang menguji setiap peserta untuk berpikir terstruktur dan kreatif dalam mencari sebuah informasi berharga tersembunyi yang disebut flag dari berbagai permasalahan yang dibagi menjadi beberapa kategori yaitu cryptography, digital forensic, binary exploitation, reverse engineering, web exploitation, dan Open Source Intelligence (OSINT)." 
+            cardAllItems={CTFInformation}
+          />
           <Prize />
           <Timeline />
         </div>

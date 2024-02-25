@@ -17,6 +17,21 @@ import Link from "next/link";
 import Footer from "../../../components/footer";
 
 function DataAnaytics() {
+  const DACInformation = [
+    {
+      title: "Kategori Peserta",
+      items: ["Tim (Maksimal 3 orang)"],
+    },
+    {
+      title: "Biaya Pendaftaran",
+      items: ["Regular: Rp100.000"],
+    },
+    {
+      title: "Informasi Tambahan",
+      items: ["Whasapp: 0856 4339 9996", "Line: rakhefadhila"],
+    },
+  ];
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -77,7 +92,11 @@ function DataAnaytics() {
               </div>
             </div>
           </div>
-          <Second cabangLomba="Data Analytics" />
+          <Second 
+            cabangLomba="Data Analytics"
+            competitionDescription="Data Analytics Competition adalah kompetisi berskala nasional yang diadakan pada FIND IT! 2024. Data Analytics Competition merupakan kompetisi menganalisis data khususnya big data guna memberi solusi dari sebuah permasalahan yang telah disediakan. Tujuan kegiatan ialah menyiapkan generasi yang mampu menganalisis data dengan baik sehingga mampu melahirkan solusi terbaik dari sebuah masalah di era digital."
+            cardAllItems={DACInformation}
+          />
           <Prize />
           <Timeline />
         </div>
