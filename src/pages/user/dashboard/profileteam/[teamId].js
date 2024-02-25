@@ -16,6 +16,7 @@ import Status from "./Status";
 import Accordion from "./Accordion";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { format } from "date-fns";
 
 const index = () => {
   const router = useRouter();
@@ -38,6 +39,7 @@ const index = () => {
           })
           .then((announ) => {
             setAnnouncements(announ.data.announcements);
+
           })
           .catch((err) => {
             console.log(err);
@@ -48,6 +50,13 @@ const index = () => {
         });
     }
   }, [teamId]);
+
+  useEffect(() => {
+    if(dataTeam.paymentDate){
+      const formattedDate = format(new Date(`${dataTeam.paymentDate}`), "dd MMMM y");
+      setDate(formattedDate)
+    }
+  }, [dataTeam.paymentDate])
 
 /*---------handle upload twibbon (pdf) ss twibbon smua anggota jadiin satu pdf------- */
   const handleUploadTwibbon = (e) => {
@@ -102,10 +111,6 @@ const index = () => {
   const copyOnclick = () => {};
   const editOnclick = () => {};
 
-  if(dataTeam?.paymentDate){
-    const formattedDate = format(new Date(`${user?.dateOfBirth}`), "dd MMMM y");
-    setDate(formattedDate)
-  }
 
   return (
     <TeamProfileLayout>
