@@ -68,50 +68,30 @@ function LineH2() {
   );
 }
 
-function CardAll() {
+function CardAll({ cardAllItems }) {
   return (
     <div className="relative w-[68%] flex items-center justify-center mt-14 mb-20 max-lg:flex-col flex-row max-md:w-[45%] max-md:my-0">
       <div className="relative flex justify-between z-10 w-fit h-fit lg:flex-row flex-col max-md:h-[80vw] max-md:gap-[28vw] max-md:justify-normal max-sm:gap-[40vw]">
-        <div className="relative z-30 aspect-[150/80] w-[21.3vw] max-md:mx-auto max-md:my-0 max-md:w-[44vw] max-sm:w-[70vw]">
-          <Image src={Cardcompe} alt="card.png" className="absolute" fill />
-          <div className="absolute w-full text-black ml-[5vw] text-[1.12vw] max-md:text-[2.8vw] max-md:ml-[8vw] max-sm:text-[3.4vw] max-sm:ml-[14vw] max-sm:mt-[6vw] mt-[3vw]  text-left">
-            <strong className="font-bold">Kategori Peserta</strong>
-            <div className="mt-2">
-              <ul>
-                <li className="list-disc">Sendiri</li>
-                <li className="list-disc">Team (Max 3 orang)</li>
-              </ul>
+        {cardAllItems.map((item, index) => (
+          <div key={index} className="relative z-30 aspect-[150/80] w-[21.3vw] max-md:mx-auto max-md:my-0 max-md:w-[44vw] max-sm:w-[70vw]">
+            <Image src={Cardcompe} alt="card.png" className="absolute" fill />
+            <div className="absolute w-full text-black ml-[5vw] text-[1.12vw] max-md:text-[2.8vw] max-md:ml-[8vw] max-sm:text-[3.4vw] max-sm:ml-[14vw] max-sm:mt-[6vw] mt-[3vw]  text-left">
+              <strong className="font-bold">{item.title}</strong>
+              <div className="mt-2">
+                <ul>
+                  {item.items.map((subItem, subIndex) => (
+                    <li key={subIndex} className="list-disc">{subItem}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="relative z-30 aspect-[150/80] w-[21.3vw] max-md:mx-auto max-md:my-0 max-md:w-[44vw] max-sm:w-[70vw]">
-          <Image src={Cardcompe} alt="card.png" className="absolute" fill />
-          <div className="absolute w-full text-black left-0 ml-[5vw] text-[1.12vw] max-md:text-[2.8vw] max-md:ml-[8vw] max-sm:text-[3.4vw] max-sm:ml-[14vw] max-sm:mt-[6vw] mt-[3vw] text-left">
-            <strong className="font-bold">Biaya Pendaftaran</strong>
-            <div className="mt-2">
-              <ul>
-                <li className="list-disc">Rp 100.000 (Early Bird)</li>
-                <li className="list-disc">Rp 130.000 (Regular)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="relative z-30 aspect-[150/80] w-[21.3vw] max-md:mx-auto max-md:my-0 max-md:w-[44vw] max-sm:w-[70vw]">
-          <Image src={Cardcompe} alt="card.png" className="absolute" fill />
-          <div className="absolute w-full text-black left-0 ml-[5vw] text-[1.12vw] max-md:text-[2.8vw] max-md:ml-[8vw] max-sm:text-[3.4vw] max-sm:ml-[14vw] max-sm:mt-[6vw] mt-[3vw] text-left">
-            <strong className="font-bold">Contact Person</strong>
-            <div className="mt-2">
-              <ul>
-                <li className="list-disc">WA : 6281234567800</li>
-                <li className="list-disc">Line : usnline</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
 }
+
 const MyComponent = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -131,7 +111,7 @@ const MyComponent = () => {
   return isVisible;
 };
 
-export default function Second({ cabangLomba }) {
+export default function Second({ cabangLomba, competitionDescription, cardAllItems }) {
   return (
     <main className="w-screen items-center justify-center text-center relative max-sm:mb-[50vw]">
       <div className="relative w-full">
@@ -173,20 +153,18 @@ export default function Second({ cabangLomba }) {
         className="absolute w-[50vw] left-[30vw] top-[48vw] z-0"
       />
       <div className="font-Montserrat text-[1vw] w-[28vw] flex justify-center items-center text-center mx-auto my-20 max-md:w-[54%] max-md:text-[2vw]  max-sm:w-[60%] max-sm:text-[3vw]">
-        Kompetisi yang menguji kemampuan berpikir logis untuk menyelesaikan
-        masalah menggunakan sebuah program komputer yang ditulis dalam batasan
-        waktu dan memori yang ditentukan.
+        {competitionDescription}
       </div>
       {MyComponent() && (
         <div className=" w-full flex justify-center items-center mb-[16vw] max-sm:translate-x-[8vw] max-sm:gap-[3vw] max-sm:justify-normal">
           <LineH2 />
-          <CardAll />
+          <CardAll cardAllItems={cardAllItems} />
         </div>
       )}
       {!MyComponent() && (
         <div className="w-full flex flex-col justify-center items-center mb-[16vw]">
           <LineH1 />
-          <CardAll />
+          <CardAll cardAllItems={cardAllItems} />
         </div>
       )}
     </main>

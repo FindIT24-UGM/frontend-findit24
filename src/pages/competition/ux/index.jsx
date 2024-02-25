@@ -16,6 +16,21 @@ import Link from "next/link";
 import Footer from "../../../components/footer";
 
 function UxCompetition() {
+  const UXInformation = [
+    {
+      title: "Kategori Peserta",
+      items: ["Tim (2-3 orang)"],
+    },
+    {
+      title: "Biaya Pendaftaran",
+      items: ["Pendaftaran: Free", "Tahap Abstrak: Rp120.000"],
+    },
+    {
+      title: "Informasi Tambahan",
+      items: ["Whasapp: 0895 3583 29431", "Line: najwazahraramadhani."],
+    },
+  ];
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -76,7 +91,11 @@ function UxCompetition() {
               </div>
             </div>
           </div>
-          <Second cabangLomba="UX Competition" />
+          <Second 
+            cabangLomba="UX Competition"
+            competitionDescription="UX competition adalah kompetisi desain pengalaman pengguna atau user experience (UX) sebuah produk berupa aplikasi mobile yang merupakan salah satu cabang kompetisi Find IT! 2024. Kompetisi ini mengkolaborasikan beberapa aspek startup termasuk pencapaian user experience goals dan usability goals. Kompetisi ini ditujukan bagi  Mahasiswa S1/D4/D3 dan Siswa SMA/SMK/MA sederajat. Dalam jangka waktu yang telah ditentukan, peserta akan mengembangkan produk dalam bentuk prototipe yang sesuai dengan tema."
+            cardAllItems={UXInformation}
+          />
           <Prize />
           <Timeline />
         </div>

@@ -17,6 +17,20 @@ import Link from "next/link";
 import Footer from "../../../components/footer";
 
 function eSport() {
+  const ESInformation = [
+    {
+      title: "Kategori Peserta",
+      items: ["Individu", "Tim"],
+    },
+    {
+      title: "Biaya Pendaftaran",
+      items: ["Single Slot: Rp75.000", "Multi Slot: Rp150.000"],
+    },
+    {
+      title: "Informasi Tambahan",
+      items: ["Mobile Legend: 0813 8341 7308", "Valorant: 0812 5425 4664"],
+    },
+  ];
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -77,7 +91,11 @@ function eSport() {
               </div>
             </div>
           </div>
-          <Second cabangLomba="e-Sport" />
+          <Second 
+            cabangLomba="e-Sport"
+            competitionDescription="Esport Competition adalah kompetisi dalam bentuk permainan video game yang dilombakan dalam bentuk tim pada Find IT! 2024. Game yang dilombakan adalah Mobile Legends dan Valorant. Tujuan diselenggarakannya kompetisi ini adalah untuk mewadahi gamers dalam negeri dengan meningkatkan persaingan sehingga kualitas pun juga akan semakin meningkat. Selain itu, dengan kualitas gamers lokal yang baik, maka bisa ikut unggul dalam meramaikan persaingan Esport tingkat global."
+            cardAllItems={ESInformation}
+          />
           <Prize />
           <Timeline />
         </div>

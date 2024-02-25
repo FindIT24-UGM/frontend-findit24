@@ -17,6 +17,21 @@ import Link from "next/link";
 import Footer from "../../../components/footer";
 
 function Hackaton() {
+  const HCInformation = [
+    {
+      title: "Kategori Peserta",
+      items: ["Tim (2-3 orang)"],
+    },
+    {
+      title: "Biaya Pendaftaran",
+      items: ["Pendaftaran: Free", "Tahap Pitching Deck: Rp150.000"],
+    },
+    {
+      title: "Informasi Tambahan",
+      items: ["Whasapp: 0856 4339 9996", "Line: rakhefadhila"],
+    },
+  ];
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -77,7 +92,11 @@ function Hackaton() {
               </div>
             </div>
           </div>
-          <Second cabangLomba="Hackathon" />
+          <Second 
+            cabangLomba="Hackathon"
+            competitionDescription="Hackathon adalah kompetisi pembuatan inovasi berupa produk teknologi informasi. Kompetisi ini mengkolaborasikan aspek startup yaitu Hipster (Design and UI/UX), Hacker (Engineer and Developer), dan Hustler (Business and Project Management). Dalam jangka waktu yang telah ditentukan, peserta akan mengembangkan produk dalam bentuk Minimum Viable Product yang sesuai dengan tema."
+            cardAllItems={HCInformation}
+          />
           <Prize />
           <Timeline />
         </div>

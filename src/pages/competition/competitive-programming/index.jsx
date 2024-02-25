@@ -16,6 +16,21 @@ import Link from "next/link";
 import Footer from "../../../components/footer";
 
 function CompetitiveProgramming() {
+  const CPInformation = [
+    {
+      title: "Kategori Peserta",
+      items: ["Tim (Maksimal 3 orang)"],
+    },
+    {
+      title: "Biaya Pendaftaran",
+      items: ["Early Bird: Rp90.000", "Regular: Rp120.000"],
+    },
+    {
+      title: "Informasi Tambahan",
+      items: ["Whasapp: 0895 3785 64468", "Line: krytongo24"],
+    },
+  ];
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -76,7 +91,11 @@ function CompetitiveProgramming() {
               </div>
             </div>
           </div>
-          <Second cabangLomba="Competitive Programming" />
+          <Second 
+            cabangLomba="Competitive Programming"
+            competitionDescription="Competitive Programming merupakan kompetisi yang menguji kemampuan berpikir logis untuk menyelesaikan masalah menggunakan sebuah program komputer yang ditulis menggunakan bahasa C, C++, Python, atau Java dalam batasan waktu dan memori yang ditentukan"
+            cardAllItems={CPInformation}
+          />
           <Prize />
           <Timeline />
         </div>

@@ -16,6 +16,21 @@ import Link from "next/link";
 import Footer from "../../../components/footer";
 
 function InformaticsCompetition() {
+  const ICInformation = [
+    {
+      title: "Kategori Peserta",
+      items: ["Tim (Maksimal 2 orang)"],
+    },
+    {
+      title: "Biaya Pendaftaran",
+      items: ["Early Bird: Rp60.000", "Regular: Rp90.000"],
+    },
+    {
+      title: "Informasi Tambahan",
+      items: ["Whasapp: 0821 3434 2669", "Line: Ianryan31"],
+    },
+  ];
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -76,7 +91,11 @@ function InformaticsCompetition() {
               </div>
             </div>
           </div>
-          <Second cabangLomba="Informatics Competition" />
+          <Second 
+            cabangLomba="Informatics Competition"
+            competitionDescription="Informatics Competition merupakan kompetisi yang bertujuan untuk menguji kecerdasan, pemahaman logika matematika, dan pemahaman algoritmik melalui pengerjaan soal matematika dan problem solving."
+            cardAllItems={ICInformation}
+          />
           <Prize />
           <Timeline />
         </div>
