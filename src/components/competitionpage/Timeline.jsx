@@ -4,9 +4,6 @@ import styles from "./Timeline.module.css";
 import Image from "next/image";
 import HexagonDot_Desktop from "../../assets/compepage/Hexagon_Desktop.png";
 
-import VertikalVektor from "../../assets/background/line_vertikal.png";
-import HorizontalVektor from "../../assets/background/line_horizontal.png";
-
 import TimeLineCard from "./TimeLineCard";
 
 function HexagonDot() {
@@ -96,7 +93,9 @@ export default function Timeline() {
                   <div className="my-[1vw]">
                     <TimeLineCard content={item.name} key={i} />
                   </div>
-                  <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">{dummyData[i + 1].date}</p>
+                  <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">
+                    {dummyData[i + 1].date}
+                  </p>
                 </div>
               )
             );
@@ -115,7 +114,9 @@ export default function Timeline() {
             return (
               i % 2 === 1 && (
                 <div className="flex space-x-[4.28vw]">
-                  <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">{dummyData[i - 1].date}</p>
+                  <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">
+                    {dummyData[i - 1].date}
+                  </p>
                   <div className="my-[1vw]">
                     <TimeLineCard content={item.name} key={i} />
                   </div>

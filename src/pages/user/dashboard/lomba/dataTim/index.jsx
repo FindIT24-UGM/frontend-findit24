@@ -5,8 +5,9 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { BsCalendar2PlusFill } from "react-icons/bs";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const DataTimGeneral = () => {
   const [institusi, setinstitusi] = useState(undefined);
@@ -22,7 +23,16 @@ const DataTimGeneral = () => {
 
   const dropdownStatusRef = useRef();
 
+  const router = useRouter();
+
+  const competitionIds = ["cp", "ctf", "da", "uix", "hck", "esp", "ic"];
+  const { competitionId } = router.query;
+
   useEffect(() => {
+    if (competitionId != undefined && !competitionIds.includes(competitionId)) {
+      toast.error("Competition not found");
+      router.push("/competition");
+    }
     const handler = (e) => {
       if (
         dropdownStatusRef.current &&
@@ -68,8 +78,6 @@ const DataTimGeneral = () => {
     );
   };
 
-  const router = useRouter();
-
   const handleBackLomba = () => {
     router.push("/user/dashboard/lomba");
   };
@@ -80,7 +88,13 @@ const DataTimGeneral = () => {
     }
   };
 
-  const handleCreateTeam = () => {
+  const handleCreateTeam = (
+    competitionId,
+    namaTim,
+    namaPengirim,
+    institusi,
+    token
+  ) => {
     axios
       .post(
         `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
@@ -90,17 +104,48 @@ const DataTimGeneral = () => {
           teamInstitution: institusi,
           teamContact: phone,
         },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
         { withCredentials: true }
       )
       .then((res) => {
         console.log(res.data);
         router.push(
-          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/berhasilteam`
+          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/berhasilteam` +
+            competitionId
         );
+        return res.data.data;
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.message);
+        toast.error(error.response.data.message);
+        return err.response.data;
       });
+  };
+
+  const registerTeamHandler = () => {
+    if (localStorage.getItem("token") == null) {
+      toast.error("Please login first!");
+      return;
+    }
+    const { _id } = JSON.parse(localStorage.getItem());
+    const token = JSON.parse(localStorage.getItem("token"));
+    let evenId;
+
+    if (namaTim == "") {
+      toast.error("Team name can't be empty!");
+    }
+    if (institusi == "") {
+      toast.error("Team institution can't be empty!");
+    }
+    if (namaTim.length() > 0 && institusi.length() > 0) {
+      if (competitionId != "esp") {
+        handleCreateTeam(competitionId, namaTim, _id, institution, token);
+      }
+    }
   };
 
   const DaftarLombaDanHarga = ({ lomba }) => {
@@ -220,7 +265,7 @@ const DataTimGeneral = () => {
                     Status
                   </p>
                   <div
-                    className="w-full text-sm font-medium font-Montserrat text-neutral-300 relative"
+                    className="w-full text-sm font-medium font-Montserrat text-black font-Montserrat font-bold relative"
                     ref={dropdownStatusRef}
                   >
                     <div
@@ -271,8 +316,8 @@ const DataTimGeneral = () => {
                     Nomor
                   </p>
                   <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm relative"
-                    placeholder="Universitas Diponegoro"
+                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
+                    placeholder="0812345678"
                     required
                     type="text"
                     id="phone"
@@ -286,7 +331,7 @@ const DataTimGeneral = () => {
                     Institusi
                   </p>
                   <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm relative"
+                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
                     placeholder="Universitas Diponegoro"
                     required
                     type="text"
@@ -301,7 +346,7 @@ const DataTimGeneral = () => {
                     Nama Tim
                   </p>
                   <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm relative"
+                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
                     placeholder="Samsan Tech"
                     required
                     type="text"
@@ -335,7 +380,7 @@ const DataTimGeneral = () => {
                     Nama Pengirim
                   </p>
                   <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm relative"
+                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
                     placeholder="John Doe"
                     required
                     type="text"
@@ -350,7 +395,7 @@ const DataTimGeneral = () => {
                     Nomor Rekening
                   </p>
                   <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm relative"
+                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
                     placeholder="0123456789"
                     required
                     type="text"
@@ -365,7 +410,7 @@ const DataTimGeneral = () => {
                     Bank
                   </p>
                   <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm relative"
+                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
                     placeholder="Bank BCA"
                     required
                     type="text"
@@ -381,7 +426,7 @@ const DataTimGeneral = () => {
                       Upload Abstrak
                     </p>
                     {/*                                     
-                                            <p className='font-Montserrat font-bold text-xs text-neutral-300'>anda belum upload</p>
+                                            <p className='font-Montserrat font-bold text-xs text-black font-Montserrat font-bold'>anda belum upload</p>
                                         */}
                   </div>
                   <button className="rounded border-2 border-text-placeholder-light px-6 py-1">
