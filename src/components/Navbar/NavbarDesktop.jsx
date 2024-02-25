@@ -3,7 +3,6 @@ import Image from "next/image";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
-import LogoFindIT from "../../assets/Logo/logoFindit.png";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -45,7 +44,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
           <Link href="/webinar">
             <p
               className={twMerge(
-                "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
+                "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300 text-sm",
                 activePath == "Webinar" && "text-primary-500"
               )}
               onClick={() => setActivePath("Webinar")}
@@ -53,7 +52,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
               Workshop
             </p>
           </Link>
-          <div className="relative flex flex-row items-center gap-x-3">
+          <div className="relative flex flex-row items-center text-sm gap-x-3">
             <p
               className={twMerge(
                 "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
@@ -106,7 +105,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
       </div>
       <Image
         className="max-lg:mr-auto"
-        src={LogoFindIT}
+        src={"/assets/images/logoFindITPutih.png"}
         width={70}
         height={70}
       />
@@ -118,7 +117,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
         >
           <p
             className={twMerge(
-              "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
+              "text-white transition-all duration-200 cursor-pointer whitespace-nowrap text-sm hover:text-gray-300",
               activePath == "About Us" && "text-primary-500"
             )}
             onClick={() => setActivePath("About Us")}
@@ -127,7 +126,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
           </p>
           <p
             className={twMerge(
-              "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
+              "text-white transition-all duration-200 cursor-pointer text-sm whitespace-nowrap hover:text-gray-300",
               activePath == "FAQ" && "text-primary-500"
             )}
             onClick={() => setActivePath("FAQ")}
@@ -138,7 +137,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
       </div>
       {isLogin && (
         <button
-          className="absolute right-[150px] transition-all duration-300 hover:bg-primary-500 max-lg:hidden font-GameOfSquid bg-primary-300 rounded-lg text-black p-2 text-sm"
+          className="absolute left-[50px] transition-all duration-300 hover:text-primary-500 max-lg:hidden font-GameOfSquid text-primary-300 rounded-lg text-sm"
           onClick={() =>
             router.push(
               user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE
