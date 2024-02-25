@@ -119,8 +119,7 @@ const DataTimGeneral = ({ cabangLomba }) => {
         {
           name : 'Umum'
         }
-      }
-    }, [lomba]);
+    ];
 
     return (
       <div className="w-5/6 flex justify-between items-center">
@@ -335,6 +334,6 @@ const DataTimGeneral = ({ cabangLomba }) => {
       </div>
     </RootLayout>
   );
+}
 };
-
 export default DataTimGeneral;
