@@ -17,39 +17,41 @@ import Gap from "./Gap";
 
 const HeroComp = () => {
   return (
-    <div className="w-full">
-      <div className="relative">
+    <div className="">
+      <div>
         {/* background */}
         <Image
           alt="bg"
           src={HeroBackgroundDesktop}
-          className="bg-cover absolute -z-10 hidden lg:flex w-full"
+          className="bg-cover absolute -z-10 hidden lg:flex w-[100vw]"
         />
         <Image
           alt="bg"
           src={StarsDesktop}
-          className="bg-cover absolute -z-10 hidden lg:flex w-full"
+          className="bg-cover absolute -z-10 hidden lg:flex w-[100vw]"
         />
         <Image
           alt="bg"
           src={HeroBackgroundTab}
-          className="bg-cover absolute -z-10 hidden md:flex lg:hidden w-full"
+          className="bg-cover absolute -z-10 hidden md:flex lg:hidden w-[100vw]"
         />
         <Image
           alt="bg"
           src={StarsTab}
-          className="bg-cover absolute -z-10 hidden md:flex lg:hidden w-full"
+          className="bg-cover absolute -z-10 hidden md:flex lg:hidden w-[100vw]"
         />
         <Image
           alt="bg"
           src={HeroBackgroundMobile}
-          className="bg-cover absolute -z-10 flex md:hidden lg:hidden w-full"
+          className="bg-cover absolute -z-10 flex md:hidden lg:hidden w-[100vw]"
         />
         <Image
           alt="bg"
           src={StarsMobile}
-          className="bg-cover absolute -z-10 flex md:hidden lg:hidden w-full"
+          className="bg-cover absolute -z-10 flex md:hidden lg:hidden w-[100vw]"
         />
+        <div className="bg-background-skyblue h-[220vh] w-full absolute -z-[50]">
+        </div>
         {/* content */}
           <div className="">
             <h2 className="font-Ava lg:text-[50px] md:text-[48px] text-[28px] text-center text-secondary-blue">
@@ -86,5 +88,3 @@ const HeroComp = () => {
 };
 
 export default HeroComp;
-
-

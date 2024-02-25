@@ -4,13 +4,12 @@ import { IoIosSave } from "react-icons/io";
 import Accordion from "../Accordion";
 import { useRouter } from "next/router";
 import axios from "axios";
-import Link from "next/link";
 
 const detail = () => {
   const router = useRouter();
   const { teamId } = router.query;
   const [dataTeam, setDataTeam] = useState([]);
-  const [dataMember, setDataMember] = useState([]);
+
   useEffect(() => {
     if (teamId) {
       axios
@@ -18,31 +17,13 @@ const detail = () => {
           withCredentials: true,
         })
         .then((res) => {
-          setDataTeam(res.data);
+          setDataTeam(res.data.info);
         })
         .catch((err) => {
           console.log(err);
         });
     }
   }, [teamId]);
-  //   console.log(dataTeam);
-
-  const fetchMember = async (id) => {
-    try {
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/admin/${id}`,
-        { withCredentials: true }
-      );
-      if (response.data) {
-        setDataMember(response.data);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-    if (dataMember) {
-      console.log(dataMember);
-    }
-  };
 
   return (
     <div className="bg-background-skyblue min-h-screen lg:flex py-20 px-5 lg:px-12 md:px-8">
@@ -56,10 +37,10 @@ const detail = () => {
           </div>
           <div className="pb-8 border border-x-0 border-t-0 border-b-neutral-300 text-black mb-8">
             <h2 className="font-CreatoDisplay font-bold text-[42px]">
-              {dataTeam.teamName}
+              {dataTeam?.teamName}
             </h2>
             <p className="font-Montserrat font-bold text-[16px]">
-              {dataTeam.event}
+              {dataTeam?.event}
             </p>
           </div>
           <div className="flex space-x-10 font-Montserrat text-[17px] font-bold pb-8 border border-x-0 border-t-0 border-b-neutral-300 mb-8">
@@ -69,12 +50,9 @@ const detail = () => {
               <p>Leader</p>
             </div>
             <div className="flex flex-col space-y-2">
-              {/* for team id input */}
-              <p className="text-neutral-700">{dataTeam._id}</p>
-              {/* for team code input */}
-              <p className="text-background-skyblue">{dataTeam.teamCode}</p>
-              {/* for team leader input */}
-              <p className="text-neutral-700">{dataTeam.teamLeader}</p>
+              <p className="text-neutral-700">{dataTeam?._id}</p>
+              <p className="text-background-skyblue">{dataTeam?.teamCode}</p>
+              <p className="text-neutral-700">{dataTeam?.teamLeader}</p>
             </div>
           </div>
           <div className="flex space-x-10 font-Montserrat text-[17px] font-bold pb-8 text-black border border-x-0 border-t-0 border-b-neutral-300 mb-8">
@@ -84,7 +62,7 @@ const detail = () => {
             </div>
             <div className="flex flex-col space-y-2">
               {/* for date */}
-              <p>{dataTeam.paymentDate}</p>
+              <p>{dataTeam?.paymentDate}</p>
               <button className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue">
                 Lihat
               </button>
@@ -117,20 +95,19 @@ const detail = () => {
           </h2>
           <div className="flex flex-col">
             {/* bikin parameter datanya nanti aja */}
-            {dataTeam?.teamMember?.map((member, idx) => (
-              <button onClick={() => fetchMember(member.userId)}>
+            {dataTeam?.teamMember?.map((member) => (
+              <button>
                 <Accordion
-                  name={member.name}
-                  email={member.email}
-                  dateOfBirth={member.dateOfBirth}
-                  address={member.address}
-                  phone={member.phone}
-                  status={member.status}
-                  institutionName={member.institutionName}
-                  institutionNumber={member.institutionNumber}
-                  key={idx}
-                  nomor={idx}
-                  // institutionFile={}
+                  name={member.userId.name}
+                  email={member.userId.email}
+                  dateOfBirth={member.userId.dateOfBirth}
+                  address={member.userId.address}
+                  phone={member.userId.phone}
+                  status={member.userId.status}
+                  institutionName={member.userId.institutionName}
+                  institutionNumber={member.userId.institutionNumber}
+                  institutionFile={member.userId.institutionFile}
+                  key={member.userId.institutionNumber}
                 />
               </button>
             ))}

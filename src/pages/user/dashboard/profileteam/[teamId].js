@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TeamProfileLayout from "./layout";
 
 import { FaArrowLeft } from "react-icons/fa";
@@ -13,12 +13,45 @@ import { BsQuestionOctagonFill } from "react-icons/bs";
 import Comment from "./Comment";
 import Status from "./Status";
 import Accordion from "./Accordion";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 const index = () => {
+  const router = useRouter();
+  const { teamId } = router.query;
+  const [dataTeam, setDataTeam] = useState([]);
+  const [announcements, setAnnouncements] = useState([]);
+
+  useEffect(() => {
+    if (teamId) {
+      axios
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/team/${teamId}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          setDataTeam(res.data.info);
+          axios
+          .get(`${process.env.NEXT_PUBLIC_API_URL}/team/get-announcements/${teamId}`, {
+            withCredentials: true,
+          })
+          .then((announ) => {
+            setAnnouncements(announ.data.announcements);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [teamId]);
+
   const copyOnclick = () => {};
   const editOnclick = () => {};
   const unggahOnclick = () => {};
   const uploadOnclick = () => {};
+console.log(dataTeam);
   return (
     <TeamProfileLayout>
       {/* header */}
@@ -27,7 +60,7 @@ const index = () => {
         <h2 className="font-GameOfSquid font-bold">DASHBOARD LOMBA</h2>
       </div>
 
-      <div className="space-y-5 md:space-y-0 md:flex md:flex-row md:justify-between md:gap-x-5 lg:flex-col lg:gap-y-5 lg:order-2">
+      <div className="space-y-5 text-black md:space-y-0 md:flex md:flex-row md:justify-between md:gap-x-5 lg:flex-col lg:gap-y-5 lg:order-2">
         {/* deadline verif box */}
         <div className="bg-text-placeholder-light px-5 py-5 rounded-md border-4 border-black md:order-2 lg:order-1 md:w-[40%] lg:w-full">
           <div className="flex items-center space-x-2">
@@ -61,36 +94,22 @@ const index = () => {
             </div>
           </div>
           <div className="max-h-72 md:max-h-56 lg:max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-white">
-            <Comment
-              title={"Verifikasi Gagal"}
-              destination={"Samsan Tech"}
-              content={
-                "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet."
-              }
-              date={"12 Januari 2024, 13:56:02"}
-            />
-            <Comment
-              title={"Verifikasi Gagal"}
-              destination={"Samsan Tech"}
-              content={
-                "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet."
-              }
-              date={"12 Januari 2024, 13:56:02"}
-            />
-            <Comment
-              title={"Verifikasi Gagal"}
-              destination={"Samsan Tech"}
-              content={
-                "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet."
-              }
-              date={"12 Januari 2024, 13:56:02"}
-            />
+            {announcements && announcements.map((announcement) => (
+              <Comment
+                key={announcement._id}
+                title={announcement.title}
+                toTeam={announcement.toTeam.teamName}
+                content={announcement.content}
+                createdAt={announcement.createdAt}
+              />
+            ))
+            }
           </div>
         </div>
       </div>
 
       {/* team info box */}
-      <div className="bg-text-placeholder-light px-5 py-5 rounded-md border-4 border-black space-y-8 md:flex md:gap-x-5 lg:order-1 lg:row-span-2 lg:col-span-2">
+      <div className="bg-text-placeholder-light text-black px-5 py-5 rounded-md border-4 border-black space-y-8 md:flex md:gap-x-5 lg:order-1 lg:row-span-2 lg:col-span-2">
         <div className="space-y-4 text-left md:w-1/2">
           <div className="flex items-center space-x-2">
             <BsPeopleFill />
@@ -99,24 +118,24 @@ const index = () => {
           <div className="border-b-[1px] pb-5 border-slate-600">
             <div className="flex items-center justify-between">
               <h2 className="font-CreatoDisplay font-bold text-[24px]">
-                SamSan Tech
+                {dataTeam?.teamName}
               </h2>
               <Status isVerified={false} />
             </div>
-            <p className="font-Montserrat font-bold text-[13.89px]">Heckaton</p>
+            <p className="font-Montserrat font-bold text-[13.89px]">{dataTeam?.eventId?.eventName}</p>
           </div>
           <div className="space-y-4 border-b-[1px] pb-5 border-slate-600">
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Team ID</h2>
-              <p className="h-full">0dfeb631</p>
+              <p className="h-full">{dataTeam?._id}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Code</h2>
-              <p className="h-full font-bold text-background-skyblue">jmgnda</p>
+              <p className="h-full font-bold text-background-skyblue">{dataTeam?.teamCode}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Leader</h2>
-              <p className="h-full">John Doe</p>
+              <p className="h-full">{dataTeam?.teamLeader}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <div className="font-bold w-[200px]">
@@ -124,7 +143,7 @@ const index = () => {
                 <p>Code</p>
               </div>
               <div className="h-full flex items-center space-x-2">
-                <p>1gh7bb3@</p>
+                <p>{dataTeam?.teamCode}</p>
                 <IoIosCopy
                   className="cursor-pointer"
                   onClick={() => copyOnclick()}
@@ -135,11 +154,11 @@ const index = () => {
           <div className="space-y-3 border-b-[1px] pb-5 border-slate-600">
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Status</h2>
-              <p className="h-full text-left">Mahasiswa</p>
+              <p className="h-full text-left">{dataTeam?.teamLeaderStatus}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Asal Instansi</h2>
-              <p className="h-full text-left">Universitas Diponegoro</p>
+              <p className="h-full text-left">{dataTeam?.teamInstitution}</p>
             </div>
           </div>
           <div className="space-y-4 border-b-[1px] pb-5 border-slate-600">
@@ -160,19 +179,19 @@ const index = () => {
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Tanggal Pembayaran</h2>
-              <p>12/01/2024</p>
+              <p>{dataTeam?.paymentDate}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Nama Pengirim</h2>
-              <p>John Doe</p>
+              <p>{dataTeam?.paymentSender}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">No. Rek</h2>
-              <p>6301 8888 8888</p>
+              <p>{dataTeam?.bankAccountId}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Bank</h2>
-              <p>BCA</p>
+              <p>{dataTeam?.bankName}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <div className="w-[200px]">
@@ -216,12 +235,28 @@ const index = () => {
           <h2 className="text-2xl font-Montserrat text-white font-bold">
             Anggota
           </h2>
-          <div className="mt-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-black scrollbar-track-primary-500 scroll-m-2 max-h-[720px]">
-            <Accordion />
-            <Accordion />
-            <Accordion />
-            <Accordion />
-          </div>
+          {dataTeam?.teamMember && dataTeam?.teamMember.map((member) => (
+            <div className="mt-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-black scrollbar-track-primary-500 scroll-m-2 max-h-[720px]">
+            {/* name, email, dateOfBirth, province, address, phone, id, status, institutionName, institutionNumber, institutionFile */}
+              <Accordion 
+              name={member.userId.name}
+              email={member.userId.email}
+              dateOfBirth={member.userId.dateOfBirth}
+              province={member.userId.province}
+              address={member.userId.address}
+              phone={member.userId.phone}
+              id={member.userId._id}
+              status={member.userId.status}
+              institutionName={member.userId.institutionName}
+              institutionNumber={member.userId.institutionNumber}
+              institutionFile={member.userId.institutionFile}
+              />
+              {/* <Accordion />
+              <Accordion />
+              <Accordion /> */}
+            </div>
+
+          ))}
         </div>
       </div>
 

@@ -23,8 +23,9 @@ import {
 } from "../../../../store/slices/userSlice.js";
 import { loadingEnd } from "../../../../store/action.js";
 import axios from "axios";
+import Link from "next/link";
 
-const Index = () => {
+const Index = (nameAbr) => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const { userTeam } = useSelector((state) => state.user);
 
@@ -44,13 +45,13 @@ const Index = () => {
     if (userTeam) {
       setCountLomba(userTeam?.asMember?.length);
     }
-    dispatch(getTeamsToSearch(process.env.NEXT_PUBLIC_COMPETITION_ID_CTF))
-      .unwrap()
-      .then((res) => {
-        dispatch(loadingEnd());
-        console.log(res);
+    // dispatch(getTeamsToSearch(process.env.NEXT_PUBLIC_COMPETITION_ID_CTF))
+    //   .unwrap()
+    //   .then((res) => {
+    //     dispatch(loadingEnd());
+        // console.log(res);
         // setCountLomba(res.asMember.length)
-      });
+      // });
   }, [isAuthenticated]);
 
   const searchTeam = () => {
@@ -71,6 +72,25 @@ const Index = () => {
         setDiscoverTeam([]);
       });
   };
+
+  // const createNewTeam = (eventId, teamCode) => {
+  //   axios
+  //     .post(
+  //       `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
+  //       {
+  //         eventId,
+  //         teamCode,
+  //       },
+  //       {
+  //         withCredentials: true,
+  //       }
+  //     )
+  //     .then((res) => {
+  //       console.log(res.data.message);
+  //       setOpenConfirmation(true);
+  //       setOpenInvitation(false);
+  //     });
+  // };
 
   const joinTeam = (eventId, teamId, teamLeaderId) => {
     axios
@@ -96,67 +116,69 @@ const Index = () => {
   };
 
   const { width } = useWindowSize();
-  function TeamCard({ competition, teamName, verify }) {
+  function TeamCard({ id, competition, teamName, verify }) {
     return (
-      <div className="bg-white w-full rounded-lg py-4 px-3 lg:px-8 lg:py-4 flex justify-between items-center gap-[17px] mt-[14px]">
-        <div className="basis-1/2">
-          <p className="font-bold font-Montserrat text-sm lg:text-base text-shade-black">
-            {competition}
-          </p>
-          <p className="font-medium font-Montserrat text-xs lg:text-sm text-neutral-700 ">
-            {teamName}
-          </p>
+      <Link href={`/user/dashboard/profileteam/${id}`}>
+        <div className="bg-white w-full rounded-lg py-4 px-3 lg:px-8 lg:py-4 flex justify-between items-center gap-[17px] mt-[14px]">
+          <div className="basis-1/2">
+            <p className="font-bold font-Montserrat text-sm lg:text-base text-shade-black">
+              {competition}
+            </p>
+            <p className="font-medium font-Montserrat text-xs lg:text-sm text-neutral-700 ">
+              {teamName}
+            </p>
+          </div>
+          <div className="basis-1/2 flex items-center justify-end gap-4 lg:gap-12">
+            {width < 640 ? (
+              <>
+                {verify === "VERIFIED" ? (
+                  <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2">
+                    <div className="p-[6px] bg-success-900 rounded" />
+                    <p className="font-bold font-Montserrat text-xs text-success-900">
+                      Verified
+                    </p>
+                  </div>
+                ) : (
+                  <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-error-100 rounded px-8 flex items-center justify-center gap-2">
+                    <div className="p-[6px] bg-warning-900 rounded" />
+                    <p className="font-bold font-Montserrat text-xs text-error-900">
+                      Unverified
+                    </p>
+                  </div>
+                )}
+                <ArrowRight />
+              </>
+            ) : (
+              <>
+                <div>
+                  <p className="font-bold font-Montserrat text-xs lg:text-sm text-neutral-900">
+                    Registered
+                  </p>
+                  <p className="font-medium text-xs lg:text-sm font-Montserrat text-neutral-700">
+                    16 Feb 2024
+                  </p>
+                </div>
+                {verify === "VERIFIED" ? (
+                  <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2">
+                    <div className="p-[6px] bg-success-900 rounded" />
+                    <p className="font-bold font-Montserrat text-xs text-success-900">
+                      Verified
+                    </p>
+                  </div>
+                ) : (
+                  <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-error-100 rounded px-8 flex items-center justify-center gap-2">
+                    <div className="p-[6px] bg-warning-900 rounded" />
+                    <p className="font-bold font-Montserrat text-xs text-error-900">
+                      Unverified
+                    </p>
+                  </div>
+                )}
+                <ArrowRight />
+              </>
+            )}
+          </div>
         </div>
-        <div className="basis-1/2 flex items-center justify-end gap-4 lg:gap-12">
-          {width < 640 ? (
-            <>
-              {verify === "VERIFIED" ? (
-                <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2">
-                  <div className="p-[6px] bg-success-900 rounded" />
-                  <p className="font-bold font-Montserrat text-xs text-success-900">
-                    Verified
-                  </p>
-                </div>
-              ) : (
-                <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-error-100 rounded px-8 flex items-center justify-center gap-2">
-                  <div className="p-[6px] bg-warning-900 rounded" />
-                  <p className="font-bold font-Montserrat text-xs text-error-900">
-                    Unverified
-                  </p>
-                </div>
-              )}
-              <ArrowRight />
-            </>
-          ) : (
-            <>
-              <div>
-                <p className="font-bold font-Montserrat text-xs lg:text-sm text-neutral-900">
-                  Registered
-                </p>
-                <p className="font-medium text-xs lg:text-sm font-Montserrat text-neutral-700">
-                  16 Feb 2024
-                </p>
-              </div>
-              {verify === "VERIFIED" ? (
-                <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2">
-                  <div className="p-[6px] bg-success-900 rounded" />
-                  <p className="font-bold font-Montserrat text-xs text-success-900">
-                    Verified
-                  </p>
-                </div>
-              ) : (
-                <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-error-100 rounded px-8 flex items-center justify-center gap-2">
-                  <div className="p-[6px] bg-warning-900 rounded" />
-                  <p className="font-bold font-Montserrat text-xs text-error-900">
-                    Unverified
-                  </p>
-                </div>
-              )}
-              <ArrowRight />
-            </>
-          )}
-        </div>
-      </div>
+      </Link>
     );
   }
 
@@ -186,7 +208,7 @@ const Index = () => {
     };
 
     /* */
-    const openConfirmation = ({ competitionName }) => {
+    const openConfirmation = ({ competitionName, nameAbr }) => {
       return (
         <div className="fixed inset-0 w-full flex justify-center items-center bg-black/70 z-50">
           <div className="relative h-auto flex flex-col gap-[25px] lg:gap-11 items-center justify-center w-[330px] sm:w-[370px] lg:w-[570px] bg-text-placeholder-light rounded-lg lg:rounded-xl border-[3px] border-black py-8 px-[10px]">
@@ -206,15 +228,21 @@ const Index = () => {
             </p>
             <div className="w-full h-auto flex justify-center items-center flex-col lg:flex-row gap-[10px] sm:gap-3 lg:gap-4">
               <div className="w-[212px]">
-                <Button
-                  fullW
-                  onClick={() => {
-                    setOpenConfirmation(false);
-                    setOpenInvitation(true);
-                  }}
-                  customClass={"lg:py-1"}
-                  text="Buat Tim"
-                />
+                <Link
+                  href={
+                    isAuthenticated ? "/competition/register/ctf" : "auth/login"
+                  }
+                >
+                  <Button
+                    fullW
+                    onClick={() => {
+                      setOpenConfirmation(false);
+                      setOpenInvitation(true);
+                    }}
+                    customClass={"lg:py-1"}
+                    text="Buat Tim"
+                  />
+                </Link>
               </div>
               <div className="w-[212px]">
                 <Button
@@ -287,13 +315,16 @@ const Index = () => {
                   <div className="w-full h-auto">
                     {userTeam &&
                       userTeam?.asMember?.map((team) => {
-                        return (
-                          <TeamCard
-                            competition={team.eventId.eventName}
-                            teamName={team.teamId.teamName}
-                            verify={team.teamId.status}
-                          />
-                        );
+                        if(team.teamId){
+                          return (
+                            <TeamCard
+                              id={team.teamId._id}
+                              competition={team.eventId.eventName}
+                              teamName={team.teamId.teamName}
+                              verify={team.teamId.status}
+                            />
+                          );                          
+                        }
                       })}
                   </div>
                 )}
@@ -456,15 +487,15 @@ const Index = () => {
             </p>
             <div className="w-full h-auto flex justify-center items-center flex-col lg:flex-row gap-[10px] sm:gap-3 lg:gap-4">
               <div className="w-[212px]">
-                <Button
-                  fullW
-                  onClick={() => {
-                    setOpenConfirmation(false);
-                    setOpenInvitation(true);
-                  }}
-                  customClass={"lg:py-1"}
-                  text="Buat Tim"
-                />
+                <Link
+                  href={
+                    isAuthenticated
+                      ? "/user/dashboard/lomba/datatim"
+                      : "/auth/login"
+                  }
+                >
+                  <Button fullW customClass={"lg:py-1"} text="Buat Tim" />
+                </Link>
               </div>
               <div className="w-[212px]">
                 <Button
@@ -565,8 +596,8 @@ const Index = () => {
           </div>
         </div>
       )}
-      {/* INI GA KE RENDER GATAU DAH */}
-      {!discoverTeam && openTimTdkKetemu && (
+      {/* Anjay udha disolve koor kelas */}
+      {discoverTeam !== "" && openTimTdkKetemu && (
         <div className="fixed inset-0 w-full flex justify-center items-center bg-black/70 z-50">
           <div className="flex justify-center items-center p-3 lg:p-2 rounded-lg lg:rounded-[15px] border-[3px] lg:border-none border-black bg-text-placeholder-light">
             <div className="relative h-auto flex flex-col gap-[25px] lg:gap-11 items-center justify-center w-[310px] sm:w-[370px] lg:w-[570px] bg-primary-500 rounded-[9px] lg:rounded-xl py-8 lg:py-11 px-4 lg:px-[10px]">

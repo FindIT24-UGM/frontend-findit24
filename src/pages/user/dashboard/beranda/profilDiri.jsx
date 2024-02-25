@@ -7,7 +7,7 @@ import React, {
   useReducer,
 } from "react";
 import RootLayout from "../../../layout";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import { HiArrowLeft } from "react-icons/hi";
 import { BsCalendar2PlusFill } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -15,11 +15,12 @@ import { IoSaveSharp } from "react-icons/io5";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import ModalParent from "../../modal/modalparent";
-import ModalVerification from "../../modal/modalverif";
-import ModalJoinTeam from "../../modal/modaljointeam";
-import ModalInvitationCode from "../../modal/modalinvitationcode";
+import ModalParent from "../../../../components/modal/modalparent";
+import ModalVerification from "../../../../components/modal/modalverif";
 import axios from "axios";
+import Image from "next/image";
+import { getUserData } from "../../../../store/slices/authSlice";
+import ModalJoinTeam from "../../../../components/modal/modaljointeam";
 
 //INITIALIZE FOR useReducer
 const initialState = {
@@ -29,8 +30,9 @@ const initialState = {
   province: undefined,
   address: undefined,
   status: undefined,
+  institutionFile: undefined,
   institutionName: undefined,
-  institutionNumber: undefined
+  institutionNumber: undefined,
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -39,8 +41,7 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-};  
-
+};
 
 const ProfilDiri = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -49,6 +50,7 @@ const ProfilDiri = () => {
   const [openStatus, setOpenStatus] = useState(false);
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [updateUser, setUpdateUser] = useState({});
 
   const router = useRouter();
 
@@ -201,58 +203,72 @@ const ProfilDiri = () => {
 
   const statuses = [
     {
-      name: "Universitas/Institut",
+      name: "Mahasiswa",
     },
     {
-      name: "SMA",
+      name: "Pelajar",
     },
     {
       name: "Umum",
     },
   ];
 
+  /* Gtau Bjir Routingnya */
+  // useEffect(() => {
+  //   axios.get(process.env.NEXT_PUBLIC_API_URL + "/user/").then((response) => {
+  //     dispatch(getUserData);
+  //     const profileData = response.data;
+  //     dispatch({
+  //       type: "UPDATE_FIELD",
+  //       field: "name",
+  //       value: profileData.name,
+  //     });
+  //     dispatch({
+  //       type: "UPDATE_FIELD",
+  //       field: "DateOfBirth",
+  //       value: new Date(profileData),
+  //     });
+  //   });
+  // });
+
   /*----------BLM WORK BUAT UPLOAD INSTITUTION FILE---------- */
   const [imagePreview, setImagePreview] = useState("");
-  const [institutionFile, setInstitutionFile] = useState(undefined);
-  const formData = new FormData();
-  formData.append("institutionFile", institutionFile);
   const uploadInstitutionFile = (e) => {
+    const formData = new FormData();
+    const file = e.target.files[0];
+
+    formData.append("institutionFile", file);
 
     const regex = /\.(jpg|jpeg|png)$/i;
-    // if (regex.test(e.target.value)) {
-    //   const reader = new FileReader();
-    //   reader.onload = (e) => {
-    //     setImagePreview(e.target.result);
-    //   };
-    //   reader.readAsDataURL(e.target.files[0]);
-    // }
-    uploadFile()
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
-  async function uploadFile() {
-    const res = await axios.post(
-      process.env.NEXT_PUBLIC_API_URL + "/user/upload-file",
-      formData,
-      {
-        withCredentials: true
-      }
-    );
-    return res;
-  }
+    if (regex.test(file.name)) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreview(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+    if (formData) {
+      axios
+        .post(process.env.NEXT_PUBLIC_API_URL + "/user/upload-file", formData, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log(formData);
+        });
+    }
+  };
   /*----------------END------------------- */
-
 
   const CustomInput = ({ value, onClick }) => {
     return (
       <div className="w-full">
         <div className="w-full h-auto relative flex justify-end items-center">
           <input
-            className="w-full h-5 text-sm font-Montserrat font-medium text-neutral-300 p-5 rounded-lg bg-text-placeholder-light cursor-pointer"
+            className="w-full h-5 text-sm font-Montserrat font-medium text-black font-Montserrat font-bold p-5 rounded-lg bg-text-placeholder-light cursor-pointer"
             type="text"
             placeholder="10/10/2002"
             value={value}
@@ -278,41 +294,65 @@ const ProfilDiri = () => {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  const showModal = () => {
-    {
-      /* Tampilkan modal simpan */
-      <ModalParent>
-      <ModalVerification
-        quest="Simpan perubahan sebelum keluar?"
-        declare="Anda dapat mengeditnya lagi nanti"
-        confirm="Keluar & Simpan"
-        cancel="Batal"
-      />
-    </ModalParent>
-    }
-  };
-/*---------HANDLE INPUT DATA (pake useReducer)------------ */
+  // const showModal = () => {
+  //   {
+  //     /* Tampilkan modal simpan */
+  //     <ModalParent>
+  //       <ModalVerification
+  //         quest="Simpan perubahan sebelum keluar?"
+  //         declare="Anda dapat mengeditnya lagi nanti"
+  //         confirm="Keluar & Simpan"
+  //         cancel="Batal"
+  //       />
+  //     </ModalParent>;
+  //   }
+  // };
+  /*---------HANDLE INPUT DATA (pake useReducer)------------ */
   const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch({ type: "UPDATE_FIELD", field: name, value });
+
+    setUpdateUser((prev) => {
+      return {
+        ...prev,
+        [type]: value,
+      };
+    });
   };
 
   const handleDateChange = (date) => {
     dispatch({ type: "UPDATE_FIELD", field: "dateOfBirth", value: date });
   };
 
-  const submitHandler = () => {
-    axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/user`, state, { withCredentials: true })
-    .then(res => {
-      //bisa diganti message atau apalah
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
-/*----------------END------------------ */
+  const handleFileChange = (e) => {
+    uploadInstitutionFile(e);
+  };
 
+  const submitHandler = () => {
+    axios
+      .patch(
+        `${process.env.NEXT_PUBLIC_API_URL}/user`,
+        state,
+        {
+          withCredentials: true,
+        },
+        router.push("/user/dashboard")
+      )
+      .then((res) => {
+        //bisa diganti message atau apalah
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    const updatedData = {
+      ...updateUser,
+    };
+  };
+  /*----------------END------------------ */
+
+  const [showModalVerification, setShowModalVerification] = useState(0);
   return (
     <RootLayout>
       <div className="bg-background-skyblue w-screen min-h-screen flex flex-col justify-center items-center gap-8 lg:py-[5vh]">
@@ -354,7 +394,7 @@ const ProfilDiri = () => {
                       Nama Lengkap
                     </p>
                     <input
-                      className="h-5 w-full p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm"
+                      className="h-5 w-full p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm"
                       placeholder="John Doe"
                       required
                       type="text"
@@ -385,7 +425,7 @@ const ProfilDiri = () => {
                       No. HP
                     </p>
                     <input
-                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm"
+                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm"
                       placeholder="0123456789"
                       required
                       type="text"
@@ -404,7 +444,7 @@ const ProfilDiri = () => {
                       Asal Provinsi
                     </p>
                     <div
-                      className="w-full text-base font-medium font-Montserrat text-neutral-300 relative"
+                      className="w-full text-base font-medium font-Montserrat text-black font-Montserrat font-bold relative"
                       ref={dropdownProvinsiRef}
                     >
                       <div
@@ -439,8 +479,13 @@ const ProfilDiri = () => {
                               key={provinsi?.name}
                               className={`bg-primary-300 relative text-text-placeholder-light py-[15px] pl-8 cursor-pointer before:h-[1px] before:w-auto before:bg-white before:absolute before:left-[10px] before:right-0 before:bottom-0 `}
                               onClick={() => {
-                                dispatch({ type: "UPDATE_FIELD", field: "province", value: provinsi.name })
-                                setOpenProvinsi(false)}}
+                                dispatch({
+                                  type: "UPDATE_FIELD",
+                                  field: "province",
+                                  value: provinsi.name,
+                                });
+                                setOpenProvinsi(false);
+                              }}
                             >
                               {provinsi?.name}
                             </li>
@@ -456,7 +501,7 @@ const ProfilDiri = () => {
                     <textarea
                       id="address"
                       name="address"
-                      className="min-h-[132px] p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm resize-none"
+                      className="min-h-[132px] p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm resize-none"
                       placeholder="Jl. Grafika No.2, Sendowo, Sinduadi, Kec. Mlati, Kabupaten Sleman, D.I Yogyakarta 55281"
                       maxLength={100}
                       value={state.address}
@@ -479,7 +524,7 @@ const ProfilDiri = () => {
                         onClick={() => setOpenStatus(!openStatus)}
                       >
                         <input
-                          className={`w-full bg-white p-5 h-5 cursor-pointer ${
+                          className={`w-full bg-white p-5 h-5 cursor-pointer text-black font-bold ${
                             openStatus ? "rounded-t-lg" : "rounded-lg"
                           }`}
                           placeholder="Pilih Status"
@@ -494,7 +539,7 @@ const ProfilDiri = () => {
                         />
                       </div>
                       <ul
-                        className={`w-full bg-[#F1A56A] overflow-y-auto absolute z-10 ${
+                        className={`w-full bg-[#F1A56A] overflow-y-auto absolute z-10 text-black font-bold ${
                           openStatus
                             ? "max-h-[222px] rounded-b-lg scrollbar scrollbar-w-[10px] scrollbar-thumb-black scrollbar-thumb-rounded-md"
                             : "max-h-0 rounded-none"
@@ -505,7 +550,11 @@ const ProfilDiri = () => {
                             key={status?.name}
                             className={`bg-primary-300 relative text-text-placeholder-light py-[15px] pl-8 cursor-pointer before:h-[1px] before:w-auto before:bg-white before:absolute before:left-[10px] before:right-[10px] before:bottom-0 `}
                             onClick={() => {
-                              dispatch({ type: "UPDATE_FIELD", field: "status", value: status.name })
+                              dispatch({
+                                type: "UPDATE_FIELD",
+                                field: "status",
+                                value: status.name,
+                              });
                               setOpenStatus(false);
                             }}
                           >
@@ -520,7 +569,7 @@ const ProfilDiri = () => {
                       Institusi
                     </p>
                     <input
-                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm"
+                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm"
                       placeholder="Universitas Diponegoro"
                       required
                       type="text"
@@ -535,7 +584,7 @@ const ProfilDiri = () => {
                       No. Institusi
                     </p>
                     <input
-                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm"
+                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm"
                       placeholder="20/25425/TK/23541"
                       required
                       type="text"
@@ -550,16 +599,22 @@ const ProfilDiri = () => {
                       Kartu Institusi
                     </p>
                     <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
+                      {imagePreview && (
+                        <Image
+                          width={200}
+                          height={200}
+                          src={imagePreview}
+                          alt="kartu identitas"
+                          className="mb-4"
+                        />
+                      )}
                       <input
                         className="hidden"
                         type="file"
                         id="institutionFile"
                         name="institutionFile"
-                        value={institutionFile}
                         accept="image/*"
-                        onChange={(e) => {
-                          uploadInstitutionFile()
-                        }}
+                        onChange={handleFileChange}
                       />
                       <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
                         Unggah
@@ -590,7 +645,7 @@ const ProfilDiri = () => {
             <div className="w-full flex justify-center">
               <button
                 className="flex items-center justify-center gap-2 w-full lg:w-1/3 bg-background-skyblue py-2 lg:py-3 rounded-lg"
-                onClick={submitHandler}
+                onClick={() => setShowModalVerification(1)}
               >
                 <IoSaveSharp size={17.5} color="black" />
                 <p className="font-GameOfSquid text-shade-black">Simpan</p>
@@ -598,15 +653,24 @@ const ProfilDiri = () => {
             </div>
           </div>
         </div>
-        <ModalParent>
-          <ModalVerification
-            quest="Simpan perubahan sebelum keluar?"
-            declare="Anda dapat mengeditnya lagi nanti"
-            confirm="Keluar & Simpan"
-            cancel="Batal"
-          />
-        </ModalParent>
       </div>
+      <ModalParent
+        isVisible={showModalVerification}
+        onClose={() => {
+          setShowModalVerification(0);
+        }}
+      >
+        <ModalVerification
+          isVisible={showModalVerification}
+          onClose={() => {
+            setShowModalVerification(0);
+          }}
+          quest="Simpan perubahan sebelum keluar?"
+          declare="Anda dapat mengeditnya lagi nanti"
+          confirm="Keluar & Simpan"
+          cancel="Batal"
+        />
+      </ModalParent>
     </RootLayout>
   );
 };

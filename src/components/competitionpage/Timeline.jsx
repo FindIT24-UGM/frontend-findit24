@@ -4,14 +4,16 @@ import styles from "./Timeline.module.css";
 import Image from "next/image";
 import HexagonDot_Desktop from "../../assets/compepage/Hexagon_Desktop.png";
 
+import TimeLineCard from "./TimeLineCard";
+
 function HexagonDot() {
   return (
-    <div className="w-[1.875vw]">
+    <div className="w-[1.5vw]">
       <Image
         src={HexagonDot_Desktop}
         sizes={36}
         alt="Hexagon Dot.png"
-        className="relative z-30"
+        className="relative"
       ></Image>
     </div>
   );
@@ -19,111 +21,111 @@ function HexagonDot() {
 
 function LineH1() {
   return (
-    <div className="w-[105%] flex items-center">
+    <div className="w-[14.56vw] flex items-center">
       <HexagonDot />
-      <div className="w-full h-[0.75vw] bg-gradient-to-l -ml-2 from-[#FF8C5A] to-[#F95949]"></div>
+      <div className="w-full h-[0.75vw] bg-gradient-to-l from-[#FF8C5A] to-[#F95949] -m-[1vw]"></div>
     </div>
   );
-}
-
-function HorizontalTextBot() {
-  <div className="w-full h-fit flex flex-col gap-y-[1.75vw]">
-    <LineH1 />
-    <p></p>
-  </div>;
 }
 
 function LineV1() {
   return (
-    <div className="h-full w-[1.65vw] bg-[#1A1A1A]">
-      <div className="w-[6.6667vw] aspect-square bg-[#1A1A1A] rounded-full mx-[-2.5vw] mt-[-0.277vw]"></div>
+    <div className="h-[25vw] w-fit">
+      <HexagonDot />
+      <div className="h-full w-[45%] bg-gradient-to-b from-[#FF8C5A] to-[#F95949] mx-auto"></div>
     </div>
   );
 }
 
+const dummyData = [
+  { name: "Content1", date: "11 Maret" },
+  { name: "Content2", date: "12 Maret" },
+  { name: "Content3", date: "13 Maret" },
+  { name: "Content4", date: "14 Maret" },
+  { name: "Content5", date: "15 Maret" },
+  { name: "Content6", date: "16 Maret" },
+  { name: "Content7", date: "17 Maret" },
+  { name: "Content8", date: "18 Maret" },
+];
+
 export default function Timeline() {
-  const [windowWidth, setWindowWidth] = useState(null);
-
-  useEffect(() => {
-    const updateWindowsWidth = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    updateWindowsWidth();
-
-    return () => {
-      window.addEventListener("resize", updateWindowsWidth);
-    };
-  }, []);
   return (
-    <>
-      {windowWidth <= 850 ? (
-        <div className="w-full min-h-screen">
-          <div className="flex flex-col items-center justify-center gap-y-4">
-            <h1 className="font-GameOfSquid text-[24px] text-white mt-8">
-              Timeline
-            </h1>
-            <div className="flex flex-col justify-center items-center">
-              <div className="w-full grid grid-rows-3 gap-y-16">
-                <LineV1 />
-                <LineV1 />
-              </div>
-            </div>
-          </div>
+    <div className="bg-background-skyblue min-h-screen w-full p-10">
+      <h2 className="font-GameOfSquid text-[48px] font-bold text-white text-center lg:text-left lg:pl-10 mb-14">
+        Timeline
+      </h2>
+      <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:justify-start lg:overflow-auto lg:scrollbar-none lg:flex-col w-full">
+        <div className="mt-[13vw] space-y-[20vw] lg:hidden">
+          {dummyData.map((item, i) => {
+            return (
+              <p
+                key={i}
+                className="font-GameOfSquid text-white h-[5vw] my-auto"
+              >
+                {item.date}
+              </p>
+            );
+          })}
         </div>
-      ) : (
-        <div className="flex flex-col justify-center w-full h-fit gap-y-[1.75vw] py-24">
-          <h2 className="font-GameOfSquid text-white">Timeline</h2>
-          <div className="grid grid-cols-7 gap-y-[1.75vw]">
-            <div></div>
-            <div className="flex flex-col justify-end">
-              <Image src={Opreg_Container} alt="Opreg.png"></Image>
-            </div>
-            <div>
-              <div className="flex h-[240px] items-end">
-                <div className="w-[75px] flex flex-col font-GameOfSquid text-white">
-                  <p className="text-[1.875vw] text-center">12</p>
-                  <p className="text-[1.042vw]">March</p>
+        <div className="mt-[13vw] lg:hidden">
+          {dummyData.map((item, i) => {
+            return i !== dummyData.length - 1 && <LineV1 key={i} />;
+          })}
+          <HexagonDot />
+        </div>
+        <div className="flex flex-col lg:hidden">
+          {dummyData.map((item, i) => {
+            console.log(i);
+            return (
+              <div className="my-[1vw]">
+                <TimeLineCard content={item.name} key={i} />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* odd card */}
+        <div className="hidden lg:flex space-x-[4vw]">
+          {dummyData.map((item, i) => {
+            return (
+              i % 2 !== 1 && (
+                <div className="flex space-x-[4.28vw]">
+                  <div className="my-[1vw]">
+                    <TimeLineCard content={item.name} key={i} />
+                  </div>
+                  <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">
+                    {dummyData[i + 1].date}
+                  </p>
                 </div>
-              </div>
-            </div>
-            <div className="flex flex-col justify-end">
-              <Image src={Opreg_Container} alt="Opreg.png"></Image>
-            </div>
-            <div></div>
-            <div className="flex flex-col justify-end">
-              <Image src={Opreg_Container} alt="Opreg.png"></Image>
-            </div>
-            <div></div>
-            {/* Line */}
-            <div></div>
-            <LineH1 />
-            <LineH1 />
-            <LineH1 />
-            <LineH1 />
-            <LineH1 />
-            <LineH1 />
-            <div></div>
-            <div>
-              <div className="w-[75px] flex flex-col font-GameOfSquid text-white -ml-4">
-                <p className="text-[1.875vw] text-center">12</p>
-                <p className="text-[1.042vw]">March</p>
-              </div>
-            </div>
-            <div className="flex flex-col justify-start items-center">
-              <Image src={Opreg_Container} wid alt="Opreg.png"></Image>
-            </div>
-            <div></div>
-            <div>
-              <Image src={Opreg_Container} wid alt="Opreg.png"></Image>
-            </div>
-            <div></div>
-            <div>
-              <Image src={Opreg_Container} wid alt="Opreg.png"></Image>
-            </div>
-          </div>
+              )
+            );
+          })}
         </div>
-      )}
-    </>
+        {/* horizontal line */}
+        <div className="hidden lg:flex w-[120%] ml-[7.28vw]">
+          {dummyData.map((item, i) => {
+            return i !== dummyData.length - 1 && <LineH1 key={i} />;
+          })}
+          <HexagonDot />
+        </div>
+        {/* even card */}
+        <div className="hidden lg:flex ml-[4.28vw] space-x-[4vw]">
+          {dummyData.map((item, i) => {
+            return (
+              i % 2 === 1 && (
+                <div className="flex space-x-[4.28vw]">
+                  <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">
+                    {dummyData[i - 1].date}
+                  </p>
+                  <div className="my-[1vw]">
+                    <TimeLineCard content={item.name} key={i} />
+                  </div>
+                </div>
+              )
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 }

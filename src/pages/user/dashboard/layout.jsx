@@ -22,7 +22,7 @@ const UserDashboardLayout = ({ children }) => {
     const menuItems = [
         { path: '/user/dashboard/beranda', icon: <HiHome size={20} color='black' />, label: 'Beranda' },
         { path: '/user/dashboard/lomba', icon: <AiFillTrophy size={20} color='black' />, label: 'Lomba' },
-        { path: '/comingsoon', icon: <BsTvFill size={20} color='black' />, label: 'Webinar' },
+        { path: '/user/dashboard/webinar', icon: <BsTvFill size={20} color='black' />, label: 'Webinar' },
     ];
 
     useEffect(() => {
@@ -58,7 +58,7 @@ const UserDashboardLayout = ({ children }) => {
                             {menuItems.map((item) => (
                                 <div
                                     key={item.path}
-                                    className={`py-3 px-5 rounded-md ${path === item.path ? 'bg-primary-500 border-4 border-shade-black' : 'bg-primary-300'} w-full cursor-pointer min-h-5 flex items-center gap-2`}
+                                    className={`py-3 px-5 rounded-md font-GameOfSquid ${path === item.path ? 'bg-primary-500 border-4 border-shade-black' : 'bg-primary-300'} w-full cursor-pointer min-h-5 flex items-center gap-2`}
                                     onClick={() => router.push(item.path)}
                                 >
                                     {item.icon}

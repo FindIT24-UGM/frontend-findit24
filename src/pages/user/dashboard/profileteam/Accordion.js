@@ -1,13 +1,19 @@
+import { format } from "date-fns";
 import React from "react";
 import { useState } from "react";
 import { MdPlayArrow } from "react-icons/md";
 
-export default function Accordion() {
+export default function Accordion({name, email, dateOfBirth, province, address, phone, id, status, institutionName, institutionNumber, institutionFile }) {
+
+  const formattedDateOfBirth = format(new Date(`${dateOfBirth}`), 'dd MMMM y');
+
   const [isExpand, setIsExpand] = useState(0);
   const clickAccordion = () => {
     setIsExpand(!isExpand);
   };
-  const unggahOnclick = () => {};
+  const unggahOnclick = () => {
+    window.open(`${institutionFile}`, "_blank");
+  };
   return (
     <div className={`bg-shade-white rounded-md my-2 ${isExpand ? 'border-2 border-black' : ''}`}>
       <div
@@ -18,7 +24,7 @@ export default function Accordion() {
       >
         <div className="flex items-center space-x-4">
           <p>1.</p>
-          <p>Han Jipyeong</p>
+          <p>{name}</p>
         </div>
         <MdPlayArrow className={`text-xl delay-100 ${isExpand ? 'transition rotate-90' : ''} delay-100`} />
       </div>
@@ -26,44 +32,43 @@ export default function Accordion() {
         <div className="px-4 pt-3">
           <div className="font-Montserrat text-[11.57px] my-2">
             <h2 className="font-bold">Email</h2>
-            <p>Johndoe@gmail.com</p>
+            <p>{email}</p>
           </div>
           <div className="font-Montserrat text-[11.57px] my-2">
             <h2 className="font-bold">Tanggal Lahir</h2>
-            <p>10/10/2002</p>
+            <p>{formattedDateOfBirth}</p>
           </div>
           <div className="font-Montserrat text-[11.57px] my-2">
             <h2 className="font-bold">Asal Provinsi</h2>
-            <p>D.I. Yogyakarta</p>
+            <p>{province}</p>
           </div>
           <div className="font-Montserrat text-[11.57px] my-2">
             <h2 className="font-bold">Alamat Lengkap</h2>
             <p>
-              Jl. Grafika No.2, Sendowo, Sinduadi, Kec. Mlati, Kabupaten Sleman,
-              D.I Yogyakarta 55281
+            {address}
             </p>
           </div>
           <div className="font-Montserrat text-[11.57px] my-2">
             <h2 className="font-bold">Nomor HP</h2>
-            <p>+62 044144015</p>
+            <p>{phone}</p>
           </div>
         </div>
         <div className="px-4 pb-4">
           <div className="font-Montserrat text-[11.57px] my-2">
             <h2 className="font-bold">ID Peserta</h2>
-            <p>g49dfh4s</p>
+            <p>{id}</p>
           </div>
           <div className="font-Montserrat text-[11.57px] my-2">
             <h2 className="font-bold">Status</h2>
-            <p>Mahasiswa</p>
+            <p>{status}</p>
           </div>
           <div className="font-Montserrat text-[11.57px] my-2">
             <h2 className="font-bold">Institusi</h2>
-            <p>Universitas Diponegoro</p>
+            <p>{institutionName}</p>
           </div>
           <div className="font-Montserrat text-[11.57px] my-2">
             <h2 className="font-bold">Nomor Institusi</h2>
-            <p>1548824-2554-887</p>
+            <p>{institutionNumber}</p>
           </div>
           <div className="font-Montserrat text-[11.57px] my-2">
             <h2 className="font-bold">Kartu Institusi</h2>

@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import React, { useState } from "react";
 import { TiChevronRight } from "react-icons/ti";
 
@@ -12,7 +13,9 @@ export default function Accordion({
   institutionNumber,
   institutionFile,
 }) {
+  const formattedDateOfBirth = format(new Date(`${dateOfBirth}`), 'dd MMMM y');
   const [expand, setExpand] = useState(0);
+
   return (
     <div
       className={`bg-white p-2 rounded-lg my-4 text-black overflow-hidden ${
@@ -37,7 +40,7 @@ export default function Accordion({
           </div>
           <div className="py-2">
             <h2 className="font-bold">Tanggal Lahir</h2>
-            <p>{dateOfBirth}</p>
+            <p>{formattedDateOfBirth}</p>
           </div>
           <div className="py-2">
             <h2 className="font-bold">Alamat</h2>
@@ -64,7 +67,7 @@ export default function Accordion({
           </div>
           <div className="py-2">
             <h2 className="font-bold">Kartu Institusi</h2>
-            <button className="text-[13px] text-center px-5 py-[2px] rounded-lg border-2 border-background-skyblue text-background-skyblue">
+            <button onClick={() => window.open(`${institutionFile}`, "_blank")} className="text-[13px] text-center px-5 py-[2px] rounded-lg border-2 border-background-skyblue text-background-skyblue">
               Lihat
             </button>
           </div>
