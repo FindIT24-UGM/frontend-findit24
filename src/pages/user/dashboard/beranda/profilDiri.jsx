@@ -15,10 +15,8 @@ import { IoSaveSharp } from "react-icons/io5";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import ModalParent from "../../modal/modalparent";
-import ModalVerification from "../../modal/modalverif";
-import ModalJoinTeam from "../../modal/modaljointeam";
-import ModalInvitationCode from "../../modal/modalinvitationcode";
+import ModalParent from "../../../../components/modal/modalparent";
+import ModalVerification from "../../../../components/modal/modalverif";
 import axios from "axios";
 import Image from "next/image";
 import { getUserData } from "../../../../store/slices/authSlice";
