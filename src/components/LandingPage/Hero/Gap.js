@@ -32,7 +32,7 @@ const Gap = () => {
           src={patternsBackground}
           className="w-full bg-cover absolute top-10 "
         />
-        <Image src={Gloey} className="lg:w-[25vw] md:w-[40vw] w-[50vw] absolute lg:top-[59vh] lg:right-[20vw] md:top-[35vh] top-[25vh] animate-spin-slow" />
+        <Image src={Gloey} className="absolute animate-spin-slow w-[45vw] bottom-[-75vw] md:bottom-[-48vw]" />
       </div>
       <div className="relative">
         {/* awan awan */}
@@ -60,3 +60,5 @@ const Gap = () => {
 };
 
 export default Gap;
+
+// lg:w-[25vw] md:w-[40vw] w-[50vw] absolute lg:top-[59vh] lg:right-[20vw] md:top-[35vh] top-[25vh] 
