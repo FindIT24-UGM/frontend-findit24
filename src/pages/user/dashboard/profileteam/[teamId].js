@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from "react";
 import TeamProfileLayout from "./layout";
 
@@ -21,6 +22,7 @@ const index = () => {
   const { teamId } = router.query;
   const [dataTeam, setDataTeam] = useState([]);
   const [announcements, setAnnouncements] = useState([]);
+  const [date, setDate] = useState(null);
 
   useEffect(() => {
     if (teamId) {
@@ -47,11 +49,64 @@ const index = () => {
     }
   }, [teamId]);
 
+/*---------handle upload twibbon (pdf) ss twibbon smua anggota jadiin satu pdf------- */
+  const handleUploadTwibbon = (e) => {
+    const formTwibbon = new FormData();
+    const file = e.target.files[0];
+
+    formTwibbon.append("twibbonTeam", file);
+
+    const regex = /\.(jpg|jpeg|png)$/i;
+
+    if (formTwibbon) {
+      axios
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/team/upload-twibbon/${teamId}`, formTwibbon, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log(formTwibbon);
+        });
+    }
+  };
+/*----------END--------------- */
+
+/*------handle upload payment (png/jpg/jpeg)------ */
+  const handleUploadPaymentFile = (e) => {
+    const formPayment = new FormData();
+    const file = e.target.files[0];
+
+    formPayment.append("paymentFile", file);
+
+    const regex = /\.(jpg|jpeg|png)$/i;
+
+    if (formPayment) {
+      axios
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/team/verification/${teamId}`, formPayment, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log(formPayment);
+        });
+    }
+  }
+  /*----------END------------ */
+
   const copyOnclick = () => {};
   const editOnclick = () => {};
-  const unggahOnclick = () => {};
-  const uploadOnclick = () => {};
-console.log(dataTeam);
+
+  if(dataTeam?.paymentDate){
+    const formattedDate = format(new Date(`${user?.dateOfBirth}`), "dd MMMM y");
+    setDate(formattedDate)
+  }
+
   return (
     <TeamProfileLayout>
       {/* header */}
@@ -120,7 +175,7 @@ console.log(dataTeam);
               <h2 className="font-CreatoDisplay font-bold text-[24px]">
                 {dataTeam?.teamName}
               </h2>
-              <Status isVerified={false} />
+              <Status isVerified={dataTeam?.verified} />
             </div>
             <p className="font-Montserrat font-bold text-[13.89px]">{dataTeam?.eventId?.eventName}</p>
           </div>
@@ -179,7 +234,11 @@ console.log(dataTeam);
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Tanggal Pembayaran</h2>
-              <p>{dataTeam?.paymentDate}</p>
+              {date ? (
+                <p>{date}</p>
+              ) : (
+                <p>-</p>
+              )}
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Nama Pengirim</h2>
@@ -200,14 +259,28 @@ console.log(dataTeam);
                   buktiPembayaran.png
                 </p>
               </div>
-              <button
-                className="w-[160px] border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
-                onClick={() => {
-                  unggahOnclick();
-                }}
+              {dataTeam?.paymentFile ==="" ? (
+              <label
+              className="w-[160px] hover:cursor-pointer border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
               >
-                Unggah
+              <input
+                className="hidden"
+                type="file"
+                id="paymentFile"
+                name="paymentFile"
+                accept="image/*"
+                onChange={handleUploadPaymentFile}
+              />
+              <p>Unggah</p>
+            </label>
+              ) : (
+                <button onClick={() => router.push(`${dataTeam?.paymentFile}`)}
+                className="w-[160px] hover:cursor-pointer border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
+                >
+                <p>Lihat</p>
               </button>
+              )}
+
             </div>
             <div className="font-Montserrat flex items-center">
               <div className="w-[200px]">
@@ -216,14 +289,27 @@ console.log(dataTeam);
                   anda belum upload
                 </p>
               </div>
-              <button
-                className="w-[160px] border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
-                onClick={() => {
-                  uploadOnclick();
-                }}
+              {dataTeam?.twibbonTeam ==="" ? (
+              <label
+                className="w-[160px] border-4 hover:cursor-pointer border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
               >
-                Upload
-              </button>
+                <input
+                  className="hidden"
+                  type="file"
+                  id="twibbonTeam"
+                  name="twibbonTeam"
+                  accept="application/*"
+                  onChange={handleUploadTwibbon}
+                />
+                <p>Upload</p>
+              </label>
+              ) : (
+                <button onClick={() => router.push(`${dataTeam?.twibbonTeam}`)}
+                className="w-[160px] border-4 hover:cursor-pointer border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
+              >
+                <p>Lihat</p>
+              </button >
+              )}
             </div>
           </div>
           <button className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300">
