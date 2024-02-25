@@ -268,7 +268,7 @@ const ProfilDiri = () => {
       <div className="w-full">
         <div className="w-full h-auto relative flex justify-end items-center">
           <input
-            className="w-full h-5 text-sm font-Montserrat font-medium text-black font-Montserrat font-bold p-5 rounded-lg bg-text-placeholder-light cursor-pointer"
+            className="w-full h-5 text-sm text-black font-Montserrat font-bold p-5 rounded-lg bg-text-placeholder-light cursor-pointer"
             type="text"
             placeholder="10/10/2002"
             value={value}
@@ -444,7 +444,7 @@ const ProfilDiri = () => {
                       Asal Provinsi
                     </p>
                     <div
-                      className="w-full text-base font-medium font-Montserrat text-black font-Montserrat font-bold relative"
+                      className="w-full text-base text-black font-Montserrat font-bold relative"
                       ref={dropdownProvinsiRef}
                     >
                       <div

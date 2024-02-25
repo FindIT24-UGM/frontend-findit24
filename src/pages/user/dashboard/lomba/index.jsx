@@ -490,7 +490,7 @@ const Index = (nameAbr) => {
                 <Link
                   href={
                     isAuthenticated
-                      ? "/user/dashboard/lomba/datatim"
+                      ? "/user/dashboard/lomba/dataTim"
                       : "/auth/login"
                   }
                 >
