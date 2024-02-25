@@ -20,6 +20,7 @@ import ModalVerification from "../../../../components/modal/modalverif";
 import axios from "axios";
 import Image from "next/image";
 import { getUserData } from "../../../../store/slices/authSlice";
+import ModalJoinTeam from "../../../../components/modal/modaljointeam";
 
 //INITIALIZE FOR useReducer
 const initialState = {
@@ -293,19 +294,19 @@ const ProfilDiri = () => {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  const showModal = () => {
-    {
-      /* Tampilkan modal simpan */
-      <ModalParent>
-        <ModalVerification
-          quest="Simpan perubahan sebelum keluar?"
-          declare="Anda dapat mengeditnya lagi nanti"
-          confirm="Keluar & Simpan"
-          cancel="Batal"
-        />
-      </ModalParent>;
-    }
-  };
+  // const showModal = () => {
+  //   {
+  //     /* Tampilkan modal simpan */
+  //     <ModalParent>
+  //       <ModalVerification
+  //         quest="Simpan perubahan sebelum keluar?"
+  //         declare="Anda dapat mengeditnya lagi nanti"
+  //         confirm="Keluar & Simpan"
+  //         cancel="Batal"
+  //       />
+  //     </ModalParent>;
+  //   }
+  // };
   /*---------HANDLE INPUT DATA (pake useReducer)------------ */
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -351,6 +352,7 @@ const ProfilDiri = () => {
   };
   /*----------------END------------------ */
 
+  const [showModalVerification, setShowModalVerification] = useState(0);
   return (
     <RootLayout>
       <div className="bg-background-skyblue w-screen min-h-screen flex flex-col justify-center items-center gap-8 lg:py-[5vh]">
@@ -643,7 +645,7 @@ const ProfilDiri = () => {
             <div className="w-full flex justify-center">
               <button
                 className="flex items-center justify-center gap-2 w-full lg:w-1/3 bg-background-skyblue py-2 lg:py-3 rounded-lg"
-                onClick={submitHandler}
+                onClick={() => setShowModalVerification(1)}
               >
                 <IoSaveSharp size={17.5} color="black" />
                 <p className="font-GameOfSquid text-shade-black">Simpan</p>
@@ -651,15 +653,24 @@ const ProfilDiri = () => {
             </div>
           </div>
         </div>
-        <ModalParent>
-          <ModalVerification
-            quest="Simpan perubahan sebelum keluar?"
-            declare="Anda dapat mengeditnya lagi nanti"
-            confirm="Keluar & Simpan"
-            cancel="Batal"
-          />
-        </ModalParent>
       </div>
+      <ModalParent
+        isVisible={showModalVerification}
+        onClose={() => {
+          setShowModalVerification(0);
+        }}
+      >
+        <ModalVerification
+          isVisible={showModalVerification}
+          onClose={() => {
+            setShowModalVerification(0);
+          }}
+          quest="Simpan perubahan sebelum keluar?"
+          declare="Anda dapat mengeditnya lagi nanti"
+          confirm="Keluar & Simpan"
+          cancel="Batal"
+        />
+      </ModalParent>
     </RootLayout>
   );
 };
