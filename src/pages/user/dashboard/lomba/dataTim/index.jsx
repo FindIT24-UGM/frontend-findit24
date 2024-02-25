@@ -88,13 +88,7 @@ const DataTimGeneral = () => {
     }
   };
 
-  const handleCreateTeam = (
-    competitionId,
-    namaTim,
-    namaPengirim,
-    institusi,
-    token
-  ) => {
+  const handleCreateTeam = () => {
     axios
       .post(
         `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
@@ -102,51 +96,78 @@ const DataTimGeneral = () => {
           eventId: selectedLomba,
           teamName: namaTim,
           teamInstitution: institusi,
-          teamContact: phone,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          teamContact: [phone],
+          paymentDate: date,
+          paymentSender: namaPengirim,
+          bankAccountId: noRekening,
+          bankName: bank,
         },
         { withCredentials: true }
       )
       .then((res) => {
         console.log(res.data);
         router.push(
-          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/berhasilteam` +
-            competitionId
+          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/berhasilteam/${res.data.teamId}`
         );
         return res.data.data;
       })
       .catch((err) => {
         console.log(err.response.data.message);
-        toast.error(error.response.data.message);
+        toast.error(err.response.data.message);
         return err.response.data;
       });
   };
 
-  const registerTeamHandler = () => {
-    if (localStorage.getItem("token") == null) {
-      toast.error("Please login first!");
-      return;
-    }
-    const { _id } = JSON.parse(localStorage.getItem());
-    const token = JSON.parse(localStorage.getItem("token"));
-    let evenId;
+  // const uploadAbstractFile = (e) => {
+  //   const formData = new FormData();
+  //   const file = e.target.files[0];
 
-    if (namaTim == "") {
-      toast.error("Team name can't be empty!");
-    }
-    if (institusi == "") {
-      toast.error("Team institution can't be empty!");
-    }
-    if (namaTim.length() > 0 && institusi.length() > 0) {
-      if (competitionId != "esp") {
-        handleCreateTeam(competitionId, namaTim, _id, institution, token);
-      }
-    }
-  };
+  //   formData.append("abstractFile", file);
+
+  //   const regex = /\.(pdf)$/i;
+  //   // if (regex.test(file.name)) {
+  //   //   const reader = new FileReader();
+  //   //   reader.onload = (e) => {
+  //   //     setImagePreview(e.target.result);
+  //   //   };
+  //   //   reader.readAsDataURL(file);
+  //   // }
+  //   if (formData) {
+  //     axios
+  //       .post(process.env.NEXT_PUBLIC_API_URL + "/user/upload-file", formData, {
+  //         withCredentials: true,
+  //       })
+  //       .then((res) => {
+  //         console.log(res);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //         console.log(formData);
+  //       });
+  //   }
+  // };
+
+  // const registerTeamHandler = () => {
+  //   if (localStorage.getItem("token") == null) {
+  //     toast.error("Please login first!");
+  //     return;
+  //   }
+  //   const { _id } = JSON.parse(localStorage.getItem());
+  //   const token = JSON.parse(localStorage.getItem("token"));
+  //   let evenId;
+
+  //   if (namaTim == "") {
+  //     toast.error("Team name can't be empty!");
+  //   }
+  //   if (institusi == "") {
+  //     toast.error("Team institution can't be empty!");
+  //   }
+  //   if (namaTim.length() > 0 && institusi.length() > 0) {
+  //     if (competitionId != "esp") {
+  //       handleCreateTeam(competitionId, namaTim, _id, institution, token);
+  //     }
+  //   }
+  // };
 
   const DaftarLombaDanHarga = ({ lomba }) => {
     const [harga, setHarga] = useState("");
@@ -265,7 +286,7 @@ const DataTimGeneral = () => {
                     Status
                   </p>
                   <div
-                    className="w-full text-sm font-medium font-Montserrat text-black font-Montserrat font-bold relative"
+                    className="w-full text-sm text-black font-Montserrat font-bold relative"
                     ref={dropdownStatusRef}
                   >
                     <div
@@ -420,28 +441,7 @@ const DataTimGeneral = () => {
                     onChange={(e) => setBank(e.currentTarget.value)}
                   />
                 </div>
-                <div className="w-full flex justify-between items-center mt-6">
-                  <div className="flex flex-col justify-between items-start">
-                    <p className="font-Montserrat font-bold text-text-placeholder-light">
-                      Upload Abstrak
-                    </p>
-                    {/*                                     
-                                            <p className='font-Montserrat font-bold text-xs text-black font-Montserrat font-bold'>anda belum upload</p>
-                                        */}
-                  </div>
-                  <button className="rounded border-2 border-text-placeholder-light px-6 py-1">
-                    <input
-                      className="hidden"
-                      type="file"
-                      onChange={(e) => {
-                        /* Upload image ke database */
-                      }}
-                    />
-                    <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
-                      Unggah
-                    </p>
-                  </button>
-                </div>
+ 
               </div>
             </div>
             <div className="w-full flex justify-center">
