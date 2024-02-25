@@ -48,7 +48,7 @@ const dummyData = [
 export default function Timeline() {
   return (
     <div className="bg-text-placeholder-dark min-h-screen w-full p-10">
-      <h2 className="font-GameOfSquid text-[48px] font-bold text-white text-center lg:text-left lg:pl-10 mb-14">
+      <h2 className="font-GameOfSquid text-[48px] font-bold text-white text-center mb-14">
         Timeline
       </h2>
       <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:flex-col">

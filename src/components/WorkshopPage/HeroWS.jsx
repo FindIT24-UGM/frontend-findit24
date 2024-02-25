@@ -28,7 +28,7 @@ function HeroWS() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-[#233E51] flex justify-center">
+    <div className="min-h-screen w-full bg-[#233E51] flex justify-center pb-20">
       <Image
         src={BG_WS}
         className="absolute top-0 w-[120vw] lg:w-[75vw]"
@@ -37,7 +37,7 @@ function HeroWS() {
         <p className="font-Ava text-white text-[20px] lg:text-[1.25vw]">
           //Workshop
         </p>
-        <div className="font-GameOfSquid text-center text-[20px] lg:text-[1.25vw] bg-gradient-to-b from-[#FF8C5A] to-[#F95949] bg-clip-text text-transparent">
+        <div className="font-GameOfSquid text-center text-[70px] lg:text-[1.25vw] bg-gradient-to-b from-[#FF8C5A] to-[#F95949] bg-clip-text text-transparent">
           <p>"Exploring Blockchain :</p>
           <p>Embracing Future</p>
           <p>Technology</p>
@@ -84,7 +84,7 @@ function HeroWS() {
           </button>
         </div>
 
-        <div className="flex justify-center items-center absolute bottom-0 flex gap-x-2">
+        <div className="flex justify-center items-center absolute bottom-0 gap-x-2 pb-10">
           <BiMouse />
           <p className="font-Montserrat text-white">Gulir ke bawah</p>
         </div>
