@@ -312,12 +312,12 @@ const ProfilDiri = () => {
     const { name, value } = e.target;
     dispatch({ type: "UPDATE_FIELD", field: name, value });
 
-    setUpdateUser((prev) => {
-      return {
-        ...prev,
-        [type]: value,
-      };
-    });
+    // setUpdateUser((prev) => {
+    //   return {
+    //     ...prev,
+    //     [type]: value,
+    //   };
+    // });
   };
 
   const handleDateChange = (date) => {
@@ -669,6 +669,7 @@ const ProfilDiri = () => {
           declare="Anda dapat mengeditnya lagi nanti"
           confirm="Keluar & Simpan"
           cancel="Batal"
+          submit={submitHandler}
         />
       </ModalParent>
     </RootLayout>

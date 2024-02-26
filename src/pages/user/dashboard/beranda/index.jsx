@@ -64,11 +64,13 @@ const Index = () => {
       userTeam?.asMember?.forEach((team) => {
         setEventIds((prevEventIds) => [...prevEventIds, team.eventId._id]);
       });
-      const formattedDateOfBirth = format(
-        new Date(`${user?.dateOfBirth}`),
-        "dd MMMM y"
-      );
-      setDate(formattedDateOfBirth);
+      if(user?.dateOfBirth){
+        const formattedDateOfBirth = format(
+          new Date(`${user?.dateOfBirth}`),
+          "dd MMMM y"
+        );
+        setDate(formattedDateOfBirth);
+      }
     }
     if (userTeam && eventIds) {
       dispatch(getTeamAnnouncements(eventIds))
