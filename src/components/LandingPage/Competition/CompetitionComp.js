@@ -68,7 +68,9 @@ const CompetitionComp = () => {
       mainDesc:
         "Kompetisi yang menguji kemampuan peserta dalam bermain game kompetitif secara online. Terdapat dua pilihan game yaitu Mobile Legends dan Valorant.",
       secDesc: "Tertarik mendaftar, Gamers?",
-      icon: <Image src={ESP} className="w-[80%] unselectable" />,
+      icon: (
+        <Image src={ESP} className="w-[80%] unselectable" alt="Esport.png" />
+      ),
     },
     {
       ownIndex: 6,
@@ -76,7 +78,7 @@ const CompetitionComp = () => {
       mainDesc:
         "Kompetisi yang bertujuan untuk menguji kecerdasan dan pemahaman logika matematika melalui pengerjaan soal matematika dan problem solving.",
       secDesc: "Tertarik mendaftar, Logic Geeks?",
-      icon: <Image src={IC} className="w-[80%] unselectable" />,
+      icon: <Image src={IC} className="w-[80%] unselectable" alt="IC.png" />,
     },
   ];
 
