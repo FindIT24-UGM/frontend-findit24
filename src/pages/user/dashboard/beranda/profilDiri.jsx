@@ -7,7 +7,7 @@ import React, {
   useReducer,
 } from "react";
 import RootLayout from "../../../layout";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import { HiArrowLeft } from "react-icons/hi";
 import { BsCalendar2PlusFill } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -15,12 +15,12 @@ import { IoSaveSharp } from "react-icons/io5";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import ModalParent from "../../modal/modalparent";
-import ModalVerification from "../../modal/modalverif";
-import ModalJoinTeam from "../../modal/modaljointeam";
-import ModalInvitationCode from "../../modal/modalinvitationcode";
+import ModalParent from "../../../../components/modal/modalparent";
+import ModalVerification from "../../../../components/modal/modalverif";
 import axios from "axios";
 import Image from "next/image";
+import { getUserData } from "../../../../store/slices/authSlice";
+import ModalJoinTeam from "../../../../components/modal/modaljointeam";
 
 //INITIALIZE FOR useReducer
 const initialState = {
@@ -50,6 +50,7 @@ const ProfilDiri = () => {
   const [openStatus, setOpenStatus] = useState(false);
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [updateUser, setUpdateUser] = useState({});
 
   const router = useRouter();
 
@@ -202,15 +203,33 @@ const ProfilDiri = () => {
 
   const statuses = [
     {
-      name: "Universitas/Institut",
+      name: "Mahasiswa",
     },
     {
-      name: "SMA",
+      name: "Pelajar",
     },
     {
       name: "Umum",
     },
   ];
+
+  /* Gtau Bjir Routingnya */
+  // useEffect(() => {
+  //   axios.get(process.env.NEXT_PUBLIC_API_URL + "/user/").then((response) => {
+  //     dispatch(getUserData);
+  //     const profileData = response.data;
+  //     dispatch({
+  //       type: "UPDATE_FIELD",
+  //       field: "name",
+  //       value: profileData.name,
+  //     });
+  //     dispatch({
+  //       type: "UPDATE_FIELD",
+  //       field: "DateOfBirth",
+  //       value: new Date(profileData),
+  //     });
+  //   });
+  // });
 
   /*----------BLM WORK BUAT UPLOAD INSTITUTION FILE---------- */
   const [imagePreview, setImagePreview] = useState("");
@@ -249,7 +268,7 @@ const ProfilDiri = () => {
       <div className="w-full">
         <div className="w-full h-auto relative flex justify-end items-center">
           <input
-            className="w-full h-5 text-sm font-Montserrat font-medium text-black font-Montserrat font-bold p-5 rounded-lg bg-text-placeholder-light cursor-pointer"
+            className="w-full h-5 text-sm text-black font-Montserrat font-bold p-5 rounded-lg bg-text-placeholder-light cursor-pointer"
             type="text"
             placeholder="10/10/2002"
             value={value}
@@ -275,23 +294,30 @@ const ProfilDiri = () => {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  const showModal = () => {
-    {
-      /* Tampilkan modal simpan */
-      <ModalParent>
-        <ModalVerification
-          quest="Simpan perubahan sebelum keluar?"
-          declare="Anda dapat mengeditnya lagi nanti"
-          confirm="Keluar & Simpan"
-          cancel="Batal"
-        />
-      </ModalParent>;
-    }
-  };
+  // const showModal = () => {
+  //   {
+  //     /* Tampilkan modal simpan */
+  //     <ModalParent>
+  //       <ModalVerification
+  //         quest="Simpan perubahan sebelum keluar?"
+  //         declare="Anda dapat mengeditnya lagi nanti"
+  //         confirm="Keluar & Simpan"
+  //         cancel="Batal"
+  //       />
+  //     </ModalParent>;
+  //   }
+  // };
   /*---------HANDLE INPUT DATA (pake useReducer)------------ */
   const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch({ type: "UPDATE_FIELD", field: name, value });
+
+    // setUpdateUser((prev) => {
+    //   return {
+    //     ...prev,
+    //     [type]: value,
+    //   };
+    // });
   };
 
   const handleDateChange = (date) => {
@@ -304,9 +330,14 @@ const ProfilDiri = () => {
 
   const submitHandler = () => {
     axios
-      .patch(`${process.env.NEXT_PUBLIC_API_URL}/user`, state, {
-        withCredentials: true,
-      })
+      .patch(
+        `${process.env.NEXT_PUBLIC_API_URL}/user`,
+        state,
+        {
+          withCredentials: true,
+        },
+        router.push("/user/dashboard")
+      )
       .then((res) => {
         //bisa diganti message atau apalah
         console.log(res);
@@ -314,9 +345,14 @@ const ProfilDiri = () => {
       .catch((err) => {
         console.log(err);
       });
+
+    const updatedData = {
+      ...updateUser,
+    };
   };
   /*----------------END------------------ */
 
+  const [showModalVerification, setShowModalVerification] = useState(0);
   return (
     <RootLayout>
       <div className="bg-background-skyblue w-screen min-h-screen flex flex-col justify-center items-center gap-8 lg:py-[5vh]">
@@ -408,7 +444,7 @@ const ProfilDiri = () => {
                       Asal Provinsi
                     </p>
                     <div
-                      className="w-full text-base font-medium font-Montserrat text-black font-Montserrat font-bold relative"
+                      className="w-full text-base text-black font-Montserrat font-bold relative"
                       ref={dropdownProvinsiRef}
                     >
                       <div
@@ -609,7 +645,7 @@ const ProfilDiri = () => {
             <div className="w-full flex justify-center">
               <button
                 className="flex items-center justify-center gap-2 w-full lg:w-1/3 bg-background-skyblue py-2 lg:py-3 rounded-lg"
-                onClick={submitHandler}
+                onClick={() => setShowModalVerification(1)}
               >
                 <IoSaveSharp size={17.5} color="black" />
                 <p className="font-GameOfSquid text-shade-black">Simpan</p>
@@ -617,15 +653,25 @@ const ProfilDiri = () => {
             </div>
           </div>
         </div>
-        <ModalParent>
-          <ModalVerification
-            quest="Simpan perubahan sebelum keluar?"
-            declare="Anda dapat mengeditnya lagi nanti"
-            confirm="Keluar & Simpan"
-            cancel="Batal"
-          />
-        </ModalParent>
       </div>
+      <ModalParent
+        isVisible={showModalVerification}
+        onClose={() => {
+          setShowModalVerification(0);
+        }}
+      >
+        <ModalVerification
+          isVisible={showModalVerification}
+          onClose={() => {
+            setShowModalVerification(0);
+          }}
+          quest="Simpan perubahan sebelum keluar?"
+          declare="Anda dapat mengeditnya lagi nanti"
+          confirm="Keluar & Simpan"
+          cancel="Batal"
+          submit={submitHandler}
+        />
+      </ModalParent>
     </RootLayout>
   );
 };

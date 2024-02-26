@@ -25,20 +25,33 @@ export default function index() {
   }, [isAuthenticated])
 
   const selectCompetition = (competition) => {
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/admin/events/${competition}`, { withCredentials: true})
-      .then(teamsByEvent => {
-        setTeams(teamsByEvent.data.team)
-        setCount(teamsByEvent.data.team.length)
-      })
+    if(competition){
+      axios.get(`${process.env.NEXT_PUBLIC_API_URL}/admin/events/${competition}`, { withCredentials: true})
+        .then(teamsByEvent => {
+          setTeams(teamsByEvent.data.team)
+          setCount(teamsByEvent.data.team.length)
+        })
+    } else {
+      axios.get(`${process.env.NEXT_PUBLIC_API_URL}/admin/teams`, { withCredentials: true})
+        .then(teams => {
+          setTeams(teams.data.teams)
+          setCount(teams.data.total)
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
   }
 
   return (
     <AdminDashboadrLayout>
       <div className='bg-primary-500 p-5 rounded-md border-2 border-black'>
         <ul className='font-Montserrat text-[14px] flex text-center text-black overflow-x-auto font-bold mb-5'>
-          <li className='p-2 bg-white rounded-md mr-1 cursor-pointer h-fit'>
-            ALL
-          </li>
+          <button onClick={() => selectCompetition(null)}>
+            <li className='p-2 bg-white rounded-md mr-1 cursor-pointer h-fit'>
+              ALL
+            </li>
+          </button>
           <button onClick={() => selectCompetition(process.env.NEXT_PUBLIC_COMPETITION_ID_ML)}>
             <li className='p-2 min-w-[90px] bg-white rounded-md mx-1 cursor-pointer h-fit'>
               MLBB

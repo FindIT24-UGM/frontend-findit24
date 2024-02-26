@@ -2,11 +2,8 @@ import React from "react";
 import Prize from "../../../components/competitionpage/Prize";
 import Timeline from "../../../components/competitionpage/Timeline";
 import RootLayout from "../../layout";
-import { useContext } from "react";
-import TeamModalContext from "../../../utilities/TeamModalContext";
-import TeamModal from "../../../components/TeamModal";
 import Title from "../../../components/competitionpage/Title";
-import CTF_Lalu from "../../../assets/Logo/CTF_Lalu.png";
+import CTF from "../../../assets/Logo/CTF.png";
 import Image from "next/image";
 import Pattern_Kiri from "../../../assets/compepage/bghero/Pattern_Kiri.png";
 import Awan_Kiri from "../../../assets/compepage/bghero/awan_kiri.png";
@@ -14,22 +11,37 @@ import Awan_Kanan from "../../../assets/compepage/bghero/awan_kanan.png";
 import Bintang_Group from "../../../assets/compepage/bghero/bintang.png";
 import Micro_Pattern from "../../../assets/compepage/bghero/Micro_Pattern.png";
 import Micro_Atas from "../../../assets/compepage/bghero/Micro_Atas.png";
+import Second from "../../../components/competitionpage/Second";
+import Footer from "../../../components/footer";
 
 function CaptureTheFlag() {
+  const CTFInformation = [
+    {
+      title: "Kategori Peserta",
+      items: ["Tim (Maksimal 3 orang)"],
+    },
+    {
+      title: "Biaya Pendaftaran",
+      items: ["Early Bird: Rp95.000", "Regular: Rp125.000"],
+    },
+    {
+      title: "Informasi Tambahan",
+      items: ["Whasapp: 0819 0537 8266", "Line: deren211204"],
+    },
+  ];
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
         <div className="min-h-screen relative">
           <div className="min-h-screen relative flex items-center mx-auto justify-around md:px-[50px] lg:px-[74px] pt-[20%] md:pt-[100px]">
             {/* Background Assets Layout Desktop */}
-            <p className="absolute font-Ava text-white text-[8.889vw] md:text-[5vw] lg:text-[3.33vw] rotate-90 leading-[4vw] font-normal  -right-20 bottom-16 lg:bottom-48 lg:-right-48 leading-[4vw] drop-shadow-[0_4px_12px_rgba(255,255,255,1)] opacity-50">
+            <p className="absolute font-Ava text-white text-[8.889vw] md:text-[5vw] lg:text-[3.33vw] rotate-90 font-normal -right-20 bottom-16 lg:bottom-48 lg:-right-48 leading-[4vw] drop-shadow-[0_4px_12px_rgba(255,255,255,1)] opacity-50">
               //Beyond The Sky
             </p>
-            {/*
             <div className="absolute left-0 hidden lg:flex">
               <Image src={Pattern_Kiri} />
             </div>
-            */}
             <div className="absolute -left-2 md:-left-4 lg:left-0 top-12">
               <Image
                 src={Awan_Kiri}
@@ -67,17 +79,25 @@ function CaptureTheFlag() {
               </div>
               <div className="mx-10 md:mx-0 relative">
                 <Image
-                  src={CTF_Lalu}
-                  className="relative z-40 w-full w-[50vw] md:w-[35.5vw] xl:w-[600px] mx-auto"
+                  src={CTF}
+                  width={545}
+                  height={532}
+                  className="relative z-40 w-[50vw] md:w-[35.5vw] xl:w-[600px] mx-auto"
                   priority
                 />
               </div>
             </div>
           </div>
+          <Second
+            cabangLomba="Capture The Flag"
+            competitionDescription="Capture the Flag (CTF) adalah kompetisi keamanan jaringan/informasi yang menguji setiap peserta untuk berpikir terstruktur dan kreatif dalam mencari sebuah informasi berharga tersembunyi yang disebut flag dari berbagai permasalahan yang dibagi menjadi beberapa kategori yaitu cryptography, digital forensic, binary exploitation, reverse engineering, web exploitation, dan Open Source Intelligence (OSINT)."
+            cardAllItems={CTFInformation}
+          />
           <Prize />
           <Timeline />
         </div>
       </RootLayout>
+      <Footer />
     </div>
   );
 }

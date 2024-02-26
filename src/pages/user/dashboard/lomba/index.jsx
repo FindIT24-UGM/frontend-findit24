@@ -46,13 +46,13 @@ const Index = (nameAbr) => {
     if (userTeam) {
       setCountLomba(userTeam?.asMember?.length);
     }
-    dispatch(getTeamsToSearch(process.env.NEXT_PUBLIC_COMPETITION_ID_CTF))
-      .unwrap()
-      .then((res) => {
-        dispatch(loadingEnd());
+    // dispatch(getTeamsToSearch(process.env.NEXT_PUBLIC_COMPETITION_ID_CTF))
+    //   .unwrap()
+    //   .then((res) => {
+    //     dispatch(loadingEnd());
         // console.log(res);
         // setCountLomba(res.asMember.length)
-      });
+      // });
   }, [isAuthenticated]);
 
   const searchTeam = () => {
@@ -74,24 +74,24 @@ const Index = (nameAbr) => {
       });
   };
 
-  const createNewTeam = (eventId, teamCode) => {
-    axios
-      .post(
-        `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
-        {
-          eventId,
-          teamCode,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res.data.message);
-        setOpenConfirmation(true);
-        setOpenInvitation(false);
-      });
-  };
+  // const createNewTeam = (eventId, teamCode) => {
+  //   axios
+  //     .post(
+  //       `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
+  //       {
+  //         eventId,
+  //         teamCode,
+  //       },
+  //       {
+  //         withCredentials: true,
+  //       }
+  //     )
+  //     .then((res) => {
+  //       console.log(res.data.message);
+  //       setOpenConfirmation(true);
+  //       setOpenInvitation(false);
+  //     });
+  // };
 
   const joinTeam = (eventId, teamId, teamLeaderId) => {
     axios
@@ -316,14 +316,16 @@ const Index = (nameAbr) => {
                   <div className="w-full h-auto">
                     {userTeam &&
                       userTeam?.asMember?.map((team) => {
-                        return (
-                          <TeamCard
-                            id={team.teamId._id}
-                            competition={team.eventId.eventName}
-                            teamName={team.teamId.teamName}
-                            verify={team.teamId.status}
-                          />
-                        );
+                        if(team.teamId){
+                          return (
+                            <TeamCard
+                              id={team.teamId._id}
+                              competition={team.eventId.eventName}
+                              teamName={team.teamId.teamName}
+                              verify={team.teamId.status}
+                            />
+                          );                          
+                        }
                       })}
                   </div>
                 )}
@@ -552,18 +554,11 @@ const Index = (nameAbr) => {
                 <Link
                   href={
                     isAuthenticated
-                      ? "user/dashboard/lomba/datatim"
-                      : "auth/login"
+                      ? "/user/dashboard/lomba/dataTim"
+                      : "/auth/login"
                   }
                 >
-                  <Button
-                    fullW
-                    onClick={() => {
-                      createNewTeam();
-                    }}
-                    customClass={"lg:py-1"}
-                    text="Buat Tim"
-                  />
+                  <Button fullW customClass={"lg:py-1"} text="Buat Tim" />
                 </Link>
               </div>
               <div className="w-[212px]">

@@ -8,9 +8,13 @@ import AlertNotif from '../../../../../components/AlertNotif.jsx';
 import Image from "next/image";
 import decor from "../../../../../assets/background/decor.svg";
 import bg1 from "../../../../../assets/background/bg1.svg";
+import { useRouter } from "next/router.js";
+import axios from "axios";
 
 export default function berhasil() {
-    const [invitationCode, setInvitationCode] = useState('');
+    const router = useRouter();
+    const { createdTeamId } = router.query;
+    const [invitationCode, setInvitationCode] = useState(null);
     const [showAlert, setShowAlert] = useState(true);
 
     useEffect(() => {
@@ -19,6 +23,22 @@ export default function berhasil() {
         }, 2000);
         return () => clearTimeout(timer);
     }, []);
+
+    useEffect(() => {
+        if (createdTeamId) {
+            axios
+              .get(`${process.env.NEXT_PUBLIC_API_URL}/team/${createdTeamId}`, {
+                withCredentials: true,
+              })
+              .then(res => {
+                setInvitationCode(res.data.info.teamCode)
+                console.log(res.data);
+              })
+              .catch(err => {
+                console.log(err);
+              })
+        }
+    }, [createdTeamId])
 
     useEffect(() => {
         const generateInvitationCode = () => {
@@ -86,8 +106,8 @@ export default function berhasil() {
                                 </div>
                                
                                 <div className="mx-auto my-8">
-                                    <Link href="/">
-                                        <Button variant="primary" text="lihat tim ->" size="sm" customClass="w-[14vw] bg-[#2A93C2] max-md:w-[38vw] max-md:text-[1.8vw] max-sm:w-[34vw] max-sm:text-[1.5vw] text-black"  style={{ zIndex: 999}}/> {/*responsive hp kacau*/}
+                                    <Link href={`/user/dashboarad/profileteam/${createdTeamId}`}>
+                                        <Button onClick={() => router.push(`/user/dashboarad/profileteam/${createdTeamId}`)} variant="primary" text="lihat tim ->" size="sm" customClass="w-[14vw] bg-[#2A93C2] max-md:w-[38vw] max-md:text-[1.8vw] max-sm:w-[34vw] max-sm:text-[1.5vw] text-black"  style={{ zIndex: 999}}/> {/*responsive hp kacau*/}
                                     </Link>
                                 </div>
                             </div>

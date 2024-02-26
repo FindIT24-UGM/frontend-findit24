@@ -4,9 +4,6 @@ import styles from "./Timeline.module.css";
 import Image from "next/image";
 import HexagonDot_Desktop from "../../assets/compepage/Hexagon_Desktop.png";
 
-import VertikalVektor from "../../assets/background/line_vertikal.png";
-import HorizontalVektor from "../../assets/background/line_horizontal.png";
-
 import TimeLineCard from "./TimeLineCard";
 
 function HexagonDot() {
@@ -17,6 +14,7 @@ function HexagonDot() {
         sizes={36}
         alt="Hexagon Dot.png"
         className="relative"
+        loading="lazy"
       ></Image>
     </div>
   );
@@ -53,7 +51,7 @@ const dummyData = [
 
 export default function Timeline() {
   return (
-    <div className="bg-background-skyblue min-h-screen w-full p-10">
+    <div className="bg-background-skyblue min-h-screen w-full p-10 ">
       <h2 className="font-GameOfSquid text-[48px] font-bold text-white text-center lg:text-left lg:pl-10 mb-14">
         Timeline
       </h2>
@@ -96,7 +94,9 @@ export default function Timeline() {
                   <div className="my-[1vw]">
                     <TimeLineCard content={item.name} key={i} />
                   </div>
-                  <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">{dummyData[i + 1].date}</p>
+                  <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">
+                    {dummyData[i + 1].date}
+                  </p>
                 </div>
               )
             );
@@ -115,7 +115,9 @@ export default function Timeline() {
             return (
               i % 2 === 1 && (
                 <div className="flex space-x-[4.28vw]">
-                  <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">{dummyData[i - 1].date}</p>
+                  <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">
+                    {dummyData[i - 1].date}
+                  </p>
                   <div className="my-[1vw]">
                     <TimeLineCard content={item.name} key={i} />
                   </div>

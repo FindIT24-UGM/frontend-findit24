@@ -2,13 +2,18 @@ import React from "react";
 import HeroWS from "../../components/WorkshopPage/HeroWS";
 import Speaker from "../../components/WorkshopPage/Speaker";
 import Timeline from "../../components/WorkshopPage/TimeLine";
+import Footer from "../../components/footer";
+import RootLayout from "../layout";
 
 function Workshop() {
   return (
     <>
-      <HeroWS />
-      <Speaker />
-      <Timeline />
+      <RootLayout>
+        <HeroWS />
+        <Speaker />
+        <Timeline />
+        <Footer />
+      </RootLayout>
     </>
   );
 }

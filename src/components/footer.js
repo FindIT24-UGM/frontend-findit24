@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaYoutube, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { IoLogoTiktok } from 'react-icons/io5';
-import { BsLine } from 'react-icons/bs';
 import Link from 'next/link';
 
 function SocialMediaLink({ href, target, icon, className }) {
@@ -39,28 +38,26 @@ export default function Footer () {
     const socialMediaStyle = "transition-transform duration-300 ease-in-out hover:translate-y-1"
 
     const socialLinks = [
-        { href: "https://www.youtube.com/@finditugm7962", icon: <FaYoutube size={getIconSize()} />, className: `${socialMediaStyle}` },
-        { href: "https://www.tiktok.com/@findit_ugm", icon: <IoLogoTiktok size={getIconSize()} />, className: `${socialMediaStyle}` },
-        { href: "https://www.instagram.com/findit_ugm", icon: <FaInstagram size={getIconSize()} />, className: `${socialMediaStyle}` },
-        { href: "#", icon: <BsLine size={getIconSize()} />, className: `${socialMediaStyle}` }, //Tambahin link line
-        { href: "https://www.linkedin.com/company/findit-ugm", icon: <FaLinkedin size={getIconSize()} />, className: `${socialMediaStyle}` }
+        { href: "https://youtube.com/@finditugm7962?si=H5NSZFDgcLPtB-5b", icon: <FaYoutube size={getIconSize()} />, className: `${socialMediaStyle}` },
+        { href: "https://www.tiktok.com/@findit_ugm?_t=8k0lTSjSm4P&_r=1", icon: <IoLogoTiktok size={getIconSize()} />, className: `${socialMediaStyle}` },
+        { href: "https://www.instagram.com/findit_ugm?igsh=dTRqa3Fsbzl0cWI=", icon: <FaInstagram size={getIconSize()} />, className: `${socialMediaStyle}` },
+        { href: "https://www.linkedin.com/company/findit-ugm/", icon: <FaLinkedin size={getIconSize()} />, className: `${socialMediaStyle}` }
       ];
 
-    {/* Tambahin link antarpage */}
     const competitions = [
-        { text: 'Hackaton', href: '' },
-        { text: 'UX Competition', href: '' },
-        { text: 'E-Sports', href: '' },
-        { text: 'Informatics Competition', href: '' },
-        { text: 'Data Analytics', href: '' },
-        { text: 'Capture The Flag', href: '' },
+        { text: 'Hackathon', href: '/competition/hackathon' },
+        { text: 'UX Competition', href: '/competition/ux' },
+        { text: 'E-Sports', href: '/competition/e-sport' },
+        { text: 'Informatics Competition', href: '/competition/informatics-competition' },
+        { text: 'Competitive Programming', href: '/competition/competitive-programming'},
+        { text: 'Data Analytics', href: '/competition/data-analytics' },
+        { text: 'Capture The Flag', href: '/competition/capture-the-flag' },
       ];
 
-    {/* Ganti no Whasapp */}
     const whatsappNumber = "+62 123456789";
 
     return (
-        <footer className="bg-shade-black font-Montserrat text-shade-white w-full pb-[1vh]">
+        <footer className="bg-shade-black font-Montserrat text-shade-white w-full pb-[1vh] z-[10]">
             <div className="mx-[5vw] pt-[5vh]">
                 <div className="flex sm:flex-row flex-col items-center sm:items-start">
                     <div className="flex flex-col w-[50%] items-center sm:items-start">
@@ -86,7 +83,7 @@ export default function Footer () {
                                 <p className="font-bold mb-[2vh] text-center lg:text-left 2xl:text-xl">EVENTS</p>
                                     <ul>
                                         <li className="text-sm text-center lg:text-left 2xl:text-lg">
-                                            <Link className='hover:opacity-80' href={"/comingsoon"}>Webinar</Link>
+                                            <Link className='hover:opacity-80' href={"/workshop"}>Workshop</Link>
                                         </li>
                                     </ul>
                             </div>

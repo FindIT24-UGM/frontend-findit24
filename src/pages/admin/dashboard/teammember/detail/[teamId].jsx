@@ -24,7 +24,7 @@ const detail = () => {
         });
     }
   }, [teamId]);
-  console.log(dataTeam);
+
   return (
     <div className="bg-background-skyblue min-h-screen lg:flex py-20 px-5 lg:px-12 md:px-8">
       <div className="bg-white rounded-lg border-2 border-black py-10 px-5 lg:flex w-full justify-between">

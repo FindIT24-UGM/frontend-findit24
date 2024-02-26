@@ -21,7 +21,12 @@ function AdminDashboadrLayout({ children }) {
     {
       path: "/admin/dashboard/team",
       icon: <IoIosBasketball size={20} color="black" />,
-      label: "Team",
+      label: "Team Lomba",
+    },
+    {
+      path: "/admin/dashboard/workshop",
+      icon: <IoIosBasketball size={20} color="black" />,
+      label: "Workshop",
     },
     {
       path: "/admin/dashboard/broadcast",

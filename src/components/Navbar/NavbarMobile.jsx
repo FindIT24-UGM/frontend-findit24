@@ -60,6 +60,7 @@ const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
             <div className="flex flex-col overflow-hidden gap-y-2">
               {LOMBA.map((l, idx) => (
                 <Link
+                  key={idx}
                   href="/webinar"
                   className={twMerge(
                     idx == 0 && "mt-10",

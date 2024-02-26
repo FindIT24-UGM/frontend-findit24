@@ -4,22 +4,21 @@ import Image from "next/image";
 
 function Speaker() {
   return (
-    <div className="min-h-screen bg-[#233E51] flex justify-center items-center">
-      <div className="w-[35.417vw] lg:w-[22vw] h-[700px] bg-[#2985B0] flex flex-col items-center gap-y-8">
-        <p className="font-GameOfSquid text-[1.25vw] text-white mt-16">
+    <div className="bg-[#233E51] flex items-center justify-center min-h-screen pt-20 pb-10">
+      <div className="bg-[url('https://i.ibb.co/37G2396/speaker-Card.png')] bg-cover w-[100vw] h-[71.42vw] lg:w-[56vw] lg:h-[40vw] flex flex-col items-center">
+        <p className="text-white font-GameOfSquid text-[3vw] mt-[2%] mb-[9.5%] lg:mb-[6%] h-fit w-fit">
           Speaker
         </p>
-        <div className="relative mt-4 aspect-[211/202] w-[11vw] mt-8">
-          <Image src={Pak_Guntur} alt="Speaker.png" fill></Image>
-        </div>
-        <div className="flex flex-col font-GameOfSquid text-white text-center gap-y-2">
-          <p>Dr. Ir. Guntur Dharma Putra</p>
+        <Image src={Pak_Guntur} alt="speaker.png" className="w-[24%]" />
+        <div className="font-GameOfSquid text-white mt-[3.7%] text-center text-[3vw] lg:text-[1.4vw]">
+          {/* nama */}
+          <p className="">Dr. Ir. Guntur Dharma Putra</p>
+          {/* gelar */}
           <p>S.T., M.Sc.</p>
         </div>
-        <div className="flex flex-col text-white text-center font-Montserrat">
-          <p>Dosen Departemen Teknik</p>
-          <p>Elektro dan Teknologi Informasi</p>
-          <p>Fakultas Teknik UGM</p>
+        <div className="font-Montserrat text-white text-[2vw] lg:text-[1.2vw] w-[40%] text-center mt-[5%] sm:mt-[7.5%] md:mt-[10%] lg:mt-[8%]">
+          Dosen Departemen Teknik Elektro dan Teknologi Informasi Fakultas
+          Teknik UGM
         </div>
       </div>
     </div>

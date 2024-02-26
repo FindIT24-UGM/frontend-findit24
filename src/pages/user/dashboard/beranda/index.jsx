@@ -23,37 +23,6 @@ const Index = () => {
   const [eventIds, setEventIds] = useState([]);
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  // const [announcementListReverse, setAnnouncementListReverse] = useState([
-  //   {
-  //     title: "Announcement Title",
-  //     announcedTo: "Peserta Hackathon",
-  //     content:
-  //       "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet.  ",
-  //   },
-  //   {
-  //     title: "test",
-  //     content: "bang",
-  //   },
-  //   {
-  //     title: "Announcement Title",
-  //     announcedTo: "Peserta Hackathon",
-  //     content:
-  //       "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet.  ",
-  //   },
-  //   {
-  //     title: "Announcement Title",
-  //     announcedTo: "Peserta Hackathon",
-  //     content:
-  //       "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet.  ",
-  //   },
-  //   {
-  //     title: "Announcement Title",
-  //     announcedTo: "Peserta Hackathon",
-  //     content:
-  //       "Ipsum congue eget pretium non sit blandit at. Tellus nunc sed morbi eget cras. Elementum amet penatibus elementum ultrices consectetur elementum aliquet.  ",
-  //   },
-  // ]);
-
   const router = useRouter();
 
   const handleEditProfile = () => {
@@ -95,11 +64,13 @@ const Index = () => {
       userTeam?.asMember?.forEach((team) => {
         setEventIds((prevEventIds) => [...prevEventIds, team.eventId._id]);
       });
-      const formattedDateOfBirth = format(
-        new Date(`${user?.dateOfBirth}`),
-        "dd MMMM y"
-      );
-      setDate(formattedDateOfBirth);
+      if(user?.dateOfBirth){
+        const formattedDateOfBirth = format(
+          new Date(`${user?.dateOfBirth}`),
+          "dd MMMM y"
+        );
+        setDate(formattedDateOfBirth);
+      }
     }
     if (userTeam && eventIds) {
       dispatch(getTeamAnnouncements(eventIds))
