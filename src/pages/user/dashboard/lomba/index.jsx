@@ -30,6 +30,7 @@ const Index = (nameAbr) => {
   const { userTeam } = useSelector((state) => state.user);
 
   const [countLomba, setCountLomba] = useState(0);
+  const [titleLomba, setTitleLomba] = useState("");
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const [openInvitation, setOpenInvitation] = useState(false);
   const [inputCode, setInputCode] = useState(undefined);
@@ -49,9 +50,9 @@ const Index = (nameAbr) => {
     //   .unwrap()
     //   .then((res) => {
     //     dispatch(loadingEnd());
-        // console.log(res);
-        // setCountLomba(res.asMember.length)
-      // });
+    // console.log(res);
+    // setCountLomba(res.asMember.length)
+    // });
   }, [isAuthenticated]);
 
   const searchTeam = () => {
@@ -315,7 +316,7 @@ const Index = (nameAbr) => {
                   <div className="w-full h-auto">
                     {userTeam &&
                       userTeam?.asMember?.map((team) => {
-                        if(team.teamId){
+                        if (team.teamId) {
                           return (
                             <TeamCard
                               id={team.teamId._id}
@@ -323,7 +324,7 @@ const Index = (nameAbr) => {
                               teamName={team.teamId.teamName}
                               verify={team.teamId.status}
                             />
-                          );                          
+                          );
                         }
                       })}
                   </div>
@@ -340,43 +341,64 @@ const Index = (nameAbr) => {
                     <SwiperSlide>
                       <CardLomba
                         name="Capture The Flag"
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("CTF");
+                        }}
                       />
                     </SwiperSlide>
                     <SwiperSlide>
                       <CardLomba
                         name="Competitive Programming"
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("CP");
+                        }}
                       />
                     </SwiperSlide>
                     <SwiperSlide>
                       <CardLomba
                         name="UX Competition"
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("UX Competition");
+                        }}
                       />
                     </SwiperSlide>
                     <SwiperSlide>
                       <CardLomba
                         name="Data analytics"
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("Data analytics");
+                        }}
                       />
                     </SwiperSlide>
                     <SwiperSlide>
                       <CardLomba
                         name="Hackaton"
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("Hackaton");
+                        }}
                       />
                     </SwiperSlide>
                     <SwiperSlide>
                       <CardLomba
                         name="E-Sports"
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("E-Sports");
+                        }}
                       />
                     </SwiperSlide>
                     <SwiperSlide>
                       <CardLomba
                         name="Informatics comp."
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("Informatics comp.");
+                        }}
                       />
                     </SwiperSlide>
                   </Swiper>
@@ -391,43 +413,64 @@ const Index = (nameAbr) => {
                     <SwiperSlide>
                       <CardLomba
                         name="Capture The Flag"
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("CTF");
+                        }}
                       />
                     </SwiperSlide>
                     <SwiperSlide>
                       <CardLomba
                         name="Competitive Programming"
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("CP");
+                        }}
                       />
                     </SwiperSlide>
                     <SwiperSlide>
                       <CardLomba
                         name="UX Competition"
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("UX Competition");
+                        }}
                       />
                     </SwiperSlide>
                     <SwiperSlide>
                       <CardLomba
                         name="Data analytics"
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("Data analytics");
+                        }}
                       />
                     </SwiperSlide>
                     <SwiperSlide>
                       <CardLomba
                         name="Hackaton"
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("Hackaton");
+                        }}
                       />
                     </SwiperSlide>
                     <SwiperSlide>
                       <CardLomba
                         name="E-Sports"
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("E-Sports");
+                        }}
                       />
                     </SwiperSlide>
                     <SwiperSlide>
                       <CardLomba
                         name="Informatics comp."
-                        clickStatus={() => setOpenConfirmation(true)}
+                        clickStatus={() => {
+                          setOpenConfirmation(true);
+                          setTitleLomba("Informatics comp.");
+                        }}
                       />
                     </SwiperSlide>
                   </Swiper>
@@ -436,31 +479,52 @@ const Index = (nameAbr) => {
                 <div className="w-full h-[240px] flex justify-center items-start gap-[31px] mt-6">
                   <CardLomba
                     name="Capture The Flag"
-                    clickStatus={() => setOpenConfirmation(true)}
+                    clickStatus={() => {
+                      setOpenConfirmation(true);
+                      setTitleLomba("CTF");
+                    }}
                   />
                   <CardLomba
                     name="Competitive Programming"
-                    clickStatus={() => setOpenConfirmation(true)}
+                    clickStatus={() => {
+                      setOpenConfirmation(true);
+                      setTitleLomba("CP");
+                    }}
                   />
                   <CardLomba
                     name="UX Competition"
-                    clickStatus={() => setOpenConfirmation(true)}
+                    clickStatus={() => {
+                      setOpenConfirmation(true);
+                      setTitleLomba("UX Competition");
+                    }}
                   />
                   <CardLomba
                     name="Data analytics"
-                    clickStatus={() => setOpenConfirmation(true)}
+                    clickStatus={() => {
+                      setOpenConfirmation(true);
+                      setTitleLomba("Data analytics");
+                    }}
                   />
                   <CardLomba
                     name="Hackaton"
-                    clickStatus={() => setOpenConfirmation(true)}
+                    clickStatus={() => {
+                      setOpenConfirmation(true);
+                      setTitleLomba("Hackaton");
+                    }}
                   />
                   <CardLomba
                     name="E-Sports"
-                    clickStatus={() => setOpenConfirmation(true)}
+                    clickStatus={() => {
+                      setOpenConfirmation(true);
+                      setTitleLomba("E-Sports");
+                    }}
                   />
                   <CardLomba
                     name="Informatics comp."
-                    clickStatus={() => setOpenConfirmation(true)}
+                    clickStatus={() => {
+                      setOpenConfirmation(true);
+                      setTitleLomba("Informatics comp.");
+                    }}
                   />
                 </div>
               )}
@@ -476,7 +540,7 @@ const Index = (nameAbr) => {
               onClick={() => setOpenConfirmation(false)}
             />
             <p className="w-full h-auto font-bold lg:mt-[17.5px] text-text-placeholder-dark font-Montserrat lg:font-CreatoDisplay text-xl lg:text-2xl lg:leading-6 text-center">
-              Mendaftar CTF
+              Mendaftar {titleLomba}
             </p>
             <p className="text-sm lg:text-base font-medium text-text-placeholder-dark font-Montserrat text-center text-balance">
               Anda dapat membuat
@@ -490,7 +554,7 @@ const Index = (nameAbr) => {
                 <Link
                   href={
                     isAuthenticated
-                      ? "/user/dashboard/lomba/dataTim"
+                      ? "/user/dashboard/lomba/datatim"
                       : "/auth/login"
                   }
                 >

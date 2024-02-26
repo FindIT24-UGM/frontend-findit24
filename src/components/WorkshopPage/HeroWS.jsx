@@ -32,6 +32,7 @@ function HeroWS() {
       <Image
         src={BG_WS}
         className="absolute top-0 w-[120vw] lg:w-[75vw]"
+        alt="Background.png"
       ></Image>
       <div className="flex flex-col justify-center items-center gap-y-8">
         <p className="font-Ava text-white text-[20px] lg:text-[1.25vw]">

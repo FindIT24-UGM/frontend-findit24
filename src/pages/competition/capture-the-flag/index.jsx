@@ -14,7 +14,9 @@ import Micro_Atas from "../../../assets/compepage/bghero/Micro_Atas.png";
 import Second from "../../../components/competitionpage/Second";
 import Footer from "../../../components/footer";
 
-function CaptureTheFlag() {
+export default function CaptureTheFlag() {
+  const registrationCountdown = "4 Mar 2024";
+
   const CTFInformation = [
     {
       title: "Kategori Peserta",
@@ -53,29 +55,38 @@ function CaptureTheFlag() {
               <Image
                 src={Awan_Kanan}
                 className="w-[28vw] md:w-[15.3vw] lg:w-[6.25vw]"
-                alt=""
+                alt="Awan.png"
               />
             </div>
             <div className="absolute md:-top-20 2xl:-top-52 md:-right-12 2xl:-right-16 opacity-60">
               <Image
                 src={Micro_Atas}
                 className="w-[28vw] md:w-[102vw] lg:w-[64vw] 2xl:w-[60vw]"
+                alt="Asset BG.png"
               />
             </div>
             <div className="absolute -right-20 2xl:right-48 2xl:top-1/3 opacity-60">
               <Image
                 src={Micro_Pattern}
                 className="w-[28vw] md:w-[102vw] lg:w-[64vw] 2xl:w-[45vw]"
+                alt="Asset BG.png"
               />
             </div>
             {/* Belum Responsive cik */}
             <div className="absolute -top-12 lg:-top-28 right-1 lg:-right-24 -rotate-[15deg] lg:rotate-0 lg:flex">
-              <Image src={Bintang_Group} className="w-[101vw] 2xl:w-[93vw]" />
+              <Image
+                src={Bintang_Group}
+                className="w-[101vw] 2xl:w-[93vw]"
+                alt="Asset BG.png"
+              />
             </div>
             {/* Belum Responsive cik*/}
             <div className="w-full flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between md:justify-around gap-y-8 md:gap-y-12 lg:gap-y-20 gap-x-12 container max-w-[1500px] py-20 lg:py-0">
               <div data-aos="zoom-out-down">
-                <Title competitionTitle="Capture The Flag" />
+                <Title
+                  competitionTitle="Capture The Flag"
+                  registrationCountdown={registrationCountdown}
+                />
               </div>
               <div className="mx-10 md:mx-0 relative">
                 <Image
@@ -84,6 +95,7 @@ function CaptureTheFlag() {
                   height={532}
                   className="relative z-40 w-[50vw] md:w-[35.5vw] xl:w-[600px] mx-auto"
                   priority
+                  alt="Logo.png"
                 />
               </div>
             </div>
@@ -102,4 +114,12 @@ function CaptureTheFlag() {
   );
 }
 
-export default CaptureTheFlag;
+// export async function getServerSideProps() {
+//   const registrationCountdown = "2024-03-10T00:00:00";
+
+//   return {
+//     props: {
+//       registrationCountdown,
+//     },
+//   };
+// }

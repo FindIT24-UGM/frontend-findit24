@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Polygon from "../../assets/background/Polygon6.png";
 import Roket1 from "../../assets/background/Roket1.png";
 import Cardcompe from "../../assets/background/cardcompe2.png";
@@ -10,10 +10,42 @@ import PatternHP from "../../assets/background/patternCepeHP.png";
 import Image from "next/image";
 
 function NamaLomba({ content }) {
+  const sliderTrackRef = useRef(null);
+  let requestId = null;
+
+  useEffect(() => {
+    const sliderTrack = sliderTrackRef.current;
+
+    const startAnimation = () => {
+      if (sliderTrack) {
+        const sliderWidth = sliderTrack.scrollWidth;
+        let position = 0;
+
+        const animate = () => {
+          position += 1;
+          if (position >= sliderWidth) {
+            position = 0;
+          }
+          sliderTrack.style.transform = `translateX(-${position}px)`;
+          requestId = requestAnimationFrame(animate);
+        };
+
+        animate();
+      }
+    };
+
+    startAnimation();
+
+    return () => cancelAnimationFrame(requestId);
+  }, []);
+
   return (
-    <div className="w-[120%] relative flex items-center text-center justify-center mt-32">
+    <div className="w-[250%] md:w-[150%] lg:w-[120%] relative flex items-center text-center justify-center mt-32">
       <div className="absolute left-[-10vw] w-full h-[5vw] max-md:h-[6vw] bg-gradient-to-b border-4 border-black from-[#FF8C5A] to-[#F95949]"></div>
-      <div className="relative whitespace-nowrap font-GameOfSquid text-[1.8vw] text-black flex justify-between w-full z-10">
+      <div
+        ref={sliderTrackRef}
+        className="relative whitespace-nowrap font-GameOfSquid text-[3.33vw] md:text-[2.6vw] text-[1.8vw] text-black flex justify-between w-full z-10"
+      >
         {content}&emsp;
         {content}&emsp;
         {content}&emsp;
@@ -216,14 +248,16 @@ export default function Second({
         <Image
           src={PatternTab}
           className="absolute w-[16vw] top-[0vw] justify-center z-0 min-md:opacity-0 max-sm:opacity-0"
+          alt="Pattern.png"
         />
         <Image
           src={PatternHP}
           className="absolute w-[16vw] top-[0vw] justify-center z-0 min-sm:opacity-0"
+          alt="Pattern.png"
         />
       </div>
       <div className="absolute left-0 top-[-8vw] w-[15vw] z-30 max-md:w-[32vw] max-md:top-[-22vw] max-sm:w-[24vw] max-sm:top-[-10vw]">
-        <Image src={Roket1} />
+        <Image src={Roket1} alt="Roket.png" />
       </div>
       <div className="w-full h-[20vw] flex justify-center items-center relative ">
         <div className="w-full rotate-6">
@@ -245,7 +279,7 @@ export default function Second({
         className="absolute w-[50vw] left-[30vw] top-[48vw] z-0"
         alt="Bintang.png"
       />
-      <div className="font-Montserrat text-[1vw] w-[28vw] flex justify-center items-center text-center mx-auto my-20 max-md:w-[54%] max-md:text-[2vw]  max-sm:w-[60%] max-sm:text-[3vw]">
+      <div className="font-Montserrat text-[3.85vw] md:text-[2.1vw] lg:text-[1vw] w-[83.33vw] md:w-[52vw] lg:w-[28vw] flex justify-center items-center text-center mx-auto my-20 max-md:w-[54%] max-md:text-[2vw]  max-sm:w-[60%] max-sm:text-[3vw]">
         {competitionDescription}
       </div>
       {MyComponent() && (

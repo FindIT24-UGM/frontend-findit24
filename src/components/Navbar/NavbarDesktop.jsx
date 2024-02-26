@@ -108,6 +108,8 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
         src={"/assets/images/logoFindITPutih.png"}
         width={70}
         height={70}
+        alt="FindIT.png"
+        priority
       />
       <div className="relative">
         <div
