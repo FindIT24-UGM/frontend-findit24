@@ -10,8 +10,8 @@ const LOMBA = [
   "Capture the flag",
   "Competitive Programming",
   "UX Competition",
-  "Data analysis",
-  "Hackaton",
+  "Data analytics",
+  "Hackathon",
   "E-Sports",
   "Informatics Competition",
 ];
@@ -90,7 +90,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
                   }
                 >
                   <p
-                    className="flex items-center justify-center flex-1 w-full py-2 rounded-lg cursor-pointer hover:text-white hover:bg-primary-300 font-Montserrat"
+                    className="flex items-center justify-center flex-1 w-full py-2 rounded-lg cursor-pointer text-white hover:bg-primary-300 font-Montserrat"
                     onClick={(e) => {
                       e.stopPropagation();
                     }}

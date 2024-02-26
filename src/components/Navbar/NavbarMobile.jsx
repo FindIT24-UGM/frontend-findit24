@@ -11,8 +11,8 @@ const LOMBA = [
   "Capture the flag",
   "Competitive Programming",
   "UX Competition",
-  "Data analysis",
-  "Hackaton",
+  "Data analytics",
+  "Hackathon",
   "E-Sports",
   "Informatics Competition",
 ];

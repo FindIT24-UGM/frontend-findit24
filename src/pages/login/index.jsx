@@ -19,7 +19,9 @@ import ElectricPattern from "../../components/ElectricPattern.jsx";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { isAuthenticated, user, isLoading } = useSelector((state) => state.auth);
+  const { isAuthenticated, user, isLoading } = useSelector(
+    (state) => state.auth
+  );
 
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
@@ -27,42 +29,40 @@ const LoginPage = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    if(isAuthenticated){
-      dispatch(loadingStart())
+    if (isAuthenticated) {
+      dispatch(loadingStart());
       dispatch(getUserData())
         .unwrap()
         .then((res) => {
-          dispatch(loadingEnd())
-        })
-        if(user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE){
-          router.replace('/admin/dashboard/statistic')
-        }
-        else if(user?.role !== process.env.NEXT_PUBLIC_ADMIN_ROLE){
-          router.replace('/user/dashboard/beranda')
-        }
+          dispatch(loadingEnd());
+          if (user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE) {
+            router.replace("/admin/dashboard/statistic");
+          } else if (user?.role !== process.env.NEXT_PUBLIC_ADMIN_ROLE) {
+            router.replace("/");
+          }
+        });
     }
-
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
   const loginHandler = (e) => {
     e.preventDefault();
-      if (!email) {
-        return setMessage("Email field is missing!");
-      }
-      if (!password) {
-        return setMessage("Password field is missing!");
-      }
-      // ? Fetch:  POST /auth/login (DISPATCH (RTK))
-      dispatch(login({ email, password }))
-        .unwrap()
-        .then((res) => {
-          dispatch(loadingEnd());
-          toast.success("Login successfully")
-          // router.push("/user/dashboard/beranda");
-        })
-        .catch ((err) => {
-          toast.error("Email not found or password incorrect");
-          dispatch(loadingEnd());
-        })
+    if (!email) {
+      return setMessage("Email field is missing!");
+    }
+    if (!password) {
+      return setMessage("Password field is missing!");
+    }
+    // ? Fetch:  POST /auth/login (DISPATCH (RTK))
+    dispatch(login({ email, password }))
+      .unwrap()
+      .then((res) => {
+        dispatch(loadingEnd());
+        toast.success("Login successfully");
+        // router.push("/user/dashboard/beranda");
+      })
+      .catch((err) => {
+        toast.error("Email not found or password incorrect");
+        dispatch(loadingEnd());
+      });
   };
 
   const googleLoginHandler = async (e) => {
@@ -85,7 +85,9 @@ const LoginPage = () => {
       <ElectricPattern>
         <div className="flex flex-col items-center justify-center w-screen h-screen px-5 py-20 overflow-auto bg-background-skyblue lg:px-12 md:px-8">
           <h1 className="text-4xl font-GameOfSquid">Sign in</h1>
-          <h2>Log in with your data that you entered during your registration</h2>
+          <h2>
+            Log in with your data that you entered during your registration
+          </h2>
           <div className="flex flex-col gap-y-3 w-[80%] lg:w-[37%] mt-10">
             {/* email input */}
             <label htmlFor="email">
@@ -150,26 +152,29 @@ const LoginPage = () => {
                 {message}
               </p>
             ) : (
-            <p className={"text-red-600 font-bold text-center absolute"}>
-              {message}
-            </p>
+              <p className={"text-red-600 font-bold text-center absolute"}>
+                {message}
+              </p>
             )}
-          <div className="flex flex-row items-center my-2 mt-4 font-thin gap-x-1">
-            <p className="">Don't have an account ?</p>
-            <Link href={"/signup"} className="cursor-pointer text-primary-300">
-              Create an account
-            </Link>
+            <div className="flex flex-row items-center my-2 mt-4 font-thin gap-x-1">
+              <p className="">Don't have an account ?</p>
+              <Link
+                href={"/signup"}
+                className="cursor-pointer text-primary-300"
+              >
+                Create an account
+              </Link>
+            </div>
+            <div className="flex flex-row font-thin gap-x-1">
+              <p className="">Forgot Password ?</p>
+              <Link
+                href={"/login/resetPassword"}
+                className="cursor-pointer text-primary-300"
+              >
+                Reset password
+              </Link>
+            </div>
           </div>
-          <div className="flex flex-row font-thin gap-x-1">
-            <p className="">Forgot Password ?</p>
-            <Link
-              href={"/login/resetPassword"}
-              className="cursor-pointer text-primary-300"
-            >
-              Reset password
-            </Link>
-          </div>
-        </div>
         </div>
       </ElectricPattern>
     </RootLayout>

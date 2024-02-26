@@ -55,6 +55,16 @@ function NamaLomba({ content }) {
         {content}&emsp;
         {content}&emsp;
         {content}&emsp;
+        {content}&emsp;
+        {content}&emsp;
+        {content}&emsp;
+        {content}&emsp;
+        {content}&emsp;
+        {content}&emsp;
+        {content}&emsp;
+        {content}&emsp;
+        {content}&emsp;
+        {content}&emsp;
         {content}
       </div>
     </div>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import TeamProfileLayout from "./layout";
 
@@ -36,16 +36,18 @@ const index = () => {
           setDataTeam(res.data.info);
           console.log(res.data.info);
           axios
-          .get(`${process.env.NEXT_PUBLIC_API_URL}/team/get-announcements/${teamId}`, {
-            withCredentials: true,
-          })
-          .then((announ) => {
-            setAnnouncements(announ.data.announcements);
-
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+            .get(
+              `${process.env.NEXT_PUBLIC_API_URL}/team/get-announcements/${teamId}`,
+              {
+                withCredentials: true,
+              }
+            )
+            .then((announ) => {
+              setAnnouncements(announ.data.announcements);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         })
         .catch((err) => {
           console.log(err);
@@ -54,13 +56,16 @@ const index = () => {
   }, [teamId]);
 
   useEffect(() => {
-    if(dataTeam.paymentDate){
-      const formattedDate = format(new Date(`${dataTeam.paymentDate}`), "dd MMMM y");
-      setDate(formattedDate)
+    if (dataTeam.paymentDate) {
+      const formattedDate = format(
+        new Date(`${dataTeam.paymentDate}`),
+        "dd MMMM y"
+      );
+      setDate(formattedDate);
     }
-  }, [dataTeam.paymentDate])
+  }, [dataTeam.paymentDate]);
 
-/*---------handle upload twibbon (pdf) ss twibbon smua anggota jadiin satu pdf------- */
+  /*---------handle upload twibbon (pdf) ss twibbon smua anggota jadiin satu pdf------- */
   const handleUploadTwibbon = (e) => {
     const formTwibbon = new FormData();
     const file = e.target.files[0];
@@ -71,9 +76,13 @@ const index = () => {
 
     if (formTwibbon) {
       axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/team/upload-twibbon/${teamId}`, formTwibbon, {
-          withCredentials: true,
-        })
+        .post(
+          `${process.env.NEXT_PUBLIC_API_URL}/team/upload-twibbon/${teamId}`,
+          formTwibbon,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           console.log(res);
           toast.success("berhasil upload twibbon");
@@ -84,9 +93,9 @@ const index = () => {
         });
     }
   };
-/*----------END--------------- */
+  /*----------END--------------- */
 
-/*------handle upload payment (png/jpg/jpeg)------ */
+  /*------handle upload payment (png/jpg/jpeg)------ */
   const handleUploadPaymentFile = (e) => {
     const formPayment = new FormData();
     const file = e.target.files[0];
@@ -97,9 +106,13 @@ const index = () => {
 
     if (formPayment) {
       axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/team/verification/${teamId}`, formPayment, {
-          withCredentials: true,
-        })
+        .post(
+          `${process.env.NEXT_PUBLIC_API_URL}/team/verification/${teamId}`,
+          formPayment,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           console.log(res);
           toast.success("berhasil upload bukti pembayaran");
@@ -109,10 +122,10 @@ const index = () => {
           console.log(formPayment);
         });
     }
-  }
+  };
   /*----------END------------ */
 
-/*------handle upload abstract (pdf)------ */
+  /*------handle upload abstract (pdf)------ */
   const handleUploadAbstract = (e) => {
     const formAbstract = new FormData();
     const file = e.target.files[0];
@@ -123,9 +136,13 @@ const index = () => {
 
     if (formAbstract) {
       axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/team/upload-abstract/${teamId}`, formAbstract, {
-          withCredentials: true,
-        })
+        .post(
+          `${process.env.NEXT_PUBLIC_API_URL}/team/upload-abstract/${teamId}`,
+          formAbstract,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           console.log(res);
           toast.success("berhasil upload abstrak");
@@ -135,12 +152,11 @@ const index = () => {
           console.log(formAbstract);
         });
     }
-  }
+  };
   /*----------END------------ */
 
   const copyOnclick = () => {};
   const editOnclick = () => {};
-
 
   return (
     <TeamProfileLayout>
@@ -184,16 +200,16 @@ const index = () => {
             </div>
           </div>
           <div className="max-h-72 md:max-h-56 lg:max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-white">
-            {announcements && announcements.map((announcement) => (
-              <Comment
-                key={announcement._id}
-                title={announcement.title}
-                toTeam={announcement.toTeam.teamName}
-                content={announcement.content}
-                createdAt={announcement.createdAt}
-              />
-            ))
-            }
+            {announcements &&
+              announcements.map((announcement) => (
+                <Comment
+                  key={announcement._id}
+                  title={announcement.title}
+                  toTeam={announcement.toTeam.teamName}
+                  content={announcement.content}
+                  createdAt={announcement.createdAt}
+                />
+              ))}
           </div>
         </div>
       </div>
@@ -212,16 +228,20 @@ const index = () => {
               </h2>
               <Status isVerified={dataTeam?.verified} />
             </div>
-            <p className="font-Montserrat font-bold text-[13.89px]">{dataTeam?.eventId?.eventName}</p>
+            <p className="font-Montserrat font-bold text-[13.89px]">
+              {dataTeam?.eventId?.eventName}
+            </p>
           </div>
           <div className="space-y-4 border-b-[1px] pb-5 border-slate-600">
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Team ID</h2>
-              <p className="h-full">{dataTeam?._id}</p>
+              <p className="h-full overflow-auto">{dataTeam?._id}</p>
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Code</h2>
-              <p className="h-full font-bold text-background-skyblue">{dataTeam?.teamCode}</p>
+              <p className="h-full font-bold text-background-skyblue">
+                {dataTeam?.teamCode}
+              </p>
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Leader</h2>
@@ -252,44 +272,42 @@ const index = () => {
             </div>
           </div>
           <div className="space-y-4 border-b-[1px] pb-5 border-slate-600">
-            {dataTeam?.eventId === process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON || dataTeam?.eventId === process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE ? (
-            <div className="font-Montserrat flex items-center">
-              <div className="w-[200px]">
-                <p>Informasi</p>
-                <p>Proposal</p>
+            {dataTeam?.eventId ===
+              process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON ||
+            dataTeam?.eventId ===
+              process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE ? (
+              <div className="font-Montserrat flex items-center">
+                <div className="w-[200px]">
+                  <p>Informasi</p>
+                  <p>Proposal</p>
+                </div>
+                {dataTeam?.abstractFile === "" ? (
+                  <label className="flex items-center w-[160px] justify-center border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1">
+                    <input
+                      className="hidden"
+                      type="file"
+                      id="abstractFile"
+                      name="abstractFile"
+                      accept="application/*"
+                      onChange={handleUploadAbstract}
+                    />
+                    <p>Unggah</p>
+                  </label>
+                ) : (
+                  <button
+                    onClick={() => router.push(`${dataTeam?.abstractFile}`)}
+                    className="flex items-center w-[160px] justify-center border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
+                  >
+                    <p>Lihat</p>
+                  </button>
+                )}
               </div>
-              {dataTeam?.abstractFile ==="" ? (
-              <label
-                className="flex items-center w-[160px] justify-center border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
-              >
-              <input
-                className="hidden"
-                type="file"
-                id="abstractFile"
-                name="abstractFile"
-                accept="application/*"
-                onChange={handleUploadAbstract}
-              />
-                <p>Unggah</p>
-              </label>
-              ) : (
-                <button onClick={() => router.push(`${dataTeam?.abstractFile}`)}
-                className="flex items-center w-[160px] justify-center border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
-              >
-                <p>Lihat</p>
-              </button>
-              )}
-            </div>
             ) : (
               <div></div>
             )}
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Tanggal Pembayaran</h2>
-              {date ? (
-                <p>{date}</p>
-              ) : (
-                <p>-</p>
-              )}
+              {date ? <p>{date}</p> : <p>-</p>}
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Nama Pengirim</h2>
@@ -310,28 +328,26 @@ const index = () => {
                   buktiPembayaran.png
                 </p>
               </div>
-              {dataTeam?.paymentFile ==="" ? (
-              <label
-              className="w-[160px] flex justify-center hover:cursor-pointer border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
-              >
-              <input
-                className="hidden"
-                type="file"
-                id="paymentFile"
-                name="paymentFile"
-                accept="image/*"
-                onChange={handleUploadPaymentFile}
-              />
-              <p>Unggah</p>
-            </label>
+              {dataTeam?.paymentFile === "" ? (
+                <label className="w-[160px] flex justify-center hover:cursor-pointer border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1">
+                  <input
+                    className="hidden"
+                    type="file"
+                    id="paymentFile"
+                    name="paymentFile"
+                    accept="image/*"
+                    onChange={handleUploadPaymentFile}
+                  />
+                  <p>Unggah</p>
+                </label>
               ) : (
-                <button onClick={() => router.push(`${dataTeam?.paymentFile}`)}
-                className="w-[160px] hover:cursor-pointer border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
+                <button
+                  onClick={() => router.push(`${dataTeam?.paymentFile}`)}
+                  className="w-[160px] hover:cursor-pointer border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
                 >
-                <p>Lihat</p>
-              </button>
+                  <p>Lihat</p>
+                </button>
               )}
-
             </div>
             <div className="font-Montserrat flex items-center">
               <div className="w-[200px]">
@@ -340,26 +356,25 @@ const index = () => {
                   anda belum upload
                 </p>
               </div>
-              {dataTeam?.twibbonTeam ==="" ? (
-              <label
-                className="w-[160px] flex justify-center border-4 hover:cursor-pointer border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
-              >
-                <input
-                  className="hidden"
-                  type="file"
-                  id="twibbonTeam"
-                  name="twibbonTeam"
-                  accept="application/*"
-                  onChange={handleUploadTwibbon}
-                />
-                <p>Upload</p>
-              </label>
+              {dataTeam?.twibbonTeam === "" ? (
+                <label className="w-[160px] flex justify-center border-4 hover:cursor-pointer border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1">
+                  <input
+                    className="hidden"
+                    type="file"
+                    id="twibbonTeam"
+                    name="twibbonTeam"
+                    accept="application/*"
+                    onChange={handleUploadTwibbon}
+                  />
+                  <p>Upload</p>
+                </label>
               ) : (
-                <button onClick={() => router.push(`${dataTeam?.twibbonTeam}`)}
-                className="w-[160px] border-4 hover:cursor-pointer border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
-              >
-                <p>Lihat</p>
-              </button >
+                <button
+                  onClick={() => router.push(`${dataTeam?.twibbonTeam}`)}
+                  className="w-[160px] border-4 hover:cursor-pointer border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
+                >
+                  <p>Lihat</p>
+                </button>
               )}
             </div>
           </div>
@@ -372,28 +387,29 @@ const index = () => {
           <h2 className="text-2xl font-Montserrat text-white font-bold">
             Anggota
           </h2>
-          {dataTeam?.teamMember && dataTeam?.teamMember.map((member) => (
-            <div className="mt-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-black scrollbar-track-primary-500 scroll-m-2 max-h-[720px]">
-            {/* name, email, dateOfBirth, province, address, phone, id, status, institutionName, institutionNumber, institutionFile */}
-              <Accordion 
-              name={member.userId.name}
-              email={member.userId.email}
-              dateOfBirth={member.userId.dateOfBirth}
-              province={member.userId.province}
-              address={member.userId.address}
-              phone={member.userId.phone}
-              id={member.userId._id}
-              status={member.userId.status}
-              institutionName={member.userId.institutionName}
-              institutionNumber={member.userId.institutionNumber}
-              institutionFile={member.userId.institutionFile}
-              />
-              {/* <Accordion />
+          {dataTeam?.teamMember &&
+            dataTeam?.teamMember.map((member) => (
+              <div className="mt-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-black scrollbar-track-primary-500 scroll-m-2 max-h-[720px]">
+                {/* name, email, dateOfBirth, province, address, phone, id, status, institutionName, institutionNumber, institutionFile */}
+                <Accordion
+                  name={member.userId.name}
+                  email={member.userId.email}
+                  dateOfBirth={member.userId.dateOfBirth}
+                  province={member.userId.province}
+                  address={member.userId.address}
+                  phone={member.userId.phone}
+                  id={member.userId._id}
+                  status={member.userId.status}
+                  institutionName={member.userId.institutionName}
+                  institutionNumber={member.userId.institutionNumber}
+                  institutionFile={member.userId.institutionFile}
+                  key={member}
+                />
+                {/* <Accordion />
               <Accordion />
               <Accordion /> */}
-            </div>
-
-          ))}
+              </div>
+            ))}
         </div>
       </div>
 

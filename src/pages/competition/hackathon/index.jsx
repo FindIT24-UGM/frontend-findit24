@@ -79,7 +79,7 @@ function Hackaton() {
             {/* Konten */}
             <div className="w-full flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between md:justify-around gap-y-8 md:gap-y-12 lg:gap-y-20 gap-x-12 container max-w-[1500px] py-20 lg:py-0">
               <div data-aos="zoom-out-down">
-                <Title competitionTitle="Hackaton" />
+                <Title competitionTitle="Hackathon" />
               </div>
               <div className="mx-10 md:mx-0 relative">
                 <Image
@@ -92,7 +92,7 @@ function Hackaton() {
               </div>
             </div>
           </div>
-          <Second 
+          <Second
             cabangLomba="Hackathon"
             competitionDescription="Hackathon adalah kompetisi pembuatan inovasi berupa produk teknologi informasi. Kompetisi ini mengkolaborasikan aspek startup yaitu Hipster (Design and UI/UX), Hacker (Engineer and Developer), dan Hustler (Business and Project Management). Dalam jangka waktu yang telah ditentukan, peserta akan mengembangkan produk dalam bentuk Minimum Viable Product yang sesuai dengan tema."
             cardAllItems={HCInformation}

@@ -323,6 +323,7 @@ const Index = (nameAbr) => {
                               competition={team.eventId.eventName}
                               teamName={team.teamId.teamName}
                               verify={team.teamId.status}
+                              key={team}
                             />
                           );
                         }
