@@ -98,7 +98,13 @@ const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
           className={twMerge(
             "w-[80%] h-fit py-3 text-black rounded-lg bg-primary-300 mx-auto mt-5 hover:bg-primary-500 duration-300 transition-all"
           )}
-          onClick={() => router.push("/admin/dashboard")}
+          onClick={() =>
+            router.push(
+              user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE
+                ? "/admin/dashboard/beranda"
+                : "/user/dashboard/beranda"
+            )
+          }
         >
           Dashboard
         </button>

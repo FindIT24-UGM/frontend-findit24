@@ -3,9 +3,20 @@ import React from "react";
 import { useState } from "react";
 import { MdPlayArrow } from "react-icons/md";
 
-export default function Accordion({name, email, dateOfBirth, province, address, phone, id, status, institutionName, institutionNumber, institutionFile }) {
-
-  const formattedDateOfBirth = format(new Date(`${dateOfBirth}`), 'dd MMMM y');
+export default function Accordion({
+  name,
+  email,
+  dateOfBirth,
+  province,
+  address,
+  phone,
+  id,
+  status,
+  institutionName,
+  institutionNumber,
+  institutionFile,
+}) {
+  const formattedDateOfBirth = format(new Date(`${dateOfBirth}`), "dd MMMM y");
 
   const [isExpand, setIsExpand] = useState(0);
   const clickAccordion = () => {
@@ -15,9 +26,15 @@ export default function Accordion({name, email, dateOfBirth, province, address, 
     window.open(`${institutionFile}`, "_blank");
   };
   return (
-    <div className={`bg-shade-white rounded-md my-2 ${isExpand ? 'border-2 border-black' : ''}`}>
+    <div
+      className={`bg-shade-white rounded-md my-2 ${
+        isExpand ? "border-2 border-black" : ""
+      }`}
+    >
       <div
-        className={`flex items-center justify-between font-bold font-Montserrat p-2 cursor-pointer rounded-md ${isExpand ? 'border-black' : ''}`}
+        className={`flex items-center justify-between font-bold font-Montserrat p-2 cursor-pointer rounded-md ${
+          isExpand ? "border-black" : ""
+        }`}
         onClick={() => {
           clickAccordion();
         }}
@@ -26,7 +43,11 @@ export default function Accordion({name, email, dateOfBirth, province, address, 
           <p>1.</p>
           <p>{name}</p>
         </div>
-        <MdPlayArrow className={`text-xl delay-100 ${isExpand ? 'transition rotate-90' : ''} delay-100`} />
+        <MdPlayArrow
+          className={`text-xl delay-100 ${
+            isExpand ? "transition rotate-90" : ""
+          } delay-100`}
+        />
       </div>
       <div className={`${isExpand ? "" : "hidden"}`}>
         <div className="px-4 pt-3">
@@ -44,9 +65,7 @@ export default function Accordion({name, email, dateOfBirth, province, address, 
           </div>
           <div className="font-Montserrat text-[11.57px] my-2">
             <h2 className="font-bold">Alamat Lengkap</h2>
-            <p>
-            {address}
-            </p>
+            <p>{address}</p>
           </div>
           <div className="font-Montserrat text-[11.57px] my-2">
             <h2 className="font-bold">Nomor HP</h2>

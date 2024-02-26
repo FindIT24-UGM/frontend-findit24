@@ -49,9 +49,9 @@ const Index = (nameAbr) => {
     //   .unwrap()
     //   .then((res) => {
     //     dispatch(loadingEnd());
-        // console.log(res);
-        // setCountLomba(res.asMember.length)
-      // });
+    // console.log(res);
+    // setCountLomba(res.asMember.length)
+    // });
   }, [isAuthenticated]);
 
   const searchTeam = () => {
@@ -315,7 +315,7 @@ const Index = (nameAbr) => {
                   <div className="w-full h-auto">
                     {userTeam &&
                       userTeam?.asMember?.map((team) => {
-                        if(team.teamId){
+                        if (team.teamId) {
                           return (
                             <TeamCard
                               id={team.teamId._id}
@@ -323,7 +323,7 @@ const Index = (nameAbr) => {
                               teamName={team.teamId.teamName}
                               verify={team.teamId.status}
                             />
-                          );                          
+                          );
                         }
                       })}
                   </div>
@@ -490,7 +490,7 @@ const Index = (nameAbr) => {
                 <Link
                   href={
                     isAuthenticated
-                      ? "/user/dashboard/lomba/dataTim"
+                      ? "/user/dashboard/lomba/datatim"
                       : "/auth/login"
                   }
                 >

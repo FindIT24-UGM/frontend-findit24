@@ -4,27 +4,34 @@ import Button from "../Button";
 export default function Title({
   competitionTitle = "Competitive Programming",
   registrationCountdown,
+  serverTime, // Tambahkan props serverTime
 }) {
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
 
   useEffect(() => {
+    // Sinkronkan waktu klien dengan waktu server saat komponen dimuat
+    setTimeRemaining(calculateTimeRemaining(serverTime));
+
+    // Setup interval untuk update waktu setiap detik
     const interval = setInterval(() => {
-      setTimeRemaining(calculateTimeRemaining());
+      setTimeRemaining(calculateTimeRemaining(serverTime));
     }, 1000);
 
+    // Membersihkan interval pada unmount
     return () => clearInterval(interval);
-  }, []);
+  }, [serverTime]); // Gunakan serverTime sebagai dependensi
 
-  function calculateTimeRemaining() {
-    const changingDate = new Date("4 Mar 2024");
-    const currentDate = new Date();
+  function calculateTimeRemaining(serverTime) {
+    const changingDate = new Date(registrationCountdown); // Menggunakan waktu target dari props
+    const currentDate = serverTime || new Date(); // Gunakan waktu server jika tersedia, jika tidak, gunakan waktu klien
     const totalSeconds = Math.max((changingDate - currentDate) / 1000, 0);
 
     const days = Math.floor(totalSeconds / 3600 / 24);
     const hours = Math.floor(totalSeconds / 3600) % 24;
     const minutes = Math.floor(totalSeconds / 60) % 60;
+    const seconds = Math.floor(totalSeconds % 60);
 
-    return { days, hours, minutes };
+    return { days, hours, minutes, seconds };
   }
 
   return (
@@ -56,6 +63,12 @@ export default function Title({
               </h4>
               <h4 className="font-Montserrat flex items-center text-[3.214vw] lg:text-[0.72vw]">
                 &nbsp;menit
+              </h4>
+              <h4 className="font-GameOfSquid text-[4.44vw] md:text-[3.125vw] lg:text-[1.25vw]">
+                &nbsp;|&nbsp;{timeRemaining.seconds}
+              </h4>
+              <h4 className="font-Montserrat flex items-center text-[3.214vw] lg:text-[0.72vw]">
+                &nbsp;detik
               </h4>
             </div>
             <div className="flex gap-x-2 mt-8">
