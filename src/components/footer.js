@@ -57,7 +57,7 @@ export default function Footer () {
     const whatsappNumber = "+62 123456789";
 
     return (
-        <footer className="bg-shade-black font-Montserrat text-shade-white w-full pb-[1vh]">
+        <footer className="bg-shade-black font-Montserrat text-shade-white w-full pb-[1vh] z-[10]">
             <div className="mx-[5vw] pt-[5vh]">
                 <div className="flex sm:flex-row flex-col items-center sm:items-start">
                     <div className="flex flex-col w-[50%] items-center sm:items-start">
