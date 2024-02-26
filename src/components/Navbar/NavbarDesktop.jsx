@@ -143,7 +143,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
           onClick={() =>
             router.push(
               user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE
-                ? "/admin/dashboard/beranda"
+                ? "/admin/dashboard/"
                 : "/user/dashboard/beranda"
             )
           }

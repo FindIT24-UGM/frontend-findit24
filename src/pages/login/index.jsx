@@ -34,15 +34,15 @@ const LoginPage = () => {
         .then((res) => {
           dispatch(loadingEnd())
         })
-      if(user?.role !== process.env.NEXT_PUBLIC_ADMIN_ROLE){
-        router.replace('/user/dashboard/beranda')
-      }
-      if(user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE){
-        router.replace('/admin/dashboard/statistic')
-      }
+        if(user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE){
+          router.replace('/admin/dashboard/statistic')
+        }
+        else if(user?.role !== process.env.NEXT_PUBLIC_ADMIN_ROLE){
+          router.replace('/user/dashboard/beranda')
+        }
     }
 
-  }, [isAuthenticated, router])
+  }, [isAuthenticated])
   const loginHandler = (e) => {
     e.preventDefault();
       if (!email) {
@@ -56,11 +56,11 @@ const LoginPage = () => {
         .unwrap()
         .then((res) => {
           dispatch(loadingEnd());
-          setMessage("Login successfully")
+          toast.success("Login successfully")
           // router.push("/user/dashboard/beranda");
         })
         .catch ((err) => {
-          setMessage("Email not found or password incorrect");
+          toast.error("Email not found or password incorrect");
           dispatch(loadingEnd());
         })
   };

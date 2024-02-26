@@ -17,6 +17,7 @@ import Accordion from "./Accordion";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { format } from "date-fns";
+import { toast } from "react-toastify";
 
 const index = () => {
   const router = useRouter();
@@ -33,6 +34,7 @@ const index = () => {
         })
         .then((res) => {
           setDataTeam(res.data.info);
+          console.log(res.data.info);
           axios
           .get(`${process.env.NEXT_PUBLIC_API_URL}/team/get-announcements/${teamId}`, {
             withCredentials: true,
@@ -65,7 +67,7 @@ const index = () => {
 
     formTwibbon.append("twibbonTeam", file);
 
-    const regex = /\.(jpg|jpeg|png)$/i;
+    const regex = /\.(pdf)$/i;
 
     if (formTwibbon) {
       axios
@@ -74,6 +76,7 @@ const index = () => {
         })
         .then((res) => {
           console.log(res);
+          toast.success("berhasil upload twibbon");
         })
         .catch((err) => {
           console.log(err);
@@ -99,10 +102,37 @@ const index = () => {
         })
         .then((res) => {
           console.log(res);
+          toast.success("berhasil upload bukti pembayaran");
         })
         .catch((err) => {
           console.log(err);
           console.log(formPayment);
+        });
+    }
+  }
+  /*----------END------------ */
+
+/*------handle upload abstract (pdf)------ */
+  const handleUploadAbstract = (e) => {
+    const formAbstract = new FormData();
+    const file = e.target.files[0];
+
+    formAbstract.append("abstractFile", file);
+
+    const regex = /\.(pdf)$/i;
+
+    if (formAbstract) {
+      axios
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/team/upload-abstract/${teamId}`, formAbstract, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+          toast.success("berhasil upload abstrak");
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log(formAbstract);
         });
     }
   }
@@ -222,21 +252,37 @@ const index = () => {
             </div>
           </div>
           <div className="space-y-4 border-b-[1px] pb-5 border-slate-600">
+            {dataTeam?.eventId === process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON || dataTeam?.eventId === process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE ? (
             <div className="font-Montserrat flex items-center">
               <div className="w-[200px]">
                 <p>Informasi</p>
-                <p>Pembayaran</p>
+                <p>Proposal</p>
               </div>
-              <button
+              {dataTeam?.abstractFile ==="" ? (
+              <label
                 className="flex items-center w-[160px] justify-center border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
-                onClick={() => {
-                  editOnclick();
-                }}
               >
-                <AiFillEdit />
-                <p>Edit</p>
+              <input
+                className="hidden"
+                type="file"
+                id="abstractFile"
+                name="abstractFile"
+                accept="application/*"
+                onChange={handleUploadAbstract}
+              />
+                <p>Unggah</p>
+              </label>
+              ) : (
+                <button onClick={() => router.push(`${dataTeam?.abstractFile}`)}
+                className="flex items-center w-[160px] justify-center border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
+              >
+                <p>Lihat</p>
               </button>
+              )}
             </div>
+            ) : (
+              <div></div>
+            )}
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Tanggal Pembayaran</h2>
               {date ? (
@@ -266,7 +312,7 @@ const index = () => {
               </div>
               {dataTeam?.paymentFile ==="" ? (
               <label
-              className="w-[160px] hover:cursor-pointer border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
+              className="w-[160px] flex justify-center hover:cursor-pointer border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
               >
               <input
                 className="hidden"
@@ -296,7 +342,7 @@ const index = () => {
               </div>
               {dataTeam?.twibbonTeam ==="" ? (
               <label
-                className="w-[160px] border-4 hover:cursor-pointer border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
+                className="w-[160px] flex justify-center border-4 hover:cursor-pointer border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
               >
                 <input
                   className="hidden"

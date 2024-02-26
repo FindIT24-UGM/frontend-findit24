@@ -13,7 +13,6 @@ export default function Accordion({
   institutionNumber,
   institutionFile,
 }) {
-  const formattedDateOfBirth = format(new Date(`${dateOfBirth}`), 'dd MMMM y');
   const [expand, setExpand] = useState(0);
 
   return (
@@ -40,7 +39,11 @@ export default function Accordion({
           </div>
           <div className="py-2">
             <h2 className="font-bold">Tanggal Lahir</h2>
-            <p>{formattedDateOfBirth}</p>
+            {dateOfBirth ? (
+              <p>{dateOfBirth}</p>
+            ) : (
+              <p>-</p>
+            )}
           </div>
           <div className="py-2">
             <h2 className="font-bold">Alamat</h2>

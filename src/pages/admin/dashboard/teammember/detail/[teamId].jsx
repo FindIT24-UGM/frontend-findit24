@@ -4,11 +4,16 @@ import { IoIosSave } from "react-icons/io";
 import Accordion from "../Accordion";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { format } from "date-fns";
+import { toast } from "react-toastify";
 
 const detail = () => {
   const router = useRouter();
   const { teamId } = router.query;
   const [dataTeam, setDataTeam] = useState([]);
+  const [date, setDate] = useState(null);
+  const [isVerified, setIsverified] = useState(false);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     if (teamId) {
@@ -24,6 +29,43 @@ const detail = () => {
         });
     }
   }, [teamId]);
+
+  useEffect(() => {
+    if(dataTeam?.paymentDate){
+      const formattedDate = format(new Date(`${dataTeam?.paymentDate}`), 'dd MMM y');
+      setDate(formattedDate)
+    }
+  }, [dataTeam])
+
+  const handleVerified = (isVerified) => {
+
+    if(isVerified){
+      axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/admin/teams/accept-team/${teamId}`, 
+      { message },
+      { withCredentials: true })
+        .then(res => {
+          toast.success('berhasil verified team')
+          console.log(res.data);
+        })
+        .catch(err => {
+          toast.error('update verified gagal')
+          console.log(err);
+        })
+    }
+    else if(!isVerified){
+      axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/admin/teams/reject-team/${teamId}`,
+      { message },
+      { withCredentials: true})
+      .then(res => {
+        toast.success('berhasil unverified team')
+        console.log(res.data);
+      })
+      .catch(err => {
+        toast.error('update unverified gagal')
+        console.log(err);
+      })
+    }
+  }
 
   return (
     <div className="bg-background-skyblue min-h-screen lg:flex py-20 px-5 lg:px-12 md:px-8">
@@ -62,29 +104,32 @@ const detail = () => {
             </div>
             <div className="flex flex-col space-y-2">
               {/* for date */}
-              <p>{dataTeam?.paymentDate}</p>
-              <button className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue">
+              <p>{date}</p>
+              <button onClick={() => window.open(`${dataTeam?.paymentFile}`, "_blank")} className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue">
                 Lihat
               </button>
             </div>
           </div>
           <div className="font-bold font-Montserrat text-[17px] text-black space-y-2 pb-8 mb-3">
             <div className="flex space-x-1 items-center">
-              <input type="radio" name="verified" />
-              <label for="verified">Verifikasi</label>
+              <input onClick={() => setIsverified(true)} type="radio" name="verification" />
+              <label htmlFor="verification">Verifikasi</label>
             </div>
             <div className="flex space-x-1 items-center">
-              <input type="radio" name="verified" />
-              <label for="verified">Tolak Verifikasi</label>
+              <input onClick={() => setIsverified(false)} type="radio" name="verification" />
+              <label htmlFor="verification">Tolak Verifikasi</label>
             </div>
           </div>
           <div>
             <textarea
               rows="8"
               className="p-2 w-full font-light border-2d"
+              onChange={(e) => {
+                setMessage(e.currentTarget.value);
+              }}
             ></textarea>
           </div>
-          <button className="font-GameOfSquid font-bold text-[16px] flex items-center py-2 justify-center w-full rounded bg-primary-300 space-x-2">
+          <button onClick={() => handleVerified(isVerified)} className="font-GameOfSquid font-bold text-[16px] flex items-center py-2 justify-center w-full rounded bg-primary-300 space-x-2">
             <IoIosSave />
             <span>SIMPAN</span>
           </button>
