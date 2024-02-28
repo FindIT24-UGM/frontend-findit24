@@ -208,6 +208,7 @@ function Cardol() {
         width={50}
         height={40}
         className=" absolute w-[38.75vw]"
+        alt="CardCompe.png"
       />
       <div className="absolute text-[3.2vw] text-black text-left translate-x-[6vw] translate-y-[2vw] ">
         <strong>Kategori Peserta</strong>
@@ -250,10 +251,12 @@ export default function Second({
         <Image
           src={Pattern1}
           className="absolute w-[16vw] top-[0vw] right-[0vw] z-0"
+          alt="Pattern.png"
         />
         <Image
           src={Pattern1}
           className="absolute w-[16vw] top-[0vw] left-[0vw] z-0 rotate-180"
+          alt="Pattern.png"
         />
         <Image
           src={PatternTab}

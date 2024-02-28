@@ -307,6 +307,66 @@ const ProfilDiri = () => {
   //     </ModalParent>;
   //   }
   // };
+
+  useEffect(() => {
+    // Ambil data profil dari sumber daya (misalnya, backend) menggunakan axios atau metode lain
+    axios
+      .get(process.env.NEXT_PUBLIC_API_URL + "/user/")
+      .then((response) => {
+        const profileData = response.data;
+
+        // Update nilai awal state dengan data profil sebelumnya
+        dispatch({
+          type: "UPDATE_FIELD",
+          field: "name",
+          value: profileData.name,
+        });
+        dispatch({
+          type: "UPDATE_FIELD",
+          field: "dateOfBirth",
+          value: new Date(profileData.dateOfBirth),
+        });
+        dispatch({
+          type: "UPDATE_FIELD",
+          field: "phone",
+          value: profileData.phone,
+        });
+        dispatch({
+          type: "UPDATE_FIELD",
+          field: "province",
+          value: profileData.province,
+        });
+        dispatch({
+          type: "UPDATE_FIELD",
+          field: "address",
+          value: profileData.address,
+        });
+        dispatch({
+          type: "UPDATE_FIELD",
+          field: "status",
+          value: profileData.status,
+        });
+        dispatch({
+          type: "UPDATE_FIELD",
+          field: "institutionName",
+          value: profileData.institutionName,
+        });
+        dispatch({
+          type: "UPDATE_FIELD",
+          field: "institutionNumber",
+          value: profileData.institutionNumber,
+        });
+
+        // Jika ada gambar institusi, atur pratinjau gambar
+        if (profileData.institutionFile) {
+          setImagePreview(profileData.institutionFile);
+        }
+      })
+      .catch((error) => {
+        console.log("Error fetching profile data:", error);
+      });
+  }, []);
+
   /*---------HANDLE INPUT DATA (pake useReducer)------------ */
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -336,7 +396,7 @@ const ProfilDiri = () => {
         {
           withCredentials: true,
         },
-        router.push("/user/dashboard")
+        router.back()
       )
       .then((res) => {
         //bisa diganti message atau apalah

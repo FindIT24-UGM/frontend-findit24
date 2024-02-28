@@ -43,7 +43,7 @@ const DaftarWorkshop = () => {
     router.push("/user/dashboard/webinar");
   };
 
-  const [showModalVerification, setShowModalVerification] = useState(0)
+  const [showModalVerification, setShowModalVerification] = useState(0);
 
   return (
     <RootLayout>
@@ -90,6 +90,7 @@ const DaftarWorkshop = () => {
                         showYearDropdown
                         yearDropdownItemNumber={50}
                         scrollableYearDropdown
+                        className="text-black font-Montserrat font-bold"
                       />
                     </div>
                     <div className="w-full flex flex-col gap-2">
@@ -97,7 +98,7 @@ const DaftarWorkshop = () => {
                         Nama Pengirim
                       </p>
                       <input
-                        className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm relative"
+                        className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
                         placeholder="John Doe"
                         required
                         type="text"
@@ -112,7 +113,7 @@ const DaftarWorkshop = () => {
                         Nomor Rekening
                       </p>
                       <input
-                        className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm relative"
+                        className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
                         placeholder="0123456789"
                         required
                         type="text"
@@ -127,7 +128,7 @@ const DaftarWorkshop = () => {
                         Bank
                       </p>
                       <input
-                        className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-neutral-300 text-sm relative"
+                        className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
                         placeholder="Bank BCA"
                         required
                         type="text"
@@ -144,7 +145,7 @@ const DaftarWorkshop = () => {
                         Upload Bukti Pembayaran
                       </p>
                       {/*                                     
-                                                <p className='font-Montserrat font-bold text-xs text-neutral-300'>anda belum upload</p>
+                                                <p className='font-Montserrat font-bold text-xs text-black font-Montserrat font-bold'>anda belum upload</p>
                                             */}
                     </div>
                     <button className="rounded border-2 border-text-placeholder-light px-6 py-1">
@@ -163,7 +164,9 @@ const DaftarWorkshop = () => {
                 </div>
                 <button
                   className="w-full bg-background-skyblue rounded-md py-2"
-                  onClick={() => {setShowModalVerification(1)}}
+                  onClick={() => {
+                    setShowModalVerification(1);
+                  }}
                 >
                   <p className="font-GameOfSquid text-shade-black">
                     Daftar Workshop

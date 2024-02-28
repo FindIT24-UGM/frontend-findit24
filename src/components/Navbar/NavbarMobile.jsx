@@ -61,7 +61,9 @@ const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
               {LOMBA.map((l, idx) => (
                 <Link
                   key={idx}
-                  href="/webinar"
+                  href={
+                    "/competition" + `/${l.split(" ").join("-").toLowerCase()}`
+                  }
                   className={twMerge(
                     idx == 0 && "mt-10",
                     idx == LOMBA.length - 1 && "mb-2"

@@ -204,7 +204,7 @@ const DataTimGeneral = () => {
         selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE
       ) {
         router.push(
-          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/dataTim/dataTimUX`
+          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/datatim/datatimux`
         );
         setHarga("120.000");
       } else if (
@@ -441,7 +441,6 @@ const DataTimGeneral = () => {
                     onChange={(e) => setBank(e.currentTarget.value)}
                   />
                 </div>
- 
               </div>
             </div>
             <div className="w-full flex justify-center">

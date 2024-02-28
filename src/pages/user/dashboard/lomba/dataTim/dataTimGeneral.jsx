@@ -336,4 +336,5 @@ const DataTimGeneral = ({ cabangLomba }) => {
   );
 }
 };
+
 export default DataTimGeneral;

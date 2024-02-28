@@ -64,7 +64,7 @@ const Index = () => {
       userTeam?.asMember?.forEach((team) => {
         setEventIds((prevEventIds) => [...prevEventIds, team.eventId._id]);
       });
-      if(user?.dateOfBirth){
+      if (user?.dateOfBirth) {
         const formattedDateOfBirth = format(
           new Date(`${user?.dateOfBirth}`),
           "dd MMMM y"
@@ -145,11 +145,20 @@ const Index = () => {
                   Profil diri
                 </p>
               </div>
-              <div className="bg-error-100 px-3 py-2 rounded">
-                <p className="font-Montserrat font-bold text-xs lg:text-sm text-center text-error-500">
-                  Lengkapi Data
-                </p>
-              </div>
+              {(!user.dateOfBirth ||
+                !user.province ||
+                !user.address ||
+                !user.phone ||
+                !user.status ||
+                !user.institutionName ||
+                !user.institutionNumber ||
+                !user.institutionFile) && (
+                <div className="bg-error-100 px-3 py-2 rounded">
+                  <p className="font-Montserrat font-bold text-xs lg:text-sm text-center text-error-500">
+                    Lengkapi Data
+                  </p>
+                </div>
+              )}
             </div>
             {user && (
               <div className="flex flex-col">

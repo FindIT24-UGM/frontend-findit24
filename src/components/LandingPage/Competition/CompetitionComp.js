@@ -28,7 +28,7 @@ const CompetitionComp = () => {
         "Kompetisi cyber security yang menguji peserta dalam berpikir terstruktur dan kreatif dalam mencari sebuah informasi tersembunyi yang disebut flag.",
 
       secDesc: "Tertarik mendaftar Capture the Flag, Hackers?",
-      icon: <Image src={CTF} className="w-[80%] unselectable" />,
+      icon: <Image src={CTF} className="w-[80%] unselectable" alt="CTF.png" />,
     },
     {
       ownIndex: 1,
@@ -36,7 +36,13 @@ const CompetitionComp = () => {
       mainDesc:
         "Kompetisi yang menguji kemampuan berpikir logis demi menyelesaikan masalah dengan suatu program komputer.",
       secDesc: "Tertarik mendaftar, Programmer?",
-      icon: <Image src={CP} className="w-[80%] unselectable" />,
+      icon: (
+        <Image
+          src={CP}
+          className="w-[80%] unselectable"
+          alt="Competitive Programming.png"
+        />
+      ),
     },
     {
       ownIndex: 2,
@@ -44,7 +50,7 @@ const CompetitionComp = () => {
       mainDesc:
         "Kompetisi desain pengalaman pengguna sebuah produk aplikasi mobile. Peserta akan mengembangkan produk dalam bentuk prototipe sesuai dengan tema.",
       secDesc: "Tertarik mendaftar , Designer?",
-      icon: <Image src={UX} className="w-[80%] unselectable" />,
+      icon: <Image src={UX} className="w-[80%] unselectable" alt="UX.png" />,
     },
     {
       ownIndex: 3,
@@ -52,7 +58,7 @@ const CompetitionComp = () => {
       mainDesc:
         "Kompetisi menganalisis data khususnya big data guna memberi solusi dari sebuah permasalahan yang telah disediakan.",
       secDesc: "Tertarik mendaftar, Data Analyst?",
-      icon: <Image src={DAC} className="w-[80%] unselectable" />,
+      icon: <Image src={DAC} className="w-[80%] unselectable" alt="DAC.png" />,
     },
     {
       ownIndex: 4,
@@ -60,7 +66,13 @@ const CompetitionComp = () => {
       mainDesc:
         "Kompetisi pembuatan inovasi berupa produk teknologi informasi dalam jangka waktu tertentu dan sesuai tema yang sudah ditentukan.",
       secDesc: "Tertarik mendaftar, Hackaton Enthusiat?",
-      icon: <Image src={Hackaton} className="w-[80%] unselectable" />,
+      icon: (
+        <Image
+          src={Hackaton}
+          className="w-[80%] unselectable"
+          alt="Hackathon.png"
+        />
+      ),
     },
     {
       ownIndex: 5,

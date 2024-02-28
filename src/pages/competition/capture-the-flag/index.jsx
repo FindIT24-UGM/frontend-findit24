@@ -42,13 +42,13 @@ export default function CaptureTheFlag() {
               //Beyond The Sky
             </p>
             <div className="absolute left-0 hidden lg:flex">
-              <Image src={Pattern_Kiri} />
+              <Image src={Pattern_Kiri} alt="Pattern_Kiri.png" />
             </div>
             <div className="absolute -left-2 md:-left-4 lg:left-0 top-12">
               <Image
                 src={Awan_Kiri}
                 className="w-[28vw] md:w-[15.3vw] lg:w-[6.25vw]"
-                alt=""
+                alt="Awan_Kiri.png"
               />
             </div>
             <div className="absolute -right-2 lg:right-0 top-16">

@@ -43,10 +43,12 @@ const Gap = () => {
         <Image
           src={patternsBackground}
           className="w-full bg-cover absolute top-10 "
+          alt="PatternBG.png"
         />
         <Image
           src={Gloey}
           className="absolute animate-spin-slow w-[45vw] bottom-[-75vw] md:bottom-[-48vw]"
+          alt="Gloey.png"
         />
       </div>
       <div className="relative">

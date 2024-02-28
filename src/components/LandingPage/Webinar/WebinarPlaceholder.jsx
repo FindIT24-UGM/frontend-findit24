@@ -32,6 +32,7 @@ const WebinarPlaceholder = () => {
                 ? webinarLogoDesktop
                 : webinarLogoTablet
             }
+            alt="Window Width.png"
           />
         </div>
       </div>
