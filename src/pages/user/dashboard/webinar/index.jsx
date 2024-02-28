@@ -35,6 +35,9 @@ const Index = () => {
               teknologi Blockchain bersama pembicara berpengalaman pada bidang
               tersebut.
             </p>
+            <button className="text-center text-[16px] text-black font-bold py-2 bg-background-skyblue w-full font-GameOfSquid rounded-md">
+              Upload Pembayaran
+            </button>
             <button
               className="bg-primary-300 w-full rounded-md py-2 flex gap-3 justify-center items-center"
               onClick={handleDaftarWorkshop}

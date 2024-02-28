@@ -34,8 +34,9 @@ const Category = ({ setSelected, setCompetition, competition, selected }) => {
         if (!CATEGORY.includes(sel)) return;
         return (
           <div
+            key={sel}
             className={twMerge(
-              "flex items-center text-[11px] md:text-[15px] text-[20px] justify-center flex-1 rounded-lg cursor-pointer font-GameOfSquid text-neutral-300 hover:text-white hover:bg-primary-300 transition-all duration-300  py-1",
+              "flex items-center text-[11px] md:text-[15px] lg:text-[20px] justify-center flex-1 rounded-lg cursor-pointer font-GameOfSquid text-neutral-300 hover:text-white hover:bg-primary-300 transition-all duration-300  py-1",
               sel !== "Lomba" &&
                 selected == sel &&
                 "bg-primary-500 text-white  border-2 border-black",
@@ -64,6 +65,7 @@ const Category = ({ setSelected, setCompetition, competition, selected }) => {
               >
                 {LOMBA.map((l) => (
                   <div
+                    key={l.short}
                     className="flex items-center justify-center flex-1 w-full py-2 rounded-lg hover:text-white hover:bg-primary-300 font-Montserrat"
                     onClick={(e) => {
                       e.stopPropagation();
