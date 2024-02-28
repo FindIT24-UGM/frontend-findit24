@@ -32,6 +32,10 @@ function Hackaton() {
     },
   ];
 
+  const firstPlacePrize = "5.000.000";
+  const secondPlacePrize = "3.000.000";
+  const thirdPlacePrize = "2.000.000";
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -97,7 +101,11 @@ function Hackaton() {
             competitionDescription="Hackathon adalah kompetisi pembuatan inovasi berupa produk teknologi informasi. Kompetisi ini mengkolaborasikan aspek startup yaitu Hipster (Design and UI/UX), Hacker (Engineer and Developer), dan Hustler (Business and Project Management). Dalam jangka waktu yang telah ditentukan, peserta akan mengembangkan produk dalam bentuk Minimum Viable Product yang sesuai dengan tema."
             cardAllItems={HCInformation}
           />
-          <Prize />
+          <Prize
+            firstPlacePrize={firstPlacePrize}
+            secondPlacePrize={secondPlacePrize}
+            thirdPlacePrize={thirdPlacePrize}
+          />
           <Timeline />
         </div>
       </RootLayout>

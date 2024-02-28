@@ -390,23 +390,78 @@
         "category": "Hackaton"
     },
     {
-        "question": "Apa itu Find IT! 2023?",
-        "ans": "FIND IT atau kependekan dari Future Innovation and Discovery Information and Technology, merupakan sebuah acara/event tahunan yang diselenggarakan oleh DTETI FT UGM dimana pada event ini terdapat beberapa acara diantaranya workshop dengan nama IT Academy, pameran dengan nama IT Fest, dan kompetisi-kompetisi seperti Competitive Programming, Data Analytics Competition, Hackathon, Capture the Flag, dan E-sport. Event ini bertujuan untuk mengembangkan dan memberi wadah bagi masyarakat yang tertarik ke dunia TI serta menarik minat sekaligus memperkenalkan TI ke masyarakat luas; apalagi di tengah era revolusi 5.0 dimana teknologi berkembang sangat pesat",
+        "question": "Apa itu Find IT! 2024?",
+        "ans": "FIND IT atau kependekan dari Future Innovation and Discovery Information and Technology, merupakan sebuah acara/event tahunan yang diselenggarakan oleh DTETI FT UGM dimana pada event ini terdapat beberapa acara diantaranya workshop dengan nama IT Academy, pameran dengan nama IT Fest, dan lomba-lomba seperti Competitive Programming, Data Analytics Competition, Hackathon, Capture the Flag, dan E-sport. Event ini bertujuan untuk mengembangkan dan memberi wadah bagi masyarakat yang tertarik ke dunia TI serta menarik minat sekaligus memperkenalkan TI ke masyarakat luas; apalagi di tengah era revolusi 5.0 dimana teknologi berkembang sangat pesat.",
         "category": "General"
     },
     {
-        "question": "Apa tema yang diangkat Find IT! 2023?",
-        "ans": "",
+        "question": "Apa tema yang diangkat Find IT! 2024?",
+        "ans": "Find IT! 2024 mengangkat tema “Tech Horizon: Beyond the Digital Sky”. Tech Horizon\" menggambarkan pandangan yang melampaui batas-batas konvensional dalam dunia teknologi. \"Beyond the Digital Sky\" mencerminkan semangat eksplorasi dan inovasi di luar batasan yang kita kenal sekarang. Tema ini mengajak peserta untuk menjelajahi dan melampaui horison digital, mengejar ide-ide canggih yang belum terpikirkan sebelumnya.",
         "category": "General"
     },
     {
-        "question": "Apa saja kompetisi yang bisa diikuti di Find IT! 2023?",
-        "ans": "Cabang kompetisi dan kegiatan yang dapat diikuti, yaitu Hackathon, Informatics Competition, Competitive Programming, Data Analytics Competition, Capture the Flag, E-Sports Competition, UI UX Competition, dan IT Academy serta Informatics Festival.",
+        "question": "Apa saja lomba yang bisa diikuti di Find IT! 2024?",
+        "ans": "Cabang lomba dan kegiatan yang dapat diikuti, yaitu Hackathon, Informatics Competition, Competitive Programming, Data Analytics Competition, Capture the Flag, E-Sports Competition, UI UX Competition, dan IT Academy serta Informatics Festival.",
         "category": "General"
     },
     {
-        "question": "Siapa saja yang boleh berpartisipasi dalam kompetisi di Find IT! 2023?",
-        "ans": "Silakan membaca ketentuan masing-masing kompetisi pada guidebook",
+        "question": "Siapa saja yang boleh berpartisipasi dalam lomba di Find IT! 2024?",
+        "ans": "Silakan membaca ketentuan masing-masing lomba pada guidebook",
+        "category": "General"
+    },
+    {
+        "question": "Bagaimana timeline lomba pada Find IT! 2024?",
+        "ans": "Silakan membaca ketentuan masing-masing lomba pada guidebook",
+        "category": "General"
+    },
+    {
+        "question": "Apakah Find IT! 2024 akan dilaksanakan secara luring?",
+        "ans": "Beberapa final lomba akan dilaksanakan secara luring di Departemen Teknik Elektro dan Teknologi Informasi Fakultas Teknik Universitas Gadjah Mada. Silakan lihat kembali guidebook masing-masing lomba.",
+        "category": "General"
+    },
+    {
+        "question": "Berapa maksimal cabang lomba yang boleh diikuti seorang peserta?",
+        "ans": "Tidak ada batasan jumlah cabang lomba yang boleh diikuti peserta. Namun, dimohon untuk tidak mengikuti dua atau lebih lomba yang jadwalnya bertabrakan.",
+        "category": "General"
+    },
+    {
+        "question": "Apakah ada biaya pendaftaran untuk masing-masing lomba?",
+        "ans": "Terdapat biaya pendaftaran sesuai ketentuan masing-masing lomba yang dapat dilihat di guidebook.",
+        "category": "General"
+    },
+    {
+        "question": "Berkas apa saja yang diperlukan untuk pendaftaran?",
+        "ans": "Peserta hanya perlu mempersiapkan tanda identitas seperti Kartu Tanda Mahasiswa/Kartu pelajar/Kartu Tanda Penduduk/Pasport dan bukti pembayaran.",
+        "category": "General"
+    },
+    {
+        "question": "Adakah batasan usia untuk masing-masing lomba?",
+        "ans": "Silakan membaca ketentuan masing-masing lomba pada guidebook.",
+        "category": "General"
+    },
+    {
+        "question": "Apakah karya inovasi dan data yang sudah pernah dilombakan boleh dilombakan lagi (pada Hackathon, Data Analytic Competition, dan UX Competition)?",
+        "ans": "Karya peserta yang boleh dilombakan adalah karya yang belum pernah memenangkan kompetisi sejenis.",
+        "category": "General"
+    },
+    {
+        "question": "Perlombaan akan dilaksanakan perseorangan atau team?",
+        "ans": "Silakan membaca ketentuan masing-masing lomba pada guidebook.",
+        "category": "General"
+    },
+    {
+        "question": "Hadiah apa sajakah yang dapat dimenangkan?",
+        "ans": "Para pemenang berhak mendapatkan voucher hingga uang pembinaan senilai puluhan juta rupiah.",
+        "category": "General"
+    },
+    {
+        "question": "Dimana kami dapat memperoleh informasi lengkap dari masing-masing lomba?",
+        "ans": "Silakan mengunjungi tab masing-masing lomba pada laman ini.",
+        "category": "General"
+    },
+    {
+        "question": "Jika ada yang dibingungkan, harus bertanya kemana?",
+        "ans": "Silakan mengakses guidebook untuk memperoleh contact person setiap lomba.",
         "category": "General"
     }
 ]

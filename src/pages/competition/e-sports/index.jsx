@@ -31,6 +31,11 @@ function eSport() {
       items: ["Mobile Legend: 0813 8341 7308", "Valorant: 0812 5425 4664"],
     },
   ];
+
+  const firstPlacePrize = "3.500.000";
+  const secondPlacePrize = "2.500.000";
+  const thirdPlacePrize = "1.000.000";
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -96,7 +101,11 @@ function eSport() {
             competitionDescription="Esport Competition adalah kompetisi dalam bentuk permainan video game yang dilombakan dalam bentuk tim pada Find IT! 2024. Game yang dilombakan adalah Mobile Legends dan Valorant. Tujuan diselenggarakannya kompetisi ini adalah untuk mewadahi gamers dalam negeri dengan meningkatkan persaingan sehingga kualitas pun juga akan semakin meningkat. Selain itu, dengan kualitas gamers lokal yang baik, maka bisa ikut unggul dalam meramaikan persaingan Esport tingkat global."
             cardAllItems={ESInformation}
           />
-          <Prize />
+          <Prize
+            firstPlacePrize={firstPlacePrize}
+            secondPlacePrize={secondPlacePrize}
+            thirdPlacePrize={thirdPlacePrize}
+          />
           <Timeline />
         </div>
       </RootLayout>

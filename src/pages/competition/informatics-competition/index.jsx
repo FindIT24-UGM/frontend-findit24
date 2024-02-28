@@ -31,6 +31,10 @@ function InformaticsCompetition() {
     },
   ];
 
+  const firstPlacePrize = "2.500.000";
+  const secondPlacePrize = "1.500.000";
+  const thirdPlacePrize = "1.000.000";
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -96,7 +100,11 @@ function InformaticsCompetition() {
             competitionDescription="Informatics Competition merupakan kompetisi yang bertujuan untuk menguji kecerdasan, pemahaman logika matematika, dan pemahaman algoritmik melalui pengerjaan soal matematika dan problem solving."
             cardAllItems={ICInformation}
           />
-          <Prize />
+          <Prize
+            firstPlacePrize={firstPlacePrize}
+            secondPlacePrize={secondPlacePrize}
+            thirdPlacePrize={thirdPlacePrize}
+          />
           <Timeline />
         </div>
       </RootLayout>
