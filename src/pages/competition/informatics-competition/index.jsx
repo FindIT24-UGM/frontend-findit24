@@ -35,6 +35,15 @@ function InformaticsCompetition() {
   const secondPlacePrize = "1.500.000";
   const thirdPlacePrize = "1.000.000";
 
+  const dummyData = [
+    { name: "Pendaftaran", date: "1 Maret 2024" },
+    { name: "Penutupan Pendaftaran", date: "24 Maret 2024" },
+    { name: "Babak Warm Up dan Technical Meeting", date: "27 April 2024" },
+    { name: "Babak Penyisihan", date: "4 Mei 2024" },
+    { name: "Pengumuman Finalis", date: "11 Mei 2024" },
+    { name: "Babak Final (Offline) dan Awarding", date: "25 Mei 2024" }
+  ];
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -138,7 +147,7 @@ function InformaticsCompetition() {
             secondPlacePrize={secondPlacePrize}
             thirdPlacePrize={thirdPlacePrize}
           />
-          <Timeline />
+          <Timeline data={dummyData} />
         </div>
       </RootLayout>
       <Footer />

@@ -1,6 +1,4 @@
-import React from "react";
-import Opreg_Container from "../../assets/compepage/Opreg_Container.png";
-import styles from "./Timeline.module.css";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import HexagonDot_Desktop from "../../assets/compepage/Hexagon_Desktop.png";
 
@@ -38,18 +36,7 @@ function LineV1() {
   );
 }
 
-const dummyData = [
-  { name: "Content1", date: "11 Maret" },
-  { name: "Content2", date: "12 Maret" },
-  { name: "Content3", date: "13 Maret" },
-  { name: "Content4", date: "14 Maret" },
-  { name: "Content5", date: "15 Maret" },
-  { name: "Content6", date: "16 Maret" },
-  { name: "Content7", date: "17 Maret" },
-  { name: "Content8", date: "18 Maret" },
-];
-
-export default function Timeline() {
+export default function Timeline({ data }) {
   return (
     <div className="bg-background-skyblue min-h-screen w-full p-10 ">
       <h2 className="font-GameOfSquid text-[48px] font-bold text-white text-center lg:text-left lg:pl-10 mb-14">
@@ -57,68 +44,75 @@ export default function Timeline() {
       </h2>
       <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:justify-start lg:overflow-auto lg:scrollbar-none lg:flex-col w-full">
         <div className="mt-[13vw] space-y-[20vw] lg:hidden">
-          {dummyData.map((item) => (
-            <p
-              key={item.name}
-              className="font-GameOfSquid text-white h-[5vw] my-auto"
-            >
-              {item.date}
-            </p>
-          ))}
+        {data.map((item, i) => (
+          <p key={i} className="font-GameOfSquid text-white h-[5vw] my-auto">
+            {item.date}
+          </p>
+        ))}
         </div>
         <div className="mt-[13vw] lg:hidden">
-          {dummyData.map(
-            (item, i) => i !== dummyData.length - 1 && <LineV1 key={i} />
-          )}
+          {data.map((item, i) => {
+            return i !== data.length - 1 && <LineV1 key={i} />;
+          })}
           <HexagonDot />
         </div>
         <div className="flex flex-col lg:hidden">
-          {dummyData.map((item) => (
-            <div key={item.name} className="my-[1vw]">
-              <TimeLineCard content={item.name} />
-            </div>
-          ))}
+          {data.map((item, i) => {
+            console.log(i);
+            return (
+              <div className="my-[1vw]">
+                <TimeLineCard content={item.name} key={i} />
+              </div>
+            );
+          })}
         </div>
 
         {/* odd card */}
-        <div className="hidden lg:flex space-x-[4vw]">
-          {dummyData.map(
-            (item, i) =>
+        <div className="hidden lg:flex space-x-[4vw] text-center">
+          {data.map((item, i) => {
+            const nextItem = data[i + 1];
+            return (
               i % 2 !== 1 && (
-                <div key={item.name + i} className="flex space-x-[4.28vw]">
+                <div className="flex space-x-[4.28vw]">
                   <div className="my-[1vw]">
-                    <TimeLineCard content={item.name} />
+                    <TimeLineCard content={item.name} key={i} />
                   </div>
-                  <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">
-                    {dummyData[i + 1].date}
-                  </p>
+                  {nextItem && (
+                    <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">
+                      {nextItem.date}
+                    </p>
+                  )}
                 </div>
               )
-          )}
+            );
+          })}
         </div>
         {/* horizontal line */}
         <div className="hidden lg:flex w-[120%] ml-[7.28vw]">
-          {dummyData.map(
-            (item, i) =>
-              i !== dummyData.length - 1 && <LineH1 key={item.date + i} />
-          )}
+          {data.map((item, i) => {
+            return i !== data.length - 1 && <LineH1 key={i} />;
+          })}
           <HexagonDot />
         </div>
         {/* even card */}
-        <div className="hidden lg:flex ml-[4.28vw] space-x-[4vw]">
-          {dummyData.map(
-            (item, i) =>
+        <div className="hidden lg:flex ml-[4.28vw] space-x-[4vw] text-center">
+          {data.map((item, i) => {
+            const prevItem = data[i - 1];
+            return (
               i % 2 === 1 && (
-                <div key={item.name + i} className="flex space-x-[4.28vw]">
-                  <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">
-                    {dummyData[i - 1].date}
-                  </p>
+                <div className="flex space-x-[4.28vw]">
+                  {prevItem && (
+                    <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">
+                      {prevItem.date}
+                    </p>
+                  )}
                   <div className="my-[1vw]">
-                    <TimeLineCard content={item.name} />
+                    <TimeLineCard content={item.name} key={i} />
                   </div>
                 </div>
               )
-          )}
+            );
+          })}
         </div>
       </div>
     </div>

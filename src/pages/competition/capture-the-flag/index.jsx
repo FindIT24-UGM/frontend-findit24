@@ -34,6 +34,17 @@ export default function CaptureTheFlag() {
   const secondPlacePrize = "2.500.000";
   const thirdPlacePrize = "1.000.000";
 
+  const dummyData = [
+    { name: "Pendaftaran", date: "1 Maret 2024" },
+    { name: "Penutupan Pendaftaran", date: "24 Maret 2024" },
+    { name: "Technical Meeting", date: "26 April 2024" },
+    { name: "Warm Up Peserta dan Panitia", date: "27 April 2024" },
+    { name: "Babak Kualifikasi", date: "4 Mei 2024" },
+    { name: "Pengumuman Finalis", date: "20 Mei 2024" },
+    { name: "Babak Final", date: "25 Mei 2024" },
+    { name: "Penetapan dan Pengumuman Juara CTF FindIT! 2024", date: "25 Mei 2024" },
+  ];
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -109,7 +120,7 @@ export default function CaptureTheFlag() {
             secondPlacePrize={secondPlacePrize}
             thirdPlacePrize={thirdPlacePrize}
           />
-          <Timeline />
+          <Timeline data={dummyData} />
         </div>
       </RootLayout>
       <Footer />

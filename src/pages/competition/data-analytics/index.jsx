@@ -36,6 +36,15 @@ function DataAnaytics() {
   const secondPlacePrize = "3.000.000";
   const thirdPlacePrize = "1.500.000";
 
+  const dummyData = [
+    { name: "Pendaftaran", date: "1 Maret 2024" },
+    { name: "Penutupan Pendaftaran", date: "1 April 2024" },
+    { name: "Penyisihan", date: "15 April 2024 - 29 April 2024" },
+    { name: "Pengumuman Finalis", date: "4 Mei 2024" },
+    { name: "Submisi Pra-Final", date: "6 Mei 2024 - 20 Mei 2024" },
+    { name: "Final", date: "25 Mei 2024" },
+  ];
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -130,7 +139,7 @@ function DataAnaytics() {
             secondPlacePrize={secondPlacePrize}
             thirdPlacePrize={thirdPlacePrize}
           />
-          <Timeline />
+          <Timeline data={dummyData} />
         </div>
       </RootLayout>
       <Footer />
