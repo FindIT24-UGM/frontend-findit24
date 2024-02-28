@@ -35,6 +35,16 @@ function UxCompetition() {
   const secondPlacePrize = "2.000.000";
   const thirdPlacePrize = "1.000.000";
 
+  const dummyData = [
+    { name: "Pendaftaran dan Pengumpulan Abstrak", date: "1 Maret - 24 Maret 2024" },
+    { name: "Pengumuman Lolos Tahap Abstrak", date: "6 April 2024" },
+    { name: "Pembayaran Lomba", date: "6 - 13 April 2024" },
+    { name: "Pengumpulan Proposal dan Video", date: "15 April - 5 Mei 2024" },
+    { name: "Pengumuman Finalis", date: "15 Mei 2024" },
+    { name: "Technical Meeting", date: "17 Mei 2024" },
+    { name: "Final (Offline)", date: "25 Mei 2024" },
+  ];
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -114,7 +124,7 @@ function UxCompetition() {
             secondPlacePrize={secondPlacePrize}
             thirdPlacePrize={thirdPlacePrize}
           />
-          <Timeline />
+          <Timeline data={dummyData} />
         </div>
       </RootLayout>
       <Footer />

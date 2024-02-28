@@ -36,6 +36,15 @@ function eSport() {
   const secondPlacePrize = "2.500.000";
   const thirdPlacePrize = "1.000.000";
 
+  const dummyData = [
+    { name: "Pendaftaran", date: "1 Maret 2024" },
+    { name: "Penutupan Pendaftaran", date: "24 Maret 2024" },
+    { name: "Technical Meeting", date: "12 Mei 2024" },
+    { name: "Babak Penyisihan", date: "13 - 17 Mei 2024" },
+    { name: "Babak Playoff", date: "19 - 23 Mei 2024" },
+    { name: "Babak Final", date: "25 Mei 2024" },
+  ];
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -115,7 +124,7 @@ function eSport() {
             secondPlacePrize={secondPlacePrize}
             thirdPlacePrize={thirdPlacePrize}
           />
-          <Timeline />
+          <Timeline data={dummyData} />
         </div>
       </RootLayout>
       <Footer />
