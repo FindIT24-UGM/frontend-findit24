@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <RootLayout>
       <main>
-        <div className="w-full h-full bg-background-skuyblue">
+        <div className="w-full bg-background-skuyblue">
           <HeroComp />
           <AutoSlider />
           <CompetitionComp />

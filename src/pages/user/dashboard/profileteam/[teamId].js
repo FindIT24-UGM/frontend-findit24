@@ -175,16 +175,28 @@ const index = () => {
           </div>
           <div className="flex justify-between my-5 md:flex md:flex-col lg:flex-row">
             <div className="bg-gradient-to-b from-orange-400 to-red-400 rounded p-2 w-1/3 mx-2 md:mx-[2px] text-white space-y-2 md:w-full md:flex md:items-center md:justify-between md:my-1 lg:w-1/3">
-              <h2 className="font-GameOfSquid text-[26px]">20</h2>
-              <p className="font-Montserrat font-bold text-[16px]">Hari</p>
+              <h2 className="font-GameOfSquid text-[16px] md:text-[26px]">
+                20
+              </h2>
+              <p className="font-Montserrat font-bold text-[10px] md:text-[16px]">
+                Hari
+              </p>
             </div>
             <div className="bg-gradient-to-b from-orange-400 to-red-400 rounded p-2 w-1/3 mx-2 md:mx-[2px] text-white space-y-2 md:w-full md:flex md:items-center md:justify-between md:my-1 lg:w-1/3">
-              <h2 className="font-GameOfSquid text-[26px]">22</h2>
-              <p className="font-Montserrat font-bold text-[16px]">Jam</p>
+              <h2 className="font-GameOfSquid text-[16px] md:text-[26px]">
+                22
+              </h2>
+              <p className="font-Montserrat font-bold text-[10px] md:text-[16px]">
+                Jam
+              </p>
             </div>
             <div className="bg-gradient-to-b from-orange-400 to-red-400 rounded p-2 w-1/3 mx-2 md:mx-[2px] text-white space-y-2 md:w-full md:flex md:items-center md:justify-between md:my-1 lg:w-1/3">
-              <h2 className="font-GameOfSquid text-[26px]">14</h2>
-              <p className="font-Montserrat font-bold text-[16px]">Menit</p>
+              <h2 className="font-GameOfSquid text-[16px] md:text-[26px]">
+                14
+              </h2>
+              <p className="font-Montserrat font-bold text-[10px] md:text-[16px]">
+                Menit
+              </p>
             </div>
           </div>
         </div>

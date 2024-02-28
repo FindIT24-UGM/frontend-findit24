@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const HeroPlaceHolder = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -49,12 +50,16 @@ const HeroPlaceHolder = () => {
               Siapkan diri anda untuk berinovasi dan melampaui batas imajinasi.
             </p>
             <div className="flex flex-row gap-x-5 justify-center font-GameOfSquid font-bold text-white">
-              <button className="bg-shade-black p-2 rounded-md">
-                DAFTAR KOMPETISI
-              </button>
-              <button className="border-2 border-shade-black p-2 rounded-md">
-                ABOUT US
-              </button>
+              <Link href="/competition/capture-the-flag">
+                <button className="bg-shade-black p-2 rounded-md">
+                  DAFTAR KOMPETISI
+                </button>
+              </Link>
+              <Link href="/aboutus">
+                <button className="border-2 border-shade-black p-2 rounded-md">
+                  ABOUT US
+                </button>
+              </Link>
             </div>
           </div>
         </div>

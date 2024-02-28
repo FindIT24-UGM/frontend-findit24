@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -18,6 +18,19 @@ import IC from "../../../assets/Logo/IC.png";
 const CompetitionComp = () => {
   const [swiper, setSwiper] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(null);
+
+  useEffect(() => {
+    const updateWindowWidth = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    updateWindowWidth();
+
+    return () => {
+      window.addEventListener("resize", updateWindowWidth);
+    };
+  }, []);
 
   // datanya
   const cards = [
@@ -117,45 +130,127 @@ const CompetitionComp = () => {
             </div>
           </div>
         </div>
-        <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
-          <Swiper
-            slidesPerView={1.15}
-            centeredSlides={false}
-            onSlideChange={(swiper) => {
-              setActiveIndex(swiper.activeIndex);
-              console.log(`slide change[${swiper.activeIndex}]`);
-              console.log(cards.name);
-            }}
-            onSwiper={setSwiper}
-            spaceBetween="15vw"
-            grabCursor={true}
-            className="w-full"
-          >
-            {cards.map((card, idx) => {
-              return (
-                <SwiperSlide
-                  key={card.name}
-                  className="py-10 flex flex-col items-center justify-center"
-                  onClick={() => handleSlideClick(card.ownIndex)}
-                >
-                  <CompCard
-                    name={card.name}
-                    activeIndex={activeIndex}
-                    mainDesc={card.mainDesc}
-                    secDesc={card.secDesc}
-                    linkDestination={""}
-                    imageIcon={card.icon}
-                  />
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-          <div className="flex flex-col items-center">
-            <div className="font-Ava text-white text-[9vw] md:text-[5vw] 2xl:text-[2vw]">
-              {cards[activeIndex].name}
+        {windowWidth < 450 ? (
+          <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
+            <Swiper
+              slidesPerView={1.15}
+              centeredSlides={false}
+              onSlideChange={(swiper) => {
+                setActiveIndex(swiper.activeIndex);
+                console.log(`slide change[${swiper.activeIndex}]`);
+                console.log(cards.name);
+              }}
+              onSwiper={setSwiper}
+              spaceBetween="15vw"
+              grabCursor={true}
+              className="w-full"
+            >
+              {cards.map((card, idx) => {
+                return (
+                  <SwiperSlide
+                    key={card.name}
+                    className="py-10 flex flex-col items-center justify-center"
+                    onClick={() => handleSlideClick(card.ownIndex)}
+                  >
+                    <CompCard
+                      name={card.name}
+                      activeIndex={activeIndex}
+                      mainDesc={card.mainDesc}
+                      secDesc={card.secDesc}
+                      linkDestination={""}
+                      imageIcon={card.icon}
+                    />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <div className="flex flex-col items-center">
+              <div className="font-Ava text-white text-[9vw] md:text-[5vw] 2xl:text-[2vw]">
+                {cards[activeIndex].name}
+              </div>
             </div>
           </div>
-        </div>
+        ) : windowWidth < 860 ? (
+          <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
+            <Swiper
+              slidesPerView={1.25}
+              centeredSlides={true}
+              onSlideChange={(swiper) => {
+                setActiveIndex(swiper.activeIndex);
+                console.log(`slide change[${swiper.activeIndex}]`);
+                console.log(cards.name);
+              }}
+              onSwiper={setSwiper}
+              spaceBetween="10vw"
+              grabCursor={true}
+              className="w-full"
+            >
+              {cards.map((card, idx) => {
+                return (
+                  <SwiperSlide
+                    key={card.name}
+                    className="py-10 flex flex-col items-center justify-center"
+                    onClick={() => handleSlideClick(card.ownIndex)}
+                  >
+                    <CompCard
+                      name={card.name}
+                      activeIndex={activeIndex}
+                      mainDesc={card.mainDesc}
+                      secDesc={card.secDesc}
+                      linkDestination={""}
+                      imageIcon={card.icon}
+                    />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <div className="flex flex-col items-center">
+              <div className="font-Ava text-white text-[9vw] md:text-[5vw] 2xl:text-[2vw]">
+                {cards[activeIndex].name}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
+            <Swiper
+              slidesPerView={1.2}
+              centeredSlides={true}
+              onSlideChange={(swiper) => {
+                setActiveIndex(swiper.activeIndex);
+                console.log(`slide change[${swiper.activeIndex}]`);
+                console.log(cards.name);
+              }}
+              onSwiper={setSwiper}
+              spaceBetween="60vw"
+              grabCursor={true}
+              className="w-full"
+            >
+              {cards.map((card, idx) => {
+                return (
+                  <SwiperSlide
+                    key={card.name}
+                    className="py-10 flex flex-col items-center justify-center"
+                    onClick={() => handleSlideClick(card.ownIndex)}
+                  >
+                    <CompCard
+                      name={card.name}
+                      activeIndex={activeIndex}
+                      mainDesc={card.mainDesc}
+                      secDesc={card.secDesc}
+                      linkDestination={""}
+                      imageIcon={card.icon}
+                    />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <div className="flex flex-col items-center">
+              <div className="font-Ava text-white text-[9vw] md:text-[5vw] 2xl:text-[2vw]">
+                {cards[activeIndex].name}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

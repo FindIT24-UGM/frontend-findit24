@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 import RootLayout from "../layout";
 import Image from "next/image";
-import Link from 'next/link';
-import AboutFindIT from '../../components/AboutUs/aboutfindit';
+import Link from "next/link";
+import AboutFindIT from "../../components/AboutUs/aboutfindit";
 import Theme from "../../components/AboutUs/theme";
-import Youtube from '../../components/AboutUs/youtube';
+import Youtube from "../../components/AboutUs/youtube";
 import Top from "../../assets/about/Topmotif.svg";
 import Circuitkiri1 from "../../assets/about/Circuitkiri1.png";
 import Circuitkanan1 from "../../assets/about/Circuitkanan1.png";
@@ -29,51 +29,54 @@ function AboutUs() {
             {/* Background Assets Layout Desktop */}
 
             <div className="absolute w-[100%] bottom-[0vw] mx-auto">
-              <Image src={Bintang} />
+              <Image src={Bintang} alt="Bintang" />
             </div>
             <div className="absolute w-[100%] bottom-[50vw] mx-auto">
-              <Image src={Bintang} />
+              <Image src={Bintang} alt="Bintang" />
             </div>
             <div className="absolute w-[100%] bottom-[100vw] mx-auto max-sm:translate-y-[-50vw] max-sm:w-[100vw] max-sm:translate-x-[-50vw]">
-              <Image src={Bintang} />
+              <Image src={Bintang} alt="Bintang" />
             </div>
             <div className="absolute w-[100%] bottom-[100vw] translate-y-[20vw] translate-x-[40vw]">
-              <Image src={Bintang} />
+              <Image src={Bintang} alt="Bintang" />
             </div>
             <div className="absolute w-[100%] bottom-[100vw] translate-y-[0vw] translate-x-[40vw]">
-              <Image src={Bintang} />
+              <Image src={Bintang} alt="Bintang" />
             </div>
             <div className="absolute w-[100%] bottom-[100vw] left-[100vw]">
-              <Image src={Bintang} />
+              <Image src={Bintang} alt="Bintang" />
             </div>
             <div className="absolute w-[100%] translate-y-[10vw] max-md:translate-y-[10vw] mx-auto">
-              <Image src={Bintang} />
+              <Image src={Bintang} alt="Bintang" />
             </div>
             <div className="absolute w-[100%] max-md:translate-y-[-50vw] opacity-0 max-md:opacity-100 mx-auto">
-              <Image src={Bintang} />
+              <Image src={Bintang} alt="Bintang" />
             </div>
             <div className="absolute top-0 flex font-Montserrat 2xl:text-[0.72vw] text-white">
-                <Link href="#!">Gulir Ke Bawah</Link>
-              </div>
+              <Link href="#!">Gulir Ke Bawah</Link>
+            </div>
             {/* Konten */}
             <div className="relative w-screen flex flex-col items-center justify-center z-10">
               <div className="absolute w-[20vw] max-sm:w-[80vw] flex flex-col justify-center max-sm:justify-normal max-sm:left-[-6vw] z-20 top-0 max-sm:top-[4vw] translate-y-[6vw]">
-                  <Image src={Logo} className='w-[12.08vw] max-md:w-[10.08vw] max-sm:w-[30vw] mx-auto mb-[5vw]'/>
-                  <div className='w-[full] justify-center text-center leading-3'>
-                    <div className='font-GameOfSquid text-[#FCFCFC] drop-shadow-[0_0vw_2vw_rgba(255,255,255,1)] max-md:drop-shadow-[0_0vw_0vw_rgba(255,255,255,1)] text-[3vw] max-md:text-[2.8vw] max-sm:text-[8vw] mx-auto'>
-                        ABOUT
-                    </div>
-                    <div className='font-GameOfSquid bg-gradient-to-b from-[#F95949] to-[#FF8C5A] bg-clip-text text-transparent leading-normal text-[3.8vw] max-md:text-[3.5vw] max-sm:text-[10vw]  mx-auto'>
-                        fIND It!
-                    </div>
+                <Image
+                  src={Logo}
+                  className="w-[12.08vw] max-md:w-[10.08vw] max-sm:w-[30vw] mx-auto mb-[5vw]"
+                  alt="logo"
+                />
+                <div className="w-[full] justify-center text-center leading-3">
+                  <div className="font-GameOfSquid text-[#FCFCFC] drop-shadow-[0_0vw_2vw_rgba(255,255,255,1)] max-md:drop-shadow-[0_0vw_0vw_rgba(255,255,255,1)] text-[3vw] max-md:text-[2.8vw] max-sm:text-[8vw] mx-auto">
+                    ABOUT
                   </div>
+                  <div className="font-GameOfSquid bg-gradient-to-b from-[#F95949] to-[#FF8C5A] bg-clip-text text-transparent leading-normal text-[3.8vw] max-md:text-[3.5vw] max-sm:text-[10vw]  mx-auto">
+                    fIND It!
+                  </div>
+                </div>
               </div>
-              <AboutFindIT/>
-              <Theme/>
-              <Youtube/>
+              <AboutFindIT />
+              <Theme />
+              <Youtube />
             </div>
-            
-          </div> 
+          </div>
         </div>
       </RootLayout>
     </div>

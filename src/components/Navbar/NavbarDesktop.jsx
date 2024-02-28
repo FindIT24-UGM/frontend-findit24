@@ -41,17 +41,6 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
             "absolute flex flex-row w-fit h-20 items-center -translate-x-[100%] -translate-y-[50%] gap-x-14 max-lg:hidden"
           )}
         >
-          <Link href="/">
-            <p
-              className={twMerge(
-                "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
-                activePath == "Home" && "text-primary-500"
-              )}
-              onClick={() => setActivePath("Home")}
-            >
-              Home
-            </p>
-          </Link>
           <Link href="/workshop">
             <p
               className={twMerge(
@@ -114,14 +103,16 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
           </div>
         </div>
       </div>
-      <Image
-        className="max-lg:mr-auto"
-        src={"/assets/images/logoFindITPutih.png"}
-        width={70}
-        height={70}
-        alt="FindIT.png"
-        priority
-      />
+      <Link href="/">
+        <Image
+          className="max-lg:mr-auto"
+          src={"/assets/images/logoFindITPutih.png"}
+          width={70}
+          height={70}
+          alt="FindIT.png"
+          priority
+        />
+      </Link>
       <div className="relative">
         <div
           className={twMerge(
