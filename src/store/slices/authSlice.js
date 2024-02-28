@@ -64,6 +64,9 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
 });
 
 export const logout = createAsyncThunk("auth/logout", async () => {
+  toast.error("Session expired, please login again", {
+    className: "toast-error",
+  });
   await authService.logout();
 });
 
@@ -76,11 +79,11 @@ export const getUserData = createAsyncThunk(
     } catch (error) {
       const message = error;
       if (error.response.status === 401) {
-        toast.error("Session expired, please login again", {
-          className: "toast-error",
-        });
-        authService.logout();
-        Router.replace("/login");
+        // toast.error("Session expired, please login again", {
+        //   className: "toast-error",
+        // });
+        // authService.logout();
+        // Router.replace("/login");
       }
       return thunkAPI.rejectWithValue(message);
     }

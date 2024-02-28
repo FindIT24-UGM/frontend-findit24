@@ -10,6 +10,7 @@ import decor from "../../../../../assets/background/decor.svg";
 import bg1 from "../../../../../assets/background/bg1.svg";
 import { useRouter } from "next/router.js";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function berhasil() {
     const router = useRouter();
@@ -62,7 +63,11 @@ export default function berhasil() {
 
     const copyInvitationCode = () => {
         navigator.clipboard.writeText(invitationCode);
-        alert("Invitation code telah disalin!");
+        toast.success("Invitation code telah disalin!");
+    }
+
+    const handleDirectDetailTim = () => {
+        router.replace(`/user/dashboarad/profileteam/${createdTeamId}`)
     }
     
     return (
@@ -104,12 +109,8 @@ export default function berhasil() {
                                     </div>
                                 </div>
                                 </div>
-                               
-                                <div className="mx-auto my-8">
-                                    <Link href={`/user/dashboarad/profileteam/${createdTeamId}`}>
-                                        <Button onClick={() => router.push(`/user/dashboarad/profileteam/${createdTeamId}`)} variant="primary" text="lihat tim ->" size="sm" customClass="w-[14vw] bg-[#2A93C2] max-md:w-[38vw] max-md:text-[1.8vw] max-sm:w-[34vw] max-sm:text-[1.5vw] text-black"  style={{ zIndex: 999}}/> {/*responsive hp kacau*/}
-                                    </Link>
-                                </div>
+                                <button onClick={() => router.push(`/user/dashboard/profileteam/${createdTeamId}`)} className="w-[14vw] mx-auto mt-4 max-md:w-[38vw] max-md:text-[1.8vw] max-sm:w-[34vw] max-sm:text-[1.5vw] text-black p-6 z-[999] font-GameOfSquid" >
+                                    <p>Lihat tim</p></button> 
                             </div>
                         </div>
                     </div>

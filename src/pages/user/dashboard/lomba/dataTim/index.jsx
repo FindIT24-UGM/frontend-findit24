@@ -19,7 +19,13 @@ const DataTimGeneral = () => {
   const [noRekening, setNoRekening] = useState(undefined);
   const [bank, setBank] = useState(undefined);
   const [selectedLomba, setSelectedLomba] = useState(null);
-  const [phone, setPhone] = useState(null);
+
+  const [number1, setNumber1] = useState(null);
+  const [number2, setNumber2] = useState(null);
+  const [phone, setPhone] = useState([]);
+
+  const [discordID, setDiscordID] = useState(null);
+  const [inGameID, setInGameID] = useState(null);
 
   const dropdownStatusRef = useRef();
 
@@ -96,7 +102,9 @@ const DataTimGeneral = () => {
           eventId: selectedLomba,
           teamName: namaTim,
           teamInstitution: institusi,
-          teamContact: [phone],
+          teamContact: [number1, number2],
+          discordID,
+          inGameID,
           paymentDate: date,
           paymentSender: namaPengirim,
           bankAccountId: noRekening,
@@ -105,9 +113,9 @@ const DataTimGeneral = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.request);
         router.push(
-          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/berhasilteam/${res.data.teamId}`
+          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/berhasilteam/${res.data.request.teamId}`
         );
         return res.data.data;
       })
@@ -334,17 +342,32 @@ const DataTimGeneral = () => {
                 </div>
                 <div className="w-full flex flex-col gap-2">
                   <p className="font-Montserrat font-bold text-text-placeholder-light">
-                    Nomor
+                    Nomor 
                   </p>
                   <input
                     className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
                     placeholder="0812345678"
                     required
                     type="text"
-                    id="phone"
-                    name="phone"
-                    value={phone}
-                    onChange={(e) => setPhone(e.currentTarget.value)}
+                    id="number1"
+                    name="number1"
+                    value={number1}
+                    onChange={(e) => setNumber1(e.currentTarget.value)}
+                  />
+                </div>
+                <div className="w-full flex flex-col gap-2">
+                  <p className="font-Montserrat font-bold text-text-placeholder-light">
+                    Nomor cadangan
+                  </p>
+                  <input
+                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
+                    placeholder="0812345678"
+                    required
+                    type="text"
+                    id="number2"
+                    name="number2"
+                    value={number2}
+                    onChange={(e) => setNumber2(e.currentTarget.value)}
                   />
                 </div>
                 <div className="w-full flex flex-col gap-2">
@@ -441,6 +464,46 @@ const DataTimGeneral = () => {
                     onChange={(e) => setBank(e.currentTarget.value)}
                   />
                 </div>
+                {(selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_CTF && selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT && selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_ML) ? (
+                  <div></div>
+                ) : (
+                  <div className="w-full flex flex-col gap-2">
+                    <p className="font-Montserrat font-bold text-text-placeholder-light">
+                      ID Discord
+                    </p>
+                    <input
+                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
+                      placeholder="Samsan Tech"
+                      required
+                      type="text"
+                      id="discordID"
+                      name="discordID"
+                      value={discordID}
+                      onChange={(e) => setDiscordID(e.currentTarget.value)}
+                    />
+                  </div>
+                )}
+
+                {(selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT || selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_ML) ? (
+                  <div className="w-full flex flex-col gap-2">
+                    <p className="font-Montserrat font-bold text-text-placeholder-light">
+                      ID Game
+                    </p>
+                    <input
+                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
+                      placeholder="Samsan Tech"
+                      required
+                      type="text"
+                      id="inGameID"
+                      name="inGameID"
+                      value={inGameID}
+                      onChange={(e) => setInGameID(e.currentTarget.value)}
+                    />
+                  </div>
+                ) : (
+                  <div></div>
+                )}
+
               </div>
             </div>
             <div className="w-full flex justify-center">
