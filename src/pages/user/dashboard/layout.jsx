@@ -29,9 +29,9 @@ const UserDashboardLayout = ({ children }) => {
         if (router.asPath === '/user/dashboard') {
             router.replace('/user/dashboard/beranda');
         }
-        if(!isAuthenticated){
-            router.push("/login")
-        } 
+        // if(!isAuthenticated){
+        //     router.push("/login")
+        // } 
         dispatch(loadingStart())
         dispatch(getUserTeam())
         .unwrap()

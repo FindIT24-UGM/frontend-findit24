@@ -38,7 +38,7 @@ const LoginPage = () => {
           if (user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE) {
             router.replace("/admin/dashboard/statistic");
           } else if (user?.role !== process.env.NEXT_PUBLIC_ADMIN_ROLE) {
-            router.replace("/");
+            router.replace("/user/dashboard/beranda");
           }
         });
     }
@@ -57,7 +57,7 @@ const LoginPage = () => {
       .then((res) => {
         dispatch(loadingEnd());
         toast.success("Login successfully");
-        // router.push("/user/dashboard/beranda");
+        router.push("/user/dashboard/beranda");
       })
       .catch((err) => {
         toast.error("Email not found or password incorrect");

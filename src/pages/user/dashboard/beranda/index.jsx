@@ -145,7 +145,7 @@ const Index = () => {
                   Profil diri
                 </p>
               </div>
-              {(!user.dateOfBirth ||
+              {(!user?.dateOfBirth ||
                 !user.province ||
                 !user.address ||
                 !user.phone ||

@@ -81,6 +81,7 @@ const Navbar = () => {
         if (result.isConfirmed) {
           dispatch(logout());
           Swal.fire("Logout", "", "success");
+          router.push("/")
         } else {
           router.push("./");
         }
