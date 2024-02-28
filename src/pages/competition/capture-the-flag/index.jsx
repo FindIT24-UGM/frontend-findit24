@@ -15,7 +15,6 @@ import Second from "../../../components/competitionpage/Second";
 import Footer from "../../../components/footer";
 
 export default function CaptureTheFlag() {
-  const registrationCountdown = "4 Mar 2024";
 
   const CTFInformation = [
     {

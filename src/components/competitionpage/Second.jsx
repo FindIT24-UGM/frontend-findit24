@@ -44,7 +44,7 @@ function NamaLomba({ content }) {
       <div className="absolute left-[-10vw] w-full h-[5vw] max-md:h-[6vw] bg-gradient-to-b border-4 border-black from-[#FF8C5A] to-[#F95949]"></div>
       <div
         ref={sliderTrackRef}
-        className="relative whitespace-nowrap font-GameOfSquid text-[3.33vw] md:text-[2.6vw] text-[1.8vw] text-black flex justify-between w-full z-10"
+        className="relative whitespace-nowrap font-GameOfSquid text-[3.33vw] md:text-[2.6vw] lg:text-[1.8vw] text-black flex justify-between w-full z-10"
       >
         {content}&emsp;
         {content}&emsp;
@@ -115,90 +115,34 @@ function LineH2() {
   );
 }
 
-function CardAll() {
+function CardAll({ cardAllItems }) {
   return (
-    <div className="relative w-[68%] flex items-center justify-center mt-14 mb-20 max-md:flex-col flex-row md:w-[30%] md:my-0 md:gap-4">
-      <div className="relative flex justify-between z-10 w-fit h-fit gap-10 py-10 lg:flex-row flex-col max-md:h-[80vw] max-md:px-2vw max-md:justify-normal max-sm:gap-[40vw]">
-        {/* <div className="relative w-[50vw] flex flex-col justify-center items-center">
-                    <Image src={Cardcompe} width={50} height={40} alt="BG_Card.svg" className="w-[35.9vw]"/>
-                    <div className="absolute flex flex-col w-[80%] justify-center text-center items-center font-Montserrat mb-[1vw] text-[#233E51] text-[1vw]">
-                        <strong className="font-bold">Kategori Peserta</strong>
-                        <ul>
-                            <li className="list-disc">Sendiri</li>
-                            <li className="list-disc">Team (Max 3 orang)</li>
-                        </ul>
-                    </div>
-                </div>
-                 */}
-        <div className="relative z-30 aspect-[150/80] w-[21.3vw] max-md:mx-auto max-md:my-0 max-md:w-[44vw] max-sm:w-[70vw]">
-          <Image src={Cardcompe} alt="card.png" className="absolute " fill />
-          <div className="absolute w-full text-black ml-[5vw] text-[1.12vw] max-md:text-[2.8vw] max-md:ml-[8vw] max-sm:text-[3.4vw] max-sm:ml-[14vw] max-sm:mt-[6vw] mt-[3vw]  text-left">
-            <strong className="font-bold">Kategori Peserta</strong>
-            <div className="mt-2">
-              <ul>
-                <li className="list-disc">Sendiri</li>
-                <li className="list-disc">Team (Max 3 orang)</li>
-              </ul>
+    <div className="relative w-[68%] flex items-center justify-center mt-14 mb-20 max-lg:flex-col flex-row max-md:w-[45%] max-md:my-0">
+      <div className="relative flex justify-between z-10 w-fit h-fit lg:flex-row flex-col max-md:h-[80vw] max-md:gap-[28vw] max-md:justify-normal max-sm:gap-[40vw]">
+        {cardAllItems.map((item, index) => (
+          <div
+            key={index}
+            className={`relative z-30 aspect-[150/80] w-[21.3vw] max-md:mx-auto max-md:my-0 max-md:w-[44vw] max-sm:w-[70vw] ${index !== cardAllItems.length - 1 ? 'mr-[3vw]' : ''}`}
+          >
+            <Image src={Cardcompe} alt="card.png" className="absolute" fill />
+            <div className="absolute w-full text-black ml-[5vw] text-[1.12vw] max-md:text-[2.8vw] max-md:ml-[8vw] max-sm:text-[3.4vw] max-sm:ml-[14vw] max-sm:mt-[6vw] mt-[3vw]  text-left">
+              <strong className="font-bold">{item.title}</strong>
+              <div className="mt-2">
+                <ul>
+                  {item.items.map((subItem, subIndex) => (
+                    <li key={subIndex} className="list-disc">
+                      {subItem}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="relative z-30 aspect-[150/80] w-[21.3vw] max-md:mx-auto max-md:my-0 max-md:w-[44vw] max-sm:w-[70vw]">
-          <Image src={Cardcompe} alt="card.png" className="absolute" fill />
-          <div className="absolute w-full text-black left-0 ml-[5vw] text-[1.12vw] max-md:text-[2.8vw] max-md:ml-[8vw] max-sm:text-[3.4vw] max-sm:ml-[14vw] max-sm:mt-[6vw] mt-[3vw] text-left">
-            <strong className="font-bold">Biaya Pendaftaran</strong>
-            <div className="mt-2">
-              <ul>
-                <li className="list-disc">Rp 100.000 (Early Bird)</li>
-                <li className="list-disc">Rp 130.000 (Regular)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="relative z-30 aspect-[150/80] w-[21.3vw] max-md:mx-auto max-md:my-0 max-md:w-[44vw] max-sm:w-[70vw]">
-          <Image src={Cardcompe} alt="card.png" className="absolute" fill />
-          <div className="absolute w-full text-black left-0 ml-[5vw] text-[1.12vw] max-md:text-[2.8vw] max-md:ml-[8vw] max-sm:text-[3.4vw] max-sm:ml-[14vw] max-sm:mt-[6vw] mt-[3vw] text-left">
-            <strong className="font-bold">Contact Person</strong>
-            <div className="mt-2">
-              <ul>
-                <li className="list-disc">WA : 6281234567800</li>
-                <li className="list-disc">Line : usnline</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
 }
-
-// function CardAll({ cardAllItems }) {
-//   return (
-//     <div className="relative w-[68%] flex items-center justify-center mt-14 mb-20 max-lg:flex-col flex-row max-md:w-[45%] max-md:my-0">
-//       <div className="relative flex justify-between z-10 w-fit h-fit lg:flex-row flex-col max-md:h-[80vw] max-md:gap-[28vw] max-md:justify-normal max-sm:gap-[40vw]">
-//         {cardAllItems.map((item, index) => (
-//           <div
-//             key={index}
-//             className="relative z-30 aspect-[150/80] w-[21.3vw] max-md:mx-auto max-md:my-0 max-md:w-[44vw] max-sm:w-[70vw]"
-//           >
-//             <Image src={Cardcompe} alt="card.png" className="absolute" fill />
-//             <div className="absolute w-full text-black ml-[5vw] text-[1.12vw] max-md:text-[2.8vw] max-md:ml-[8vw] max-sm:text-[3.4vw] max-sm:ml-[14vw] max-sm:mt-[6vw] mt-[3vw]  text-left">
-//               <strong className="font-bold">{item.title}</strong>
-//               <div className="mt-2">
-//                 <ul>
-//                   {item.items.map((subItem, subIndex) => (
-//                     <li key={subIndex} className="list-disc">
-//                       {subItem}
-//                     </li>
-//                   ))}
-//                 </ul>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
 
 function Cardol() {
   return (
@@ -323,7 +267,7 @@ export default function Second({
       {!MyComponent() && (
         <div className="w-full flex flex-col justify-center items-center mb-[16vw]">
           <LineH1 />
-          <CardAll />
+          <CardAll cardAllItems={cardAllItems} />
         </div>
       )}
     </main>
