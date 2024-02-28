@@ -31,6 +31,10 @@ function UxCompetition() {
     },
   ];
 
+  const firstPlacePrize = "3.000.000";
+  const secondPlacePrize = "2.000.000";
+  const thirdPlacePrize = "1.000.000";
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -96,7 +100,11 @@ function UxCompetition() {
             competitionDescription="UX competition adalah kompetisi desain pengalaman pengguna atau user experience (UX) sebuah produk berupa aplikasi mobile yang merupakan salah satu cabang kompetisi Find IT! 2024. Kompetisi ini mengkolaborasikan beberapa aspek startup termasuk pencapaian user experience goals dan usability goals. Kompetisi ini ditujukan bagi  Mahasiswa S1/D4/D3 dan Siswa SMA/SMK/MA sederajat. Dalam jangka waktu yang telah ditentukan, peserta akan mengembangkan produk dalam bentuk prototipe yang sesuai dengan tema."
             cardAllItems={UXInformation}
           />
-          <Prize />
+          <Prize
+            firstPlacePrize={firstPlacePrize}
+            secondPlacePrize={secondPlacePrize}
+            thirdPlacePrize={thirdPlacePrize}
+          />
           <Timeline />
         </div>
       </RootLayout>
