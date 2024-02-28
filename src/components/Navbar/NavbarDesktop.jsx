@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
+import { usePathname } from "next/navigation";
 
 const LOMBA = [
   "Capture the flag",
@@ -16,7 +17,8 @@ const LOMBA = [
   "Informatics Competition",
 ];
 
-const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
+const NavbarDesktop = ({ isLogin, onSignClick }) => {
+  const pathName = usePathname();
   const [opacityCompetition, setopacityCompetition] = useState(false);
   const [hideCompetition, setHideCompetition] = useState(true);
   const [spanCompetition, setSpanCompetition] = useState(false);
@@ -45,9 +47,8 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
             <p
               className={twMerge(
                 "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
-                activePath == "Workshop" && "text-primary-500"
+                pathName == "/workshop" && "text-primary-500"
               )}
-              onClick={() => setActivePath("Workshop")}
             >
               Workshop
             </p>
@@ -56,10 +57,9 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
             <p
               className={twMerge(
                 "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
-                activePath == "Competition" && "text-primary-500"
+                pathName == "/competition" && "text-primary-500"
               )}
               onClick={() => {
-                setActivePath("Competition");
                 setSpanCompetition(!spanCompetition);
               }}
             >
@@ -90,7 +90,7 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
                   }
                 >
                   <p
-                    className="flex items-center justify-center flex-1 w-full py-2 rounded-lg cursor-pointer text-white hover:bg-primary-300 font-Montserrat"
+                    className="flex items-center justify-center flex-1 w-full py-2 text-white rounded-lg cursor-pointer hover:bg-primary-300 font-Montserrat"
                     onClick={(e) => {
                       e.stopPropagation();
                     }}
@@ -122,9 +122,8 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
           <p
             className={twMerge(
               "text-white transition-all duration-200 cursor-pointer whitespace-nowrap text-sm hover:text-gray-300",
-              activePath == "About Us" && "text-primary-500"
+              pathName == "/aboutus" && "text-primary-500"
             )}
-            onClick={() => setActivePath("About Us")}
           >
             <Link href="/aboutus">About Us</Link>
           </p>
@@ -132,9 +131,8 @@ const NavbarDesktop = ({ activePath, setActivePath, isLogin, onSignClick }) => {
             <p
               className={twMerge(
                 "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
-                activePath == "FAQ" && "text-primary-500"
+                pathName == "/faq" && "text-primary-500"
               )}
-              onClick={() => setActivePath("FAQ")}
             >
               FAQ
             </p>

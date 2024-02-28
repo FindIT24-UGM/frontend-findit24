@@ -9,7 +9,6 @@ import HeroComp from "../components/LandingPage/Hero/HeroComp";
 import WebinarComp from "../components/LandingPage/Webinar/WebinarComp";
 import CompetitionComp from "../components/LandingPage/Competition/CompetitionComp";
 import Footer from "../components/footer";
-import { useSession } from "../session/SessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
