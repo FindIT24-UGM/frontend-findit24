@@ -31,6 +31,10 @@ function CompetitiveProgramming() {
     },
   ];
 
+  const firstPlacePrize = "3.500.000";
+  const secondPlacePrize = "2.500.000";
+  const thirdPlacePrize = "1.000.000";
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -96,7 +100,11 @@ function CompetitiveProgramming() {
             competitionDescription="Competitive Programming merupakan kompetisi yang menguji kemampuan berpikir logis untuk menyelesaikan masalah menggunakan sebuah program komputer yang ditulis menggunakan bahasa C, C++, Python, atau Java dalam batasan waktu dan memori yang ditentukan"
             cardAllItems={CPInformation}
           />
-          <Prize />
+          <Prize
+            firstPlacePrize={firstPlacePrize}
+            secondPlacePrize={secondPlacePrize}
+            thirdPlacePrize={thirdPlacePrize}
+          />
           <Timeline />
         </div>
       </RootLayout>

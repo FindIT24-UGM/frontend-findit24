@@ -21,19 +21,21 @@ import axios from "axios";
 import Image from "next/image";
 import { getUserData } from "../../../../store/slices/authSlice";
 import ModalJoinTeam from "../../../../components/modal/modaljointeam";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 //INITIALIZE FOR useReducer
-const initialState = {
-  name: undefined,
-  dateOfBirth: undefined,
-  phone: undefined,
-  province: undefined,
-  address: undefined,
-  status: undefined,
-  institutionFile: undefined,
-  institutionName: undefined,
-  institutionNumber: undefined,
-};
+// const initialState = {
+//   name: undefined,
+//   dateOfBirth: undefined,
+//   phone: undefined,
+//   province: undefined,
+//   address: undefined,
+//   status: undefined,
+//   institutionFile: undefined,
+//   institutionName: undefined,
+//   institutionNumber: undefined,
+// };
 const reducer = (state, action) => {
   switch (action.type) {
     case "UPDATE_FIELD":
@@ -44,7 +46,27 @@ const reducer = (state, action) => {
 };
 
 const ProfilDiri = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  // const [state, dispatch] = useReducer(reducer, initialState);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const [state, dispatch] = useReducer(reducer, {
+    // Assign initial state once user is available
+    name: user ? user.name : "",
+    dateOfBirth: undefined,
+    phone: user ? user.phone : "",
+    province: user ? user.province : "",
+    address: user ? user.address : "",
+    status: user ? user.status : "",
+    institutionFile: user ? user.institutionFile : "",
+    institutionName: user ? user.institutionName : "",
+    institutionNumber: user ? user.institutionNumber : "",
+  });
+
+  // useEffect to update state.name when user changes
+  useEffect(() => {
+    if (user) {
+      dispatch({ type: "UPDATE_FIELD", field: "name", value: user.name });
+    }
+  }, [user]);
 
   const [openProvinsi, setOpenProvinsi] = useState(false);
   const [openStatus, setOpenStatus] = useState(false);
@@ -83,6 +105,7 @@ const ProfilDiri = () => {
     document.body.addEventListener("click", handler);
     return () => document.body.removeEventListener("click", handler);
   }, []);
+
 
   const provinsies = [
     {
@@ -213,25 +236,7 @@ const ProfilDiri = () => {
     },
   ];
 
-  /* Gtau Bjir Routingnya */
-  // useEffect(() => {
-  //   axios.get(process.env.NEXT_PUBLIC_API_URL + "/user/").then((response) => {
-  //     dispatch(getUserData);
-  //     const profileData = response.data;
-  //     dispatch({
-  //       type: "UPDATE_FIELD",
-  //       field: "name",
-  //       value: profileData.name,
-  //     });
-  //     dispatch({
-  //       type: "UPDATE_FIELD",
-  //       field: "DateOfBirth",
-  //       value: new Date(profileData),
-  //     });
-  //   });
-  // });
-
-  /*----------BLM WORK BUAT UPLOAD INSTITUTION FILE---------- */
+  /*----------BUAT UPLOAD INSTITUTION FILE---------- */
   const [imagePreview, setImagePreview] = useState("");
   const uploadInstitutionFile = (e) => {
     const formData = new FormData();
@@ -254,10 +259,10 @@ const ProfilDiri = () => {
         })
         .then((res) => {
           console.log(res);
+          toast.success('Berhasil upload file')
         })
         .catch((err) => {
           console.log(err);
-          console.log(formData);
         });
     }
   };
@@ -308,76 +313,10 @@ const ProfilDiri = () => {
   //   }
   // };
 
-  useEffect(() => {
-    // Ambil data profil dari sumber daya (misalnya, backend) menggunakan axios atau metode lain
-    axios
-      .get(process.env.NEXT_PUBLIC_API_URL + "/user/")
-      .then((response) => {
-        const profileData = response.data;
-
-        // Update nilai awal state dengan data profil sebelumnya
-        dispatch({
-          type: "UPDATE_FIELD",
-          field: "name",
-          value: profileData.name,
-        });
-        dispatch({
-          type: "UPDATE_FIELD",
-          field: "dateOfBirth",
-          value: new Date(profileData.dateOfBirth),
-        });
-        dispatch({
-          type: "UPDATE_FIELD",
-          field: "phone",
-          value: profileData.phone,
-        });
-        dispatch({
-          type: "UPDATE_FIELD",
-          field: "province",
-          value: profileData.province,
-        });
-        dispatch({
-          type: "UPDATE_FIELD",
-          field: "address",
-          value: profileData.address,
-        });
-        dispatch({
-          type: "UPDATE_FIELD",
-          field: "status",
-          value: profileData.status,
-        });
-        dispatch({
-          type: "UPDATE_FIELD",
-          field: "institutionName",
-          value: profileData.institutionName,
-        });
-        dispatch({
-          type: "UPDATE_FIELD",
-          field: "institutionNumber",
-          value: profileData.institutionNumber,
-        });
-
-        // Jika ada gambar institusi, atur pratinjau gambar
-        if (profileData.institutionFile) {
-          setImagePreview(profileData.institutionFile);
-        }
-      })
-      .catch((error) => {
-        console.log("Error fetching profile data:", error);
-      });
-  }, []);
-
   /*---------HANDLE INPUT DATA (pake useReducer)------------ */
   const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch({ type: "UPDATE_FIELD", field: name, value });
-
-    // setUpdateUser((prev) => {
-    //   return {
-    //     ...prev,
-    //     [type]: value,
-    //   };
-    // });
   };
 
   const handleDateChange = (date) => {

@@ -32,6 +32,10 @@ function DataAnaytics() {
     },
   ];
 
+  const firstPlacePrize = "4.500.000";
+  const secondPlacePrize = "3.000.000";
+  const thirdPlacePrize = "1.500.000";
+
   return (
     <div className="overflow-hidden min-h-screen bg-background-skyblue">
       <RootLayout>
@@ -97,7 +101,11 @@ function DataAnaytics() {
             competitionDescription="Data Analytics Competition adalah kompetisi berskala nasional yang diadakan pada FIND IT! 2024. Data Analytics Competition merupakan kompetisi menganalisis data khususnya big data guna memberi solusi dari sebuah permasalahan yang telah disediakan. Tujuan kegiatan ialah menyiapkan generasi yang mampu menganalisis data dengan baik sehingga mampu melahirkan solusi terbaik dari sebuah masalah di era digital."
             cardAllItems={DACInformation}
           />
-          <Prize />
+          <Prize
+            firstPlacePrize={firstPlacePrize}
+            secondPlacePrize={secondPlacePrize}
+            thirdPlacePrize={thirdPlacePrize}
+          />
           <Timeline />
         </div>
       </RootLayout>

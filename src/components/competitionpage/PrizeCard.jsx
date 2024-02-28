@@ -8,19 +8,19 @@ let additionalStyle;
 export default function PrizeCard({ type, prize }) {
   switch (type) {
     case "1st place":
-      prize = "3.000.000";
+      // prize = "3.000.000";
       additionalStyle = "bg-primary-300";
       break;
     case "2nd place":
-      prize = "2.000.000";
+      // prize = "2.000.000";
       additionalStyle = "bg-[#969696]";
       break;
     case "3rd place":
-      prize = "1.000.000";
+      // prize = "1.000.000";
       additionalStyle = "bg-[#82512C]";
   }
   return (
-    <div className="relative aspect-[532/305] w-[80vw] md:w-[40vw] relative bg-cover flex flex-col justify-center items-center gap-y-4">
+    <div className="aspect-[532/305] w-[80vw] md:w-[40vw] relative bg-cover flex flex-col justify-center items-center gap-y-4">
       <Image src={BGCard} fill alt="BG_Card.png" loading="lazy" />
       <div className="relative w-[47.778vw] md:w-[20.833vw] lg:w-[14.5vw] flex flex-col text-end font-Montserrat italic text-[18px] lg:text-[1.25vw]">
         {type}
