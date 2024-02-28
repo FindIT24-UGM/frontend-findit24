@@ -314,16 +314,18 @@ const Index = (nameAbr) => {
                 )}
                 {haveJoined && (
                   <div className="w-full h-auto">
-                    {userTeam && userTeam.teams?.map(team => {
-                      return (
-                      <TeamCard 
-                      id={team._id}
-                      competition={team.team.event[0].eventName}
-                      teamName={team.team.teamName}
-                      verify={team.team.verified}
-                      key={team._id}
-                      />)
-                    })}
+                    {userTeam &&
+                      userTeam.teams?.map((team) => {
+                        return (
+                          <TeamCard
+                            id={team._id}
+                            competition={team.team.event[0].eventName}
+                            teamName={team.team.teamName}
+                            verify={team.team.verified}
+                            key={team._id}
+                          />
+                        );
+                      })}
                   </div>
                 )}
               </div>
@@ -334,7 +336,11 @@ const Index = (nameAbr) => {
               </h1>
               {width < 640 ? (
                 <div className="pl-[5.7vw] flex items-center justify-center">
-                  <Swiper centeredSlides={true} slidesPerView={3}>
+                  <Swiper
+                    centeredSlides={true}
+                    slidesPerView={2.5}
+                    spaceBetween="60vw"
+                  >
                     <SwiperSlide>
                       <CardLomba
                         name="Capture The Flag"
@@ -551,7 +557,7 @@ const Index = (nameAbr) => {
                 <Link
                   href={
                     isAuthenticated
-                      ? "/user/dashboard/lomba/dataTim"
+                      ? "/user/dashboard/lomba/datatim"
                       : "/auth/login"
                   }
                 >

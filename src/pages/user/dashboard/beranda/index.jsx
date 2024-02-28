@@ -173,7 +173,7 @@ const Index = () => {
                   </div>
                   <div>
                     <button
-                      className="border-2 border-background-skyblue flex items-center gap-2 px-5 py-1 rounded"
+                      className="border-2 border-background-skyblue mr-24 md:mr-0 flex items-center gap-2 px-5 py-1 rounded"
                       onClick={handleEditProfile}
                     >
                       <AiFillEdit size={16} color="#2A93C2" />

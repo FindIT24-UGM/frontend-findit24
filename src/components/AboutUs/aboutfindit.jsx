@@ -59,14 +59,14 @@ export default function AboutFindIT() {
           />
           <div className="absolute flex w-[80%] max-sm:w-[55%] justify-center text-left items-center font-Montserrat mb-[1vw] text-[#233E51] text-[1vw] max-md:translate-x-[-1.5vw]  max-md:text-[1.85vw] max-sm:text-[3.2vw] max-sm:text-left font-medium max-sm:translate-x-[-25vw]">
             <p>
-              <span class="font-bold">FIND IT</span> atau kependekan dari Future
-              Innovation and Discovery Information and Technology merupakan
-              sebuah acara/event tahunan yang diselenggarakan oleh{" "}
-              <span class="font-bold">DTETI FT UGM.</span> Pada event ini
+              <span className="font-bold">FIND IT</span> atau kependekan dari
+              Future Innovation and Discovery Information and Technology
+              merupakan sebuah acara/event tahunan yang diselenggarakan oleh{" "}
+              <span className="font-bold">DTETI FT UGM.</span> Pada event ini
               terdapat beberapa acara, diantaranya{" "}
-              <span class="font-bold">webinar</span> dengan nama IT Academy dan{" "}
-              <span class="font-bold">lomba-lomba</span> seperti Competitive
-              Programming, Data Analytics Competition, dan Hackaton.{" "}
+              <span className="font-bold">webinar</span> dengan nama IT Academy
+              dan <span className="font-bold">lomba-lomba</span> seperti
+              Competitive Programming, Data Analytics Competition, dan Hackaton.{" "}
             </p>
           </div>
         </div>

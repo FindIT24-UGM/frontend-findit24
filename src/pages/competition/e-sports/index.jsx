@@ -46,35 +46,43 @@ function eSport() {
               //Beyond The Sky
             </p>
             <div className="absolute left-0 hidden lg:flex">
-              <Image src={Pattern_Kiri} />
+              <Image src={Pattern_Kiri} alt="Pattern_Kiri.png" />
             </div>
             <div className="absolute -left-2 md:-left-4 lg:left-0 top-12">
               <Image
                 src={Awan_Kiri}
                 className="w-[28vw] md:w-[15.3vw] lg:w-[6.25vw]"
+                alt="Awan_Kiri.png"
               />
             </div>
             <div className="absolute -right-2 lg:right-0 top-16">
               <Image
                 src={Awan_Kanan}
                 className="w-[28vw] md:w-[15.3vw] lg:w-[6.25vw]"
+                alt="Awan.png"
               />
             </div>
             <div className="absolute md:-top-20 2xl:-top-52 md:-right-12 2xl:-right-16 opacity-60">
               <Image
                 src={Micro_Atas}
-                className="w-[28vw] md:w-[102vw] 2xl:w-[60vw]"
+                className="w-[28vw] md:w-[102vw] lg:w-[64vw] 2xl:w-[60vw]"
+                alt="Asset BG.png"
               />
             </div>
             <div className="absolute -right-20 2xl:right-48 2xl:top-1/3 opacity-60">
               <Image
                 src={Micro_Pattern}
-                className="w-[28vw] md:w-[102vw] 2xl:w-[45vw]"
+                className="w-[28vw] md:w-[102vw] lg:w-[64vw] 2xl:w-[45vw]"
+                alt="Asset BG.png"
               />
             </div>
             {/* Belum Responsive cik */}
             <div className="absolute -top-12 lg:-top-28 right-1 lg:-right-24 -rotate-[15deg] lg:rotate-0 lg:flex">
-              <Image src={Bintang_Group} className="w-[101vw] 2xl:w-[93vw]" />
+              <Image
+                src={Bintang_Group}
+                className="w-[101vw] 2xl:w-[93vw]"
+                alt="Asset BG.png"
+              />
             </div>
             {/* Belum Responsive cik*/}
             <div className="absolute bottom-0 flex font-Montserrat 2xl:text-[0.72vw] text-white">
@@ -88,6 +96,7 @@ function eSport() {
               <div className="mx-10 md:mx-0 relative">
                 <Image
                   src={ESP}
+                  alt="Logo"
                   width={545}
                   height={532}
                   className="relative z-40 w-[50vw] md:w-[35.5vw] xl:w-[600px] mx-auto"
@@ -96,7 +105,7 @@ function eSport() {
               </div>
             </div>
           </div>
-          <Second 
+          <Second
             cabangLomba="e-Sport"
             competitionDescription="Esport Competition adalah kompetisi dalam bentuk permainan video game yang dilombakan dalam bentuk tim pada Find IT! 2024. Game yang dilombakan adalah Mobile Legends dan Valorant. Tujuan diselenggarakannya kompetisi ini adalah untuk mewadahi gamers dalam negeri dengan meningkatkan persaingan sehingga kualitas pun juga akan semakin meningkat. Selain itu, dengan kualitas gamers lokal yang baik, maka bisa ikut unggul dalam meramaikan persaingan Esport tingkat global."
             cardAllItems={ESInformation}

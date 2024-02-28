@@ -390,9 +390,14 @@ const index = () => {
               )}
             </div>
           </div>
-          <button className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300">
+          <button
+            onClick={() =>
+              router.replace("/user/dashboard/profileteam/editteam" + teamId)
+            }
+            className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
+          >
             <HiCheckCircle />
-            <p className="text-[16px] font-bold">aJUKAN VERIFIKASI</p>
+            <p className="text-[16px] font-bold">AJUKAN VERIFIKASI</p>
           </button>
         </div>
         <div className="px-3 py-5 bg-primary-500 rounded-md md:w-1/2">
