@@ -22,7 +22,7 @@ const DataTimGeneral = () => {
 
   const [number1, setNumber1] = useState(null);
   const [number2, setNumber2] = useState(null);
-  const [phone, setPhone] = useState([]);
+  // const [phone, setPhone] = useState([]);
 
   const [discordID, setDiscordID] = useState(null);
   const [inGameID, setInGameID] = useState(null);
@@ -212,7 +212,7 @@ const DataTimGeneral = () => {
         selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE
       ) {
         router.push(
-          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/datatim/datatimux`
+          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/dataTim/datatimux`
         );
         setHarga("120.000");
       } else if (

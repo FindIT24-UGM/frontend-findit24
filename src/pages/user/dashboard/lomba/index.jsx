@@ -314,20 +314,16 @@ const Index = (nameAbr) => {
                 )}
                 {haveJoined && (
                   <div className="w-full h-auto">
-                    {userTeam &&
-                      userTeam?.asMember?.map((team) => {
-                        if (team.teamId) {
-                          return (
-                            <TeamCard
-                              id={team.teamId._id}
-                              competition={team.eventId.eventName}
-                              teamName={team.teamId.teamName}
-                              verify={team.teamId.status}
-                              key={team}
-                            />
-                          );
-                        }
-                      })}
+                    {userTeam && userTeam.teams?.map(team => {
+                      return (
+                      <TeamCard 
+                      id={team._id}
+                      competition={team.team.event[0].eventName}
+                      teamName={team.team.teamName}
+                      verify={team.team.verified}
+                      key={team._id}
+                      />)
+                    })}
                   </div>
                 )}
               </div>

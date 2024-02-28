@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 
 import ModalParent from "../../../../components/modal/modalparent";
 import ModalVerification from "../../../../components/modal/modalverif";
+import axios from "axios";
 
 const DaftarWorkshop = () => {
   const [date, setDate] = useState(undefined);
@@ -42,6 +43,14 @@ const DaftarWorkshop = () => {
   const handleBackWorkshop = () => {
     router.push("/user/dashboard/webinar");
   };
+
+  const handleJoinWorkshop = () => {
+    axios.post(`${process.env.NEXT_PUBLIC_API_URL}/course/join`, 
+    {
+
+    }, 
+    { withCredentials: true })
+  }
 
   const [showModalVerification, setShowModalVerification] = useState(0);
 
