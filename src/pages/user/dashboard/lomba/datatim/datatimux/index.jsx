@@ -128,7 +128,7 @@ const DataTimUX = () => {
       /* Tampilkan modal buat tim */
     }
   };
-console.log(state);
+
   return (
     <RootLayout>
       <div className="bg-background-skyblue w-screen min-h-screen flex flex-col justify-center items-center gap-5 px-5 sm:px-0">
