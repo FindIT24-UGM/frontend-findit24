@@ -8,8 +8,9 @@ const Question = ({ displayedFaq, faqIndex, setFaqIndex }) => {
       {displayedFaq.map((f, idx) => (
         <>
           <div
+            key={f.id}
             className={twMerge(
-              "w-full flex flex-row items-center justify-between py-2 h-fit text-white font-Montserrat font-[700] bg-secondary-blue rounded-lg px-5 text-sm transition-all duration-300",
+              "w-full flex flex-row items-center justify-between py-3 h-fit text-white font-Montserrat font-[700] bg-secondary-blue rounded-lg px-5 text-sm transition-all duration-300",
               faqIndex.includes(idx) && "bg-text-placeholder-dark"
             )}
           >
@@ -27,7 +28,9 @@ const Question = ({ displayedFaq, faqIndex, setFaqIndex }) => {
               <div
                 className={twMerge(
                   "grid transition-all duration-500",
-                  faqIndex.includes(idx) ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                  faqIndex.includes(idx)
+                    ? "grid-rows-[1fr] mt-2"
+                    : "grid-rows-[0fr]"
                 )}
               >
                 <p className="overflow-hidden">{f.ans}</p>

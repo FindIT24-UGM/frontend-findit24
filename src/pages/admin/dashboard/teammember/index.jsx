@@ -2,7 +2,7 @@ import React from "react";
 import { IoArrowBack } from "react-icons/io5";
 import { IoIosSave } from "react-icons/io";
 import Accordion from "./Accordion";
-
+//KUPINDAHIN KE [teamId].jsx
 export default function index() {
   return (
     <div className='bg-background-skyblue min-h-screen lg:flex py-20 px-5 lg:px-12 md:px-8'>

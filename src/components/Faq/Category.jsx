@@ -12,10 +12,10 @@ const LOMBA = [
   { full: "Informatics Competition", short: "IC" },
 ];
 
-const CATEGORY = ["All", "Lomba", "Webinar"];
+const CATEGORY = ["General", "Lomba", "Webinar"];
 
 const SELECTION = [
-  "All",
+  "General",
   "Lomba",
   "Webinar",
   "Capture the flag",
@@ -34,13 +34,14 @@ const Category = ({ setSelected, setCompetition, competition, selected }) => {
         if (!CATEGORY.includes(sel)) return;
         return (
           <div
+            key={sel}
             className={twMerge(
-              "flex items-center justify-center flex-1 rounded-lg cursor-pointer font-GameOfSquid text-neutral-300 hover:text-white hover:bg-primary-300 transition-all duration-300  py-1",
+              "flex items-center text-[11px] md:text-[15px] lg:text-[20px] justify-center flex-1 rounded-lg cursor-pointer font-GameOfSquid text-neutral-300 hover:text-white hover:bg-primary-300 transition-all duration-300  py-1",
               sel !== "Lomba" &&
                 selected == sel &&
                 "bg-primary-500 text-white  border-2 border-black",
               sel == "Lomba" &&
-                selected !== "All" &&
+                selected !== "General" &&
                 selected !== "Webinar" &&
                 "bg-primary-500 text-white  border-2 border-black",
               sel == "Lomba" && "group relative"
@@ -55,7 +56,7 @@ const Category = ({ setSelected, setCompetition, competition, selected }) => {
             {sel == "Lomba" && (
               <div
                 className={twMerge(
-                  "absolute top-[150%] flex flex-col w-[300%] h-fit bg-text-placeholder-dark rounded-lg px-5 py-6",
+                  "absolute top-[150%] flex flex-col w-[300%] h-fit bg-text-placeholder-dark rounded-lg px-5 py-6 -translate-y-2",
                   "opacity-0 -z-10",
                   sel == selected && "opacity-100 z-10",
                   "group-hover:opacity-100 group-hover:z-10",
@@ -64,6 +65,7 @@ const Category = ({ setSelected, setCompetition, competition, selected }) => {
               >
                 {LOMBA.map((l) => (
                   <div
+                    key={l.short}
                     className="flex items-center justify-center flex-1 w-full py-2 rounded-lg hover:text-white hover:bg-primary-300 font-Montserrat"
                     onClick={(e) => {
                       e.stopPropagation();

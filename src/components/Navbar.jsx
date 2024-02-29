@@ -1,38 +1,121 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import NavbarDesktop from "./Navbar/NavbarDesktop";
 import { RxCross1 } from "react-icons/rx";
 import NavbarMobile from "./Navbar/NavbarMobile";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserData, logout } from "../store/slices/authSlice";
+import { loadingEnd, loadingStart } from "../store/action";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const [activePath, setActivePath] = useState("Webinar");
+  // ubah isLogin di sini ya naufal
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const router = useRouter();
   const [isSideNav, setIsSideNav] = useState(false);
+  const [isLarge, setIsLarge] = useState(true);
+
+  const widthTracker = () => {
+    if (window.innerWidth >= 1024) {
+      setIsLarge(true);
+    } else {
+      setIsLarge(false);
+    }
+  };
+
+  const disableScroll = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+
+    window.onscroll = function () {
+      window.scrollTo(scrollLeft, scrollTop);
+    };
+  };
+
+  const enableScroll = () => {
+    window.onscroll = function () {};
+  };
+
+  useEffect(() => {
+    if (isSideNav) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+  }, [isSideNav]);
+
+  useEffect(() => {
+    if (isLarge) {
+      setIsSideNav(false);
+    }
+  }, [isLarge]);
+
+  useEffect(() => {
+    window.addEventListener("resize", widthTracker);
+  }, []);
+
+  const onSignClick = useCallback(() => {
+    dispatch(loadingStart);
+    if (isAuthenticated) {
+      const confirmSignOut = Swal.fire({
+        title: "Are you sure want to Logout?",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        customClass: {
+          actions: "my-actions",
+          cancelButton: "order-1 right-gap",
+          confirmButton: "order-2",
+          denyButton: "order-3",
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(logout());
+          Swal.fire("Logout", "", "success");
+          router.push("/login");
+        } else {
+          router.push("./");
+        }
+        dispatch(loadingEnd);
+      });
+    } else {
+      router.push("/login");
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    dispatch(loadingStart());
+    dispatch(getUserData())
+      .unwrap()
+      .then((res) => {
+        dispatch(loadingEnd());
+      })
+      .catch((err) => {});
+  }, [isAuthenticated]);
 
   return (
     <>
       <div
         className={twMerge(
-          "h-20 border-b-4 w-full border-black bg-text-placeholder-dark font-GameOfSquid flex flex-row justify-center px-7 items-center py-12",
-          "max-lg:justify-between",
+          "h-20 z-[999] border-b-4 w-full border-black bg-text-placeholder-dark font-GameOfSquid flex flex-row justify-center px-7 items-center py-12",
+          "max-lg:justify-start",
           "lg:gap-x-20",
           "relative"
         )}
       >
         {/* navbar desktop */}
-        <NavbarDesktop
-          activePath={activePath}
-          setActivePath={setActivePath}
-          isLogin={isLogin}
-          setIsLogin={setIsLogin}
-        />
+        <NavbarDesktop isLogin={isAuthenticated} onSignClick={onSignClick} />
         {/* navbar button */}
         <motion.button
-          className="lg:hidden"
+          className="ml-auto lg:hidden"
           key={isSideNav}
           onClick={() => setIsSideNav(!isSideNav)}
           variants={{
@@ -43,11 +126,7 @@ const Navbar = () => {
           animate={isSideNav ? "hidden" : "visible"}
           initial={isSideNav ? "visible" : "hidden"}
         >
-          <Image
-            src={"assets/images/menu-hamburger.svg"}
-            height={40}
-            width={40}
-          />
+          <GiHamburgerMenu size={40} />
         </motion.button>
         <motion.button
           className={twMerge(!isSideNav && "hidden", "lg:hidden")}
@@ -65,15 +144,16 @@ const Navbar = () => {
         {/* navbar mobile */}
         <NavbarMobile
           isSideNav={isSideNav}
-          isLogin={isLogin}
-          setIsLogin={setIsLogin}
+          isLogin={isAuthenticated}
+          onSignClick={onSignClick}
         />
       </div>
       {/* dark background */}
       <motion.div
         className={twMerge(
-          "w-full h-full absolute bg-text-placeholder-dark z-[20]",
-          !isSideNav && "hidden"
+          "w-full h-full absolute bg-text-placeholder-dark z-[50]",
+          !isSideNav && "hidden",
+          "lg:hidden"
         )}
         variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.7 } }}
         initial={isSideNav ? "hidden" : "visible"}

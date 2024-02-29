@@ -12,9 +12,7 @@ module.exports = {
           500: "#EE8478",
         },
         secondary: {
-          green: "#58D3AC",
           blue: "#92C2D0",
-          purple: "#CA45C5",
         },
         "text-placeholder": {
           dark: "#233E51",
@@ -22,6 +20,7 @@ module.exports = {
         },
         background: {
           skyblue: "#2A93C2",
+          circuitblue: "#2985B0",
         },
         success: {
           100: "#9FE7CB",
@@ -53,8 +52,14 @@ module.exports = {
         },
         shade: {
           black: "#000000",
+          gray: "#D9D9D9",
           white: "#FFFFFF",
         },
+      },
+      backgroundImage: {
+        "primary-gradient": "url('/assets/images/primaryGradient.svg')",
+        "secondary-gradient": "url('/assets/images/secondaryGradient.svg')",
+        "radial-gradient": "radial-gradient(var(--tw-gradient-stops))",
       },
       fontFamily: {
         Montserrat: ["Montserrat", "sans-serif"],
@@ -67,19 +72,25 @@ module.exports = {
       },
       keyframes: {
         swipeRight1: {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(0%)' },
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0%)" },
         },
         swipeRight2: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(100%)' },
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+        sliderTrack: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(calc(-250px * 8))" },
         },
       },
       animation: {
-        swipeRight1: 'swipeRight1 30s linear infinite',
-        swipeRight2: 'swipeRight2 30s linear infinite',
+        swipeRight1: "swipeRight1 20s linear infinite",
+        swipeRight2: "swipeRight2 20s linear infinite",
+        sliderTrack: "sliderTrack 35s linear infinite",
+        cloudsTrack: "swipeRight2 25s linear infinite",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
 };
