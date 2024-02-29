@@ -7,6 +7,8 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import ModalParent from "../../../../../components/modal/modalparent";
+import ModalVerification from "../../../../../components/modal/modalverif";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -24,6 +26,7 @@ export default function Index() {
   const [announcements, setAnnouncements] = useState([]);
   const [date, setDate] = useState(null);
 
+  const [showModalVerification, setShowModalVerification] = useState(0);
   const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -342,13 +345,33 @@ export default function Index() {
             <div className="w-full flex justify-center">
               <button
                 className="w-2/5 bg-background-skyblue py-4 rounded-md mt-4"
-                onClick={handleCreateTeam}
+                onClick={() => {
+                  setShowModalVerification(1);
+                }}
               >
                 <p className="font-GameOfSquid text-center text-shade-black m-auto">
                   Selesai
                 </p>
               </button>
             </div>
+            <ModalParent
+              isVisible={showModalVerification}
+              onClose={() => {
+                setShowModalVerification(0);
+              }}
+            >
+              <ModalVerification
+                isVisible={showModalVerification}
+                onClose={() => {
+                  setShowModalVerification(0);
+                }}
+                submit={handleCreateTeam}
+                quest="Simpan perubahan sebelum keluar?"
+                declare="Anda dapat mengeditnya lagi nanti"
+                confirm="Simpan"
+                cancel="Batal"
+              />
+            </ModalParent>
           </div>
         </div>
       </div>
