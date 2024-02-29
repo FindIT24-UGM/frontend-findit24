@@ -17,12 +17,12 @@ const useWindowSize = () => {
       }
     };
 
-    handleResize();
-
+    // Panggil handleResize setiap kali window diubah ukurannya
     window.addEventListener("resize", handleResize);
 
+    // Bersihkan event listener saat komponen unmount
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, []); // Penambahan dependensi kosong agar efek hanya dijalankan sekali saat mounting
 
   return windowSize;
 };
