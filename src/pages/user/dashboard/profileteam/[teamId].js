@@ -10,6 +10,7 @@ import { IoIosCopy } from "react-icons/io";
 import { AiFillEdit } from "react-icons/ai";
 import { HiCheckCircle } from "react-icons/hi";
 import { BsQuestionOctagonFill } from "react-icons/bs";
+import { HiArrowLeft } from "react-icons/hi";
 
 import Comment from "./Comment";
 import Status from "./Status";
@@ -19,7 +20,7 @@ import axios from "axios";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
 
-const index = () => {
+export default function Index() {
   const router = useRouter();
   const { teamId } = router.query;
   const [dataTeam, setDataTeam] = useState([]);
@@ -165,7 +166,15 @@ const index = () => {
         <FaArrowLeft />
         <h2 className="font-GameOfSquid font-bold">DASHBOARD LOMBA</h2>
       </div>
-
+      <button
+        className="absolute left-12 w-5/6 max-h-[10vh] flex items-center gap-4 mt-6"
+        onClick={() => {
+          router.back();
+        }}
+      >
+        <HiArrowLeft size={20} color="white" />
+        <p className="font-GameOfSquid text-text-placeholder-light">Kembali</p>
+      </button>
       <div className="space-y-5 text-black md:space-y-0 md:flex md:flex-row md:justify-between md:gap-x-5 lg:flex-col lg:gap-y-5 lg:order-2">
         {/* deadline verif box */}
         <div className="bg-text-placeholder-light px-5 py-5 rounded-md border-4 border-black md:order-2 lg:order-1 md:w-[40%] lg:w-full">
@@ -228,7 +237,7 @@ const index = () => {
 
       {/* team info box */}
       <div className="bg-text-placeholder-light text-black px-5 py-5 rounded-md border-4 border-black space-y-8 md:flex md:gap-x-5 lg:order-1 lg:row-span-2 lg:col-span-2">
-        <div className="space-y-4 text-left md:w-1/2">
+        <div className="space-y-4 text-left md:w-1/2 text-black">
           <div className="flex items-center space-x-2">
             <BsPeopleFill />
             <h2 className="font-Montserrat font-bold">Team information</h2>
@@ -264,7 +273,7 @@ const index = () => {
                 <p>Invitation</p>
                 <p>Code</p>
               </div>
-              <div className="h-full flex items-center space-x-2">
+              <div className="h-full flex items-center space-x-2 text-black">
                 <p>{dataTeam?.teamCode}</p>
                 <IoIosCopy
                   className="cursor-pointer"
@@ -276,7 +285,9 @@ const index = () => {
           <div className="space-y-3 border-b-[1px] pb-5 border-slate-600">
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Status</h2>
-              <p className="h-full text-left">{dataTeam?.teamLeaderStatus}</p>
+              <p className="h-full text-left text-black">
+                {dataTeam?.teamLeaderStatus}
+              </p>
             </div>
             <div className="font-Montserrat flex items-center">
               <h2 className="font-bold w-[200px]">Asal Instansi</h2>
@@ -405,8 +416,11 @@ const index = () => {
             Anggota
           </h2>
           {dataTeam?.teamMember &&
-            dataTeam?.teamMember.map((member) => (
-              <div className="mt-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-black scrollbar-track-primary-500 scroll-m-2 max-h-[720px]">
+            dataTeam?.teamMember.map((member, id) => (
+              <div
+                key={id}
+                className="mt-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-black scrollbar-track-primary-500 scroll-m-2 max-h-[720px]"
+              >
                 {/* name, email, dateOfBirth, province, address, phone, id, status, institutionName, institutionNumber, institutionFile */}
                 <Accordion
                   name={member.userId.name}
@@ -450,6 +464,4 @@ const index = () => {
       </div>
     </TeamProfileLayout>
   );
-};
-
-export default index;
+}

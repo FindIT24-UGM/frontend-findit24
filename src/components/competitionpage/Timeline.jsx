@@ -44,11 +44,11 @@ export default function Timeline({ data }) {
       </h2>
       <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:justify-start lg:overflow-auto lg:scrollbar-none lg:flex-col w-full">
         <div className="mt-[13vw] space-y-[20vw] lg:hidden">
-        {data.map((item, i) => (
-          <p key={i} className="font-GameOfSquid text-white h-[5vw] my-auto">
-            {item.date}
-          </p>
-        ))}
+          {data.map((item, i) => (
+            <p key={i} className="font-GameOfSquid text-white h-[5vw] my-auto">
+              {item.date}
+            </p>
+          ))}
         </div>
         <div className="mt-[13vw] lg:hidden">
           {data.map((item, i) => {
@@ -60,7 +60,7 @@ export default function Timeline({ data }) {
           {data.map((item, i) => {
             console.log(i);
             return (
-              <div className="my-[1vw]">
+              <div key={i} className="my-[1vw]">
                 <TimeLineCard content={item.name} key={i} />
               </div>
             );

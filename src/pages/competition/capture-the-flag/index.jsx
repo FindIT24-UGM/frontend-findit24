@@ -42,7 +42,10 @@ export default function CaptureTheFlag() {
     { name: "Babak Kualifikasi", date: "4 Mei 2024" },
     { name: "Pengumuman Finalis", date: "20 Mei 2024" },
     { name: "Babak Final", date: "25 Mei 2024" },
-    { name: "Penetapan dan Pengumuman Juara CTF FindIT! 2024", date: "25 Mei 2024" },
+    {
+      name: "Penetapan dan Pengumuman Juara CTF FindIT! 2024",
+      date: "25 Mei 2024",
+    },
   ];
 
   return (
@@ -52,7 +55,7 @@ export default function CaptureTheFlag() {
           <div className="min-h-screen relative flex items-center mx-auto justify-around md:px-[50px] lg:px-[74px] pt-[20%] md:pt-[100px]">
             {/* Background Assets Layout Desktop */}
             <p className="absolute font-Ava text-white text-[8.889vw] md:text-[5vw] lg:text-[3.33vw] rotate-90 font-normal -right-20 bottom-16 lg:bottom-48 lg:-right-48 leading-[4vw] drop-shadow-[0_4px_12px_rgba(255,255,255,1)] opacity-50">
-              //Beyond The Sky
+              {"//Beyond The Sky"}
             </p>
             <div className="absolute left-0 hidden lg:flex">
               <Image src={Pattern_Kiri} alt="Pattern_Kiri.png" />

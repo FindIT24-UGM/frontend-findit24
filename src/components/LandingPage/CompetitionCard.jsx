@@ -30,8 +30,8 @@ export default function CompetitionCard(props) {
             <div className="w-full flex flex-col gap-y-4">
               <div className="flex justify-between lg:flex-col">
                 <div className="font-GameOfSquid text-white text-[3.5vw] md:text-[2.266vw] lg:text-[1.25vw]">
-                  <div>"Stratigize. Conquer.</div>
-                  <div>{name}"</div>
+                  <div>{'"Stratigize. Conquer.'}</div>
+                  <div>{name + '"'}</div>
                 </div>
               </div>
               <div className="flex flex-col-reverse w-full h-full">
@@ -68,8 +68,8 @@ export default function CompetitionCard(props) {
               <div className="w-full flex flex-col gap-y-8">
                 <div className="flex justify-between lg:flex-col gap-y-8">
                   <div className="font-GameOfSquid text-white text-[1.8vw]">
-                    <div>"Stratigize. Conquer.</div>
-                    <div>{name}"</div>
+                    <div>{'"Stratigize. Conquer.'}</div>
+                    <div>{name + '"'}</div>
                   </div>
                 </div>
                 <div className="font-Montserrat text-white text-[1.7vw]">
@@ -99,8 +99,8 @@ export default function CompetitionCard(props) {
             <div className="w-full flex flex-col gap-y-4">
               <div className="flex justify-between lg:flex-col">
                 <div className="font-GameOfSquid text-white text-[3.5vw] md:text-[2.266vw] lg:text-[1.25vw]">
-                  <div>"Stratigize. Conquer.</div>
-                  <div>{name}"</div>
+                  <div>{'"Stratigize. Conquer.'}</div>
+                  <div>{name + '"'}</div>
                 </div>
               </div>
               <div className="font-Montserrat text-white text-[1.042vw]">

@@ -106,7 +106,6 @@ const ProfilDiri = () => {
     return () => document.body.removeEventListener("click", handler);
   }, []);
 
-
   const provinsies = [
     {
       name: "Nanggroe Aceh Darussalam",
@@ -259,7 +258,7 @@ const ProfilDiri = () => {
         })
         .then((res) => {
           console.log(res);
-          toast.success('Berhasil upload file')
+          toast.success("Berhasil upload file");
         })
         .catch((err) => {
           console.log(err);
@@ -403,7 +402,7 @@ const ProfilDiri = () => {
                       name="name"
                     />
                   </div>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2 text-black">
                     <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
                       Tanggal Lahir
                     </p>

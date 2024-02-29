@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import ConfirmationPopupContext from "../utilities/ConfirmationPopupContext";
 import { RxCross2 } from "react-icons/rx";
+import { IoCloseCircleSharp } from "react-icons/io5";
 
 export default function ConfirmationPopup() {
   const {

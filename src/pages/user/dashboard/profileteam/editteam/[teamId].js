@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import RootLayout from "../../../layout";
+import { HiArrowLeft } from "react-icons/hi";
+import { BsCalendar2PlusFill } from "react-icons/bs";
+import { IoMdArrowDropdown } from "react-icons/io";
+import DatePicker from "react-datepicker";
 
-function index() {
+export default function Index() {
   const router = useRouter();
   const { teamId } = router.query;
   const [dataTeam, setDataTeam] = useState([]);
@@ -60,7 +65,7 @@ function index() {
     };
     document.body.addEventListener("click", handler);
     return () => document.body.removeEventListener("click", handler);
-  }, []);
+  }, [competitionId, competitionIds, router]);
 
   const statuses = [
     {
@@ -82,6 +87,9 @@ function index() {
             className="w-full h-full text-sm font-Montserrat font-medium text-[#B6B7BA] rounded-lg p-5 bg-text-placeholder-light cursor-pointer"
             type="text"
             placeholder="DD/MM/YYYY"
+            onChange={() => {
+              setDate(e.target.value);
+            }}
             value={value}
             onClick={onClick}
           ></input>
@@ -537,5 +545,3 @@ function index() {
     </RootLayout>
   );
 }
-
-export default index;

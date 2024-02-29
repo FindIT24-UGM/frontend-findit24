@@ -3,7 +3,7 @@ import AdminDashboadrLayout from "../layout";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-export default function index() {
+export default function Index() {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const [statistics, setStatistics] = useState([]);
   useEffect(() => {
@@ -21,9 +21,8 @@ export default function index() {
       }
     };
     getStatistic();
-
   }, [isAuthenticated]);
-  
+
   return (
     <AdminDashboadrLayout>
       <div

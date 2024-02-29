@@ -13,7 +13,7 @@ import { useRouter } from "next/router.js";
 import ElectricPattern from "../../components/ElectricPattern.jsx";
 
 const SignUpPage = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [confirmPassword, setConfirmPassword] = useState(undefined);
@@ -38,15 +38,16 @@ const SignUpPage = () => {
       }
       /*  ? Fetch:  POST /auth/register 
           ? Desc: register account -> email verification  */
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, 
-      { email, password, confirmPassword }, 
-      { withCredentials: true}
-      )
-      router.push('/signup/check')
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
+        { email, password, confirmPassword },
+        { withCredentials: true }
+      );
+      router.push("/signup/check");
     } catch (err) {
       //LOGIC IF ERROR (EMAIL IS TAKEN / PASSWORD KRG BAIK)
-      if(err.response.data.errors){
-        setMessage(err.response.data.errors)
+      if (err.response.data.errors) {
+        setMessage(err.response.data.errors);
       }
     }
   };
@@ -128,12 +129,16 @@ const SignUpPage = () => {
               customClass={"font-Montserrat text-black font-semibold"}
               text="Sign Up"
             />
-            <button onClick={googleSignupHandler} className="relative flex flex-row items-center w-full px-3 py-2 text-black bg-white rounded-lg">
+            <button
+              onClick={googleSignupHandler}
+              className="relative flex flex-row items-center w-full px-3 py-2 text-black bg-white rounded-lg"
+            >
               <Image
                 src={"/assets/images/google.png"}
                 width={20}
                 height={20}
                 className="absolute left-3"
+                alt="Google"
               />
               <p className="mx-auto font-semibold">Sign Up with Google</p>
             </button>

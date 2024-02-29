@@ -9,7 +9,7 @@ import { Router, useRouter } from "next/router";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const DataTimGeneral = () => {
+const DataTimGeneral = ({ compeName }) => {
   const [institusi, setinstitusi] = useState(undefined);
   const [namaTim, setNamaTim] = useState(undefined);
   const [openStatus, setOpenStatus] = useState(false);
@@ -70,6 +70,9 @@ const DataTimGeneral = () => {
           <input
             className="w-full h-full text-sm font-Montserrat font-medium text-[#B6B7BA] rounded-lg p-5 bg-text-placeholder-light cursor-pointer"
             type="text"
+            onChange={() => {
+              setDate(e.target.value);
+            }}
             placeholder="DD/MM/YYYY"
             value={value}
             onClick={onClick}
@@ -212,7 +215,7 @@ const DataTimGeneral = () => {
         selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE
       ) {
         router.push(
-          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/dataTim/datatimux`
+          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/datatim/datatimux`
         );
         setHarga("120.000");
       } else if (
@@ -237,7 +240,7 @@ const DataTimGeneral = () => {
           aria-placeholder="Select Receiver"
           className="p-2 rounded"
           value={selectedLomba}
-          onChange={(e) => setSelectedLomba(e.currentTarget.value)}
+          onChange={(e) => setSelectedLomba(e.target.value)}
         >
           <option value="">Pilih Lomba</option>
           <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_CTF}>
@@ -342,7 +345,7 @@ const DataTimGeneral = () => {
                 </div>
                 <div className="w-full flex flex-col gap-2">
                   <p className="font-Montserrat font-bold text-text-placeholder-light">
-                    Nomor 
+                    Nomor
                   </p>
                   <input
                     className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
@@ -352,7 +355,7 @@ const DataTimGeneral = () => {
                     id="number1"
                     name="number1"
                     value={number1}
-                    onChange={(e) => setNumber1(e.currentTarget.value)}
+                    onChange={(e) => setNumber1(e.target.value)}
                   />
                 </div>
                 <div className="w-full flex flex-col gap-2">
@@ -464,7 +467,10 @@ const DataTimGeneral = () => {
                     onChange={(e) => setBank(e.currentTarget.value)}
                   />
                 </div>
-                {(selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_CTF && selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT && selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_ML) ? (
+                {selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_CTF &&
+                selectedLomba !==
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT &&
+                selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
                   <div></div>
                 ) : (
                   <div className="w-full flex flex-col gap-2">
@@ -484,7 +490,9 @@ const DataTimGeneral = () => {
                   </div>
                 )}
 
-                {(selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT || selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_ML) ? (
+                {selectedLomba ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT ||
+                selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
                   <div className="w-full flex flex-col gap-2">
                     <p className="font-Montserrat font-bold text-text-placeholder-light">
                       ID Game
@@ -503,7 +511,6 @@ const DataTimGeneral = () => {
                 ) : (
                   <div></div>
                 )}
-
               </div>
             </div>
             <div className="w-full flex justify-center">

@@ -3,13 +3,17 @@ import Image from "next/image";
 import Roket from "../../assets/compepage/Roket.png";
 import { useState } from "react";
 
-export default function Prize({ firstPlacePrize, secondPlacePrize, thirdPlacePrize }) {
+export default function Prize({
+  firstPlacePrize,
+  secondPlacePrize,
+  thirdPlacePrize,
+}) {
   return (
     <div className="min-h-screen w-full bg-[url('https://i.ibb.co/0F9wh1L/Bg-Oren-Comp-Page-Mobile.png')] md:bg-[url('https://i.ibb.co/7bzwNYP/Bg-Oren-Comp-Page-Tab.png)'] lg:bg-[url('https://i.ibb.co/kyY5TTZ/Bg-Oren-Comp-Page-Desktop.png')] bg-cover">
       <div className="relative pt-2 pb-40 sm:pt-20 gap-y-20 flex flex-col font-bold text-white ">
         {/* Beyond The Sky */}
         <p className="absolute font-Ava text-[8.889vw] md:text-[5vw] lg:text-[3.33vw] lg:rotate-90 font-normal bottom-16 lg:bottom-96 lg:-left-48 leading-[4vw] drop-shadow-[0_4px_12px_rgba(255,255,255,1)] opacity-50">
-          //Beyond The Sky
+          {"//Beyond The Sky"}
         </p>
         <div className="mx-auto mt-8 lg:mt-0 flex sm:justify-center sm:items-center lg:justify-start lg:items-start lg:mx-36 font-GameOfSquid text-[6.667vw] md:text-[4.167vw] lg:text-[2.5vw]">
           {" "}

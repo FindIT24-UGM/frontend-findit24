@@ -157,7 +157,7 @@ const LoginPage = () => {
               </p>
             )}
             <div className="flex flex-row items-center my-2 mt-4 font-thin gap-x-1">
-              <p className="">Don't have an account ?</p>
+              <p className="">{"Don't have an account ?"}</p>
               <Link
                 href={"/signup"}
                 className="cursor-pointer text-primary-300"

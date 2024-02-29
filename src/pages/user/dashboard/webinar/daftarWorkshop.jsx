@@ -16,10 +16,10 @@ const initialState = {
   eventId: process.env.NEXT_PUBLIC_COMPETITION_ID_WORKSHOP,
   paymentDate: undefined,
   paymentFile: undefined,
-  paymentSender:undefined,
+  paymentSender: undefined,
   bankAccountId: undefined,
   bankName: undefined,
-  twibbonLinks: undefined
+  twibbonLinks: undefined,
 };
 
 const reducer = (state, action) => {
@@ -46,6 +46,9 @@ const DaftarWorkshop = () => {
             className="w-full h-full text-sm font-Montserrat font-medium text-[#B6B7BA] rounded-lg p-5 bg-text-placeholder-light cursor-pointer"
             type="text"
             placeholder="DD/MM/YYYY"
+            onChange={() => {
+              setDate(e.target.value);
+            }}
             value={value}
             onClick={onClick}
           ></input>
@@ -96,22 +99,25 @@ const DaftarWorkshop = () => {
     const file = e.target.files[0];
 
     formData.append("paymentFile", file);
-    dispatch({ type: "UPDATE_FIELD", field: "paymentFile", value: formData})
+    dispatch({ type: "UPDATE_FIELD", field: "paymentFile", value: formData });
   };
-console.log(state);
+  console.log(state);
   const handleJoinWorkshop = () => {
-    axios.post(`${process.env.NEXT_PUBLIC_API_URL}/course/join`, 
-    {
-      state
-    }, 
-    { withCredentials: true })
-      .then(response => {
+    axios
+      .post(
+        `${process.env.NEXT_PUBLIC_API_URL}/course/join`,
+        {
+          state,
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
         console.log(response.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
-      })
-  }
+      });
+  };
 
   const [showModalVerification, setShowModalVerification] = useState(0);
 

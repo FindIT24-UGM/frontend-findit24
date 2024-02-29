@@ -4,17 +4,38 @@ import { HiArrowLeft } from "react-icons/hi";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const DataTimUX = () => {
+  const handleCreateTeam = () => {
+    axios
+      .post(
+        `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
+        {
+          teamName: namaTim,
+          teamInstituttion: institusi,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res.data.request);
+        router.push(
+          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/berhasilteam/${res.data.request.teamId}`
+        );
+        return res.data.data;
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+        toast.error(err.response.data.message);
+        return err.response.data;
+      });
+  };
+
   const [institusi, setinstitusi] = useState(undefined);
   const [namaTim, setNamaTim] = useState(undefined);
-  const [number1, setNumber1] = useState(null);
-  const [number2, setNumber2] = useState(null);
-
   const [openStatus, setOpenStatus] = useState(false);
   const [statusSelected, setStatusSelected] = useState(undefined);
   const [isWideScreen, setIsWideScreen] = useState(false);
-
 
   const dropdownStatusRef = useRef();
 
@@ -62,38 +83,6 @@ const DataTimUX = () => {
     {
       /* Tampilkan modal buat tim */
     }
-  };
-
-  const handleCreateTeam = () => {
-    axios
-      .post(
-        `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
-        {
-          eventId: process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE,
-          teamName: namaTim,
-          teamInstitution: institusi,
-          teamContact: [number1, number2],
-          // discordID,
-          // inGameID,
-          // paymentDate: date,
-          // paymentSender: namaPengirim,
-          // bankAccountId: noRekening,
-          // bankName: bank,
-        },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        console.log(res.data.request);
-        router.push(
-          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/berhasilteam/${res.data.request.teamId}`
-        );
-        return res.data.data;
-      })
-      .catch((err) => {
-        console.log(err.response.data.message);
-        toast.error(err.response.data.message);
-        return err.response.data;
-      });
   };
 
   return (
@@ -195,39 +184,35 @@ const DataTimUX = () => {
                 />
               </div>
               <div className="w-full border border-text-placeholder-light my-4" />
-              <div className="w-full flex flex-col gap-2">
-                  <p className="font-Montserrat font-bold text-text-placeholder-light">
-                    Nomor 
+              <div className="w-full flex justify-between items-center">
+                <div className="flex flex-col justify-between items-start">
+                  <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
+                    Upload Abstrak
                   </p>
-                  <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
-                    placeholder="0812345678"
-                    required
-                    type="text"
-                    id="number1"
-                    name="number1"
-                    value={number1}
-                    onChange={(e) => setNumber1(e.currentTarget.value)}
-                  />
-                </div>
-                <div className="w-full flex flex-col gap-2">
-                  <p className="font-Montserrat font-bold text-text-placeholder-light">
-                    Nomor cadangan
+
+                  <p className="font-Montserrat font-bold text-xs text-neutral-300 lg:text-base">
+                    anda belum upload
                   </p>
-                  <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
-                    placeholder="0812345678"
-                    required
-                    type="text"
-                    id="number2"
-                    name="number2"
-                    value={number2}
-                    onChange={(e) => setNumber2(e.currentTarget.value)}
-                  />
                 </div>
+                <button className="rounded border-2 border-text-placeholder-light px-6 py-1">
+                  <input
+                    className="hidden"
+                    type="file"
+                    onChange={(e) => {
+                      /* Upload image ke database */
+                    }}
+                  />
+                  <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
+                    Unggah
+                  </p>
+                </button>
+              </div>
               <button
                 className="w-full bg-background-skyblue py-4 rounded-md mt-4"
-                onClick={showModal}
+                onClick={() => {
+                  showModal();
+                  handleCreateTeam();
+                }}
               >
                 <p className="font-GameOfSquid text-center text-shade-black m-auto">
                   Buat Tim

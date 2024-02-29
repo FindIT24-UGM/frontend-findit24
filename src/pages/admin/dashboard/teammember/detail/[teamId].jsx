@@ -7,7 +7,7 @@ import axios from "axios";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
 
-const detail = () => {
+export default function Detail() {
   const router = useRouter();
   const { teamId } = router.query;
   const [dataTeam, setDataTeam] = useState([]);
@@ -31,52 +31,65 @@ const detail = () => {
   }, [teamId]);
 
   useEffect(() => {
-    if(dataTeam?.paymentDate){
-      const formattedDate = format(new Date(`${dataTeam?.paymentDate}`), 'dd MMM y');
-      setDate(formattedDate)
+    if (dataTeam?.paymentDate) {
+      const formattedDate = format(
+        new Date(`${dataTeam?.paymentDate}`),
+        "dd MMM y"
+      );
+      setDate(formattedDate);
     }
-  }, [dataTeam])
+  }, [dataTeam]);
 
   const handleVerified = (isVerified) => {
-
-    if(isVerified){
-      axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/admin/teams/accept-team/${teamId}`, 
-      { message },
-      { withCredentials: true })
-        .then(res => {
-          toast.success('berhasil verified team')
+    if (isVerified) {
+      axios
+        .patch(
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/teams/accept-team/${teamId}`,
+          { message },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          toast.success("berhasil verified team");
           console.log(res.data);
         })
-        .catch(err => {
-          toast.error('update verified gagal')
+        .catch((err) => {
+          toast.error("update verified gagal");
           console.log(err);
+        });
+    } else if (!isVerified) {
+      axios
+        .patch(
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/teams/reject-team/${teamId}`,
+          { message },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          toast.success("berhasil unverified team");
+          console.log(res.data);
         })
+        .catch((err) => {
+          toast.error("update unverified gagal");
+          console.log(err);
+        });
     }
-    else if(!isVerified){
-      axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/admin/teams/reject-team/${teamId}`,
-      { message },
-      { withCredentials: true})
-      .then(res => {
-        toast.success('berhasil unverified team')
-        console.log(res.data);
-      })
-      .catch(err => {
-        toast.error('update unverified gagal')
-        console.log(err);
-      })
-    }
-  }
+  };
 
   return (
     <div className="bg-background-skyblue min-h-screen lg:flex py-20 px-5 lg:px-12 md:px-8">
       <div className="bg-white rounded-lg border-2 border-black py-10 px-5 lg:flex w-full justify-between">
         <div>
-          <div className="flex items-center space-x-3 mb-12">
-            <IoArrowBack className="text-[20px]" />
-            <span className="font-GameOfSquid text-[16px]">
-              TEAM INFORMATION
-            </span>
-          </div>
+          <button
+            onClick={() => {
+              router.back();
+            }}
+          >
+            <div className="flex items-center space-x-3 mb-12">
+              <IoArrowBack className="text-[20px]" />
+              <span className="font-GameOfSquid text-[16px]">
+                TEAM INFORMATION
+              </span>
+            </div>
+          </button>
           <div className="pb-8 border border-x-0 border-t-0 border-b-neutral-300 text-black mb-8">
             <h2 className="font-CreatoDisplay font-bold text-[42px]">
               {dataTeam?.teamName}
@@ -105,18 +118,31 @@ const detail = () => {
             <div className="flex flex-col space-y-2">
               {/* for date */}
               <p>{date}</p>
-              <button onClick={() => window.open(`${dataTeam?.paymentFile}`, "_blank")} className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue">
+              <button
+                onClick={() =>
+                  window.open(`${dataTeam?.paymentFile}`, "_blank")
+                }
+                className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
+              >
                 Lihat
               </button>
             </div>
           </div>
           <div className="font-bold font-Montserrat text-[17px] text-black space-y-2 pb-8 mb-3">
             <div className="flex space-x-1 items-center">
-              <input onClick={() => setIsverified(true)} type="radio" name="verification" />
+              <input
+                onClick={() => setIsverified(true)}
+                type="radio"
+                name="verification"
+              />
               <label htmlFor="verification">Verifikasi</label>
             </div>
             <div className="flex space-x-1 items-center">
-              <input onClick={() => setIsverified(false)} type="radio" name="verification" />
+              <input
+                onClick={() => setIsverified(false)}
+                type="radio"
+                name="verification"
+              />
               <label htmlFor="verification">Tolak Verifikasi</label>
             </div>
           </div>
@@ -129,7 +155,10 @@ const detail = () => {
               }}
             ></textarea>
           </div>
-          <button onClick={() => handleVerified(isVerified)} className="font-GameOfSquid font-bold text-[16px] flex items-center py-2 justify-center w-full rounded bg-primary-300 space-x-2">
+          <button
+            onClick={() => handleVerified(isVerified)}
+            className="font-GameOfSquid font-bold text-[16px] flex items-center py-2 justify-center w-full rounded bg-primary-300 space-x-2"
+          >
             <IoIosSave />
             <span>SIMPAN</span>
           </button>
@@ -140,8 +169,8 @@ const detail = () => {
           </h2>
           <div className="flex flex-col">
             {/* bikin parameter datanya nanti aja */}
-            {dataTeam?.teamMember?.map((member) => (
-              <button>
+            {dataTeam?.teamMember?.map((member, id) => (
+              <button key={id}>
                 <Accordion
                   name={member.userId.name}
                   email={member.userId.email}
@@ -161,6 +190,4 @@ const detail = () => {
       </div>
     </div>
   );
-};
-
-export default detail;
+}

@@ -17,6 +17,7 @@ export default function Accordion({
   institutionFile,
 }) {
   const formattedDateOfBirth = format(new Date(`${dateOfBirth}`), "dd MMMM y");
+  const array = [1, 2, 3, 4, 5];
 
   const [isExpand, setIsExpand] = useState(0);
   const clickAccordion = () => {
@@ -40,7 +41,9 @@ export default function Accordion({
         }}
       >
         <div className="flex items-center space-x-4">
-          <p>1.</p>
+          {array.map((idx) => {
+            <div key={idx}>{array[idx]}</div>;
+          })}
           <p>{name}</p>
         </div>
         <MdPlayArrow

@@ -92,7 +92,7 @@ export default function Timeline() {
             return (
               <div className="my-[1vw] lg:mx-[4vw]" key={item.name + indexcard}>
                 {" "}
-                // Menggunakan kombinasi item.name dan indeks indexcard
+                {"// Menggunakan kombinasi item.name dan indeks indexcard"}
                 <TimeLineCard content={item.name} />
               </div>
             );
