@@ -168,7 +168,7 @@ const CompetitionComp = () => {
                       activeIndex={activeIndex}
                       mainDesc={card.mainDesc}
                       secDesc={card.secDesc}
-                      linkDestination={""}
+                      linkDestination={linkCompetitionPage[idx]}
                       imageIcon={card.icon}
                     />
                   </SwiperSlide>
@@ -208,7 +208,7 @@ const CompetitionComp = () => {
                       activeIndex={activeIndex}
                       mainDesc={card.mainDesc}
                       secDesc={card.secDesc}
-                      linkDestination={""}
+                      linkDestination={linkCompetitionPage[idx]}
                       imageIcon={card.icon}
                     />
                   </SwiperSlide>
