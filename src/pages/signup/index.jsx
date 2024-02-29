@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import RootLayout from "../layout.jsx";
 import { MdEmail } from "react-icons/md";
 import { IoKey } from "react-icons/io5";
-import { IoMdEye } from "react-icons/io";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import Button from "../../components/Button.jsx";
 import Image from "next/image.js";
 import Link from "next/link.js";
@@ -93,7 +93,14 @@ const SignUpPage = () => {
                 onClick={() => setIsPasswordVisible(!isPasswordVisible)}
                 className="flex items-center justify-center"
               >
-                <IoMdEye size={25} className="absolute text-black right-4" />
+                {isPasswordVisible ? (
+                  <IoMdEye size={25} className="absolute text-black right-4" />
+                ) : (
+                  <IoMdEyeOff
+                    size={25}
+                    className="absolute text-black right-4"
+                  />
+                )}
               </button>
             </div>
             {/* password confirmation input */}
@@ -115,7 +122,14 @@ const SignUpPage = () => {
                 }
                 className="flex items-center justify-center"
               >
-                <IoMdEye size={25} className="absolute text-black right-4" />
+                {isConfirmPasswordVisible ? (
+                  <IoMdEye size={25} className="absolute text-black right-4" />
+                ) : (
+                  <IoMdEyeOff
+                    size={25}
+                    className="absolute text-black right-4"
+                  />
+                )}{" "}
               </button>
             </div>
             <div className="relative flex flex-row items-center justify-center my-5">

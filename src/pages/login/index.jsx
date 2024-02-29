@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 
 import RootLayout from "../layout.jsx";
 import { MdEmail } from "react-icons/md";
+import { IoMdEyeOff } from "react-icons/io";
 import { IoKey } from "react-icons/io5";
 import { IoMdEye } from "react-icons/io";
 import Button from "../../components/Button.jsx";
@@ -119,7 +120,14 @@ const LoginPage = () => {
                 onClick={() => setIsPasswordVisible(!isPasswordVisible)}
                 className="flex items-center justify-center"
               >
-                <IoMdEye size={25} className="absolute text-black right-4" />
+                {isPasswordVisible ? (
+                  <IoMdEye size={25} className="absolute text-black right-4" />
+                ) : (
+                  <IoMdEyeOff
+                    size={25}
+                    className="absolute text-black right-4"
+                  />
+                )}
               </button>
             </div>
             <div className="relative flex flex-row items-center justify-center my-5">
