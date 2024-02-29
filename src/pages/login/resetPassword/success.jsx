@@ -1,24 +1,27 @@
 import React from 'react';
+import RootLayout from '../../layout';
+import Button from '../../../components/Button';
 
-const success = () => {
+const Success = () => {
     return (
-        <div className='bg-background-skyblue w-full h-[100vh] flex items-center justify-center'>
-            <div className='w-[46vw]'>
-                <div className='w-full'>
-                    <p className='font-GameOfSquid text-center text-[60px] text-text-placeholder-light drop-shadow-competitions'>SUCCESS TO RESET PASSWORD</p>
+        <RootLayout>
+            <div className='flex flex-col items-center justify-center h-screen w-screen bg-background-skyblue'>
+                <div className='text-center w-2/3'>
+                    <h1 className='font-GameOfSquid text-text-placeholder-light drop-shadow-competitions text-4xl lg:text-6xl'>SUCCESS TO RESET PASSWORD</h1>
                 </div>
-                <img src='/assets/images/check.svg' className='w-[16vw] h-[28vh] m-auto my-6'/>
-                <div className='w-[38vw] m-auto'>
-                    <p className='font-Montserrat font-medium text-[20px] text-center'>You can now  Sign in with your new password</p>
+                <div className='my-12 w-1/3 flex justify-center'>
+                    <img src='/assets/images/check.svg' alt='check' className='min-w-[150px] min-h-[150px]' />
                 </div>
-                <div className='flex justify-center mt-4'>
-                    <button className='w-[31vw] h-[6vh] bg-primary-300 m-auto rounded-lg'>
-                        <p className='font-Montserrat font-bold text-shade-black'>Sign In</p>
-                    </button>
+                <div className='w-2/3 lg:w-1/3 flex flex-col justify-center items-center gap-5'>
+                    <p className='font-Montserrat font-medium text-base lg:text-xl text-center mx-5'>You can now  Sign in with your new password</p>
+                    <Button 
+                        customClass={'font-Montserrat font-bold w-full'}
+                        text='Sign In'
+                    />
                 </div>
             </div>
-        </div>
+        </RootLayout>
     );
 }
 
-export default success;
+export default Success;

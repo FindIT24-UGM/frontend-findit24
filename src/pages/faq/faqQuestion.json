@@ -1,0 +1,467 @@
+[
+    {
+        "question": "Apakah CTF Find IT! Beginner-friendly?",
+        "ans": "Ya, CTF Find IT memiliki beberapa soal yang bisa diselesaikan oleh pemula. CTF ini kami buat agar pemula bisa merasakan bagaimana menyelesaikan soal CTF dan menjadi jalan masuk perkenalan ke dunia cyber security. Walaupun begitu, tetap saja terdapat soal yang cukup sulit ditujukan kepada orang-orang yang sudah berpengalaman.",
+        "category": "Capture the flag"
+    },
+    {
+        "question": "Eventnya diadakan online atau offline?",
+        "ans": "Seluruh rangkaian CTF Find IT! 2024 diadakan secara online, termasuk final dan awarding.",
+        "category": "Capture the flag"
+    },
+    {
+        "question": "Jika ada personil yang tidak bisa mengikuti CTF saat waktu dimulai, apakah bisa digantikan?",
+        "ans": "Tidak bisa. Apabila diketahui tim melakukan pergantian personil, akan didiskualifikasi.",
+        "category": "Capture the flag"
+    },
+    {
+        "question": "Apakah boleh tanya jawaban di forum discord?",
+        "ans": "Tidak.",
+        "category": "Capture the flag"
+    },
+    {
+        "question": "Apakah boleh menggunakan automated tools (seperti “Katana” oleh John Hammond) dalam menyelesaikan soal?",
+        "ans": "Tidak boleh.",
+        "category": "Capture the flag"
+    },
+    {
+        "question": "Apakah boleh tidak mengumpulkan writeup?",
+        "ans": "Jika tidak mengumpulkan writeup, maka tidak akan mendapatkan nilai Writeup sebesar 50% dari total nilai.",
+        "category": "Capture the flag"
+    },
+    {
+        "question": "Apakah metode brute force untuk flag diperbolehkan?",
+        "ans": "Tidak diperbolehkan brute force dalam submisi flag pada platform CTF. Namun, brute force dalam pemecahan soal (jika bisa) diperbolehkan.",
+        "category": "Capture the flag"
+    },
+    {
+        "question": "Apakah ada jeda waktu untuk sholat atau ibadah lainnya?",
+        "ans": "Tidak ada.",
+        "category": "Capture the flag"
+    },
+    {
+        "question": "Apakah diperbolehkan bekerja sama dengan tim lain?",
+        "ans": "Tidak. Jika ditemukan bukti kerja sama, maka akan didiskualifikasi sesuai peraturan yang ada.",
+        "category": "Capture the flag"
+    },
+    {
+        "question": "Apakah boleh PC (Private chat) problem setter untuk menanyakan langkah solusi?",
+        "ans": "Diperbolehkan jika ingin mengonfirmasi step yang kurang jelas/terdapat soal yang dirasa ‘ndukun’. Apabila ingin menanyakan hint, hint akan diberikan di platform jika soal dirasa terlalu sulit (dibuktikan dengan sedikitnya solve).",
+        "category": "Capture the flag"
+    },
+    {
+        "question": "Apakah ffuf dan semacamnya (domain buster) boleh digunakan untuk soal Web Exploit?",
+        "ans": "Tidak boleh. Apabila diketahui ada yang menggunakan, akan langsung didiskualifikasi dan di-ban dari CTF Find IT tahun berikutnya.",
+        "category": "Capture the flag"
+    },
+    {
+        "question": "Bagaimana jika pada waktu pelaksanaan, server platform down/tidak bisa diakses oleh semua peserta?",
+        "ans": "Jika ketika pelaksanaan terjadi platform down, maka akan diadakan penundaan waktu selama downtime dari server",
+        "category": "Capture the flag"
+    },
+    {
+        "question": "Apakah ffuf dan semacamnya (domain buster) boleh digunakan untuk soal Web Exploit?",
+        "ans": "Tidak boleh. Apabila diketahui ada yang menggunakan, akan langsung didiskualifikasi dan di-ban dari CTF Find IT tahun berikutnya.",
+        "category": "Capture the flag"
+    },
+    {
+        "question": "Apakah UX Competition diselenggarakan secara offline?",
+        "ans": "UX Competition diselenggarakan secara online dan offline. Tahap abstrak dan penyisihan dilaksanakan secara online, sedangkan tahap final akan diselenggarakan secara offline di DTETI (Departemen Teknik Elektro dan Teknologi Informasi) UGM. Keterangan lebih lanjut akan dijelaskan saat technical meeting.",
+        "category": "UX Competition"
+    },
+    {
+        "question": "Apakah terdapat biaya pendaftaran?",
+        "ans": "Pendaftaran tidak memungut biaya, tetapi bagi tim yang lolos tahap abstrak wajib membayar biaya sebesar Rp120.000 sesuai tanggal untuk melanjutkan ke babak penyisihan.",
+        "category": "UX Competition"
+    },
+    {
+        "question": "Apakah tim saya boleh mendaftar kompetisi jika tim saya berasal dari jenjang pendidikan yang berbeda dalam satu institusi?",
+        "ans": "Boleh, asalkan berasal dari universitas/institusi yang sama.",
+        "category": "UX Competition"
+    },
+    {
+        "question": "Apakah peserta lomba mempunyai batasan umur?",
+        "ans": "Tidak, UX Competition tidak memiliki batasan umur bagi pendaftar lomba. Semua mahasiswa aktif S1/D4/D3 dan siswa SMA/SMK/MA sederajat dapat mendaftar UX Competition.",
+        "category": "UX Competition"
+    },
+    {
+        "question": "Apakah seorang peserta diperbolehkan menjadi anggota dari beberapa tim yang terdaftar kompetisi UX Competition FindIT! 2023?",
+        "ans": "Tidak boleh. Peserta hanya diperbolehkan menjadi anggota atau seorang ketua dari satu tim saja di kompetisi UX Competition FindIT! 2023.",
+        "category": "UX Competition"
+    },
+    {
+        "question": "Apakah seorang peserta diperbolehkan mengikuti lomba lain yang diselenggarakan FindIT! 2023?",
+        "ans": "Boleh, asalkan dapat menghadiri babak final lomba UX Competition.",
+        "category": "UX Competition"
+    },
+    {
+        "question": "Apakah produk yang pernah diikutsertakan dalam kompetisi lainnya diperbolehkan untuk diikutsertakan kembali?",
+        "ans": "Boleh, asalkan karya tersebut belum pernah memenangkan suatu perlombaan dan sesuai dengan tema yang diberikan.",
+        "category": "UX Competition"
+    },
+    {
+        "question": "Apakah terdapat pendekatan metodologi desain UI/UX tertentu yang diwajibkan?",
+        "ans": "Tidak ada. Para peserta bebas menggunakan pendekatan metodologi desain yang dikuasai dan dirasa paling tepat untuk produk rancangannya.",
+        "category": "UX Competition"
+    },
+    {
+        "question": "Apakah peserta perlu mengumpulkan link pengerjaan produk UX Competition?",
+        "ans": "Perlu, tim diwajibkan untuk mengumpulkan link prototipe produk. Link prototipe produk dapat disertakan pada bagian lampiran proposal.",
+        "category": "UX Competition"
+    },
+    {
+        "question": "Apakah diperbolehkan memodifikasi video yang telah diunggah di drive setelah batas waktu pengumpulan?",
+        "ans": "Tidak boleh. Tim yang memodifikasi video setelah batas waktu pengumpulan akan dikenakan sanksi.",
+        "category": "UX Competition"
+    },
+    {
+        "question": "Jika tim saya lolos babak penyisihan, apakah karya yang telah dikerjakan boleh dimodifikasi sebelum babak final?",
+        "ans": "Tim yang lolos babak penyisihan boleh memodifikasi desain produk, asalkan tidak mengubah fitur utama produk.",
+        "category": "UX Competition"
+    },
+    {
+        "question": "Apa saja yang perlu dipersiapkan untuk tahap final UX Competition?",
+        "ans": "Tim yang lolos tahap final perlu menyiapkan bahan presentasi, prototipe produk, tanda pengenal, dan perlengkapan pribadi.",
+        "category": "UX Competition"
+    },
+    {
+        "question": "Apakah peserta menayangkan video produk saat presentasi tahap final?",
+        "ans": "Tidak, peserta cukup melakukan presentasi dan peragaan prototipe produk pada saat tahap final.",
+        "category": "UX Competition"
+    },
+    {
+        "question": "Siapa saja yang boleh mendaftar Informatics Competition Find IT! 2023?",
+        "ans": "Pelajar SMA/Sederajat dibuktikan dengan scan kartu pelajar yang masih aktif.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Bagaimana jika tidak memiliki kartu pelajar (karena hilang atau kondisi lain)?",
+        "ans": "Bisa diganti dengan melampirkan surat keterangan masih aktif sebagai pelajar dengan tanda tangan dan stempel kepala sekolah.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Apakah bisa mendaftar lebih dari 1 tim?",
+        "ans": "Tidak.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Apakah tim yang didaftarkan harus berjumlah 2 orang?",
+        "ans": "Silahkan merujuk pada bagian Syarat dan Ketentuan Peserta.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Apakah anggota tim dapat berasal dari instansi yang berbeda?",
+        "ans": "Silahkan merujuk pada bagian Syarat dan Ketentuan Peserta.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Apakah babak penyisihan dilaksanakan secara online?",
+        "ans": "Ya, melalui platform yang kami sediakan, pastikan anda memiliki jaringan internet yang stabil karena kesalahan teknis akibat putus koneksi akan dianggap sebagai kesalahan peserta.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Bagaimana sistem penilaian Babak Penyisihan Informatics Competition?",
+        "ans": "Silahkan merujuk pada bagian Komponen Penilaian bagian A.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Apakah sesi warm up akan masuk ke dalam penilaian?",
+        "ans": "Tidak.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Berapa tim yang akan lolos pada babak penyisihan?",
+        "ans": "10 tim dengan jumlah skor terbanyak setelah melalui pengecekan panitia.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Untuk babak final akan dilaksanakan bagaimana dan dimana?",
+        "ans": "Babak Final akan dilaksanakan secara offline di gedung Departemen Teknik Elektro dan Teknologi Informasi (DTETI) Fakultas Teknik UGM.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Apakah panitia akan menanggung biaya akomodasi?",
+        "ans": "Tidak, peserta bertanggung jawab atas biaya akomodasi masing-masing.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Saya tidak dapat mengikuti awarding, apabila saya menjadi juara, bagaimana ya untuk hadiahnya?",
+        "ans": "Khusus untuk kompetisi Informatics Competition, peserta yang berasal dari luar daerah DIY tidak diwajibkan untuk mengikuti rangkaian kegiatan pada tanggal … diluar babak final lomba yang diikuti. Peserta yang berasal dari daerah DIY disarankan untuk mengikuti acara Awarding dan Closing Find IT! 2023. Apabila menjadi juara, panitia akan mengirimkan hadiah ke alamat salah satu anggota tim. Biaya kirim akan ditanggung panitia.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Bagaimana soal pemrograman di babak final?",
+        "ans": "Soal merupakan pemrograman dasar yang diadakan untuk menguji logika peserta. Lingkup materi tidak akan keluar dari sub materi yang ada pada rubik materi. Untuk teknis pengerjaan akan dijelaskan ketika technical meeting babak final.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Apakah peserta diwajibkan membawa perangkat seperti laptop pada babak final?",
+        "ans": "Tidak diwajibkan, perangkat yang digunakan untuk babak final akan disediakan oleh panitia.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Apakah seluruh anggota tim wajib hadir ketika Babak Final?",
+        "ans": "Wajib, apabila terdapat kondisi khusus (seperti: kecelakaan, dan lain-lain) bisa menghubungi panitia. Peserta yang tidak hadir tanpa alasan yang jelas secara otomatis akan didiskualifikasi.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Salah satu anggota tim saya mengalami musibah, apakah tim kami bisa mengikuti babak final secara online?",
+        "ans": "Tidak. Apabila hanya ada satu anggota saja yang dapat hadir, maka anggota tersebut yang akan mengikuti babak final.",
+        "category": "Informatics Competition"
+    },
+    {
+        "question": "Apa bisa reschedule jadwal?",
+        "ans": "Find It 2024 akan dilaksanakan diluar jam kerja yaitu mulai pukul 16.30 WIB atau pada hari libur, oleh karena itu tidak ada perubahan jadwal pertandingan baik kualifikasi ataupun final.",
+        "category": "E-Sports"
+    },
+    {
+        "question": "Apakah akan ada live streaming?",
+        "ans": "Find It 2024 kemungkinan akan melakukan live stream pada grand final melalui kanal youtube Find IT!.",
+        "category": "E-Sports"
+    },
+    {
+        "question": "Apa yang terjadi apabila sebuah tim tidak dapat menghadiri pertandingan pada waktu yang telah ditentukan?",
+        "ans": "Tim yang tidak bisa menghadiri pertandingan akan dinyatakan kalah dan akan di diskualifikasi dari lomba.",
+        "category": "E-Sports"
+    },
+    {
+        "question": "Apakah akan ada live streaming?",
+        "ans": "Find It 2024 kemungkinan akan melakukan live stream pada grand final melalui kanal youtube Find IT!.",
+        "category": "E-Sports"
+    },
+    {
+        "question": "Saat babak penyisihan platform apa yang akan digunakan?",
+        "ans": "Kaggle.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Berapa jumlah maksimal anggota pertimnya?",
+        "ans": "3 anggota pertimnya.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Berapa jumlah maksimal submisi jawaban babak penyisihan?",
+        "ans": "Batasan jumlah submisi jawaban babak penyisihan setiap tim maksimal 2 kali perharinya hingga waktu pengerjaan babak penyisihan selesai.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Apakah nanti peserta akan melakukan machine learning modelling di platform Kaggle?",
+        "ans": "Iya.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Bolehkah nama tim di Kaggle Competition berbeda dengan nama tim saat registrasi?",
+        "ans": "Tidak boleh. Nama tim di Kaggle Competition harus sama dengan nama tim saat registrasi.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Bolehkah hanya satu anggota tim yang tergabung dalam Kaggle Competition?",
+        "ans": "Boleh, seluruh anggota tim tidak diwajibkan untuk tergabung dalam Kaggle Competition. Minimal satu anggota tim tergabung, maka tim tersebut sudah dapat mengikuti kompetisi DAC Find IT! 2024.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Apakah penggunaan data eksternal diperbolehkan untuk featuring engineering?",
+        "ans": "Saat babak penyisihan tidak boleh. Namun, memungkinkan dilakukan saat babak final nanti.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Jika email yang digunakan pada saat pendaftaran di Kaggle Competition berbeda dengan saat registrasi Find IT! bagaimana?",
+        "ans": "Diperbolehkan, asalkan nama tim di Kaggle sama dengan nama tim yang didaftarkan pada website Find IT!",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Apakah dalam upload kartu institusi bisa diganti screenshot profil siakad kampus?",
+        "ans": "Boleh, yang penting ada identitas dan nomor-nomor identitas",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Apabila kita mengikuti lomba di 2 tim dengan tipe kompetisi yang berbeda (contoh ikut Hackathon & Data Analytics) apakah diperbolehkan?",
+        "ans": "Untuk ikut 2 tim dengan 2 lomba berbeda diperbolehkan.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Untuk pemilihan 10 tim terbaik itu apakah murni dari pengurutan skor di Kaggle ataukah ada penilaian lain? (seperti notebook kode, dsb)",
+        "ans": "Pemilihan 10 tim terbaik akan diambil berdasarkan pengurutan skor di Kaggle dan Notebook dengan persentase yang sudah disampaikan di atas. File Notebook hanya berfungsi sebagai bukti bahwa pengerjaan peserta.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Apakah ada rincian lebih lanjut mengenai format laporan bagian analisis? Maksudnya konten apa saja yang harus ada dalam bagian tersebut",
+        "ans": "Dapat diisi dengan exploratory analysis saja sama penjelasan tentang metode yang digunakan waktu seleksi awal.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Apakah kodenya boleh diupdate? Atau kode yg dikumpulkan adalah kode yg digunakan saat babak penyisihan kemarin?",
+        "ans": "Diperbolehkan untuk mengupdate kode.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Apakah kode yang diupload ke Kaggle akan dinilai?",
+        "ans": "Tidak, penilaian di kaggle berdasarkan file csv yang berisi hasil analisis.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Apakah sebelum merger setiap peserta boleh submit masing-masing?",
+        "ans": "Tidak boleh. Sebelum submit jawaban, semua peserta harus merger dengan anggota teamnya terlebih dahulu.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Bagaimana jika ada anggota team yang berhalangan presentasi di babak final?",
+        "ans": "Sebisa mungkin diusahakan full team, tetapi kalau terpaksa sekali tidak bisa ikut tidak apa apa.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Bagaimana jika tidak memiliki kode analisis data sedangkan ketentuan laporan harus mencantumkan kode?",
+        "ans": "Tidak dicantumkan tidak apa apa. Karena sebenarnya tidak wajib. (untuk jawaban ini bisa berubah sesuai dengan ketentuan lomba untuk DAC tahun ini).",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Apakah ada ketentuan khusus untuk ppt yang akan dipresentasikan pada babak final?",
+        "ans": "Tidak ada.",
+        "category": "Data analysis"
+    },
+    {
+        "question": "Apakah Hackathon diselenggarakan secara offline?",
+        "ans": "Hackathon diselenggarakan secara online dan offline. Tahap abstrak dan penyisihan dilaksanakan secara online, sedangkan tahap final akan diselenggarakan secara offline di Departemen Teknik Elektro dan Teknologi Informasi Universitas Gadjah Mada. Keterangan lebih lanjut mengenai ruangan akan dijelaskan saat technical meeting.",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Apakah terdapat biaya pendaftaran?",
+        "ans": "Pendaftaran tidak memungut biaya, tetapi bagi tim yang lolos tahap abstrak wajib membayar biaya sebesar Rp 150.000 sesuai tanggal untuk melanjutkan ke babak selanjutnya.",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Apakah tim saya boleh mendaftar kompetisi jika tim saya berasal dari jurusan atau angkatan yang berbeda dalam satu institusi?",
+        "ans": "Boleh, asalkan berasal dari universitas/institusi yang sama.",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Apakah peserta lomba mempunyai batasan umur?",
+        "ans": "Tidak, Hackathon tidak memiliki batasan umur bagi pendaftar lomba. Semua mahasiswa aktif S1/D4/D3 dan siswa SMA/SMK/MA sederajat dapat mendaftar Hackathon.",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Apakah seorang peserta diperbolehkan menjadi anggota dari beberapa tim yang terdaftar kompetisi Hackathon FindIT! 2023?",
+        "ans": "Tidak boleh. Peserta hanya diperbolehkan menjadi anggota atau seorang ketua dari satu tim saja di kompetisi Hackathon FindIT! 2023.",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Apakah produk yang pernah diikutsertakan dalam kompetisi lainnya diperbolehkan untuk diikutsertakan kembali?",
+        "ans": "Boleh, asalkan karya tersebut belum pernah menang pada perlombaan sejenis dan sesuai dengan tema yang diberikan.",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Pengumuman untuk peserta yang lolos ke tahap selanjutnya disampaikan via apa?",
+        "ans": "Pengumuman akan disampaikan melalui email ketua tim. Begitu pula untuk peserta yang tidak lolos, sertifikat juga dikirim melalui email setidaknya H+7 setelah pengumuman disampaikan.",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Apakah seorang peserta diperbolehkan mengikuti lomba lain yang diselenggarakan FindIT! 2023?",
+        "ans": "Boleh. Namun saat tahap presentasi di babak final, minimal harus ada satu anggota tim yang melakukan dan tidak boleh diwakilkan orang lain.",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Apakah terdapat analisis Product Management & Business Model tertentu yang diwajibkan?",
+        "ans": "Tidak ada. Para peserta bebas menggunakan pendekatan metodologi yang dikuasai dan dirasa paling tepat untuk produk rancangannya.",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Apakah peserta perlu mengumpulkan link pengerjaan produk Hackathon Competition?",
+        "ans": "Perlu. Tim diwajibkan untuk mengumpulkan link github/deployment apabila lolos tahap semifinal. Juri diharapkan dapat melakukan simulasi/demo pada product yang sudah di deploy oleh peserta.",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Pada bagian Produk Interface itu hanya sampai UI high fidelity atau sampai prototype figma?",
+        "ans": "Boleh berupa UI high fidelity saja. Apabila lolos ke tahap final maka figma prototype bisa disertakan di tahap tersebut asalkan pada proposal juri dapat melihat produknya (dapat berupa gambar).",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Apa saja yang perlu dipersiapkan untuk tahap final Hackathon Competition?",
+        "ans": "Tim yang lolos tahap final perlu menyiapkan bahan presentasi, prototipe produk, tanda pengenal, dan perlengkapan pribadi. Detail lebih lanjut akan diinformasikan pada tanggal … Mei 2024.",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Apakah boleh melebihi maksimal halaman pada Executive Summary ?",
+        "ans": "Tidak. Executive Summary yang melebihi batasan jumlah halaman akan mendapatkan pengurangan nilai sebesar 10%.",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Apakah untuk lomba Hackathon aplikasinya sudah harus jadi saat Executive Summary atau boleh prototype saja?",
+        "ans": "Untuk pengumpulannya nanti boleh berupa full aplikasi, MVP, atau baru prototype. Kalau untuk babak penyisihan cukup berupa konsep atau prototype saja. Namun, saat babak final akan ada penilaian khusus untuk aplikasinya.",
+        "category": "Hackaton"
+    },
+    {
+        "question": "Apa itu Find IT! 2024?",
+        "ans": "FIND IT atau kependekan dari Future Innovation and Discovery Information and Technology, merupakan sebuah acara/event tahunan yang diselenggarakan oleh DTETI FT UGM dimana pada event ini terdapat beberapa acara diantaranya workshop dengan nama IT Academy, pameran dengan nama IT Fest, dan lomba-lomba seperti Competitive Programming, Data Analytics Competition, Hackathon, Capture the Flag, dan E-sport. Event ini bertujuan untuk mengembangkan dan memberi wadah bagi masyarakat yang tertarik ke dunia TI serta menarik minat sekaligus memperkenalkan TI ke masyarakat luas; apalagi di tengah era revolusi 5.0 dimana teknologi berkembang sangat pesat.",
+        "category": "General"
+    },
+    {
+        "question": "Apa tema yang diangkat Find IT! 2024?",
+        "ans": "Find IT! 2024 mengangkat tema “Tech Horizon: Beyond the Digital Sky”. Tech Horizon\" menggambarkan pandangan yang melampaui batas-batas konvensional dalam dunia teknologi. \"Beyond the Digital Sky\" mencerminkan semangat eksplorasi dan inovasi di luar batasan yang kita kenal sekarang. Tema ini mengajak peserta untuk menjelajahi dan melampaui horison digital, mengejar ide-ide canggih yang belum terpikirkan sebelumnya.",
+        "category": "General"
+    },
+    {
+        "question": "Apa saja lomba yang bisa diikuti di Find IT! 2024?",
+        "ans": "Cabang lomba dan kegiatan yang dapat diikuti, yaitu Hackathon, Informatics Competition, Competitive Programming, Data Analytics Competition, Capture the Flag, E-Sports Competition, UI UX Competition, dan IT Academy serta Informatics Festival.",
+        "category": "General"
+    },
+    {
+        "question": "Siapa saja yang boleh berpartisipasi dalam lomba di Find IT! 2024?",
+        "ans": "Silakan membaca ketentuan masing-masing lomba pada guidebook",
+        "category": "General"
+    },
+    {
+        "question": "Bagaimana timeline lomba pada Find IT! 2024?",
+        "ans": "Silakan membaca ketentuan masing-masing lomba pada guidebook",
+        "category": "General"
+    },
+    {
+        "question": "Apakah Find IT! 2024 akan dilaksanakan secara luring?",
+        "ans": "Beberapa final lomba akan dilaksanakan secara luring di Departemen Teknik Elektro dan Teknologi Informasi Fakultas Teknik Universitas Gadjah Mada. Silakan lihat kembali guidebook masing-masing lomba.",
+        "category": "General"
+    },
+    {
+        "question": "Berapa maksimal cabang lomba yang boleh diikuti seorang peserta?",
+        "ans": "Tidak ada batasan jumlah cabang lomba yang boleh diikuti peserta. Namun, dimohon untuk tidak mengikuti dua atau lebih lomba yang jadwalnya bertabrakan.",
+        "category": "General"
+    },
+    {
+        "question": "Apakah ada biaya pendaftaran untuk masing-masing lomba?",
+        "ans": "Terdapat biaya pendaftaran sesuai ketentuan masing-masing lomba yang dapat dilihat di guidebook.",
+        "category": "General"
+    },
+    {
+        "question": "Berkas apa saja yang diperlukan untuk pendaftaran?",
+        "ans": "Peserta hanya perlu mempersiapkan tanda identitas seperti Kartu Tanda Mahasiswa/Kartu pelajar/Kartu Tanda Penduduk/Pasport dan bukti pembayaran.",
+        "category": "General"
+    },
+    {
+        "question": "Adakah batasan usia untuk masing-masing lomba?",
+        "ans": "Silakan membaca ketentuan masing-masing lomba pada guidebook.",
+        "category": "General"
+    },
+    {
+        "question": "Apakah karya inovasi dan data yang sudah pernah dilombakan boleh dilombakan lagi (pada Hackathon, Data Analytic Competition, dan UX Competition)?",
+        "ans": "Karya peserta yang boleh dilombakan adalah karya yang belum pernah memenangkan kompetisi sejenis.",
+        "category": "General"
+    },
+    {
+        "question": "Perlombaan akan dilaksanakan perseorangan atau team?",
+        "ans": "Silakan membaca ketentuan masing-masing lomba pada guidebook.",
+        "category": "General"
+    },
+    {
+        "question": "Hadiah apa sajakah yang dapat dimenangkan?",
+        "ans": "Para pemenang berhak mendapatkan voucher hingga uang pembinaan senilai puluhan juta rupiah.",
+        "category": "General"
+    },
+    {
+        "question": "Dimana kami dapat memperoleh informasi lengkap dari masing-masing lomba?",
+        "ans": "Silakan mengunjungi tab masing-masing lomba pada laman ini.",
+        "category": "General"
+    },
+    {
+        "question": "Jika ada yang dibingungkan, harus bertanya kemana?",
+        "ans": "Silakan mengakses guidebook untuk memperoleh contact person setiap lomba.",
+        "category": "General"
+    }
+]

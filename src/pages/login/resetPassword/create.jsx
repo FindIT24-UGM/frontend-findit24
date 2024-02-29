@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import RootLayout from '../../layout';
+import Button from '../../../components/Button';
 import { IoKey } from 'react-icons/io5';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
+import ElectricPattern from '../../../components/ElectricPattern';
 
 const Create = () => {
     const [newPassword, setNewPassword] = useState('');
@@ -8,14 +11,24 @@ const Create = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    const [buttonStyle, setButtonStyle] = useState('mt-8');
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-    const handleNewPasswordChange = (e) => {
-        setNewPassword(e.target.value);
-    }
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth < 768);
+        };
 
-    const handleConfirmPasswordChange = (e) => {
-        setConfirmPassword(e.target.value);
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const handlePasswordChange = (e, setPassword) => {
+        setPassword(e.target.value);
     }
 
     const handleTogglePassword = () => {
@@ -29,86 +42,92 @@ const Create = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (newPassword.length < 8) {
+        if(newPassword.length < 8) {
             setErrorMessage('Password must be at least 8 characters long');
-            setButtonStyle('mt-0');
-            return;
-        }
-
-        if (newPassword === confirmPassword) {
+        } else if (newPassword === confirmPassword) {
             setErrorMessage('');
-            setButtonStyle('mt-8');
         } else {
             setErrorMessage('Both passwords should match');
-            setButtonStyle('mt-0');
         }
     }
 
     return (
-        <div className='bg-background-skyblue w-full h-[100vh] flex items-center justify-center'>
-            <div className='flex flex-col items-center'>
-                <div className='w-[42vw]'>
-                    <p className='font-GameOfSquid drop-shadow-competitions text-center text-text-placeholder-light text-[60px]'>CREATE NEW PASSWORD</p>
-                    <p className='font-medium font-Montserrat text-shade-white text-center mt-5'>Your new password must be different from previous used passwords</p>
-                </div>
-                <form onSubmit={handleSubmit} className='w-[32vw] mt-8'>
-                    <div className='w-full'>
-                        <div className='flex'>
-                            <IoKey size={28} />
-                            <p className='font-Montserrat font-bold ml-2'>Password</p>
-                        </div>
-                        <div>
-                            <label htmlFor='newPassword' className='flex items-center w-[32vw] h-[5vh] bg-white mt-2 rounded-lg'>
-                                <input
+        <RootLayout>
+            <ElectricPattern>
+                <div className='flex flex-col items-center justify-center w-screen h-screen bg-background-skyblue'>
+                    <div className='text-center w-2/3 lg:w-1/2'>
+                        <h1 className='font-GameOfSquid text-4xl sm:text-5xl lg:text-6xl text-text-placeholder-light drop-shadow-competitions'>CREATE NEW PASSWORD</h1>
+                        <p className='font-Montserrat font-medium text-shade-white text-sm md:text-base mt-5'>Your new password must be different from previous used passwords</p>
+                    </div>
+                    <div className='flex flex-col items-center justify-center gap-4 w-3/5 lg:w-2/5 mt-10'>
+                        <div className='flex flex-col w-full gap-2'>
+                            <div className='flex items-center'>
+                                <IoKey size={isSmallScreen ? 21 : 28} />
+                                <p className='font-Montserrat font-bold text-text-placeholder-light text-sm md:text-base ml-2 md:ml-3'>Password</p>
+                            </div>
+                            <div className='relative flex items-center justify-center w-full'>
+                                <input 
                                     type={showPassword ? 'text' : 'password'}
                                     id='newPassword'
                                     name='newPassword'
                                     value={newPassword}
-                                    onChange={handleNewPasswordChange}
+                                    onChange={(e) => handlePasswordChange(e, setNewPassword)}
                                     required
                                     placeholder='at least 8 characters'
-                                    className='w-[28vw] bg-white pl-4 focus:outline-none rounded-lg text-black'
+                                    className='w-full bg-white focus:outline-none focus:border-[3px] focus:border-black rounded-lg text-black text-sm md:text-base cursor-pointer px-4 py-2'
                                 />
-                                {showPassword ? (
-                                    <BsEyeFill size={21} color='black' className='flex-1 cursor-pointer' onClick={handleTogglePassword} />
-                                ) : (
-                                    <BsEyeSlashFill size={21} color='black' className='flex-1 cursor-pointer' onClick={handleTogglePassword} />
-                                )}
-                            </label>
+                                <button
+                                    onClick={handleTogglePassword}
+                                    className='flex items-center justify-center'
+                                >
+                                    {showPassword ? (
+                                        <BsEyeFill size={isSmallScreen ? 18 : 21} color='black' className="absolute text-black right-4" />
+                                    ) : (
+                                        <BsEyeSlashFill size={isSmallScreen ? 18 : 21} color='black' className="absolute text-black right-4"/>
+                                    )}
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div className='w-full mt-5'>
-                        <div className='flex'>
-                            <IoKey size={28} />
-                            <p className='font-Montserrat font-bold ml-2'>Confirm Password</p>
+                        <div className='flex flex-col w-full gap-2'>
+                            <div className='flex items-center'>
+                                <IoKey size={isSmallScreen ? 21 : 28} />
+                                <p className='font-Montserrat font-bold text-text-placeholder-light text-sm md:text-base ml-2 md:ml-3'>Confirm Password</p>
+                            </div>
+                            <div className='relative flex items-center justify-center w-full'>
+                                <input 
+                                    type={showConfirmPassword ? 'text' : 'password'}
+                                    id='confirmPassword'
+                                    name='confirmPassword'
+                                    value={confirmPassword}
+                                    onChange={(e) => handlePasswordChange(e, setConfirmPassword)}
+                                    required
+                                    placeholder='at least 8 characters'
+                                    className='w-full bg-white focus:outline-none focus:border-[3px] focus:border-black rounded-lg text-black text-sm md:text-base cursor-pointer px-4 py-2'
+                                />
+                                <button
+                                    onClick={handleToggleConfirmPassword}
+                                    className='flex items-center justify-center'
+                                >
+                                    {showConfirmPassword ? (
+                                        <BsEyeFill size={isSmallScreen ? 18 : 21} color='black' className="absolute text-black right-4" />
+                                    ) : (
+                                        <BsEyeSlashFill size={isSmallScreen ? 18 : 21} color='black' className="absolute text-black right-4"/>
+                                    )}
+                                </button>
+                            </div>
                         </div>
-                        <label htmlFor='confirmPassword' className='flex items-center w-[32vw] h-[5vh] bg-white mt-2 rounded-lg'>
-                            <input 
-                                type={showConfirmPassword ? 'text' : 'password'}
-                                id='confirmPassword'
-                                name='confirmPassword'
-                                value={confirmPassword}
-                                onChange={handleConfirmPasswordChange}
-                                required
-                                placeholder='at least 8 characters'
-                                className='w-[28vw] bg-white pl-4 focus:outline-none rounded-lg text-black'
-                            />
-                            {showConfirmPassword ? (
-                                <BsEyeFill size={21} color='black' className='flex-1 cursor-pointer' onClick={handleToggleConfirmPassword} />
-                            ) : (
-                                <BsEyeSlashFill size={21} color='black' className='flex-1 cursor-pointer' onClick={handleToggleConfirmPassword} />
-                            )}
-                        </label>
+                        {errorMessage && (
+                            <p className='text-error-500 text-center font-normal'>{errorMessage}</p>
+                        )}
+                        <Button 
+                            customClass={`font-Montserrat font-bold w-full text-sm md:text-base ${errorMessage ? 'mt-0' : 'mt-5'}`}
+                            text='Reset Password'
+                            onClick={handleSubmit}
+                        />
                     </div>
-                    {errorMessage && (
-                        <p className='text-error-500 font-normal text-center my-2'>{errorMessage}</p>
-                    )}
-                    <button className={`w-[32vw] h-[6vh] bg-primary-300 m-auto rounded-lg ${buttonStyle}`}>
-                        <p className='font-Montserrat font-bold text-shade-black'>Sign In</p>
-                    </button>
-                </form>
-            </div>
-        </div>
+                </div>
+            </ElectricPattern>
+        </RootLayout>
     );
 }
 
