@@ -1,10 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useReducer } from "react";
 import { useRouter } from "next/router";
 import RootLayout from "../../../../layout";
 import { HiArrowLeft } from "react-icons/hi";
 import { BsCalendar2PlusFill } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
 import DatePicker from "react-datepicker";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import ModalParent from "../../../../../components/modal/modalparent";
+import ModalVerification from "../../../../../components/modal/modalverif";
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "UPDATE_FIELD":
+      return { ...state, [action.field]: action.value };
+    default:
+      return state;
+  }
+};
 
 export default function Index() {
   const router = useRouter();
@@ -13,8 +26,11 @@ export default function Index() {
   const [announcements, setAnnouncements] = useState([]);
   const [date, setDate] = useState(null);
 
+  const [showModalVerification, setShowModalVerification] = useState(0);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+
   useEffect(() => {
-    if (teamId) {
+    if (isAuthenticated) {
       axios
         .get(`${process.env.NEXT_PUBLIC_API_URL}/team/${teamId}`, {
           withCredentials: true,
@@ -27,45 +43,52 @@ export default function Index() {
           console.log(err);
         });
     }
-  }, [teamId]);
+  }, [isAuthenticated]);
 
-  const [institusi, setinstitusi] = useState(undefined);
-  const [namaTim, setNamaTim] = useState(undefined);
-  const [openStatus, setOpenStatus] = useState(false);
+  const [state, dispatch] = useReducer(reducer, {
+    teamName: undefined,
+    teamInstitution: undefined,
+    teamContact: [undefined, undefined],
+    discordID: undefined,
+    inGameID: undefined,
+    paymentDate: undefined,
+    paymentSender: undefined,
+    bankAccountId: undefined,
+    bankName: undefined,
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+      // Jika name adalah 'teamContact', maka kita perlu memeriksa id input
+      if (name === 'teamContact') {
+        const id = e.target.id; // Ambil id input
+    
+        // Jika id adalah 'teamContactPrimary', simpan nilai ke indeks 0
+        if (id === 'teamContactPrimary') {
+          dispatch({ type: "UPDATE_FIELD", field: name, value: [value, state.teamContact[1]] });
+        } 
+        // Jika id adalah 'teamContactSecondary', simpan nilai ke indeks 1
+        else if (id === 'teamContactSecondary') {
+          dispatch({ type: "UPDATE_FIELD", field: name, value: [state.teamContact[0], value] });
+        }
+      } else {
+        dispatch({ type: "UPDATE_FIELD", field: name, value });
+      }
+  };
+
+  const handleDateChange = (date) => {
+    dispatch({ type: "UPDATE_FIELD", field: "paymentDate", value: date });
+  };
+
   const [statusSelected, setStatusSelected] = useState(undefined);
-  const [namaPengirim, setNamaPengirim] = useState(undefined);
-  const [noRekening, setNoRekening] = useState(undefined);
-  const [bank, setBank] = useState(undefined);
+
   const [selectedLomba, setSelectedLomba] = useState(null);
 
-  const [number1, setNumber1] = useState(null);
-  const [number2, setNumber2] = useState(null);
   // const [phone, setPhone] = useState([]);
 
   const [discordID, setDiscordID] = useState(null);
   const [inGameID, setInGameID] = useState(null);
 
   const dropdownStatusRef = useRef();
-
-  const competitionIds = ["cp", "ctf", "da", "uix", "hck", "esp", "ic"];
-  const { competitionId } = router.query;
-
-  useEffect(() => {
-    if (competitionId != undefined && !competitionIds.includes(competitionId)) {
-      toast.error("Competition not found");
-      router.push("/competition");
-    }
-    const handler = (e) => {
-      if (
-        dropdownStatusRef.current &&
-        !dropdownStatusRef.current.contains(e.target)
-      ) {
-        setOpenStatus(false);
-      }
-    };
-    document.body.addEventListener("click", handler);
-    return () => document.body.removeEventListener("click", handler);
-  }, [competitionId, competitionIds, router]);
 
   const statuses = [
     {
@@ -115,26 +138,14 @@ export default function Index() {
 
   const handleCreateTeam = () => {
     axios
-      .post(
-        `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
-        {
-          eventId: selectedLomba,
-          teamName: namaTim,
-          teamInstitution: institusi,
-          teamContact: [number1, number2],
-          discordID,
-          inGameID,
-          paymentDate: date,
-          paymentSender: namaPengirim,
-          bankAccountId: noRekening,
-          bankName: bank,
-        },
+      .patch(
+        `${process.env.NEXT_PUBLIC_API_URL}/team/${teamId}`,
+          state,
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data.request);
         router.push(
-          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/berhasilteam/${res.data.request.teamId}`
+          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/profileteam/${teamId}`
         );
         return res.data.data;
       })
@@ -143,152 +154,6 @@ export default function Index() {
         toast.error(err.response.data.message);
         return err.response.data;
       });
-  };
-
-  // const uploadAbstractFile = (e) => {
-  //   const formData = new FormData();
-  //   const file = e.target.files[0];
-
-  //   formData.append("abstractFile", file);
-
-  //   const regex = /\.(pdf)$/i;
-  //   // if (regex.test(file.name)) {
-  //   //   const reader = new FileReader();
-  //   //   reader.onload = (e) => {
-  //   //     setImagePreview(e.target.result);
-  //   //   };
-  //   //   reader.readAsDataURL(file);
-  //   // }
-  //   if (formData) {
-  //     axios
-  //       .post(process.env.NEXT_PUBLIC_API_URL + "/user/upload-file", formData, {
-  //         withCredentials: true,
-  //       })
-  //       .then((res) => {
-  //         console.log(res);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //         console.log(formData);
-  //       });
-  //   }
-  // };
-
-  // const registerTeamHandler = () => {
-  //   if (localStorage.getItem("token") == null) {
-  //     toast.error("Please login first!");
-  //     return;
-  //   }
-  //   const { _id } = JSON.parse(localStorage.getItem());
-  //   const token = JSON.parse(localStorage.getItem("token"));
-  //   let evenId;
-
-  //   if (namaTim == "") {
-  //     toast.error("Team name can't be empty!");
-  //   }
-  //   if (institusi == "") {
-  //     toast.error("Team institution can't be empty!");
-  //   }
-  //   if (namaTim.length() > 0 && institusi.length() > 0) {
-  //     if (competitionId != "esp") {
-  //       handleCreateTeam(competitionId, namaTim, _id, institution, token);
-  //     }
-  //   }
-  // };
-
-  const DaftarLombaDanHarga = ({ lomba }) => {
-    const [harga, setHarga] = useState("");
-
-    useEffect(() => {
-      const today = new Date();
-      const earlyBird = new Date("2024-03-01");
-
-      if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_CTF) {
-        if (today >= earlyBird) {
-          setHarga("95.000");
-        } else {
-          setHarga("125.000");
-        }
-      } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_CP) {
-        if (today >= earlyBird) {
-          setHarga("90.000");
-        } else {
-          setHarga("120.000");
-        }
-      } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_DAC) {
-        if (today >= earlyBird) {
-          setHarga("100.000");
-        } else {
-          setHarga("130.000");
-        }
-      } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_IC) {
-        if (today >= earlyBird) {
-          setHarga("60.000");
-        } else {
-          setHarga("90.000");
-        }
-      } else if (
-        selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE
-      ) {
-        router.push(
-          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/datatim/datatimux`
-        );
-        setHarga("120.000");
-      } else if (
-        selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT
-      ) {
-        setHarga("75.000");
-      } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_ML) {
-        setHarga("75.000");
-      } else if (
-        selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON
-      ) {
-        setHarga("150.000");
-      }
-    }, [selectedLomba]);
-
-    return (
-      <div className="w-5/6 flex justify-between items-center">
-        <p className="font-CreatoDisplay font-bold text-3xl text-shade-white">
-          Buat Tim {lomba}
-        </p>
-        <select
-          aria-placeholder="Select Receiver"
-          className="p-2 rounded"
-          value={selectedLomba}
-          onChange={(e) => setSelectedLomba(e.currentTarget.value)}
-        >
-          <option value="">Pilih Lomba</option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_CTF}>
-            Capture The Flag
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON}>
-            Hackathon
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_ML}>
-            Esport - Mobile Legends
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_CP}>
-            Competitive Programming
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_DAC}>
-            Data Analytics Competition
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT}>
-            Esport - Valorant
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_IC}>
-            Informatics Competitions
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE}>
-            UX Competition
-          </option>
-        </select>
-        <p className="font-CreatoDisplay font-bold text-xl text-shade-white">
-          Total Fee: {harga}
-        </p>
-      </div>
-    );
   };
 
   return (
@@ -305,73 +170,21 @@ export default function Index() {
         </button>
         <div className="w-2/3 bg-text-placeholder-light p-4 rounded-xl border-[3px] border-shade-black">
           <div className="w-full flex flex-col justify-center items-center gap-8 bg-primary-500 py-8 rounded-xl">
-            <DaftarLombaDanHarga />
             <div className="w-3/4 flex gap-8">
               <div className="w-[45%] flex flex-col gap-2">
                 <div className="w-full flex flex-col gap-2">
-                  <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
-                    Status
-                  </p>
-                  <div
-                    className="w-full text-sm text-black font-Montserrat font-bold relative"
-                    ref={dropdownStatusRef}
-                  >
-                    <div
-                      className="w-full relative flex items-center justify-end"
-                      onClick={() => setOpenStatus(!openStatus)}
-                    >
-                      <input
-                        className={`w-full bg-white p-5 h-5 cursor-pointer ${
-                          openStatus ? "rounded-t-lg" : "rounded-lg"
-                        }`}
-                        placeholder="Pilih Status"
-                        value={statusSelected}
-                        onChange={(e) =>
-                          setStatusSelected(e.currentTarget.value)
-                        }
-                      />
-                      <IoMdArrowDropdown
-                        size={30}
-                        className={`fill-text-placeholder-dark cursor-pointer mr-2.5 absolute ${
-                          openStatus && "rotate-180"
-                        }`}
-                      />
-                    </div>
-                    <ul
-                      className={`w-full bg-primary-300 overflow-y-auto absolute z-10 ${
-                        openStatus
-                          ? "max-h-[222px] rounded-b-lg scrollbar scrollbar-w-[10px] scrollbar-thumb-black scrollbar-thumb-rounded-md"
-                          : "max-h-0 rounded-none"
-                      }`}
-                    >
-                      {statuses?.map((status) => (
-                        <li
-                          key={status?.name}
-                          className={`bg-primary-300 relative text-text-placeholder-light py-[15px] pl-8 cursor-pointer before:h-[1px] before:w-auto before:bg-white before:absolute before:left-[10px] before:right-[10px] before:bottom-0 `}
-                          onClick={() => {
-                            setStatusSelected(status?.name);
-                            setOpenStatus(false);
-                          }}
-                        >
-                          {status?.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="w-full flex flex-col gap-2">
                   <p className="font-Montserrat font-bold text-text-placeholder-light">
-                    Nomor
+                    Nomor Utama
                   </p>
                   <input
                     className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
                     placeholder="0812345678"
                     required
                     type="text"
-                    id="number1"
-                    name="number1"
-                    value={number1}
-                    onChange={(e) => setNumber1(e.currentTarget.value)}
+                    id="teamContactPrimary"
+                    name="teamContact"
+                    value={state.teamContact[0]}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="w-full flex flex-col gap-2">
@@ -383,10 +196,10 @@ export default function Index() {
                     placeholder="0812345678"
                     required
                     type="text"
-                    id="number2"
-                    name="number2"
-                    value={number2}
-                    onChange={(e) => setNumber2(e.currentTarget.value)}
+                    id="teamContactSecondary"
+                    name="teamContact"
+                    value={state.teamContact[1]}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="w-full flex flex-col gap-2">
@@ -398,10 +211,10 @@ export default function Index() {
                     placeholder="Universitas Diponegoro"
                     required
                     type="text"
-                    id="institusi"
-                    name="institusi"
-                    value={institusi}
-                    onChange={(e) => setinstitusi(e.currentTarget.value)}
+                    id="teamInstitution"
+                    name="teamInstitution"
+                    value={state.teamInstitution}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="w-full flex flex-col gap-2">
@@ -413,10 +226,10 @@ export default function Index() {
                     placeholder="Samsan Tech"
                     required
                     type="text"
-                    id="namaTim"
-                    name="namaTim"
-                    value={namaTim}
-                    onChange={(e) => setNamaTim(e.currentTarget.value)}
+                    id="teamName"
+                    name="teamName"
+                    value={state.teamName}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -427,8 +240,8 @@ export default function Index() {
                     Tanggal Pembayaran
                   </p>
                   <DatePicker
-                    selected={date}
-                    onChange={(e) => setDate(e)}
+                    selected={state.paymentDate}
+                    onChange={handleDateChange}
                     customInput={<CustomInput />}
                     dateFormat="dd/MM/yyyy"
                     placeholderText="MM/DD/YYYY"
@@ -447,10 +260,10 @@ export default function Index() {
                     placeholder="John Doe"
                     required
                     type="text"
-                    id="namaPengirim"
-                    name="namaPengirim"
-                    value={namaPengirim}
-                    onChange={(e) => setNamaPengirim(e.currentTarget.value)}
+                    id="paymentSender"
+                    name="paymentSender"
+                    value={state.paymentSender}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="w-full flex flex-col gap-2">
@@ -462,10 +275,10 @@ export default function Index() {
                     placeholder="0123456789"
                     required
                     type="text"
-                    id="noRekening"
-                    name="noRekening"
-                    value={noRekening}
-                    onChange={(e) => setNoRekening(e.currentTarget.value)}
+                    id="bankAccountId"
+                    name="bankAccountId"
+                    value={state.bankAccountId}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="w-full flex flex-col gap-2">
@@ -477,10 +290,10 @@ export default function Index() {
                     placeholder="Bank BCA"
                     required
                     type="text"
-                    id="bank"
-                    name="bank"
-                    value={bank}
-                    onChange={(e) => setBank(e.currentTarget.value)}
+                    id="bankName"
+                    name="bankName"
+                    value={state.bankName}
+                    onChange={handleChange}
                   />
                 </div>
                 {selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_CTF &&
@@ -532,13 +345,33 @@ export default function Index() {
             <div className="w-full flex justify-center">
               <button
                 className="w-2/5 bg-background-skyblue py-4 rounded-md mt-4"
-                onClick={handleCreateTeam}
+                onClick={() => {
+                  setShowModalVerification(1);
+                }}
               >
                 <p className="font-GameOfSquid text-center text-shade-black m-auto">
-                  Buat Tim
+                  Selesai
                 </p>
               </button>
             </div>
+            <ModalParent
+              isVisible={showModalVerification}
+              onClose={() => {
+                setShowModalVerification(0);
+              }}
+            >
+              <ModalVerification
+                isVisible={showModalVerification}
+                onClose={() => {
+                  setShowModalVerification(0);
+                }}
+                submit={handleCreateTeam}
+                quest="Simpan perubahan sebelum keluar?"
+                declare="Anda dapat mengeditnya lagi nanti"
+                confirm="Simpan"
+                cancel="Batal"
+              />
+            </ModalParent>
           </div>
         </div>
       </div>

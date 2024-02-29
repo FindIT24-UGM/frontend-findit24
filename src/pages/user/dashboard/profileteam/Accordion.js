@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, isValid, parseISO } from "date-fns";
 import React from "react";
 import { useState } from "react";
 import { MdPlayArrow } from "react-icons/md";
@@ -16,12 +16,14 @@ export default function Accordion({
   institutionNumber,
   institutionFile,
 }) {
-  if (dateOfBirth) {
-    const formattedDateOfBirth = format(
-      new Date(`${dateOfBirth}`),
-      "dd MMMM y"
-    );
-  }
+  // Parsing dateOfBirth menjadi objek Date yang valid
+  const parsedDateOfBirth = isValid(parseISO(dateOfBirth))
+    ? parseISO(dateOfBirth)
+    : null;
+  // Format tanggal jika valid, jika tidak, beri string kosong
+  const formattedDateOfBirth = parsedDateOfBirth
+    ? format(parsedDateOfBirth, "dd MMMM y")
+    : "";
   const array = [1, 2, 3, 4, 5];
 
   const [isExpand, setIsExpand] = useState(0);

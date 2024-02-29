@@ -13,7 +13,7 @@ export default function Accordion({
   institutionNumber,
   institutionFile,
 }) {
-  const [expand, setExpand] = useState(0);
+  const [expand, setExpand] = useState(false);
 
   return (
     <div
@@ -39,11 +39,11 @@ export default function Accordion({
           </div>
           <div className="py-2">
             <h2 className="font-bold">Tanggal Lahir</h2>
-            {dateOfBirth ? (
-              <p>{dateOfBirth}</p>
-            ) : (
-              <p>-</p>
-            )}
+            <p>
+              {dateOfBirth
+                ? format(new Date(dateOfBirth), "dd MMMM yyyy")
+                : "-"}
+            </p>
           </div>
           <div className="py-2">
             <h2 className="font-bold">Alamat</h2>
@@ -70,13 +70,15 @@ export default function Accordion({
           </div>
           <div className="py-2">
             <h2 className="font-bold">Kartu Institusi</h2>
-            <button onClick={() => window.open(`${institutionFile}`, "_blank")} className="text-[13px] text-center px-5 py-[2px] rounded-lg border-2 border-background-skyblue text-background-skyblue">
+            <button
+              onClick={() => window.open(`${institutionFile}`, "_blank")}
+              className="text-[13px] text-center px-5 py-[2px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
+            >
               Lihat
             </button>
           </div>
         </div>
       </div>
-      <div></div>
     </div>
   );
 }
