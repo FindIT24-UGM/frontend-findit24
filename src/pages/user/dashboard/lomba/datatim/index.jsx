@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
   const [harga, setHarga] = useState("");
-
+  const router = useRouter();
   useEffect(() => {
     const today = new Date();
     const earlyBird = new Date("2024-03-01");
@@ -56,6 +56,9 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
     } else if (
       selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON
     ) {
+      router.push(
+        `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/datatim/datatimhackathon`
+      );
       setHarga("150.000");
     }
   }, [selectedLomba]);
