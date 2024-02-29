@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { BiMouse } from "react-icons/bi";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 function HeroWS() {
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
@@ -81,7 +82,7 @@ function HeroWS() {
             <div className="text-white font-GameOfSquid">Daftar</div>
           </button>
           <button className="flex justify-center items-center p-3 w-fit rounded-xl bg-white">
-            <div className="text-black font-GameOfSquid">Guidebook</div>
+            <Link className="text-black font-GameOfSquid" href={'https://drive.google.com/drive/folders/1qKxHY8v6nULKy3R9n0OPEJkvWK8-9bRT?usp=sharing'}>Guidebook</Link>
           </button>
         </div>
 
