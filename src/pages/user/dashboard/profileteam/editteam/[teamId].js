@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import RootLayout from "../../../layout";
+import RootLayout from "../../../../layout";
 import { HiArrowLeft } from "react-icons/hi";
 import { BsCalendar2PlusFill } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
