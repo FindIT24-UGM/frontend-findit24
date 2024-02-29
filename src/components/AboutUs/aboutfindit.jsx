@@ -5,7 +5,7 @@ import Image from "next/image";
 import Unionkanan from "../../assets/about/Unionkanan.png";
 import Unionkiri from "../../assets/about/Unionkiri.svg";
 import UnionHP from "../../assets/about/unionHP.png";
-import Top from "../../assets/about/Topmotif.svg";
+import Top from "../../assets/about/topmotif.svg";
 import Circuitkiri1 from "../../assets/about/Circuitkiri1.png";
 import Circuitkanan1 from "../../assets/about/Circuitkanan1.png";
 import Circuitkiri2 from "../../assets/about/Circuitkiri2.png";
