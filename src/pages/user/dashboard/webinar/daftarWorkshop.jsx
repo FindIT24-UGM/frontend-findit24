@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import RootLayout from "../../../layout";
 import ElectricPattern from "../../../../components/ElectricPattern";
 import { HiArrowLeft } from "react-icons/hi";
@@ -11,7 +11,28 @@ import ModalParent from "../../../../components/modal/modalparent";
 import ModalVerification from "../../../../components/modal/modalverif";
 import axios from "axios";
 
+//INITIALIZE FOR useReducer
+const initialState = {
+  eventId: process.env.NEXT_PUBLIC_COMPETITION_ID_WORKSHOP,
+  paymentDate: undefined,
+  paymentFile: undefined,
+  paymentSender:undefined,
+  bankAccountId: undefined,
+  bankName: undefined,
+  twibbonLinks: undefined
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "UPDATE_FIELD":
+      return { ...state, [action.field]: action.value };
+    default:
+      return state;
+  }
+};
+
 const DaftarWorkshop = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   const [date, setDate] = useState(undefined);
   const [namaPengirim, setNamaPengirim] = useState(undefined);
   const [noRekening, setNoRekening] = useState(undefined);
@@ -44,12 +65,52 @@ const DaftarWorkshop = () => {
     router.push("/user/dashboard/webinar");
   };
 
+  const uploadPaymentFile = (e) => {
+    const formData = new FormData();
+    const file = e.target.files[0];
+
+    formData.append("institutionFile", file);
+
+    const regex = /\.(jpg|jpeg|png)$/i;
+    // if (regex.test(file.name)) {
+    //   const reader = new FileReader();
+    //   reader.onload = (e) => {
+    //     setImagePreview(e.target.result);
+    //   };
+    //   reader.readAsDataURL(file);
+    // }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    dispatch({ type: "UPDATE_FIELD", field: name, value });
+  };
+
+  const handleDateChange = (date) => {
+    dispatch({ type: "UPDATE_FIELD", field: "paymentDate", value: date });
+  };
+
+  const handleFileChange = (e) => {
+    // uploadPaymentFile(e);
+    const formData = new FormData();
+    const file = e.target.files[0];
+
+    formData.append("paymentFile", file);
+    dispatch({ type: "UPDATE_FIELD", field: "paymentFile", value: formData})
+  };
+console.log(state);
   const handleJoinWorkshop = () => {
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}/course/join`, 
     {
-
+      state
     }, 
     { withCredentials: true })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   const [showModalVerification, setShowModalVerification] = useState(0);
@@ -90,8 +151,8 @@ const DaftarWorkshop = () => {
                         Tanggal Pembayaran
                       </p>
                       <DatePicker
-                        selected={date}
-                        onChange={(e) => setDate(e)}
+                        selected={state.paymentDate}
+                        onChange={handleDateChange}
                         customInput={<CustomInput />}
                         dateFormat="dd/MM/yyyy"
                         placeholderText="MM/DD/YYYY"
@@ -111,10 +172,10 @@ const DaftarWorkshop = () => {
                         placeholder="John Doe"
                         required
                         type="text"
-                        id="namaPengirim"
-                        name="namaPengirim"
-                        value={namaPengirim}
-                        onChange={(e) => setNamaPengirim(e.currentTarget.value)}
+                        id="paymentSender"
+                        name="paymentSender"
+                        value={state.paymentSender}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="w-full flex flex-col gap-2">
@@ -126,10 +187,25 @@ const DaftarWorkshop = () => {
                         placeholder="0123456789"
                         required
                         type="text"
-                        id="noRekening"
-                        name="noRekening"
-                        value={noRekening}
-                        onChange={(e) => setNoRekening(e.currentTarget.value)}
+                        id="bankAccountId"
+                        name="bankAccountId"
+                        value={state.bankAccountId}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="w-full flex flex-col gap-2">
+                      <p className="font-Montserrat font-bold text-text-placeholder-light text-sm sm:text-base">
+                        Link Twibbon
+                      </p>
+                      <input
+                        className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
+                        placeholder="Bank BCA"
+                        required
+                        type="text"
+                        id="twibbonLinks"
+                        name="twibbonLinks"
+                        value={state.twibbonLinks}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="w-full flex flex-col gap-2">
@@ -141,10 +217,10 @@ const DaftarWorkshop = () => {
                         placeholder="Bank BCA"
                         required
                         type="text"
-                        id="bank"
-                        name="bank"
-                        value={bank}
-                        onChange={(e) => setBank(e.currentTarget.value)}
+                        id="bankName"
+                        name="bankName"
+                        value={state.bankName}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -157,18 +233,19 @@ const DaftarWorkshop = () => {
                                                 <p className='font-Montserrat font-bold text-xs text-black font-Montserrat font-bold'>anda belum upload</p>
                                             */}
                     </div>
-                    <button className="rounded border-2 border-text-placeholder-light px-6 py-1">
+                    <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
                       <input
                         className="hidden"
                         type="file"
-                        onChange={(e) => {
-                          /* Upload image ke database */
-                        }}
+                        id="paymentFile"
+                        name="paymentFile"
+                        accept="image/*"
+                        onChange={handleFileChange}
                       />
                       <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
                         Unggah
                       </p>
-                    </button>
+                    </label>
                   </div>
                 </div>
                 <button
@@ -197,6 +274,7 @@ const DaftarWorkshop = () => {
           onClose={() => {
             setShowModalVerification(0);
           }}
+          submit={handleJoinWorkshop}
           quest="Simpan perubahan sebelum keluar?"
           declare="Anda dapat mengeditnya lagi nanti"
           confirm="Daftar"

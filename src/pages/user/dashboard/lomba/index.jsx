@@ -289,7 +289,7 @@ const Index = (nameAbr) => {
       </>
     );
   };
-
+console.log(userTeam.teams);
   return (
     <>
       <UserDashboardLayout>
@@ -318,7 +318,7 @@ const Index = (nameAbr) => {
                       userTeam.teams?.map((team) => {
                         return (
                           <TeamCard
-                            id={team._id}
+                            id={team.team._id}
                             competition={team.team.event[0].eventName}
                             teamName={team.team.teamName}
                             verify={team.team.verified}
