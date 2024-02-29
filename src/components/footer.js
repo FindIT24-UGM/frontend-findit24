@@ -77,7 +77,7 @@ export default function Footer() {
     { text: "Capture The Flag", href: "/competition/capture-the-flag" },
   ];
 
-  const whatsappNumber = "+62 123456789";
+  const whatsappNumber = "+6281953524196";
 
   return (
     <footer className="bg-shade-black font-Montserrat text-shade-white w-full pb-[1vh] z-[10]">
