@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import HexagonDot_Desktop from "../../assets/compepage/Hexagon_Desktop.png";
-import awanBackground from "../../assets/background/awanCompPage.png"
-import VerticalVector from "../../assets/background/patternBgTimelineVertikal.png"
-import HorizontalVector from "../../assets/background/patternBgTimeLine.png"
+import awanBackground from "../../assets/background/awanCompPage.png";
+import VerticalVector from "../../assets/background/patternBgTimelineVertikal.png";
+import HorizontalVector from "../../assets/background/patternBgTimeline.png";
 
 import TimeLineCard from "./TimeLineCard";
 
