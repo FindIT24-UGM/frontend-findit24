@@ -403,7 +403,7 @@ export default function Index() {
           </div>
           <button
             onClick={() =>
-              router.replace("/user/dashboard/profileteam/editteam" + teamId)
+              router.replace(`/user/dashboard/profileteam/editteam/${teamId}`)
             }
             className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
           >

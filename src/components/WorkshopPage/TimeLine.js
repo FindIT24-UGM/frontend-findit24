@@ -56,7 +56,7 @@ export default function Timeline() {
           {dummyData.map((item, i) => {
             return (
               <p
-                key={item.name + i} // Menggunakan kombinasi item.name dan indeks i
+                key={item.name + i}
                 className="font-GameOfSquid text-white h-[5vw] my-auto lg:h-fit lg:w-[6vw] text-center"
               >
                 {item.date}
@@ -71,7 +71,7 @@ export default function Timeline() {
               indexv !== dummyData.length - 1 && (
                 <LineV1 key={item.name + indexv} />
               )
-            ); // Menggunakan kombinasi item.name dan indeks indexv
+            );
           })}
           <HexagonDot />
         </div>
@@ -82,7 +82,7 @@ export default function Timeline() {
               indexh !== dummyData.length - 1 && (
                 <LineH1 key={item.name + indexh} />
               )
-            ); // Menggunakan kombinasi item.name dan indeks indexh
+            );
           })}
           <HexagonDot />
         </div>
@@ -91,8 +91,6 @@ export default function Timeline() {
           {dummyData.map((item, indexcard) => {
             return (
               <div className="my-[1vw] lg:mx-[4vw]" key={item.name + indexcard}>
-                {" "}
-                {"// Menggunakan kombinasi item.name dan indeks indexcard"}
                 <TimeLineCard content={item.name} />
               </div>
             );
