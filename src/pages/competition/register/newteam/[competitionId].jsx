@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import DataTimGeneral from "../../../user/dashboard/lomba/datatim";
-import DataTimUX from "../../../user/dashboard/lomba/datatim/datatimux";
+import DataTimGeneral from "../../../user/dashboard/lomba/dataTimet";
+import DataTimUX from "../../../user/dashboard/lomba/dataTimet/datatimux";
 
 export default function NewTeam() {
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
