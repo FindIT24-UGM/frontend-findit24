@@ -1,5 +1,5 @@
 import * as React from "react";
-const SVGComponent = (props) => (
+const SVGComponent = ({ props }) => (
   <svg
     className="fill-current text-text-placeholder-light group-hover:text-text-placeholder-dark w-[62px] h-[48px] lg:w-[84.5px] lg:h-[65.5px] group-hover:scale-110 transition duration-500 group-hover:transition group-hover:duration-500"
     xmlns="http://www.w3.org/2000/svg"

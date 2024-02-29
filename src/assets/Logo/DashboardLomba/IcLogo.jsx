@@ -1,7 +1,7 @@
 import * as React from "react";
-const SVGComponent = (props) => (
+const SVGComponent = ({ props }) => (
   <svg
-  className="fill-current text-text-placeholder-light group-hover:text-text-placeholder-dark w-[63.3px] h-[45.3px] lg:w-[81.9px] lg:h-[58.6px] group-hover:scale-110 transition duration-500 group-hover:transition group-hover:duration-500"
+    className="fill-current text-text-placeholder-light group-hover:text-text-placeholder-dark w-[63.3px] h-[45.3px] lg:w-[81.9px] lg:h-[58.6px] group-hover:scale-110 transition duration-500 group-hover:transition group-hover:duration-500"
     xmlns="http://www.w3.org/2000/svg"
     width={82}
     height={59}
