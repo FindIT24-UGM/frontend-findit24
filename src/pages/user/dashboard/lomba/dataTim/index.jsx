@@ -9,7 +9,103 @@ import { Router, useRouter } from "next/router";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const DataTimGeneral = ({ compeName }) => {
+const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
+  const [harga, setHarga] = useState("");
+
+  useEffect(() => {
+    const today = new Date();
+    const earlyBird = new Date("2024-03-01");
+
+    if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_CTF) {
+      if (today >= earlyBird) {
+        setHarga("95.000");
+      } else {
+        setHarga("125.000");
+      }
+    } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_CP) {
+      if (today >= earlyBird) {
+        setHarga("90.000");
+      } else {
+        setHarga("120.000");
+      }
+    } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_DAC) {
+      if (today >= earlyBird) {
+        setHarga("100.000");
+      } else {
+        setHarga("130.000");
+      }
+    } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_IC) {
+      if (today >= earlyBird) {
+        setHarga("60.000");
+      } else {
+        setHarga("90.000");
+      }
+    } else if (
+      selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE
+    ) {
+      router.push(
+        `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/dataTim/datatimux`
+      );
+      setHarga("120.000");
+    } else if (
+      selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT
+    ) {
+      setHarga("75.000");
+    } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_ML) {
+      setHarga("75.000");
+    } else if (
+      selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON
+    ) {
+      setHarga("150.000");
+    }
+  }, [selectedLomba]);
+
+  return (
+    <div className="w-5/6 flex justify-between items-center">
+      <p className="font-CreatoDisplay font-bold text-3xl text-shade-white">
+        Buat Tim {lomba}
+      </p>
+      <select
+        aria-placeholder="Select Receiver"
+        className="p-2 rounded"
+        value={selectedLomba}
+        onChange={(e) => setSelectedLomba(e.currentTarget.value)}
+      >
+        <option value="">Pilih Lomba</option>
+        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_CTF}>
+          Capture The Flag
+        </option>
+        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON}>
+          Hackathon
+        </option>
+        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_ML}>
+          Esport - Mobile Legends
+        </option>
+        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_CP}>
+          Competitive Programming
+        </option>
+        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_DAC}>
+          Data Analytics Competition
+        </option>
+        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT}>
+          Esport - Valorant
+        </option>
+        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_IC}>
+          Informatics Competitions
+        </option>
+        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE}>
+          UX Competition
+        </option>
+      </select>
+      <p className="font-CreatoDisplay font-bold text-xl text-shade-white">
+        Total Fee: {harga}
+      </p>
+    </div>
+  );
+};
+
+
+const DataTimGeneral = () => {
   const [institusi, setinstitusi] = useState(undefined);
   const [namaTim, setNamaTim] = useState(undefined);
   const [openStatus, setOpenStatus] = useState(false);
@@ -19,6 +115,7 @@ const DataTimGeneral = ({ compeName }) => {
   const [noRekening, setNoRekening] = useState(undefined);
   const [bank, setBank] = useState(undefined);
   const [selectedLomba, setSelectedLomba] = useState(null);
+
 
   const [number1, setNumber1] = useState(null);
   const [number2, setNumber2] = useState(null);
@@ -180,101 +277,6 @@ const DataTimGeneral = ({ compeName }) => {
   //   }
   // };
 
-  const DaftarLombaDanHarga = ({ lomba }) => {
-    const [harga, setHarga] = useState("");
-
-    useEffect(() => {
-      const today = new Date();
-      const earlyBird = new Date("2024-03-01");
-
-      if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_CTF) {
-        if (today >= earlyBird) {
-          setHarga("95.000");
-        } else {
-          setHarga("125.000");
-        }
-      } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_CP) {
-        if (today >= earlyBird) {
-          setHarga("90.000");
-        } else {
-          setHarga("120.000");
-        }
-      } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_DAC) {
-        if (today >= earlyBird) {
-          setHarga("100.000");
-        } else {
-          setHarga("130.000");
-        }
-      } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_IC) {
-        if (today >= earlyBird) {
-          setHarga("60.000");
-        } else {
-          setHarga("90.000");
-        }
-      } else if (
-        selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE
-      ) {
-        router.push(
-          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/datatim/datatimux`
-        );
-        setHarga("120.000");
-      } else if (
-        selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT
-      ) {
-        setHarga("75.000");
-      } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_ML) {
-        setHarga("75.000");
-      } else if (
-        selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON
-      ) {
-        setHarga("150.000");
-      }
-    }, [selectedLomba]);
-
-    return (
-      <div className="w-5/6 flex justify-between items-center">
-        <p className="font-CreatoDisplay font-bold text-3xl text-shade-white">
-          Buat Tim {lomba}
-        </p>
-        <select
-          aria-placeholder="Select Receiver"
-          className="p-2 rounded"
-          value={selectedLomba}
-          onChange={(e) => setSelectedLomba(e.target.value)}
-        >
-          <option value="">Pilih Lomba</option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_CTF}>
-            Capture The Flag
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON}>
-            Hackathon
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_ML}>
-            Esport - Mobile Legends
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_CP}>
-            Competitive Programming
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_DAC}>
-            Data Analytics Competition
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT}>
-            Esport - Valorant
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_IC}>
-            Informatics Competitions
-          </option>
-          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE}>
-            UX Competition
-          </option>
-        </select>
-        <p className="font-CreatoDisplay font-bold text-xl text-shade-white">
-          Total Fee: {harga}
-        </p>
-      </div>
-    );
-  };
-
   return (
     <RootLayout>
       <div className="bg-background-skyblue w-screen min-h-screen flex flex-col justify-center items-center gap-5">
@@ -289,7 +291,7 @@ const DataTimGeneral = ({ compeName }) => {
         </button>
         <div className="w-2/3 bg-text-placeholder-light p-4 rounded-xl border-[3px] border-shade-black">
           <div className="w-full flex flex-col justify-center items-center gap-8 bg-primary-500 py-8 rounded-xl">
-            <DaftarLombaDanHarga />
+            <DaftarLombaDanHarga lomba={'catf'} selectedLomba={selectedLomba} setSelectedLomba={setSelectedLomba} />
             <div className="w-3/4 flex gap-8">
               <div className="w-[45%] flex flex-col gap-2">
                 <div className="w-full flex flex-col gap-2">
