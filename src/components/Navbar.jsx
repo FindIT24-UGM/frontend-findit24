@@ -106,7 +106,7 @@ const Navbar = () => {
       <div
         className={twMerge(
           "h-20 z-[999] border-b-4 w-full border-black bg-text-placeholder-dark font-GameOfSquid flex flex-row justify-center px-7 items-center py-12",
-          "max-lg:justify-between",
+          "max-lg:justify-start",
           "lg:gap-x-20",
           "relative"
         )}
@@ -115,7 +115,7 @@ const Navbar = () => {
         <NavbarDesktop isLogin={isAuthenticated} onSignClick={onSignClick} />
         {/* navbar button */}
         <motion.button
-          className="lg:hidden"
+          className="ml-auto lg:hidden"
           key={isSideNav}
           onClick={() => setIsSideNav(!isSideNav)}
           variants={{
