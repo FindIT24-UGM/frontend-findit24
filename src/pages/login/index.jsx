@@ -150,6 +150,7 @@ const LoginPage = () => {
                 width={20}
                 height={20}
                 className="absolute left-3"
+                alt="google icon"
               />
               <p className="mx-auto font-semibold">Sign In with Google</p>
             </button>
@@ -173,7 +174,7 @@ const LoginPage = () => {
                 Create an account
               </Link>
             </div>
-            <div className="flex flex-row font-thin gap-x-1">
+            <div className="flex flex-row items-center my-2 mt-4 font-thin gap-x-1">
               <p className="">Forgot Password ?</p>
               <Link
                 href={"/login/resetPassword"}
