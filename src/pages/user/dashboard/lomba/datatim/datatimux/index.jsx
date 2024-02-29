@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect, useReducer } from "react";
 import RootLayout from "../../../../../layout";
 import { HiArrowLeft } from "react-icons/hi";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -6,15 +6,35 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "UPDATE_FIELD":
+      return { ...state, [action.field]: action.value };
+    default:
+      return state;
+  }
+};
+
 const DataTimUX = () => {
+
+  const [state, dispatch] = useReducer(reducer, {
+    eventId: process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE,
+    teamName: undefined,
+    teamInstitution: undefined,
+    teamContact: [undefined, undefined],
+    discordID: undefined,
+    inGameID: undefined,
+    paymentDate: undefined,
+    paymentSender: undefined,
+    bankAccountId: undefined,
+    bankName: undefined,
+  });
+
   const handleCreateTeam = () => {
     axios
       .post(
         `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
-        {
-          teamName: namaTim,
-          teamInstituttion: institusi,
-        },
+          state,
         { withCredentials: true }
       )
       .then((res) => {
@@ -31,11 +51,35 @@ const DataTimUX = () => {
       });
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    
+    // Jika name adalah 'teamContact', maka kita perlu memeriksa id input
+    if (name === 'teamContact') {
+      const id = e.target.id; // Ambil id input
+  
+      // Jika id adalah 'teamContactPrimary', simpan nilai ke indeks 0
+      if (id === 'teamContactPrimary') {
+        dispatch({ type: "UPDATE_FIELD", field: name, value: [value, state.teamContact[1]] });
+      } 
+      // Jika id adalah 'teamContactSecondary', simpan nilai ke indeks 1
+      else if (id === 'teamContactSecondary') {
+        dispatch({ type: "UPDATE_FIELD", field: name, value: [state.teamContact[0], value] });
+      }
+    } else {
+      dispatch({ type: "UPDATE_FIELD", field: name, value });
+    }
+  };
+  
+
   const [institusi, setinstitusi] = useState(undefined);
   const [namaTim, setNamaTim] = useState(undefined);
   const [openStatus, setOpenStatus] = useState(false);
   const [statusSelected, setStatusSelected] = useState(undefined);
   const [isWideScreen, setIsWideScreen] = useState(false);
+
+  const [number1, setNumber1] = useState(null);
+  const [number2, setNumber2] = useState(null);
 
   const dropdownStatusRef = useRef();
 
@@ -84,7 +128,7 @@ const DataTimUX = () => {
       /* Tampilkan modal buat tim */
     }
   };
-
+console.log(state);
   return (
     <RootLayout>
       <div className="bg-background-skyblue w-screen min-h-screen flex flex-col justify-center items-center gap-5 px-5 sm:px-0">
@@ -104,7 +148,7 @@ const DataTimUX = () => {
               </p>
             </div>
             <div className="w-5/6 lg:w-3/4 flex flex-col justify-center items-center gap-4">
-              <div className="w-full flex flex-col gap-2">
+              {/* <div className="w-full flex flex-col gap-2">
                 <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
                   Status
                 </p>
@@ -152,7 +196,7 @@ const DataTimUX = () => {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </div> */}
               <div className="w-full flex flex-col gap-2">
                 <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
                   Institusi
@@ -162,10 +206,40 @@ const DataTimUX = () => {
                   placeholder="Universitas Diponegoro"
                   required
                   type="text"
-                  id="institusi"
-                  name="institusi"
-                  value={institusi}
-                  onChange={(e) => setinstitusi(e.currentTarget.value)}
+                  id="teamInstitution"
+                  name="teamInstitution"
+                  value={state.teamInstitution}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="w-full flex flex-col gap-2">
+                <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
+                  Nomor Utama
+                </p>
+                <input
+                  className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
+                  placeholder="nomor utama"
+                  required
+                  type="text"
+                  id="teamContactPrimary"
+                  name="teamContact"
+                  value={state.teamContact[0]}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="w-full flex flex-col gap-2">
+                <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
+                  Nomor Cadangan
+                </p>
+                <input
+                  className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
+                  placeholder="nomor cadangan"
+                  required
+                  type="text"
+                  id="teamContactSecondary"
+                  name="teamContact"
+                  value={state.teamContact[1]}
+                  onChange={handleChange}
                 />
               </div>
               <div className="w-full flex flex-col gap-2">
@@ -177,35 +251,14 @@ const DataTimUX = () => {
                   placeholder="Samsan Tech"
                   required
                   type="text"
-                  id="namaTim"
-                  name="namaTim"
-                  value={namaTim}
-                  onChange={(e) => setNamaTim(e.currentTarget.value)}
+                  id="teamName"
+                  name="teamName"
+                  value={state.teamName}
+                  onChange={handleChange}
                 />
               </div>
               <div className="w-full border border-text-placeholder-light my-4" />
               <div className="w-full flex justify-between items-center">
-                <div className="flex flex-col justify-between items-start">
-                  <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
-                    Upload Abstrak
-                  </p>
-
-                  <p className="font-Montserrat font-bold text-xs text-neutral-300 lg:text-base">
-                    anda belum upload
-                  </p>
-                </div>
-                <button className="rounded border-2 border-text-placeholder-light px-6 py-1">
-                  <input
-                    className="hidden"
-                    type="file"
-                    onChange={(e) => {
-                      /* Upload image ke database */
-                    }}
-                  />
-                  <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
-                    Unggah
-                  </p>
-                </button>
               </div>
               <button
                 className="w-full bg-background-skyblue py-4 rounded-md mt-4"
