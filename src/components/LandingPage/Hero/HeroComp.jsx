@@ -9,7 +9,7 @@ import HeroBackgroundMobile from "../../../assets/background/LittleDarkBGHeroMob
 
 import StarsDesktop from "../../../assets/background/STARSHeroDesktop.png";
 import StarsTab from "../../../assets/background/STARSHeroTablet.png";
-import StarsMobile from "../../../assets/background/STARSHeroMobileeee.png";
+import StarsMobile from "../../../assets/background/StarsHeroMobile.png";
 
 import heroImage from "../../../assets/Logo/mascotHeroFindIT24.png";
 
