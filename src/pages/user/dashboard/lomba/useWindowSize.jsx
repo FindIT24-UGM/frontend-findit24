@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function useWindowSize() {
+const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
     width: undefined,
     height: undefined,
@@ -8,10 +8,13 @@ export default function useWindowSize() {
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
+      if (typeof window !== "undefined") {
+        // Memastikan window tersedia
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
     };
 
     handleResize();
@@ -22,4 +25,6 @@ export default function useWindowSize() {
   }, []);
 
   return windowSize;
-}
+};
+
+export default useWindowSize;
