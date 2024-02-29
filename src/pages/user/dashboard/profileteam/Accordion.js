@@ -16,7 +16,12 @@ export default function Accordion({
   institutionNumber,
   institutionFile,
 }) {
-  const formattedDateOfBirth = format(new Date(`${dateOfBirth}`), "dd MMMM y");
+  if (dateOfBirth) {
+    const formattedDateOfBirth = format(
+      new Date(`${dateOfBirth}`),
+      "dd MMMM y"
+    );
+  }
   const array = [1, 2, 3, 4, 5];
 
   const [isExpand, setIsExpand] = useState(0);
