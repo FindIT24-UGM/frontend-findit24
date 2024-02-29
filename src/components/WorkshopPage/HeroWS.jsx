@@ -29,13 +29,8 @@ function HeroWS() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-[#233E51] flex justify-center pb-20">
-      <Image
-        src={BG_WS}
-        className="absolute top-0 w-[120vw] lg:w-[75vw]"
-        alt="Background.png"
-      ></Image>
-      <div className="flex flex-col justify-center items-center gap-y-8">
+    <div className="min-h-screen w-full bg-[#233E51] flex justify-center">
+      <div className="flex flex-col justify-center items-center gap-y-8 absolute">
         <p className="font-Ava text-white text-[20px] lg:text-[1.25vw]">
           {"//Workshop"}
         </p>
@@ -86,11 +81,16 @@ function HeroWS() {
           </button>
         </div>
 
-        <div className="flex justify-center items-center absolute bottom-0 gap-x-2 pb-10">
+        <div className="flex justify-center items-center bottom-0 gap-x-2">
           <BiMouse />
           <p className="font-Montserrat text-white">Gulir ke bawah</p>
         </div>
       </div>
+      <Image
+        src={BG_WS}
+        className="top-0 w-[120vw] lg:w-[75vw]"
+        alt="Background.png"
+      ></Image>
     </div>
   );
 }

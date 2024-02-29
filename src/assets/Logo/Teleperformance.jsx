@@ -1,7 +1,7 @@
 import * as React from "react";
-const SVGComponent = (props) => (
+const SVGComponent = ({ props }) => (
   <svg
-  className="fill-current text-text-placeholder-dark w-[15.7vw] h-[16.5vw] sm:w-[12.283vw] sm:h-[12.897vw] lg:w-[6.771vw] lg:h-[7.135vw]"
+    className="fill-current text-text-placeholder-dark w-[15.7vw] h-[16.5vw] sm:w-[12.283vw] sm:h-[12.897vw] lg:w-[6.771vw] lg:h-[7.135vw]"
     width={58}
     height={60}
     viewBox="0 0 58 60"

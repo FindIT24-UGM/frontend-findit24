@@ -22,7 +22,7 @@ const initialState = {
   twibbonLinks: undefined,
 };
 
-const reducer = (state, action) => {
+const reducer = ({ state, action }) => {
   switch (action.type) {
     case "UPDATE_FIELD":
       return { ...state, [action.field]: action.value };
@@ -73,7 +73,7 @@ const DaftarWorkshop = () => {
     dispatch({ type: "UPDATE_FIELD", field: name, value });
   };
 
-  const handleDateChange = (date) => {
+  const handleDateChange = ({ date }) => {
     dispatch({ type: "UPDATE_FIELD", field: "paymentDate", value: date });
   };
 

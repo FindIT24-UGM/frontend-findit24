@@ -25,7 +25,7 @@ import { loadingEnd } from "../../../../store/action.js";
 import axios from "axios";
 import Link from "next/link";
 
-const Index = (nameAbr) => {
+const Index = ({ nameAbr }) => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const { userTeam } = useSelector((state) => state.user);
 
@@ -93,7 +93,7 @@ const Index = (nameAbr) => {
   //     });
   // };
 
-  const joinTeam = (eventId, teamId, teamLeaderId) => {
+  const joinTeam = ({ eventId, teamId, teamLeaderId }) => {
     axios
       .post(
         `${process.env.NEXT_PUBLIC_API_URL}/team/join/`,
