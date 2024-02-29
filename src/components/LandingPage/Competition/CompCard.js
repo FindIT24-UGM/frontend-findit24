@@ -13,7 +13,7 @@ const CompCard = (props) => {
       <div className="bg-gradient-to-b from-[#ED7C80] to-[#F9C883] border-4 border-black rounded-md flex flex-col md:flex-row md:justify-between py-5 px-10 lg:min-h-[23vw] md:min-h-[35vw] min-h-[80vw]">
         <div className="order-2 md:order-1 md:w-1/2 md:flex md:items-center my-5 md:my-0">
           <div className="space-y-5 flex flex-col items-center">
-            <p className="text-center font-Montserrat text-white text-[2.5wv]">{mainDesc}</p>
+            <p className="text-center font-Montserrat text-white text-[2.5wv] md:text-[1.5vw] lg:text-[1vw]">{mainDesc}</p>
             <button className="flex items-center space-x-3 px-2 py-3 text-white text-xl bg-black rounded-md lg:hidden">
               <p className="font-GameOfSquid font-bold bg text-[2.5vw]">see more</p>
               <HiArrowRight />

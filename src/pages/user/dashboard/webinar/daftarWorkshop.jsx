@@ -10,12 +10,12 @@ import { useRouter } from "next/router";
 import ModalParent from "../../../../components/modal/modalparent";
 import ModalVerification from "../../../../components/modal/modalverif";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 //INITIALIZE FOR useReducer
 const initialState = {
   eventId: process.env.NEXT_PUBLIC_COMPETITION_ID_WORKSHOP,
   paymentDate: undefined,
-  paymentFile: undefined,
   paymentSender: undefined,
   bankAccountId: undefined,
   bankName: undefined,
@@ -68,22 +68,6 @@ const DaftarWorkshop = () => {
     router.push("/user/dashboard/webinar");
   };
 
-  const uploadPaymentFile = (e) => {
-    const formData = new FormData();
-    const file = e.target.files[0];
-
-    formData.append("institutionFile", file);
-
-    const regex = /\.(jpg|jpeg|png)$/i;
-    // if (regex.test(file.name)) {
-    //   const reader = new FileReader();
-    //   reader.onload = (e) => {
-    //     setImagePreview(e.target.result);
-    //   };
-    //   reader.readAsDataURL(file);
-    // }
-  };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch({ type: "UPDATE_FIELD", field: name, value });
@@ -93,26 +77,18 @@ const DaftarWorkshop = () => {
     dispatch({ type: "UPDATE_FIELD", field: "paymentDate", value: date });
   };
 
-  const handleFileChange = (e) => {
-    // uploadPaymentFile(e);
-    const formData = new FormData();
-    const file = e.target.files[0];
-
-    formData.append("paymentFile", file);
-    dispatch({ type: "UPDATE_FIELD", field: "paymentFile", value: formData });
-  };
-  console.log(state);
   const handleJoinWorkshop = () => {
     axios
       .post(
         `${process.env.NEXT_PUBLIC_API_URL}/course/join`,
         {
-          state,
+          ...state,
         },
         { withCredentials: true }
       )
       .then((response) => {
-        console.log(response.data);
+        toast.success("Berhasil daftar workshop");
+        router.back();
       })
       .catch((err) => {
         console.log(err);
@@ -205,7 +181,7 @@ const DaftarWorkshop = () => {
                       </p>
                       <input
                         className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
-                        placeholder="Bank BCA"
+                        placeholder="https://instagram.com/"
                         required
                         type="text"
                         id="twibbonLinks"
@@ -232,14 +208,14 @@ const DaftarWorkshop = () => {
                   </div>
                   <div className="w-full flex justify-between items-center">
                     <div className="flex flex-col justify-between items-start">
-                      <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
+                      {/* <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
                         Upload Bukti Pembayaran
-                      </p>
+                      </p> */}
                       {/*                                     
                                                 <p className='font-Montserrat font-bold text-xs text-black font-Montserrat font-bold'>anda belum upload</p>
                                             */}
                     </div>
-                    <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
+                    {/* <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
                       <input
                         className="hidden"
                         type="file"
@@ -251,7 +227,7 @@ const DaftarWorkshop = () => {
                       <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
                         Unggah
                       </p>
-                    </label>
+                    </label> */}
                   </div>
                 </div>
                 <button
