@@ -147,7 +147,9 @@ const Index = (nameAbr) => {
                     </p>
                   </div>
                 )}
-                <ArrowRight />
+                <div className="mr-4 md:mr-0">
+                  <ArrowRight />
+                </div>
               </>
             ) : (
               <>
@@ -289,13 +291,13 @@ const Index = (nameAbr) => {
       </>
     );
   };
-console.log(userTeam.teams);
+  console.log(userTeam.teams);
   return (
     <>
       <UserDashboardLayout>
         <div className="w-full min-h-screen flex justify-center relative">
           <div className="bg-white w-[91.389vw] sm:w-[88.672vw] lg:w-[73vw] h-fit lg:rounded-[14px] rounded-xl border-[3px] border-black lg:p-6 p-3">
-            <div className=" w-full bg-primary-500 lg:p-10 p-3 rounded-[13px] h-64 lg:h-[400px]">
+            <div className=" w-full bg-primary-500 lg:p-10 p-3 rounded-[13px] h-64 lg:h-[400px] overflow-auto scrollbar-none">
               <p className="w-auto text-white font-CreatoDisplay sm:text-left text-center font-bold text-base lg:text-[28px] lg:leading-8 py-[9px] lg:py-0">
                 Lomba diikuti
               </p>
@@ -313,7 +315,7 @@ console.log(userTeam.teams);
                   </div>
                 )}
                 {haveJoined && (
-                  <div className="w-full h-auto">
+                  <div className="w-full h-auto overflow-auto scrollbar-none">
                     {userTeam &&
                       userTeam.teams?.map((team) => {
                         return (

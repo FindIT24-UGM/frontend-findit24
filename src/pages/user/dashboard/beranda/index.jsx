@@ -86,14 +86,22 @@ const Index = () => {
   return (
     <UserDashboardLayout>
       <div className="w-full h-full flex sm:flex-row flex-col gap-2 relative">
-        {isSmallScreen && (
-          <div className="w-full flex items-center gap-2 bg-primary-500 border-[3px] border-shade-black rounded-xl px-4 lg:px-8 py-4">
-            <IoWarningSharp size={18} />
-            <p className="font-Montserrat text-sm font-bold text-text-placeholder-light">
-              Tolong segera melengkapi data diri sebelum mendaftar lomba
-            </p>
-          </div>
-        )}
+        {isSmallScreen &&
+          (!user?.dateOfBirth ||
+            !user.province ||
+            !user.address ||
+            !user.phone ||
+            !user.status ||
+            !user.institutionName ||
+            !user.institutionNumber ||
+            !user.institutionFile) && (
+            <div className="w-full flex items-center gap-2 bg-primary-500 border-[3px] border-shade-black rounded-xl px-4 lg:px-8 py-4">
+              <IoWarningSharp size={18} />
+              <p className="font-Montserrat text-sm font-bold text-text-placeholder-light">
+                Tolong segera melengkapi data diri sebelum mendaftar lomba
+              </p>
+            </div>
+          )}
         <div className="w-full sm:w-1/3 sm:min-h-full min-h-[30vh] bg-text-placeholder-light border-[3px] border-shade-black rounded-xl p-6 flex flex-col gap-4">
           <div className="w-full flex justify-between max-h-[10vh]">
             <div className="flex justify-between items-center gap-2">
@@ -129,14 +137,22 @@ const Index = () => {
           </div>
         </div>
         <div className="w-full h-full flex flex-col gap-2">
-          {isWideScreen && (
-            <div className="w-full flex items-center gap-3 bg-primary-500 border-[3px] border-shade-black rounded-xl px-4 lg:px-8 py-4">
-              <IoWarningSharp size={24} className="min-w-6" />
-              <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
-                Tolong segera melengkapi data diri sebelum mendaftar lomba
-              </p>
-            </div>
-          )}
+          {isWideScreen &&
+            (!user?.dateOfBirth ||
+              !user.province ||
+              !user.address ||
+              !user.phone ||
+              !user.status ||
+              !user.institutionName ||
+              !user.institutionNumber ||
+              !user.institutionFile) && (
+              <div className="w-full flex items-center gap-3 bg-primary-500 border-[3px] border-shade-black rounded-xl px-4 lg:px-8 py-4">
+                <IoWarningSharp size={24} className="min-w-6" />
+                <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
+                  Tolong segera melengkapi data diri sebelum mendaftar lomba
+                </p>
+              </div>
+            )}
           <div className="flex-1 h-full border-[3px] border-shade-black rounded-xl bg-text-placeholder-light p-6 lg:p-8 flex flex-col gap-5">
             <div className="flex justify-between items-center">
               <div className="flex justify-between gap-2">
