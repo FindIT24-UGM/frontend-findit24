@@ -22,7 +22,7 @@ const initialState = {
   twibbonLinks: undefined,
 };
 
-const reducer = ({ state, action }) => {
+const reducer = ( state, action ) => {
   switch (action.type) {
     case "UPDATE_FIELD":
       return { ...state, [action.field]: action.value };

@@ -24,8 +24,10 @@ import {
 import { loadingEnd } from "../../../../store/action.js";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router.js";
 
 const Index = ({ nameAbr }) => {
+  const router = useRouter();
   const { isAuthenticated } = useSelector((state) => state.auth);
   const { userTeam } = useSelector((state) => state.user);
 
@@ -93,7 +95,7 @@ const Index = ({ nameAbr }) => {
   //     });
   // };
 
-  const joinTeam = ({ eventId, teamId, teamLeaderId }) => {
+  const joinTeam = ( eventId, teamId, teamLeaderId ) => {
     axios
       .post(
         `${process.env.NEXT_PUBLIC_API_URL}/team/join/`,
@@ -110,6 +112,8 @@ const Index = ({ nameAbr }) => {
         // console.log(res.data.message);
         setOpenInvitation(false);
         setOpenTimDitemukan(false);
+        router.push("/user/dashboard/lomba")
+        
       })
       .catch((err) => {
         console.log(err);
