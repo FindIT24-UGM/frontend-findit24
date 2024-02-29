@@ -44,7 +44,7 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
       selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE
     ) {
       router.push(
-        `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/dataTim/datatimux`
+        `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/datatim/datatimux`
       );
       setHarga("120.000");
     } else if (
@@ -104,7 +104,6 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
   );
 };
 
-
 const DataTimGeneral = () => {
   const [institusi, setinstitusi] = useState(undefined);
   const [namaTim, setNamaTim] = useState(undefined);
@@ -115,7 +114,6 @@ const DataTimGeneral = () => {
   const [noRekening, setNoRekening] = useState(undefined);
   const [bank, setBank] = useState(undefined);
   const [selectedLomba, setSelectedLomba] = useState(null);
-
 
   const [number1, setNumber1] = useState(null);
   const [number2, setNumber2] = useState(null);
@@ -291,7 +289,11 @@ const DataTimGeneral = () => {
         </button>
         <div className="w-2/3 bg-text-placeholder-light p-4 rounded-xl border-[3px] border-shade-black">
           <div className="w-full flex flex-col justify-center items-center gap-8 bg-primary-500 py-8 rounded-xl">
-            <DaftarLombaDanHarga lomba={'catf'} selectedLomba={selectedLomba} setSelectedLomba={setSelectedLomba} />
+            <DaftarLombaDanHarga
+              lomba={"catf"}
+              selectedLomba={selectedLomba}
+              setSelectedLomba={setSelectedLomba}
+            />
             <div className="w-3/4 flex gap-8">
               <div className="w-[45%] flex flex-col gap-2">
                 <div className="w-full flex flex-col gap-2">

@@ -231,7 +231,7 @@ export default function Index() {
         selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE
       ) {
         router.push(
-          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/dataTim/datatimux`
+          `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/datatim/datatimux`
         );
         setHarga("120.000");
       } else if (
