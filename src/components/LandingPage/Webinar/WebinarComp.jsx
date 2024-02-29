@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { FaArrowRight } from "react-icons/fa6";
 
@@ -8,7 +9,9 @@ import Accademy from "../../../assets/Logo/Academy.png";
 import TopSeparator from "../../../assets/background/TopSeparatorWebinar.png";
 import BottomSeparator from "../../../assets/background/BottomSeparatorWebinar.png";
 
+
 const WebinarComp = () => {
+
   return (
     <div className="bg-background-skyblue min-h-screen flex justify-center lg:px-[54px] relative">
       {/* background */}
@@ -43,10 +46,10 @@ const WebinarComp = () => {
               memahami bagaimana teknologi ini mengubah cara transaksi, keamanan
               data, dan bahkan sistem keuangan.
             </p>
-            <div className="flex items-center gap-3 p-2 bg-primary-300 w-fit rounded-md text-white">
-              <p className="font-GameOfSquid">WEBINAR</p>
+            <button className="flex items-center gap-3 p-2 bg-primary-300 w-fit rounded-md text-white">
+              <Link className="font-GameOfSquid" href={"/workshop"}>WORKSHOP</Link>
               <FaArrowRight />
-            </div>
+            </button>
           </div>
         </div>
       </div>

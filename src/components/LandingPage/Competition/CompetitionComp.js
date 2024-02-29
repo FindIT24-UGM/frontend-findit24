@@ -113,6 +113,17 @@ const CompetitionComp = () => {
       swiper.slideTo(index);
     }
   }
+
+  const linkCompetitionPage = [
+    "/competition/capture-the-flag",
+    "/competition/competitive-programming",
+    "/competition/ux-competition",
+    "/competition/data-analytics",
+    "/competition/hackathon",
+    "/competition/e-sports",
+    "/competition/informatics-competition",
+  ];
+
   return (
     <div className="min-h-screen flex flex-col justify-center items-center lg:px-[54px] bg-background-skyblue">
       <div className="w-[90%] lg:w-[80%] flex flex-col justify-center items-center border-x-[6px] border-[#92C2D0] pb-20">
@@ -237,7 +248,7 @@ const CompetitionComp = () => {
                       activeIndex={activeIndex}
                       mainDesc={card.mainDesc}
                       secDesc={card.secDesc}
-                      linkDestination={""}
+                      linkDestination={linkCompetitionPage[idx]}
                       imageIcon={card.icon}
                     />
                   </SwiperSlide>
