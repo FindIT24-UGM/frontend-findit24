@@ -1,15 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import UserDashboardLayout from "../layout";
 import { HiExclamationCircle, HiArrowRight } from "react-icons/hi";
 import { BsChatSquareTextFill, BsQuestionOctagonFill } from "react-icons/bs";
 // import Comment from '../profileteam/Comment';
 import { useRouter } from "next/router";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const Index = () => {
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   const router = useRouter();
+  const [isJoinWorkshop, setIsJoinWorkshop] = useState(false);
+  const [courseUser, setCourseUser] = useState(null)
+
+  useEffect(() => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/course/get`, { withCredentials: true })
+      .then(result => {
+        setIsJoinWorkshop(true)
+        setCourseUser(...result.data.user)
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }, [isAuthenticated])
 
   const handleDaftarWorkshop = () => {
     router.push("/user/dashboard/webinar/daftarWorkshop");
+  };
+
+  const uploadPaymentCourse = (e) => {
+    const formData = new FormData();
+    const file = e.target.files[0];
+
+    formData.append("paymentFile", file);
+    console.log(formData);
+    if(formData){
+      axios.post(`${process.env.NEXT_PUBLIC_API_URL}/course/upload-payment/${courseUser._id}`,
+      formData,
+      { withCredentials: true })
+        .then(result => {
+          toast.success('berhasil upload pembayaran workshop')
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+  }
+
+  const handleFileChange = (e) => {
+    uploadPaymentCourse(e);
   };
 
   return (
@@ -17,6 +57,7 @@ const Index = () => {
       <div className="w-full flex lg:flex-row flex-col gap-4 h-full">
         <div className="w-full lg:w-2/3 bg-text-placeholder-light border-[3px] border-shade-black rounded-xl p-4 flex flex-col items-center gap-6">
           <div className="w-full bg-primary-500 min-h-[45vh] lg:min-h-0 lg:h-3/4 rounded-xl p-8">
+            {!isJoinWorkshop ? (
             <div className="w-full bg-text-placeholder-light p-6 flex items-center gap-4 rounded-lg">
               <HiExclamationCircle
                 size={38}
@@ -28,6 +69,9 @@ const Index = () => {
                 di bawah.
               </p>
             </div>
+            ) : (
+              <div></div>
+            )}
           </div>
           <div className="w-5/6 flex flex-col justify-center items-center gap-4">
             <p className="font-Montserrat font-medium text-text-placeholder-dark text-center text-xs sm:text-sm lg:text-base">
@@ -35,9 +79,24 @@ const Index = () => {
               teknologi Blockchain bersama pembicara berpengalaman pada bidang
               tersebut.
             </p>
-            <button className="text-center text-[16px] text-black font-bold py-2 bg-background-skyblue w-full font-GameOfSquid rounded-md">
+            {courseUser?.paymentFile === "" ? (
+            <label className="text-center text-[16px] text-black font-bold py-2 bg-background-skyblue w-full font-GameOfSquid rounded-md">
               Upload Pembayaran
-            </button>
+              <input
+                className="hidden"
+                type="file"
+                id="paymentFile"
+                name="paymentFile"
+                accept="image/*"
+                onChange={handleFileChange}
+                />            
+            </label>
+            ) : (
+              <div className="w-full">
+                <button className="text-center text-[16px] text-black font-bold py-2 bg-background-skyblue w-full font-GameOfSquid rounded-md"> Lihat</button>
+              </div>
+            )}
+            {!isJoinWorkshop ? (
             <button
               className="bg-primary-300 w-full rounded-md py-2 flex gap-3 justify-center items-center"
               onClick={handleDaftarWorkshop}
@@ -47,6 +106,9 @@ const Index = () => {
               </p>
               <HiArrowRight size={20} color="black" />
             </button>
+            ) : (
+              <div></div>
+            )}
           </div>
         </div>
         <div className="w-full lg:w-1/3 flex flex-col gap-6 relative">
