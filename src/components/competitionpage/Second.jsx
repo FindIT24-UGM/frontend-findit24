@@ -156,7 +156,7 @@ function TimeLine({ data }) {
           {data.map((item, index) => {
             return (
               <div className="flex space-x-[4.28vw]">
-                <div className="my-[1vw]">
+                <div className="my-[1vw] ">
                   <TimeLineCard data={item} key={index} />
                 </div>
               </div>
