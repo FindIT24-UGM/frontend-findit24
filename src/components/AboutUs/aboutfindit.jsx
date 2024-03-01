@@ -16,29 +16,41 @@ import Awankanan1 from "../../assets/about/awankananatas.png";
 import Awantengah1 from "../../assets/about/AWAN MIDDLE1.png";
 import Awantengah2 from "../../assets/about/AWAN MIDDLE2.png";
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
+
 export default function AboutFindIT() {
+  useEffect(()=>{
+    AOS.init({
+      disable: false,
+      duration: 1300,
+    })
+  },[])
+
   return (
     <div className="w-screen h-[50vw] max-md:mb-[35vw] max-sm:mb-[6vw] max-sm:h-[300vw] flex justify-center items-center">
-      <div className="absolute w-[56vw] max-md:w-[100vw] top-0 mx-auto max-sm:opacity-0">
+      <div className="absolute w-[56vw] max-md:w-[100vw] top-0 mx-auto max-sm:opacity-0"
+      data-aos="fade-down">
         <Image src={Top} alt="Top.png" />
       </div>
       <div className="absolute w-[22vw] max-md:opacity-0 translate-y-[-20vw] left-0 max-sm:opacity-0">
-        <Image src={Circuitkiri1} alt="Circuit" />
+        <Image src={Circuitkiri1} alt="Circuit" data-aos="fade-right"/>
       </div>
       <div className="absolute w-[22vw] max-md:opacity-0 translate-y-[-20vw] right-0 max-sm:opacity-0">
-        <Image src={Circuitkanan1} alt="Circuit" />
+        <Image src={Circuitkanan1} alt="Circuit" data-aos="fade-left"/>
       </div>
       <div className="absolute w-[18vw] max-md:w-[30vw] translate-y-[-17vw] max-md:translate-y-[-8vw] left-[4vw] max-sm:opacity-0">
-        <Image src={Awankiri1} alt="Awan" />
+          <Image src={Awankiri1} alt="Awan" data-aos="fade-right"/>
       </div>
       <div className="absolute w-[10vw] max-md:w-[20vw] translate-y-[-17vw] max-md:translate-y-[-8vw] right-[4vw] max-sm:opacity-0">
-        <Image src={Awankanan1} alt="Awan" />
+        <Image src={Awankanan1} alt="Awan" data-aos="fade-left"/>
       </div>
       <div className="absolute w-[10vw] max-md:w-[20vw] translate-y-[-17.5vw] max-md:translate-y-[-9vw] left-[10vw] max-sm:opacity-0">
-        <Image src={Planekiri} alt="Plane" />
+        <Image src={Planekiri} alt="Plane"/>
       </div>
       <div className="absolute w-[32vw] max-md:w-[45vw] translate-y-[5.5vw] max-md:translate-y-[32vw] left-0 max-sm:opacity-0">
-        <Image src={Circuitkiri2} alt="Circuit" />
+        <Image src={Circuitkiri2} alt="Circuit"/>
       </div>
       <div className="absolute w-[32vw] max-md:w-[45vw] max-sm:w-[150vw] translate-y-[5.5vw] max-sm:translate-y-[94vw] max-sm:translate-x-[63vw] max-md:translate-y-[32vw] right-[0vw]">
         <Image src={Circuitkanan2} alt="Circuit" />
@@ -50,14 +62,14 @@ export default function AboutFindIT() {
         <Image src={Awantengah2} alt="Awan" />
       </div>
 
-      <div className="relative flex max-sm:flex-col w-full justify-between">
+      <div className="relative flex max-sm:flex-col w-full justify-between" data-aos="fade-up" >
         <div className="relative w-[36.2vw] max-md:w-[150vw] max-sm:w-[150vw] max-md:translate-y-[25vw] flex flex-col justify-center items-center">
           <Image
             src={Unionkiri}
             alt="BG_Card.svg"
             className="max-md:translate-x-[-12vw] max-sm:translate-x-[-40vw] max-md:scale-150 max-sm:w-[100vw]"
           />
-          <div className="absolute flex w-[80%] max-sm:w-[55%] justify-center text-left items-center font-Montserrat mb-[1vw] text-[#233E51] text-[1vw] max-md:translate-x-[-1.5vw]  max-md:text-[1.85vw] max-sm:text-[3.2vw] max-sm:text-left font-medium max-sm:translate-x-[-25vw]">
+          <div className="absolute flex w-[80%] max-sm:w-[55%] justify-center text-left items-center font-Montserrat mb-[1vw] text-[#233E51] text-[1vw] max-md:translate-x-[-1.5vw]  max-md:text-[1.85vw] max-sm:text-[3.2vw] max-sm:text-left font-medium max-sm:translate-x-[-25vw]" >
             <p>
               <span className="font-bold">FIND IT</span> atau kependekan dari
               Future Innovation and Discovery Information and Technology
@@ -70,7 +82,8 @@ export default function AboutFindIT() {
             </p>
           </div>
         </div>
-        <div className="relative w-[36.2vw] max-md:w-[150vw] max-md:translate-y-[25vw] flex flex-col justify-center items-center max-sm:opacity-0">
+        <div className="relative w-[36.2vw] max-md:w-[150vw] max-md:translate-y-[25vw] flex flex-col justify-center items-center max-sm:opacity-0"
+        >
           <Image
             src={Unionkiri}
             alt="BG_Card.svg"
