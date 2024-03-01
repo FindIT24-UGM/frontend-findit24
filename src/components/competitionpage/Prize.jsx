@@ -9,7 +9,7 @@ export default function Prize({
   thirdPlacePrize,
 }) {
   return (
-    <div className="min-h-screen w-full bg-[url('https://i.ibb.co/0F9wh1L/Bg-Oren-Comp-Page-Mobile.png')] md:bg-[url('https://i.ibb.co/7bzwNYP/Bg-Oren-Comp-Page-Tab.png)'] lg:bg-[url('https://i.ibb.co/kyY5TTZ/Bg-Oren-Comp-Page-Desktop.png')] bg-cover">
+    <div className="min-h-screen w-full bg-[url('https://i.ibb.co/k5Cstkf/Vector-109.png')] md:bg-[url('https://i.ibb.co/zmxHCHq/Vector-108.png)'] lg:bg-[url('https://i.ibb.co/Dt4g96d/Vector-110.png')] bg-cover">
       <div className="relative pt-2 pb-40 sm:pt-20 gap-y-20 flex flex-col font-bold text-white ">
         {/* Beyond The Sky */}
         <p className="absolute font-Ava text-[8.889vw] md:text-[5vw] lg:text-[3.33vw] lg:rotate-90 font-normal bottom-16 lg:bottom-96 lg:-left-48 leading-[4vw] drop-shadow-[0_4px_12px_rgba(255,255,255,1)] opacity-50">
