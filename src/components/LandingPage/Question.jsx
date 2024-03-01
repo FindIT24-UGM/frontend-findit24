@@ -72,8 +72,9 @@ export default function Question() {
           </div>
         </div>
         <div className="relative w-[55vw] bg-no-repeat bg-contain grid-cols-2 grid z-10 max-md:w-[90vw] max-sm:grid-cols-1 translate-y-[8vw] max-md:translate-y-[12vw]">
-          {windowWidth < 450 ? (
-            <Image src={"/placeholderHP.svg"} fill alt="container" />
+          {windowWidth < 640 ? (
+            <Image src={"/placeholderHP.svg"} fill alt="container" className="max-md:translate-y-[-26vw]"/>
+
           ) : (
             <Image src={"/placeholder.svg"} fill alt="container" />
           )}
