@@ -21,11 +21,10 @@ export default function Title({
     }
   };
 
-  if (competitionTitle === "Competitive Programming") {
+  if (competitionTitle === "Capture the Flag") {
     linkGuidebook =
       "https://drive.google.com/drive/folders/1NryalDe7l-71Gu_judgdVUx7-R6ZNZ7E?usp=sharing";
   }
-
   const handleGuidebookClick = () => {
     return <Link href={`${linkGuidebook}`}></Link>;
   };
