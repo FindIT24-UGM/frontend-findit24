@@ -48,7 +48,7 @@ export default function Timeline({ data }) {
       <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:justify-start lg:overflow-auto lg:scrollbar-none lg:flex-col w-full px-10 z-10">
         <div className="mt-[13vw] space-y-[20vw] lg:hidden">
           {data.map((item, i) => (
-            <p key={i} className="font-GameOfSquid text-white h-[5vw] my-auto">
+            <p key={i} className="font-GameOfSquid text-white h-[5vw] my-auto text-[2.6vw]">
               {item.date}
             </p>
           ))}
