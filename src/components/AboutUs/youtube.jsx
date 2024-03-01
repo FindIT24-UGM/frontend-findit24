@@ -15,10 +15,10 @@ export default function Youtube() {
         </div>
         <div className="w-[62.3vw] max-md:w-[82.3vw] self-center">
           <iframe
-            className="absolute mx-auto my-auto w-[55vw] h-[30vw] translate-y-[4vw] max-md:w-[65vw] max-md:h-[35vw] max-md:translate-y-[4vw]  inset-0"
+            className="absolute rounded-3xl mx-auto my-auto w-[55vw] h-[30vw] translate-y-[4vw] max-md:w-[65vw] max-md:h-[35vw] max-md:translate-y-[4vw]  inset-0"
             width="800"
             height="450"
-            src="https://www.youtube.com/embed/iyHv-D9AR1Y?si=aZO_d-PSJm8efNL3"
+            src="https://www.youtube.com/embed/tW7Gr2J0b84?si=6QR5IjPS0MHILkkH"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
