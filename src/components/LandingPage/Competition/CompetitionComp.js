@@ -146,7 +146,7 @@ const CompetitionComp = () => {
         {windowWidth < 450 ? (
           <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
             <Swiper
-              slidesPerView={1.15}
+              slidesPerView={1.3}
               centeredSlides={false}
               onSlideChange={(swiper) => {
                 setActiveIndex(swiper.activeIndex);
@@ -154,7 +154,7 @@ const CompetitionComp = () => {
                 console.log(cards.name);
               }}
               onSwiper={setSwiper}
-              spaceBetween="15vw"
+              spaceBetween="13vw"
               grabCursor={true}
               className="w-full"
             >
@@ -186,7 +186,7 @@ const CompetitionComp = () => {
         ) : windowWidth < 860 ? (
           <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
             <Swiper
-              slidesPerView={1.25}
+              slidesPerView={1.8}
               centeredSlides={true}
               onSlideChange={(swiper) => {
                 setActiveIndex(swiper.activeIndex);
@@ -226,7 +226,7 @@ const CompetitionComp = () => {
         ) : (
           <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
             <Swiper
-              slidesPerView={1.2}
+              slidesPerView={1.8}
               centeredSlides={true}
               onSlideChange={(swiper) => {
                 setActiveIndex(swiper.activeIndex);

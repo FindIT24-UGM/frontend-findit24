@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import Polygon from "../../assets/background/Polygon6.png";
 import Roket1 from "../../assets/background/Roket1.png";
-import Cardcompe from "../../assets/background/cardcompe2.png";
 import Bintang1 from "../../assets/background/bintangCepe.png";
 import Bintang2 from "../../assets/background/bintangCepe2.png";
 import Pattern1 from "../../assets/background/patternCepe1.png";
 import PatternTab from "../../assets/background/patternCepeTab.png";
 import PatternHP from "../../assets/background/patternCepeHP.png";
+import HexagonDot_Desktop from "../../assets/compepage/Hexagon_Desktop.png";
 import Image from "next/image";
 
 function NamaLomba({ content }) {
@@ -71,19 +70,20 @@ function NamaLomba({ content }) {
   );
 }
 const cardAllItems = [
-  { title: "Title 1", items: ["Item 1", "Item 2"] },
-  { title: "Title 2", items: ["Item 3", "Item 4"] },
-  // Add more items as needed
+  { title: "Kategori Peserta", desc: ["Sendiri", "Team (Max 3 orang)"] },
+  { title: "Technical Meeting", desc: ["26 April 2024", "dikananmu"] },
+  { title: "Penutupan Pendaftaran", desc: ["24 Maret 2024", "dikananmu", "test aja"] },
 ];
 
-function PolygonDot() {
+function HexagonDot() {
   return (
-    <div className="w-[1.875vw]">
+    <div className="w-[1.5vw]">
       <Image
-        src={Polygon}
+        src={HexagonDot_Desktop}
         sizes={36}
         alt="Hexagon Dot.png"
-        className="relative z-30"
+        className="relative"
+        loading="lazy"
       ></Image>
     </div>
   );
@@ -91,103 +91,87 @@ function PolygonDot() {
 
 function LineH1() {
   return (
-    <div className="relative w-[50%] flex items-center justify-center">
-      <div className="absolute left-0 w-full h-[0.65vw] bg-gradient-to-l from-[#FF8C5A] to-[#F95949]"></div>
-      <div className="relative flex justify-between z-10 w-[110%]">
-        <PolygonDot />
-        <PolygonDot />
-        <PolygonDot />
+    <div className="w-[24.5vw] flex items-center">
+      <HexagonDot />
+      <div className="w-full h-[0.75vw] bg-gradient-to-l from-[#FF8C5A] to-[#F95949] -m-[1vw]"></div>
+    </div>
+  );
+}
+
+function LineV1() {
+  return (
+    <div className="h-[24.4vw] w-fit">
+      <HexagonDot />
+      <div className="h-full w-[45%] bg-gradient-to-b from-[#FF8C5A] to-[#F95949] mx-auto"></div>
+    </div>
+  );
+}
+
+function TimeLineCard({ data }) {
+  return (
+    <div
+      className={`bg-[url('https://i.ibb.co/Jsxq84v/cardcompe2.png')] flex justify-center items-center bg-cover w-[41.0vw] h-[22.4vw] lg:w-[20.5vw] lg:h-[11.2vw] `}
+    >
+      <div className="flex flex-col w-full">
+        <h2 className="font-Montserrat text-center text-[2vw] lg:text-[1vw] font-bold mb-2">{data.title}</h2>
+        <div className="flex flex-col justify-start items-start pl-[1.2vw]">
+          {data.desc.map((item, i) => (
+            <li className="font-Montserrat text-[2vw] lg:text-[0.9vw]" key={i}>{item}</li>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
-function LineH2() {
+function TimeLine({ data }) {
   return (
-    <div className="relative h-[54vw] max-sm:h-[88vw] flex justify-center w-[10vw] max-sm:left-0 max-sm:translate-y-[20vw]">
-      <div className="absolute w-[0.65vw] h-full bg-gradient-to-t from-[#FF8C5A] to-[#F95949]"></div>
-      <div className="relative flex flex-col justify-between items-center z-10 w-[110%]">
-        <PolygonDot />
-        <PolygonDot />
-        <PolygonDot />
-      </div>
-    </div>
-  );
-}
-
-function CardAll({ cardAllItems }) {
-  return (
-    <div className="relative w-[68%] flex items-center justify-center mt-14 mb-20 max-lg:flex-col flex-row max-md:w-[45%] max-md:my-0">
-      <div className="relative flex justify-between z-10 w-fit h-fit lg:flex-row flex-col max-md:h-[80vw] max-md:gap-[28vw] max-md:justify-normal max-sm:gap-[40vw]">
-        {cardAllItems.map((item, index) => (
-          <div
-            key={index}
-            className={`relative z-30 aspect-[150/80] w-[21.3vw] max-md:mx-auto max-md:my-0 max-md:w-[44vw] max-sm:w-[70vw] ${index !== cardAllItems.length - 1 ? 'mr-[3vw]' : ''}`}
-          >
-            <Image src={Cardcompe} alt="card.png" className="absolute" fill />
-            <div className="absolute w-full text-black ml-[5vw] text-[1.12vw] max-md:text-[2.8vw] max-md:ml-[8vw] max-sm:text-[3.4vw] max-sm:ml-[14vw] max-sm:mt-[6vw] mt-[3vw]  text-left">
-              <strong className="font-bold">{item.title}</strong>
-              <div className="mt-2">
-                <ul>
-                  {item.items.map((subItem, subIndex) => (
-                    <li key={subIndex} className="list-disc">
-                      {subItem}
-                    </li>
-                  ))}
-                </ul>
+    <div className="min-h-screen w-full flex justify-center items-center">
+      <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:flex-col px-10 z-10 lg:w-fit w-full">
+        {/* vertikal line */}
+        <div className="lg:hidden mt-[11.2vw]">
+          {data.map((item, i) => {
+            return i !== data.length - 1 && <LineV1 key={i} />;
+          })}
+          <HexagonDot />
+        </div>
+        <div className="flex flex-col lg:hidden">
+          {data.map((item, i) => {
+            console.log(i);
+            return (
+              <div key={i} className="my-[1vw]">
+                <TimeLineCard key={i} data={item} />
               </div>
-            </div>
-          </div>
-        ))}
+            );
+          })}
+        </div>
+
+        {/* horizontal line */}
+        <div className="hidden lg:flex ml-[10.25vw]">
+          {data.map((item, i) => {
+            return i !== data.length - 1 && <LineH1 key={i} />;
+          })}
+          <HexagonDot />
+        </div>
+        <div className="hidden lg:flex space-x-[4vw] text-center">
+          {data.map((item, i) => {
+            return (
+              <div className="flex space-x-[4.28vw]">
+                <div className="my-[1vw]">
+                  <TimeLineCard data={item} key={i} />
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   );
 }
-
-function Cardol() {
-  return (
-    <div className="w-[38.75vw] h-[22vw]">
-      <Image
-        src={Cardcompe}
-        width={50}
-        height={40}
-        className=" absolute w-[38.75vw]"
-        alt="CardCompe.png"
-      />
-      <div className="absolute text-[3.2vw] text-black text-left translate-x-[6vw] translate-y-[2vw] ">
-        <strong>Kategori Peserta</strong>
-        <ul>
-          <li className="list-disc">Sendiri</li>
-          <li className="list-disc">Team (Max 3 orang)</li>
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-const MyComponent = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsVisible(window.innerWidth <= 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  return isVisible;
-};
 
 export default function Second({
   cabangLomba,
   competitionDescription,
-  cardAllItems,
 }) {
   return (
     <main className="w-screen items-center justify-center text-center relative max-sm:mb-[50vw]">
@@ -239,37 +223,10 @@ export default function Second({
       <div className="font-Montserrat text-[3.85vw] md:text-[2.1vw] lg:text-[1vw] w-[83.33vw] md:w-[52vw] lg:w-[28vw] flex justify-center items-center text-center mx-auto my-20 max-md:w-[54%] max-md:text-[2vw]  max-sm:w-[60%] max-sm:text-[3vw]">
         {competitionDescription}
       </div>
-      {MyComponent() && (
-        // <div className=" w-full flex justify-center items-center mb-[16vw] max-sm:translate-x-[8vw] max-sm:gap-[3vw] max-sm:justify-normal">
-        // <LineH2 />
-        // <CardAll />
-        // </div>
-        <div className="grid grid-cols-3 h-fit gap-[5vw]">
-          {/*garis*/}
 
-          <div className="grid-span-1 justify-center">
-            <div className="w-full h-full flex place-self-center justify-end">
-              <div className="w-[0.65vw] h-[75%] place-self-center bg-gradient-to-t from-[#FF8C5A] to-[#F95949] flex flex-col justify-between items-center z-10">
-                <PolygonDot />
-                <PolygonDot />
-                <PolygonDot />
-              </div>
-            </div>
-          </div>
-
-          <div className="grid-span-2 flex flex-col gap-[3vw]">
-            <Cardol />
-            <Cardol />
-            <Cardol />
-          </div>
-        </div>
-      )}
-      {!MyComponent() && (
-        <div className="w-full flex flex-col justify-center items-center mb-[16vw]">
-          <LineH1 />
-          <CardAll cardAllItems={cardAllItems} />
-        </div>
-      )}
+      <TimeLine data={cardAllItems} />
     </main>
   );
 }
+
+
