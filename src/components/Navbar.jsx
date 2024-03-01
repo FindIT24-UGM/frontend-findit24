@@ -19,7 +19,7 @@ const Navbar = () => {
   // ubah isLogin di sini ya naufal
   const { isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
+  console.log(isAuthenticated)
   const router = useRouter();
   const [isSideNav, setIsSideNav] = useState(false);
   const [isLarge, setIsLarge] = useState(true);

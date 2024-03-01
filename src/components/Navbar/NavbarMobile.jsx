@@ -6,6 +6,7 @@ import { twMerge } from "tailwind-merge";
 import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const LOMBA = [
   "Capture the flag",
@@ -20,6 +21,7 @@ const LOMBA = [
 const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
   const [isCompetition, setIsCompetition] = useState(false);
   const router = useRouter();
+  const { user } = useSelector((state) => state.auth);
   return (
     <motion.div
       className="absolute z-[1000] right-0 top-[104%] w-fit  pt-10 h-screen bg-text-placeholder-dark flex flex-col items-end font-GameOfSquid lg:hidden"

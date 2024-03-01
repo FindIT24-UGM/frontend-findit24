@@ -4,15 +4,26 @@ import authService from "../services/authService";
 import { toast } from "react-toastify";
 import { Router } from "next/router";
 let user = {};
-// let token = {};
-// if (typeof window !== "undefined") {
-//   user = JSON.parse(localStorage.getItem("user"));
-//   // token = JSON.parse(localStorage.getItem("token"));
+let token = {};
+
+// if (typeof localStorage !== 'undefined') {
+//   const storedUser = localStorage.getItem("user");
+//   if (storedUser) {
+//     user = JSON.parse(storedUser);
+//   }
+  
+//   const storedToken = localStorage.getItem("token");
+//   if (storedToken) {
+//     token = JSON.parse(storedToken);
+//   }
+//   // Lakukan operasi menggunakan localStorage di sini
 // }
 
 const initialState = {
   // isAuthenticated: user === null || {} ? false : true,
   isAuthenticated: false,
+  user: user ? user : null,
+  // isAuthenticated: false,
   user: user ? user : null,
   isLoading: false,
   isError: false,
@@ -99,9 +110,9 @@ export const authSlice = createSlice({
       state.isSuccess = false;
       state.message = "";
     },
-    setAuthenticated(state, action) {
-      state.isAuthenticated = action.payload;
-    },
+    // setAuthenticated(state, action) {
+    //   state.isAuthenticated = action.payload;
+    // },
     extraReducers: {
       [HYDRATE]: (state, action) => {
         return {
@@ -133,8 +144,9 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.isAuthenticated = true;
         state.user = action.payload.user;
+        state.isAuthenticated = true;
+        state.token = action.payload.token;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;

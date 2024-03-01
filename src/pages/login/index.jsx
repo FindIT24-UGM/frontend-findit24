@@ -16,11 +16,12 @@ import Button from "../../components/Button.jsx";
 import Image from "next/image.js";
 import Link from "next/link.js";
 import ElectricPattern from "../../components/ElectricPattern.jsx";
+import axios from "axios";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { isAuthenticated, user, isLoading } = useSelector(
+  const { isAuthenticated, isLoading } = useSelector(
     (state) => state.auth
   );
 
@@ -28,32 +29,29 @@ const LoginPage = () => {
   const [password, setPassword] = useState(undefined);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [message, setMessage] = useState("");
+  const [user, setUser] = useState({})
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      dispatch(loadingStart());
-      dispatch(getUserData())
-        .unwrap()
-        .then((res) => {
-          dispatch(loadingEnd());
-          if (user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE) {
-            router.replace("/admin/dashboard/statistic");
-          } else if (user?.role !== process.env.NEXT_PUBLIC_ADMIN_ROLE) {
-            router.replace("/user/dashboard/beranda");
-          }
-        });
-    }
-  }, [isAuthenticated]);
-  const loginHandler = (e) => {
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     dispatch(loadingStart());
+  //     dispatch(getUserData())
+  //       .unwrap()
+  //       .then((res) => {
+  //         dispatch(loadingEnd());
+  //         if (user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE) {
+  //           router.replace("/admin/dashboard/statistic");
+  //         } else if (user?.role !== process.env.NEXT_PUBLIC_ADMIN_ROLE) {
+  //           router.replace("/user/dashboard/beranda");
+  //         }
+  //       });
+  //   }
+  // }, [isAuthenticated]);
+  const loginHandler = async(e) => {
     e.preventDefault();
-    if (!email) {
-      return setMessage("Email field is missing!");
+    const loginData = {
+      ...user,
     }
-    if (!password) {
-      return setMessage("Password field is missing!");
-    }
-    // ? Fetch:  POST /auth/login (DISPATCH (RTK))
-    dispatch(login({ email, password }))
+    dispatch(login(loginData))
       .unwrap()
       .then((res) => {
         dispatch(loadingEnd());
@@ -61,10 +59,26 @@ const LoginPage = () => {
         router.push("/user/dashboard/beranda");
       })
       .catch((err) => {
+        console.log(err);
+        console.log(loginData);
         toast.error("Email not found or password incorrect");
         dispatch(loadingEnd());
       });
   };
+
+  function changeHandler(e) {
+    const name = e.target.id
+    const value = e.target.value
+
+    setUser(() => {
+      return {
+        ...user,
+        [name]: value,
+      }
+    })
+
+    // console.log(user)
+  }
 
   const googleLoginHandler = async (e) => {
     // e.preventDefault();
@@ -99,7 +113,8 @@ const LoginPage = () => {
             </label>
             <input
               value={email}
-              onChange={(e) => setEmail(e.currentTarget.value)}
+              id="email"
+              onChange={changeHandler}
               placeholder="johndoe@email.com"
               className="flex items-center justify-center w-full px-4 py-3 text-sm text-black bg-white rounded-lg font-Montserrat h-fit"
             />
@@ -111,7 +126,8 @@ const LoginPage = () => {
             <div className="relative flex items-center justify-center w-full">
               <input
                 value={password}
-                onChange={(e) => setPassword(e.currentTarget.value)}
+                id="password"
+                onChange={changeHandler}
                 placeholder="at least 8 characters"
                 type={isPasswordVisible ? "text" : "password"}
                 className="w-full px-4 py-3 text-black bg-white rounded-lg font-Montserrat text-md"
