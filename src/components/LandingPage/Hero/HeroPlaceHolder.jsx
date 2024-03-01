@@ -17,7 +17,8 @@ const HeroPlaceHolder = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="bg-cover p-0 md:p-8 lg:bg-[url('https://i.ibb.co/pJ75N28/placeholder-Desktop.png')] lg:w-[1000px] lg:h-[250px] md:bg-[url('https://i.ibb.co/NTRcSNC/placeholder-Tab.png')] md:w-[702px] md:h-[245px] bg-[url('https://i.ibb.co/4SXs1b0/placeholder-Mobile.png')] w-[360px] h-[275px]">
+      <div className="bg-cover p-0 md:p-8 lg:bg-[url('https://i.ibb.co/pJ75N28/placeholder-Desktop.png')] lg:w-[1000px] lg:h-[250px] md:bg-[url('https://i.ibb.co/NTRcSNC/placeholder-Tab.png')] md:w-[702px] md:h-[245px] bg-[url('https://i.ibb.co/4SXs1b0/placeholder-Mobile.png')] w-[360px] h-[275px]"
+      data-aos="zoom-out-up">
         <div className="w-full h-full flex justify-between items-center lg:gap-72">
           <div className="lg:w-1/2 lg:m-auto">
             <p className="mb-10 lg:mb-0 text-white text-center">

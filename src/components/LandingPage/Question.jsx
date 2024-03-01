@@ -109,7 +109,6 @@ export default function Question() {
               </Link>
             </div>
           </div>
-        </div>
       </div>
       <div className="absolute right-[14vw] translate-y-[-10vw]">
         <Image
