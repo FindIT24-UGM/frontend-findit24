@@ -32,9 +32,9 @@ const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
       initial={isSideNav ? "hidden" : "visible"}
     >
       <div className="flex flex-col items-end ml-32 mr-8 text-lg gap-y-10">
-        <Link href="/webinar">
+        <Link href="/workshop">
           <p className="text-white transition-all duration-300 cursor-pointer hover:text-primary-500">
-            Webinar
+            Workshop
           </p>
         </Link>
         <div
