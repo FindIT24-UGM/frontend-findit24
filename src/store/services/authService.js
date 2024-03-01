@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 // REGISTER USER
 const signup = async (userData) => {
@@ -21,16 +22,16 @@ const login = async (userData) => {
     userData,
     {
       withCredentials: true,
-      headers: `Bearer ${token}`,
+      // headers: `Bearer ${token}`,
     }
   );
-  if (!response.data.error == true && typeof window !== "undefined") {
-    localStorage.setItem("user", JSON.stringify(response.data.user));
+  // if (response.data.error == false && typeof window !== "undefined") {
+    localStorage.setItem("user", JSON.stringify(response.data.userData));
     localStorage.setItem("token", JSON.stringify(response.data.token));
     axios.defaults.headers.common["Authorization"] =
       `Bearer ${response.data.token}`;
     Cookies.set("AuthToken", response.data.token);
-  }
+  // }
   return response.data;
   // if (!response.data.error == true && typeof window !== "undefined") {
   //   localStorage.setItem("user", JSON.stringify(response.data));
@@ -40,7 +41,6 @@ const login = async (userData) => {
   //   ] = `Bearer ${response.data.token}`;
   //   Cookies.set("AuthToken", response.data.token);
   // }
-  return response.data;
 };
 
 // ACTIVATE ACCOUNT
@@ -66,14 +66,16 @@ const logout = async () => {
       withCredentials: true,
     }
   );
-  return response.data;
 };
 
 // GET USER INFO
-const getUser = async () => {
-  const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + "/user", {
+const getUser = async (token, user) => {
+  const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + '/user', {
+    // headers: {
+    //   authorization: `Bearer ${token}`,
+    // },
     withCredentials: true,
-  });
+  },)
   return response.data;
 };
 

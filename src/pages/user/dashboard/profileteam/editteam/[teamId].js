@@ -117,9 +117,6 @@ export default function Index() {
             className="w-full h-full text-sm font-Montserrat font-medium text-[#B6B7BA] rounded-lg p-5 bg-text-placeholder-light cursor-pointer"
             type="text"
             placeholder="DD/MM/YYYY"
-            onChange={() => {
-              setDate(e.target.value);
-            }}
             value={value}
             onClick={onClick}
           ></input>
