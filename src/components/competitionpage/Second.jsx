@@ -139,7 +139,7 @@ function TimeLine({ data }) {
           {data.map((item, index) => {
             return (
               <div key={index} className="my-[1vw]">
-                <TimeLineCard key={index} data={item} />
+                <TimeLineCard data={item} />
               </div>
             );
           })}
