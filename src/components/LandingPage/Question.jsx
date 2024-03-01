@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 import Button from "../Button";
 import hmm1 from "../../assets/background/hmm1.png";
-import placeholder from "../../assets/background/placeholder.svg";
+import placeholder from "/placeholder.svg";
 import rightPlanet from "../../assets/background/rightPlanet.png";
-import placeholderHP from "../../assets/background/placeholderHP.svg";
+import placeholderHP from "/placeholderHP.svg";
 import bg1 from "../../assets/background/bg1.svg";
 import Link from "next/link";
 import { HiArrowRight } from "react-icons/hi";
@@ -61,7 +61,7 @@ export default function Question() {
             />
           </div>
         </div>
-        <div className="bg-[url('../assets/background/placeholder.svg')] w-[55vw] bg-no-repeat bg-contain grid-cols-2 grid z-10 max-md:w-[90vw] max-sm:bg-[url('../assets/background/placeholderHP.svg')] max-sm:grid-cols-1 translate-y-[8vw] max-md:translate-y-[12vw]">
+        <div className="bg-[url('/placeholder.svg')] w-[55vw] bg-no-repeat bg-contain grid-cols-2 grid z-10 max-md:w-[90vw] max-sm:bg-[url('assets/placeholderHP.svg')] max-sm:grid-cols-1 translate-y-[8vw] max-md:translate-y-[12vw]">
           <div className=" scale-125 max-sm:scale-60 translate-y-[-10vw] translate-x-[-2vw] w-fit max-sm:flex max-sm:place-self-center max-sm:translate-x-[0vw] max-md:translate-y-[-15vw] max-sm:translate-y-[-65vw] max-sm:mt-[25vw] max-sm:mb-[15vw]">
             <Image src={hmm1} alt="logo" className="w-[80vw] max-sm:w-[50vw]" />
           </div>
