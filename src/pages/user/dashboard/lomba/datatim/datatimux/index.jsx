@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect, useLayoutEffect, useReducer } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useLayoutEffect,
+  useReducer,
+} from "react";
 import RootLayout from "../../../../../layout";
 import { HiArrowLeft } from "react-icons/hi";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -16,7 +22,6 @@ const reducer = (state, action) => {
 };
 
 const DataTimUX = () => {
-
   const [state, dispatch] = useReducer(reducer, {
     eventId: process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE,
     teamName: undefined,
@@ -32,11 +37,9 @@ const DataTimUX = () => {
 
   const handleCreateTeam = () => {
     axios
-      .post(
-        `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
-          state,
-        { withCredentials: true }
-      )
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/team/new`, state, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log(res.data.request);
         router.push(
@@ -53,24 +56,31 @@ const DataTimUX = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     // Jika name adalah 'teamContact', maka kita perlu memeriksa id input
-    if (name === 'teamContact') {
+    if (name === "teamContact") {
       const id = e.target.id; // Ambil id input
-  
+
       // Jika id adalah 'teamContactPrimary', simpan nilai ke indeks 0
-      if (id === 'teamContactPrimary') {
-        dispatch({ type: "UPDATE_FIELD", field: name, value: [value, state.teamContact[1]] });
-      } 
+      if (id === "teamContactPrimary") {
+        dispatch({
+          type: "UPDATE_FIELD",
+          field: name,
+          value: [value, state.teamContact[1]],
+        });
+      }
       // Jika id adalah 'teamContactSecondary', simpan nilai ke indeks 1
-      else if (id === 'teamContactSecondary') {
-        dispatch({ type: "UPDATE_FIELD", field: name, value: [state.teamContact[0], value] });
+      else if (id === "teamContactSecondary") {
+        dispatch({
+          type: "UPDATE_FIELD",
+          field: name,
+          value: [state.teamContact[0], value],
+        });
       }
     } else {
       dispatch({ type: "UPDATE_FIELD", field: name, value });
     }
   };
-  
 
   const [institusi, setinstitusi] = useState(undefined);
   const [namaTim, setNamaTim] = useState(undefined);
@@ -258,8 +268,7 @@ const DataTimUX = () => {
                 />
               </div>
               <div className="w-full border border-text-placeholder-light my-4" />
-              <div className="w-full flex justify-between items-center">
-              </div>
+              <div className="w-full flex justify-between items-center"></div>
               <button
                 className="w-full bg-background-skyblue py-4 rounded-md mt-4"
                 onClick={() => {

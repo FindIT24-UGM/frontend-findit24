@@ -58,21 +58,29 @@ export default function Index() {
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
-      // Jika name adalah 'teamContact', maka kita perlu memeriksa id input
-      if (name === 'teamContact') {
-        const id = e.target.id; // Ambil id input
-    
-        // Jika id adalah 'teamContactPrimary', simpan nilai ke indeks 0
-        if (id === 'teamContactPrimary') {
-          dispatch({ type: "UPDATE_FIELD", field: name, value: [value, state.teamContact[1]] });
-        } 
-        // Jika id adalah 'teamContactSecondary', simpan nilai ke indeks 1
-        else if (id === 'teamContactSecondary') {
-          dispatch({ type: "UPDATE_FIELD", field: name, value: [state.teamContact[0], value] });
-        }
-      } else {
-        dispatch({ type: "UPDATE_FIELD", field: name, value });
+    // Jika name adalah 'teamContact', maka kita perlu memeriksa id input
+    if (name === "teamContact") {
+      const id = e.target.id; // Ambil id input
+
+      // Jika id adalah 'teamContactPrimary', simpan nilai ke indeks 0
+      if (id === "teamContactPrimary") {
+        dispatch({
+          type: "UPDATE_FIELD",
+          field: name,
+          value: [value, state.teamContact[1]],
+        });
       }
+      // Jika id adalah 'teamContactSecondary', simpan nilai ke indeks 1
+      else if (id === "teamContactSecondary") {
+        dispatch({
+          type: "UPDATE_FIELD",
+          field: name,
+          value: [state.teamContact[0], value],
+        });
+      }
+    } else {
+      dispatch({ type: "UPDATE_FIELD", field: name, value });
+    }
   };
 
   const handleDateChange = (date) => {
@@ -138,11 +146,9 @@ export default function Index() {
 
   const handleCreateTeam = () => {
     axios
-      .patch(
-        `${process.env.NEXT_PUBLIC_API_URL}/team/${teamId}`,
-          state,
-        { withCredentials: true }
-      )
+      .patch(`${process.env.NEXT_PUBLIC_API_URL}/team/${teamId}`, state, {
+        withCredentials: true,
+      })
       .then((res) => {
         router.push(
           `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/profileteam/${teamId}`

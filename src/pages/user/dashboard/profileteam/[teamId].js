@@ -14,7 +14,7 @@ import { HiArrowLeft } from "react-icons/hi";
 
 import Comment from "./Comment";
 import Status from "./Status";
-import Accordion from "./Accordion";
+import Accordion from "../../../../components/LandingPage/Dashboard/Accordion";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { format } from "date-fns";
@@ -164,10 +164,14 @@ export default function Index() {
       {/* header */}
       <div className="flex items-center space-x-5 text-white text-xl lg:hidden">
         <FaArrowLeft />
-        <button onClick={() => {
-          router.push(`/user/dashboard/lomba`);
-        }}>
-        <h2 className="font-GameOfSquid bg-black font-bold">DASHBOARD LOMBA</h2>
+        <button
+          onClick={() => {
+            router.push(`/user/dashboard/lomba`);
+          }}
+        >
+          <h2 className="font-GameOfSquid bg-black font-bold">
+            DASHBOARD LOMBA
+          </h2>
         </button>
       </div>
       <button
@@ -249,7 +253,7 @@ export default function Index() {
           <div className="border-b-[1px] pb-5 border-slate-600">
             <div className="flex items-center justify-between">
               <h2 className="font-CreatoDisplay font-bold text-[24px]">
-                {dataTeam?.teamName}
+                {dataTeam?.teamName}1
               </h2>
               <Status isVerified={dataTeam?.verified} />
             </div>
