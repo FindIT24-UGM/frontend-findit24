@@ -16,11 +16,9 @@ export default function Accordion({
   institutionNumber,
   institutionFile,
 }) {
-  // Parsing dateOfBirth menjadi objek Date yang valid
   const parsedDateOfBirth = isValid(parseISO(dateOfBirth))
     ? parseISO(dateOfBirth)
     : null;
-  // Format tanggal jika valid, jika tidak, beri string kosong
   const formattedDateOfBirth = parsedDateOfBirth
     ? format(parsedDateOfBirth, "dd MMMM y")
     : "";
@@ -48,8 +46,8 @@ export default function Accordion({
         }}
       >
         <div className="flex items-center space-x-4">
-          {array.map((idx) => {
-            <div key={idx}>{array[idx]}</div>;
+          {array.map((value, idx) => {
+            <div key={idx}>{value}</div>;
           })}
           <p>{name}</p>
         </div>
