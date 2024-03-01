@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import { IoIosSave } from "react-icons/io";
-import Accordion from "../Accordion";
+import Accordion from "../../../../../components/AdminPage/Accordion";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { format } from "date-fns";
