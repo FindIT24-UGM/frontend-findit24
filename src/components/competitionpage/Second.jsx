@@ -130,7 +130,7 @@ function TimeLine({ data }) {
       <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:flex-col px-10 z-10 lg:w-fit w-full">
         {/* vertikal line */}
         <div className="lg:hidden mt-[11.2vw]">
-          {data.map((item, index) => {
+          {data.map((item, index) => { 
             return index !== data.length - 1 && <LineV1 key={index} />;
           })}
           <HexagonDot />
