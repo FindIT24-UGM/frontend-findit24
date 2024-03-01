@@ -21,13 +21,13 @@ const Gap = () => {
       <div className="w-full flex flex-col items-center absolute">
         <Image
           src={LogoFindIT}
-          className="w-[15%] lg:w-[12%] md:w-[18%] z-1"
+          className="w-[20%] lg:w-[12%] md:w-[18%] z-1"
           alt="LogoFindIT.png"
           data-aos="fade-up"
         />
         <Image
           src={AwanKiriAtas}
-          className="w-[20%] right-[75vw] top-[20vh] absolute"
+          className="w-[28%] right-[75vw] top-[20vh] absolute"
           alt="AwanKiri.png"
           data-aos="fade-left"
         />
