@@ -39,6 +39,12 @@ function HeroWS() {
 
   return (
     <div className="min-h-screen w-full bg-[#233E51] flex justify-center">
+      <Image
+        src={BG_WS}
+        className="top-0 w-[120vw] lg:w-[75vw]"
+        alt="Background.png"
+        data-aos="fade-down"
+      ></Image>
       <div className="flex flex-col justify-center items-center gap-y-8 absolute">
         <p className="font-Ava text-white text-[20px] lg:text-[1.25vw]">
           {"//Workshop"}
@@ -101,12 +107,6 @@ function HeroWS() {
           <p className="font-Montserrat text-white">Gulir ke bawah</p>
         </div>
       </div>
-      <Image
-        src={BG_WS}
-        className="top-0 w-[120vw] lg:w-[75vw]"
-        alt="Background.png"
-        data-aos="fade-down"
-      ></Image>
     </div>
   );
 }
