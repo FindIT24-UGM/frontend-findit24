@@ -21,10 +21,11 @@ import {
   getTeamsToSearch,
   getUserTeam,
 } from "../../../../store/slices/userSlice.js";
-import { loadingEnd } from "../../../../store/action.js";
+import { loadingEnd, loadingStart } from "../../../../store/action.js";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router.js";
+import { toast } from "react-toastify";
 
 const Index = ({ nameAbr }) => {
   const router = useRouter();
@@ -58,6 +59,7 @@ const Index = ({ nameAbr }) => {
   }, [isAuthenticated]);
 
   const searchTeam = () => {
+    dispatch(loadingStart);
     axios
       .get(
         `${process.env.NEXT_PUBLIC_API_URL}/team/join/search?teamCode=${inputCode}`,
@@ -74,6 +76,7 @@ const Index = ({ nameAbr }) => {
         setOpenTimTdkKetemu(true);
         setDiscoverTeam([]);
       });
+    dispatch(loadingEnd);
   };
 
   // const createNewTeam = (eventId, teamCode) => {
@@ -95,7 +98,7 @@ const Index = ({ nameAbr }) => {
   //     });
   // };
 
-  const joinTeam = ( eventId, teamId, teamLeaderId ) => {
+  const joinTeam = (eventId, teamId, teamLeaderId) => {
     axios
       .post(
         `${process.env.NEXT_PUBLIC_API_URL}/team/join/`,
@@ -112,11 +115,11 @@ const Index = ({ nameAbr }) => {
         // console.log(res.data.message);
         setOpenInvitation(false);
         setOpenTimDitemukan(false);
-        router.push("/user/dashboard/lomba")
-        
+        router.push("/user/dashboard/lomba");
       })
       .catch((err) => {
         console.log(err);
+        toast.error(err.response.data.message);
       });
   };
 
@@ -134,7 +137,7 @@ const Index = ({ nameAbr }) => {
             </p>
           </div>
           <div className="basis-1/2 flex items-center justify-end gap-4 lg:gap-12">
-            {width < 640 ? (
+            {width.value < 640 ? (
               <>
                 {verify === "VERIFIED" ? (
                   <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2">
@@ -271,7 +274,7 @@ const Index = ({ nameAbr }) => {
 
     return (
       <>
-        {width < 1024 ? (
+        {width.value < 1024 ? (
           <div
             className="group w-[115px] h-[160px]  px-[7px] my-3 bg-primary-500 rounded-md flex flex-col justify-around items-center hover:scale-110 hover:border-[3px] hover:border-text-placeholder-dark transition duration-500 hover:bg-white"
             onClick={clickStatus}
@@ -340,7 +343,7 @@ const Index = ({ nameAbr }) => {
               <h1 className="text-neutral-700 font-CreatoDisplay text-base lg:text-[28px] lg:leading-8 font-bold text-center sm:text-left">
                 Daftar Lomba
               </h1>
-              {width < 640 ? (
+              {width.value < 640 ? (
                 <div className="pl-[5.7vw] flex items-center justify-center">
                   <Swiper
                     centeredSlides={true}
@@ -412,7 +415,7 @@ const Index = ({ nameAbr }) => {
                     </SwiperSlide>
                   </Swiper>
                 </div>
-              ) : width < 1024 ? (
+              ) : width.value < 1024 ? (
                 <div className="w-full py-[7px]">
                   <Swiper
                     slidesPerView={5}

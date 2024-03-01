@@ -49,9 +49,7 @@ export default function Accordion({
           <div className="py-2">
             <h2 className="font-bold">Tanggal Lahir</h2>
             <p>
-              {dateOfBirth
-                ? format(new Date(dateOfBirth), "dd MMMM yyyy")
-                : "-"}
+              {dateOfBirth && format(new Date(dateOfBirth), "dd MMMM yyyy")}
             </p>
           </div>
           <div className="py-2">

@@ -1,30 +1,29 @@
 import { useState, useEffect } from "react";
 
-const useWindowSize = () => {
+export default function useWindowSize() {
+  const isClient = typeof window === "object";
+
   const [windowSize, setWindowSize] = useState({
-    width: undefined,
-    height: undefined,
+    width: isClient ? window.innerWidth : undefined,
+    height: isClient ? window.innerHeight : undefined,
   });
 
   useEffect(() => {
+    if (!isClient) {
+      return false;
+    }
+
     const handleResize = () => {
-      if (typeof window !== "undefined") {
-        // Memastikan window tersedia
-        setWindowSize({
-          width: window.innerWidth,
-          height: window.innerHeight,
-        });
-      }
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
     };
 
-    // Panggil handleResize setiap kali window diubah ukurannya
     window.addEventListener("resize", handleResize);
 
-    // Bersihkan event listener saat komponen unmount
     return () => window.removeEventListener("resize", handleResize);
-  }, []); // Penambahan dependensi kosong agar efek hanya dijalankan sekali saat mounting
+  }, []);
 
   return windowSize;
-};
-
-export default useWindowSize;
+}
