@@ -131,7 +131,7 @@ function TimeLine({ data }) {
         {/* vertikal line */}
         <div className="lg:hidden mt-[11.2vw]">
           {data.map((item, index) => {
-            return i !== data.length - 1 && <LineV1 key={index} />;
+            return index !== data.length - 1 && <LineV1 key={index} />;
           })}
           <HexagonDot />
         </div>
@@ -148,7 +148,7 @@ function TimeLine({ data }) {
         {/* horizontal line */}
         <div className="hidden lg:flex ml-[10.25vw]">
           {data.map((item, index) => {
-            return i !== data.length - 1 && <LineH1 key={index} />;
+            return index !== data.length - 1 && <LineH1 key={index} />;
           })}
           <HexagonDot />
         </div>
