@@ -130,7 +130,6 @@ const Index = ({ nameAbr }) => {
         router.push("/user/dashboard/lomba");
       })
       .catch((err) => {
-        console.log(err);
         toast.error(err.response.data.message);
       });
   };
@@ -309,7 +308,7 @@ const Index = ({ nameAbr }) => {
       </>
     );
   };
-  console.log(userTeam.teams);
+
   return (
     <>
       <UserDashboardLayout>

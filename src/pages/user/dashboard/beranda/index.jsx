@@ -61,8 +61,9 @@ const Index = () => {
   /*---------FETCH ANNOUNCEMENT DARI TEAM2 YG DIIKUTI USER----------- */
   useEffect(() => {
     if (isAuthenticated) {
-      userTeam?.asMember?.forEach((team) => {
-        setEventIds((prevEventIds) => [...prevEventIds, team.eventId._id]);
+      userTeam?.teams?.map((team) => {
+        setEventIds((prevEventIds) => [...prevEventIds, team.eventId]);
+
       });
       if (user?.dateOfBirth) {
         const formattedDateOfBirth = format(

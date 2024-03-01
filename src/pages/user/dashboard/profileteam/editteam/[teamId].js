@@ -37,7 +37,6 @@ export default function Index() {
         })
         .then((res) => {
           setDataTeam(res.data.info);
-          console.log(res.data.info);
         })
         .catch((err) => {
           console.log(err);
@@ -156,9 +155,7 @@ export default function Index() {
         return res.data.data;
       })
       .catch((err) => {
-        console.log(err.response.data.message);
         toast.error(err.response.data.message);
-        return err.response.data;
       });
   };
 
