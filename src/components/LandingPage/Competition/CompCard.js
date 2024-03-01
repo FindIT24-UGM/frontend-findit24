@@ -14,9 +14,13 @@ const CompCard = (props) => {
       data-aos="fade-up">
         <div className="order-2 md:order-1 md:w-1/2 md:flex md:items-center my-5 md:my-0">
           <div className="space-y-5 flex flex-col items-center">
-            <p className="text-center font-Montserrat text-white text-[2.5wv] md:text-[1.5vw] lg:text-[1vw]">{mainDesc}</p>
+            <p className="text-center font-Montserrat text-white text-[2.5wv] md:text-[1.5vw] lg:text-[1vw]">
+              {mainDesc}
+            </p>
             <button className="flex items-center space-x-3 px-2 py-3 text-white text-xl bg-black rounded-md lg:hidden">
-              <p className="font-GameOfSquid font-bold bg text-[2.5vw]">see more</p>
+              <p className="font-GameOfSquid font-bold bg text-[2.5vw]">
+                see more
+              </p>
               <HiArrowRight />
             </button>
           </div>
@@ -26,12 +30,16 @@ const CompCard = (props) => {
         </div>
         <div className="hidden lg:order-3 md:order-1 md:w-1/2 lg:flex md:items-center my-5 md:my-0">
           <div className="hidden space-y-5 lg:flex lg:flex-col items-center">
-            <p className="text-center font-Montserrat text-white text-[1.2vw]">{secDesc}</p>
+            <p className="text-center font-Montserrat text-white text-[1.2vw]">
+              {secDesc}
+            </p>
             <Link
               href={linkDestination}
               className="flex items-center space-x-3 px-2 py-3 text-white text-[2.5vw] bg-black rounded-md"
             >
-              <p className="font-GameOfSquid font-bold bg text-[1vw]">see more</p>
+              <p className="font-GameOfSquid font-bold bg text-[1vw]">
+                see more
+              </p>
               <HiArrowRight />
             </Link>
           </div>

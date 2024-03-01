@@ -6,7 +6,6 @@ import { HiExclamationCircle } from "react-icons/hi";
 import { IoCloseCircle } from "react-icons/io5";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import useWindowSize from "./useWindowSize";
 import Button from "../../../../components/Button";
 import CtfLogo from "../../../../assets/Logo/DashboardLomba/CtfLogo.jsx";
 import CpLogo from "../../../../assets/Logo/DashboardLomba/CpLogo.jsx";
@@ -21,11 +20,14 @@ import {
   getTeamsToSearch,
   getUserTeam,
 } from "../../../../store/slices/userSlice.js";
-import { loadingEnd } from "../../../../store/action.js";
+import { loadingEnd, loadingStart } from "../../../../store/action.js";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router.js";
+import { toast } from "react-toastify";
 
-const Index = (nameAbr) => {
+const Index = ({ nameAbr }) => {
+  const router = useRouter();
   const { isAuthenticated } = useSelector((state) => state.auth);
   const { userTeam } = useSelector((state) => state.user);
 
@@ -40,6 +42,19 @@ const Index = (nameAbr) => {
   const [openTimDitemukan, setOpenTimDitemukan] = useState(false);
   const [openTimTdkKetemu, setOpenTimTdkKetemu] = useState(false);
   const haveJoined = countLomba !== 0;
+  const [windowWidth, setWindowWidth] = useState(null);
+
+  useEffect(() => {
+    const updateWindowsWidth = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    updateWindowsWidth();
+
+    return () => {
+      window.addEventListener("resize", updateWindowsWidth);
+    };
+  }, []);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -56,6 +71,7 @@ const Index = (nameAbr) => {
   }, [isAuthenticated]);
 
   const searchTeam = () => {
+    dispatch(loadingStart);
     axios
       .get(
         `${process.env.NEXT_PUBLIC_API_URL}/team/join/search?teamCode=${inputCode}`,
@@ -72,6 +88,7 @@ const Index = (nameAbr) => {
         setOpenTimTdkKetemu(true);
         setDiscoverTeam([]);
       });
+    dispatch(loadingEnd);
   };
 
   // const createNewTeam = (eventId, teamCode) => {
@@ -110,13 +127,14 @@ const Index = (nameAbr) => {
         // console.log(res.data.message);
         setOpenInvitation(false);
         setOpenTimDitemukan(false);
+        router.push("/user/dashboard/lomba");
       })
       .catch((err) => {
         console.log(err);
+        toast.error(err.response.data.message);
       });
   };
 
-  const { width } = useWindowSize();
   function TeamCard({ id, competition, teamName, verify }) {
     return (
       <Link href={`/user/dashboard/profileteam/${id}`}>
@@ -130,7 +148,7 @@ const Index = (nameAbr) => {
             </p>
           </div>
           <div className="basis-1/2 flex items-center justify-end gap-4 lg:gap-12">
-            {width < 640 ? (
+            {windowWidth < 640 ? (
               <>
                 {verify === "VERIFIED" ? (
                   <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2">
@@ -267,7 +285,7 @@ const Index = (nameAbr) => {
 
     return (
       <>
-        {width < 1024 ? (
+        {windowWidth < 1024 ? (
           <div
             className="group w-[115px] h-[160px]  px-[7px] my-3 bg-primary-500 rounded-md flex flex-col justify-around items-center hover:scale-110 hover:border-[3px] hover:border-text-placeholder-dark transition duration-500 hover:bg-white"
             onClick={clickStatus}
@@ -336,7 +354,7 @@ const Index = (nameAbr) => {
               <h1 className="text-neutral-700 font-CreatoDisplay text-base lg:text-[28px] lg:leading-8 font-bold text-center sm:text-left">
                 Daftar Lomba
               </h1>
-              {width < 640 ? (
+              {windowWidth < 640 ? (
                 <div className="pl-[5.7vw] flex items-center justify-center">
                   <Swiper
                     centeredSlides={true}
@@ -408,7 +426,7 @@ const Index = (nameAbr) => {
                     </SwiperSlide>
                   </Swiper>
                 </div>
-              ) : width < 1024 ? (
+              ) : windowWidth < 1024 ? (
                 <div className="w-full py-[7px]">
                   <Swiper
                     slidesPerView={5}

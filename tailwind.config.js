@@ -64,7 +64,7 @@ module.exports = {
       fontFamily: {
         Montserrat: ["Montserrat", "sans-serif"],
         Ava: ["AVA"],
-        GameOfSquid: ["Game Of Squid"],
+        GameOfSquid: ["Game-Of-Squid"],
         CreatoDisplay: ["Creato Display"],
       },
       dropShadow: {

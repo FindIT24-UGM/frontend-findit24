@@ -6,17 +6,17 @@
 
 @font-face {
   font-family: "AVA";
-  src: url("../assets/fonts/AVA.ttf");
+  src: url("/assets/fonts/AVA.ttf");
 }
 
 @font-face {
-  font-family: "Game Of Squid";
-  src: url("../assets/fonts/Game\ Of\ Squids.otf");
+  font-family: "Game-Of-Squid";
+  src: url("/assets/fonts/Game-Of-Squids.otf");
 }
 
 @font-face {
   font-family: "Creato Display";
-  src: url("../assets/fonts/CreatoDisplay-Regular.otf");
+  src: url("/assets/fonts/CreatoDisplay-Regular.otf");
 }
 
 * {

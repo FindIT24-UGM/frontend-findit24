@@ -17,7 +17,7 @@ export default function Button({
       case "primary":
         return `bg-primary-300 ${widthStyle} cursor-pointer font-GameOfSquid rounded-md border border-primary-300 hover:border-black hover:border-[2px] active:border-black active:border-[2px]`;
       case "secondary":
-        return `bg-transparent ${widthStyle} cursor-pointer rounded-md border-primary-300 border-[3px] font-GameOfSquid text-primary-300 hover:border-black hover:border-[2px] active:border-black active:border-[2px]`;
+        return `bg-transparent ${widthStyle} cursor-pointer rounded-md border-primary-300 border-[2px] font-GameOfSquid text-primary-300 hover:border-black hover:border-[2px] active:border-black active:border-[2px]`;
       default:
         return;
     }
@@ -37,7 +37,7 @@ export default function Button({
   }, [size]);
 
   const buttonClasses = useMemo(() => {
-    return `${btnVariant} ${btnSize} ${customClass}`.trim(); // Hapus spasi ekstra jika customClass kosong
+    return `${customClass} ${btnVariant} ${btnSize} `.trim(); // Hapus spasi ekstra jika customClass kosong
   }, [btnVariant, btnSize, customClass]);
 
   if (!disabled) {

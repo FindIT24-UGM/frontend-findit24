@@ -5,7 +5,6 @@ import Link from "next/link";
 import AboutFindIT from "../../components/AboutUs/aboutfindit";
 import Theme from "../../components/AboutUs/theme";
 import Youtube from "../../components/AboutUs/youtube";
-import Top from "../../assets/about/Topmotif.svg";
 import Circuitkiri1 from "../../assets/about/Circuitkiri1.png";
 import Circuitkanan1 from "../../assets/about/Circuitkanan1.png";
 import Circuitkiri2 from "../../assets/about/Circuitkiri2.png";

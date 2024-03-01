@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import HexagonDot_Desktop from "../../assets/compepage/Hexagon_Desktop.png";
+import awanBackground from "../../assets/background/awanCompPage.png";
+import VerticalVector from "../../assets/background/patternBgTimelineVertikal.png";
+import HorizontalVector from "../../assets/background/patternBgTimeline.png";
 
 import TimeLineCard from "./TimeLineCard";
 
@@ -38,11 +41,11 @@ function LineV1() {
 
 export default function Timeline({ data }) {
   return (
-    <div className="bg-background-skyblue min-h-screen w-full p-10 ">
-      <h2 className="font-GameOfSquid text-[48px] font-bold text-white text-center lg:text-left lg:pl-10 mb-14">
+    <div className="bg-background-skyblue min-h-screen w-full py-10 relative">
+      <h2 className="font-GameOfSquid text-[48px] font-bold text-white text-center lg:text-left lg:pl-10 mb-14 px-10">
         Timeline
       </h2>
-      <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:justify-start lg:overflow-auto lg:scrollbar-none lg:flex-col w-full">
+      <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:justify-start lg:overflow-auto lg:scrollbar-none lg:flex-col w-full px-10 z-10">
         <div className="mt-[13vw] space-y-[20vw] lg:hidden">
           {data.map((item, i) => (
             <p key={i} className="font-GameOfSquid text-white h-[5vw] my-auto">
@@ -114,6 +117,16 @@ export default function Timeline({ data }) {
             );
           })}
         </div>
+        <div className="absolute flex -mt-[8vh] lg:hidden">
+          <Image src={VerticalVector} alt="gambar vector h-[200vh]" />
+          <Image src={VerticalVector} alt="gambar vector h-[200vh]" />
+        </div>
+        <div className="w-full relative hidden lg:flex -mt-[45vh]">
+          <Image src={HorizontalVector} alt="gambar vector" />
+        </div>
+      </div>
+      <div className="lg:hidden">
+        <Image src={awanBackground} className="w-full" alt="gambar awan" />
       </div>
     </div>
   );
