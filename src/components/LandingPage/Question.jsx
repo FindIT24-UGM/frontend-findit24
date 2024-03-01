@@ -26,8 +26,6 @@ export default function Question() {
     };
   }, []);
 
-  const handleContactUsClick = () => {};
-
   return (
     <div className="h-fit bg-background-skyblue flex justify-center z-[-4]">
       <div className="relative flex justify-center">
@@ -75,12 +73,7 @@ export default function Question() {
         </div>
         <div className="relative w-[55vw] bg-no-repeat bg-contain grid-cols-2 grid z-10 max-md:w-[90vw] max-sm:grid-cols-1 translate-y-[8vw] max-md:translate-y-[12vw]">
           {windowWidth < 450 ? (
-            <Image
-              src={"/placeholderHP.svg"}
-              fill
-              alt="container"
-              objectFit="cover"
-            />
+            <Image src={"/placeholderHP.svg"} fill alt="container" />
           ) : (
             <Image src={"/placeholder.svg"} fill alt="container" />
           )}
@@ -109,6 +102,7 @@ export default function Question() {
               </Link>
             </div>
           </div>
+        </div>
       </div>
       <div className="absolute right-[14vw] translate-y-[-10vw]">
         <Image
