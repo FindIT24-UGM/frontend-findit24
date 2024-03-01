@@ -115,8 +115,8 @@ function TimeLineCard({ data }) {
       <div className="flex flex-col w-full">
         <h2 className="font-Montserrat text-center text-[2vw] lg:text-[1vw] font-bold mb-2">{data.title}</h2>
         <div className="flex flex-col justify-start items-start pl-[1.2vw]">
-          {data.desc.map((item, i) => (
-            <li className="font-Montserrat text-[2vw] lg:text-[0.9vw]" key={i}>{item}</li>
+          {data.desc.map((item, index) => (
+            <li className="font-Montserrat text-[2vw] lg:text-[0.9vw]" key={index}>{item}</li>
           ))}
         </div>
       </div>
@@ -130,17 +130,16 @@ function TimeLine({ data }) {
       <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:flex-col px-10 z-10 lg:w-fit w-full">
         {/* vertikal line */}
         <div className="lg:hidden mt-[11.2vw]">
-          {data.map((item, i) => {
-            return i !== data.length - 1 && <LineV1 key={i} />;
+          {data.map((item, index) => {
+            return i !== data.length - 1 && <LineV1 key={index} />;
           })}
           <HexagonDot />
         </div>
         <div className="flex flex-col lg:hidden">
-          {data.map((item, i) => {
-            console.log(i);
+          {data.map((item, index) => {
             return (
-              <div key={i} className="my-[1vw]">
-                <TimeLineCard key={i} data={item} />
+              <div key={index} className="my-[1vw]">
+                <TimeLineCard key={index} data={item} />
               </div>
             );
           })}
@@ -148,17 +147,17 @@ function TimeLine({ data }) {
 
         {/* horizontal line */}
         <div className="hidden lg:flex ml-[10.25vw]">
-          {data.map((item, i) => {
-            return i !== data.length - 1 && <LineH1 key={i} />;
+          {data.map((item, index) => {
+            return i !== data.length - 1 && <LineH1 key={index} />;
           })}
           <HexagonDot />
         </div>
         <div className="hidden lg:flex space-x-[4vw] text-center">
-          {data.map((item, i) => {
+          {data.map((item, index) => {
             return (
               <div className="flex space-x-[4.28vw]">
                 <div className="my-[1vw]">
-                  <TimeLineCard data={item} key={i} />
+                  <TimeLineCard data={item} key={index} />
                 </div>
               </div>
             )
