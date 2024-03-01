@@ -115,8 +115,8 @@ function TimeLineCard({ data }) {
       <div className="flex flex-col w-full">
         <h2 className="font-Montserrat text-center text-[2vw] lg:text-[1vw] font-bold mb-2">{data.title}</h2>
         <div className="flex flex-col justify-start items-start pl-[1.2vw]">
-          {data.desc.map((item, index) => (
-            <li className="font-Montserrat text-[2vw] lg:text-[0.9vw]" key={index}>{item}</li>
+          {data.desc.map((item, idx) => (
+            <li className="font-Montserrat text-[2vw] lg:text-[0.9vw]" key={idx}>{item}</li>
           ))}
         </div>
       </div>
@@ -155,9 +155,9 @@ function TimeLine({ data }) {
         <div className="hidden lg:flex space-x-[4vw] text-center">
           {data.map((item, index) => {
             return (
-              <div className="flex space-x-[4.28vw]">
+              <div className="flex space-x-[4.28vw]" key={index}>
                 <div className="my-[1vw] ">
-                  <TimeLineCard data={item} key={index} />
+                  <TimeLineCard data={item} />
                 </div>
               </div>
             )
