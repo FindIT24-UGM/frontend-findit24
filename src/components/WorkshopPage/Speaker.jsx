@@ -5,7 +5,9 @@ import Image from "next/image";
 function Speaker() {
   return (
     <div className="bg-[#233E51] flex items-center justify-center min-h-screen pt-20 pb-10">
-      <div className="bg-[url('https://i.ibb.co/37G2396/speaker-Card.png')] bg-cover w-[100vw] h-[71.42vw] lg:w-[56vw] lg:h-[40vw] flex flex-col items-center">
+      <div className="bg-[url('https://i.ibb.co/37G2396/speaker-Card.png')] bg-cover w-[100vw] h-[71.42vw] lg:w-[56vw] lg:h-[40vw] flex flex-col items-center"
+      data-aos="flip-right"
+      >
         <p className="text-white font-GameOfSquid text-[3vw] mt-[2%] mb-[9.5%] lg:mb-[6%] h-fit w-fit">
           Speaker
         </p>
