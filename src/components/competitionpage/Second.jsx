@@ -69,11 +69,6 @@ function NamaLomba({ content }) {
     </div>
   );
 }
-const cardAllItems = [
-  { title: "Kategori Peserta", desc: ["Sendiri", "Team (Max 3 orang)"] },
-  { title: "Technical Meeting", desc: ["26 April 2024", "dikananmu"] },
-  { title: "Penutupan Pendaftaran", desc: ["24 Maret 2024", "dikananmu", "test aja"] },
-];
 
 function HexagonDot() {
   return (
@@ -115,8 +110,8 @@ function TimeLineCard({ data }) {
       <div className="flex flex-col w-full">
         <h2 className="font-Montserrat text-center text-[2vw] lg:text-[1vw] font-bold mb-2">{data.title}</h2>
         <div className="flex flex-col justify-start items-start pl-[1.2vw]">
-          {data.desc.map((item, idx) => (
-            <li className="font-Montserrat text-[2vw] lg:text-[0.9vw]" key={idx}>{item}</li>
+          {data.items.map((item, i) => (
+            <li className="font-Montserrat text-[2vw] lg:text-[0.9vw]" key={i}>{item}</li>
           ))}
         </div>
       </div>
@@ -130,16 +125,17 @@ function TimeLine({ data }) {
       <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:flex-col px-10 z-10 lg:w-fit w-full">
         {/* vertikal line */}
         <div className="lg:hidden mt-[11.2vw]">
-          {data.map((item, index) => { 
-            return index !== data.length - 1 && <LineV1 key={index} />;
+          {data.map((item, i) => {
+            return i !== data.length - 1 && <LineV1 key={i} />;
           })}
           <HexagonDot />
         </div>
-        <div className="flex flex-col lg:hidden">
-          {data.map((item, index) => {
+        <div className="flex flex-col lg:hidden text-black" >
+          {data.map((item, i) => {
+            console.log(i);
             return (
-              <div key={index} className="my-[1vw]">
-                <TimeLineCard data={item} />
+              <div key={i} className="my-[1vw]">
+                <TimeLineCard key={i} data={item} />
               </div>
             );
           })}
@@ -147,17 +143,17 @@ function TimeLine({ data }) {
 
         {/* horizontal line */}
         <div className="hidden lg:flex ml-[10.25vw]">
-          {data.map((item, index) => {
-            return index !== data.length - 1 && <LineH1 key={index} />;
+          {data.map((item, i) => {
+            return i !== data.length - 1 && <LineH1 key={i} />;
           })}
           <HexagonDot />
         </div>
-        <div className="hidden lg:flex space-x-[4vw] text-center">
-          {data.map((item, index) => {
+        <div className="hidden lg:flex space-x-[4vw] text-center text-black">
+          {data.map((item, i) => {
             return (
-              <div className="flex space-x-[4.28vw]" key={index}>
-                <div className="my-[1vw] ">
-                  <TimeLineCard data={item} />
+              <div className="flex space-x-[4.28vw]">
+                <div className="my-[1vw]">
+                  <TimeLineCard data={item} key={i} />
                 </div>
               </div>
             )
@@ -171,6 +167,7 @@ function TimeLine({ data }) {
 export default function Second({
   cabangLomba,
   competitionDescription,
+  cardAllItems,
 }) {
   return (
     <main className="w-screen items-center justify-center text-center relative max-sm:mb-[50vw]">
