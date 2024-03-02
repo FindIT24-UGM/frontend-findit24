@@ -19,19 +19,23 @@ const UserDashboardLayout = ({ children }) => {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    const verify = async () => {
-      try {
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/verify`, {
-          withCredentials: true,
-        });
-        // Jika autentikasi berhasil, tidak perlu melakukan apa-apa
-      } catch (err) {
-        router.push("/404");
-      }
-    };
-    verify();
-  }, []);
+  // useEffect(() => {
+  //   const verify = async () => {
+  //     await axios
+  //       .get(`${process.env.NEXT_PUBLIC_API_URL}/auth/verify`, {
+  //         withCredentials: true,
+  //       })
+  //       .then((response) => {
+  //         console.log(response.data);
+  //       })
+  //       .catch((err) => {
+  //         if (err) {
+  //           router.push("/login");
+  //         }
+  //       });
+  //   };
+  //   verify();
+  // }, []);
 
   const menuItems = [
     {
