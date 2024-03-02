@@ -64,9 +64,12 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
   }, [selectedLomba]);
 
   return (
-    <div className="w-5/6 flex justify-between items-center">
+    <div className="lg:w-5/6 flex flex-col lg:flex-row justify-between items-center">
       <p className="font-CreatoDisplay font-bold text-3xl text-shade-white">
-        Buat Tim {lomba}
+        Buat Tim
+      </p>
+      <p className="font-CreatoDisplay font-bold text-3xl text-shade-white">
+        {lomba}
       </p>
       <select
         aria-placeholder="Select Receiver"
@@ -214,16 +217,14 @@ const DataTimGeneral = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data.request);
         router.push(
           `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/berhasilteam/${res.data.request.teamId}`
         );
         return res.data.data;
       })
       .catch((err) => {
-        console.log(err.response.data.message);
         toast.error(err.response.data.message);
-        return err.response.data;
+        // return err.response.data;
       });
   };
 
@@ -290,15 +291,14 @@ const DataTimGeneral = () => {
             Kembali
           </p>
         </button>
-        <div className="w-2/3 bg-text-placeholder-light p-4 rounded-xl border-[3px] border-shade-black">
+        <div className="w-[91vw] md:w-[70.7vw] lg:w-2/3 bg-text-placeholder-light p-4 rounded-xl border-[3px] border-shade-black">
           <div className="w-full flex flex-col justify-center items-center gap-8 bg-primary-500 py-8 rounded-xl">
             <DaftarLombaDanHarga
-              lomba={"catf"}
               selectedLomba={selectedLomba}
               setSelectedLomba={setSelectedLomba}
             />
-            <div className="w-3/4 flex gap-8">
-              <div className="w-[45%] flex flex-col gap-2">
+            <div className="w-3/4 flex gap-8 max-md:flex-col max-sm:flex-col">
+              <div className="w-[45%] flex flex-col gap-2 max-md:w-[100%] max-sm:w-[100%]">
                 <div className="w-full flex flex-col gap-2">
                   <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
                     Status
@@ -412,7 +412,7 @@ const DataTimGeneral = () => {
                 </div>
               </div>
               <div className="min-h-full border border-text-placeholder-light" />
-              <div className="w-[45%] flex flex-col gap-2">
+              <div className="w-[45%] flex flex-col gap-2 max-md:w-[100%] max-sm:w-[100%]">
                 <div className="w-full flex flex-col gap-2">
                   <p className="font-Montserrat font-bold text-text-placeholder-light">
                     Tanggal Pembayaran

@@ -35,7 +35,6 @@ export default function Index() {
         })
         .then((res) => {
           setDataTeam(res.data.info);
-          console.log(res.data.info);
           axios
             .get(
               `${process.env.NEXT_PUBLIC_API_URL}/team/get-announcements/${teamId}`,
@@ -85,12 +84,10 @@ export default function Index() {
           }
         )
         .then((res) => {
-          console.log(res);
           toast.success("berhasil upload twibbon");
         })
         .catch((err) => {
           console.log(err);
-          console.log(formTwibbon);
         });
     }
   };
@@ -115,12 +112,10 @@ export default function Index() {
           }
         )
         .then((res) => {
-          console.log(res);
           toast.success("berhasil upload bukti pembayaran");
         })
         .catch((err) => {
           console.log(err);
-          console.log(formPayment);
         });
     }
   };
@@ -145,12 +140,10 @@ export default function Index() {
           }
         )
         .then((res) => {
-          console.log(res);
           toast.success("berhasil upload abstrak");
         })
         .catch((err) => {
           console.log(err);
-          console.log(formAbstract);
         });
     }
   };
@@ -229,16 +222,15 @@ export default function Index() {
             </div>
           </div>
           <div className="max-h-72 md:max-h-56 lg:max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-white">
-            {announcements &&
+            <Comment
+              key={dataTeam._id}
+              title={dataTeam.title}
+              toTeam={dataTeam.teamName}
+              content={dataTeam.rejectionMessage}
+            />
+            {/* {announcements &&
               announcements.map((announcement) => (
-                <Comment
-                  key={announcement._id}
-                  title={announcement.title}
-                  toTeam={announcement.toTeam.teamName}
-                  content={announcement.content}
-                  createdAt={announcement.createdAt}
-                />
-              ))}
+              ))} */}
           </div>
         </div>
       </div>
@@ -409,15 +401,34 @@ export default function Index() {
               )}
             </div>
           </div>
-          <button
-            onClick={() =>
-              router.replace(`/user/dashboard/profileteam/editteam/${teamId}`)
-            }
-            className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
-          >
-            <HiCheckCircle />
-            <p className="text-[16px] font-bold">AJUKAN VERIFIKASI</p>
-          </button>
+          {!dataTeam?.teamPayment &&
+          !dataTeam?.paymentSender &&
+          !dataTeam?.bankAccountId &&
+          !dataTeam?.bankName &&
+          !dataTeam?.paymentFile &&
+          !dataTeam?.twibbonTeam ? (
+            <button
+              onClick={() =>
+                router.replace(`/user/dashboard/profileteam/editteam/${teamId}`)
+              }
+              className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
+            >
+              <HiCheckCircle />
+              <p className="text-[16px] font-bold">Edit Profil Tim</p>
+            </button>
+          ) : (
+            <button
+              onClick={() =>
+                router.replace(`/user/dashboard/profileteam/editteam/${teamId}`)
+              }
+              className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
+            >
+              <HiCheckCircle />
+              <p className="text-[16px] font-bold">
+                Silahkan tunggu diverifikasi
+              </p>
+            </button>
+          )}
         </div>
         <div className="px-3 py-5 bg-primary-500 rounded-md md:w-1/2">
           <h2 className="text-2xl font-Montserrat text-white font-bold">

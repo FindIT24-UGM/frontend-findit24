@@ -59,15 +59,8 @@ const Index = ({ nameAbr }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (userTeam) {
-      setCountLomba(userTeam?.asMember?.length);
+      setCountLomba(userTeam?.teams?.length);
     }
-    // dispatch(getTeamsToSearch(process.env.NEXT_PUBLIC_COMPETITION_ID_CTF))
-    //   .unwrap()
-    //   .then((res) => {
-    //     dispatch(loadingEnd());
-    // console.log(res);
-    // setCountLomba(res.asMember.length)
-    // });
   }, [isAuthenticated]);
 
   const searchTeam = () => {
@@ -90,26 +83,7 @@ const Index = ({ nameAbr }) => {
       });
     dispatch(loadingEnd);
   };
-
-  // const createNewTeam = (eventId, teamCode) => {
-  //   axios
-  //     .post(
-  //       `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
-  //       {
-  //         eventId,
-  //         teamCode,
-  //       },
-  //       {
-  //         withCredentials: true,
-  //       }
-  //     )
-  //     .then((res) => {
-  //       console.log(res.data.message);
-  //       setOpenConfirmation(true);
-  //       setOpenInvitation(false);
-  //     });
-  // };
-
+  
   const joinTeam = (eventId, teamId, teamLeaderId) => {
     axios
       .post(
@@ -250,7 +224,9 @@ const Index = ({ nameAbr }) => {
               <div className="w-[212px]">
                 <Link
                   href={
-                    isAuthenticated ? "/competition/register/ctf" : "auth/login"
+                    isAuthenticated
+                      ? `/competition/register/${competitionName}`
+                      : "/login"
                   }
                 >
                   <Button
@@ -573,13 +549,7 @@ const Index = ({ nameAbr }) => {
             </p>
             <div className="w-full h-auto flex justify-center items-center flex-col lg:flex-row gap-[10px] sm:gap-3 lg:gap-4">
               <div className="w-[212px]">
-                <Link
-                  href={
-                    isAuthenticated
-                      ? "/user/dashboard/lomba/datatim"
-                      : "/auth/login"
-                  }
-                >
+                <Link href={"/user/dashboard/lomba/datatim"}>
                   <Button fullW customClass={"lg:py-1"} text="Buat Tim" />
                 </Link>
               </div>

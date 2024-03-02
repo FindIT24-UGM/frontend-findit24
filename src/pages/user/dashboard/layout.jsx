@@ -19,6 +19,20 @@ const UserDashboardLayout = ({ children }) => {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    const verify = async () => {
+      try {
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/verify`, {
+          withCredentials: true,
+        });
+        // Jika autentikasi berhasil, tidak perlu melakukan apa-apa
+      } catch (err) {
+        router.push("/404");
+      }
+    };
+    verify();
+  }, []);
+
   const menuItems = [
     {
       path: "/user/dashboard/beranda",
@@ -33,7 +47,7 @@ const UserDashboardLayout = ({ children }) => {
     {
       path: "/user/dashboard/webinar",
       icon: <BsTvFill size={20} color="black" />,
-      label: "Webinar",
+      label: "Workshop",
     },
   ];
 

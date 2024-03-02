@@ -88,7 +88,7 @@ export const getUserData = createAsyncThunk(
       const payload = await authService.getUser();
       return payload;
     } catch (error) {
-      const message = error;
+      const message = error.message;
       if (error.response.status === 401) {
         // toast.error("Session expired, please login again", {
         //   className: "toast-error",
@@ -110,9 +110,9 @@ export const authSlice = createSlice({
       state.isSuccess = false;
       state.message = "";
     },
-    // setAuthenticated(state, action) {
-    //   state.isAuthenticated = action.payload;
-    // },
+    setAuthenticated(state, action) {
+      state.isAuthenticated = action.payload;
+    },
     extraReducers: {
       [HYDRATE]: (state, action) => {
         return {
@@ -146,7 +146,6 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.user = action.payload.user;
         state.isAuthenticated = true;
-        state.token = action.payload.token;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;

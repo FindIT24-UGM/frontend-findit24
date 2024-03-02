@@ -25,22 +25,8 @@ const login = async (userData) => {
       // headers: `Bearer ${token}`,
     }
   );
-  // if (response.data.error == false && typeof window !== "undefined") {
-    localStorage.setItem("user", JSON.stringify(response.data.userData));
-    localStorage.setItem("token", JSON.stringify(response.data.token));
-    axios.defaults.headers.common["Authorization"] =
-      `Bearer ${response.data.token}`;
-    Cookies.set("AuthToken", response.data.token);
-  // }
   return response.data;
-  // if (!response.data.error == true && typeof window !== "undefined") {
-  //   localStorage.setItem("user", JSON.stringify(response.data));
-  //   localStorage.setItem("token", JSON.stringify(response.data.token));
-  //   axios.defaults.headers.common[
-  //     "Authorization"
-  //   ] = `Bearer ${response.data.token}`;
-  //   Cookies.set("AuthToken", response.data.token);
-  // }
+
 };
 
 // ACTIVATE ACCOUNT

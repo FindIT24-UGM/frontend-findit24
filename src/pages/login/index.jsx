@@ -21,15 +21,13 @@ import axios from "axios";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { isAuthenticated, isLoading } = useSelector(
-    (state) => state.auth
-  );
+  const { isAuthenticated, isLoading } = useSelector((state) => state.auth);
 
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [message, setMessage] = useState("");
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
 
   // useEffect(() => {
   //   if (isAuthenticated) {
@@ -46,11 +44,11 @@ const LoginPage = () => {
   //       });
   //   }
   // }, [isAuthenticated]);
-  const loginHandler = async(e) => {
+  const loginHandler = async (e) => {
     e.preventDefault();
     const loginData = {
       ...user,
-    }
+    };
     dispatch(login(loginData))
       .unwrap()
       .then((res) => {
@@ -60,24 +58,21 @@ const LoginPage = () => {
       })
       .catch((err) => {
         console.log(err);
-        console.log(loginData);
         toast.error("Email not found or password incorrect");
         dispatch(loadingEnd());
       });
   };
 
   function changeHandler(e) {
-    const name = e.target.id
-    const value = e.target.value
+    const name = e.target.id;
+    const value = e.target.value;
 
     setUser(() => {
       return {
         ...user,
         [name]: value,
-      }
-    })
-
-    // console.log(user)
+      };
+    });
   }
 
   const googleLoginHandler = async (e) => {
@@ -157,7 +152,7 @@ const LoginPage = () => {
               customClass={"font-Montserrat text-black font-semibold"}
               text="Sign in"
             />
-            <button
+            {/* <button
               onClick={googleLoginHandler}
               className="relative flex flex-row items-center w-full px-3 py-2 text-black bg-white rounded-lg"
             >
@@ -169,7 +164,7 @@ const LoginPage = () => {
                 alt="google icon"
               />
               <p className="mx-auto font-semibold">Sign In with Google</p>
-            </button>
+            </button> */}
           </div>
           <div className="relative flex flex-row items-center justify-center my-5">
             {message === "Login successfully" ? (
