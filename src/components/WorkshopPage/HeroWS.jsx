@@ -8,7 +8,6 @@ import Link from "next/link";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useRouter } from "next/router";
 
 function HeroWS() {
   const router = useRouter();
