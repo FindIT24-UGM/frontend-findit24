@@ -37,6 +37,22 @@ const UserDashboardLayout = ({ children }) => {
   //   verify();
   // }, []);
 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push("/login");
+      return;
+    }
+    if (router.asPath === "/user/dashboard") {
+      router.replace("/user/dashboard/beranda");
+    }
+    dispatch(loadingStart());
+    dispatch(getUserTeam())
+      .unwrap()
+      .then((res) => {
+        dispatch(loadingEnd());
+      });
+  }, [isAuthenticated, router]);
+
   const menuItems = [
     {
       path: "/user/dashboard/beranda",
@@ -54,21 +70,6 @@ const UserDashboardLayout = ({ children }) => {
       label: "Workshop",
     },
   ];
-
-  useEffect(() => {
-    if (router.asPath === "/user/dashboard") {
-      router.replace("/user/dashboard/beranda");
-    }
-    // if(!isAuthenticated){
-    //     router.push("/login")
-    // }
-    dispatch(loadingStart());
-    dispatch(getUserTeam())
-      .unwrap()
-      .then((res) => {
-        dispatch(loadingEnd());
-      });
-  }, [isAuthenticated, router]);
 
   return (
     <RootLayout>
