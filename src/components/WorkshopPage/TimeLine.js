@@ -39,22 +39,26 @@ function LineV1() {
 }
 
 const dummyData = [
-  { name: "Content1", date: "11 Maret" },
-  { name: "Content2", date: "12 Maret" },
-  { name: "Content3", date: "13 Maret" },
-  { name: "Content4", date: "14 Maret" },
+  { name: "Pembukaan Pendaftaran", date: "18 Maret 2024" },
+  { name: "Penutupan Pendaftaran", date: "15 April 2024" },
+  { name: "Workshop bagian 1", date: "4 Mei 2024" },
+  { name: "Workshop bagian 2", date: "5 Mei 2024" },
 ];
 export default function Timeline() {
   return (
     <div className="bg-text-placeholder-dark min-h-screen w-full p-10">
-      <h2 className="font-GameOfSquid text-[48px] font-bold text-white text-center mb-14"
-      data-aos="zoom-out-up">
+      <h2
+        className="font-GameOfSquid text-[48px] font-bold text-white text-center mb-14"
+        data-aos="zoom-out-up"
+      >
         Timeline
       </h2>
       <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:flex-col">
         {/* date */}
-        <div className="mt-[12vw] space-y-[19.5vw] lg:space-y-0 lg:flex lg:space-x-[16.78vw] lg:mt-0 lg:ml-[6.28vw]"
-        data-aos="fade-right">
+        <div
+          className="mt-[12vw] space-y-[19.5vw] lg:space-y-0 lg:flex lg:space-x-[16.78vw] lg:mt-0 lg:ml-[6.28vw]"
+          data-aos="fade-right"
+        >
           {dummyData.map((item, i) => {
             return (
               <p
@@ -89,10 +93,14 @@ export default function Timeline() {
           <HexagonDot />
         </div>
         {/* card */}
-        <div className="flex flex-col lg:flex-row" >
+        <div className="flex flex-col lg:flex-row">
           {dummyData.map((item, indexcard) => {
             return (
-              <div className="my-[1vw] lg:mx-[4vw]" data-aos="flip-right" key={item.name + indexcard}>
+              <div
+                className="my-[1vw] lg:mx-[4vw]"
+                data-aos="flip-right"
+                key={item.name + indexcard}
+              >
                 <TimeLineCard content={item.name} />
               </div>
             );

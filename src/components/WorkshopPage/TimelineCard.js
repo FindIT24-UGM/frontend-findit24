@@ -9,7 +9,11 @@ const TimeLineCard = ({ content, customWidthCSS }) => {
         !customWidthCSS ? "" : customWidthCSS
       }`}
     >
-      <h2 className="font-Montserrat">{content}</h2>
+      <div className="flex justify-center items-center w-full">
+        <h2 className="font-GameOfSquid text-center text-[2vw] lg:text-[1.2vw]">
+          {content}
+        </h2>
+      </div>
     </div>
   );
 };

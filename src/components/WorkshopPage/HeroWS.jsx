@@ -41,7 +41,7 @@ function HeroWS() {
   }, []);
 
   function calculateTimeRemaining() {
-    const changingDate = new Date("24 Mar 2024");
+    const changingDate = new Date("15 April 2024");
     const currentDate = new Date();
     const totalSeconds = Math.max((changingDate - currentDate) / 1000, 0);
 
@@ -61,11 +61,11 @@ function HeroWS() {
         data-aos="fade-down"
       ></Image>
       <div className="flex flex-col justify-center items-center gap-y-8 absolute">
-        <p className="font-Ava text-white text-[20px] lg:text-[1.25vw]">
+        <p className="font-Ava text-white text-[20px] lg:text-[2.5vw] 2xl:text-[1.25vw] mt-4 lg:mt-8">
           {"//Workshop"}
         </p>
         <div
-          className="font-GameOfSquid text-center text-[5.556vw] md:text-[3.125vw] lg:text-[1.25vw] bg-gradient-to-b from-[#FF8C5A] to-[#F95949] bg-clip-text text-transparent"
+          className="font-GameOfSquid text-center text-[5.556vw] md:text-[3.125vw] lg:text-[2.5vw] xl:text-[1.25vw] bg-gradient-to-b from-[#FF8C5A] to-[#F95949] bg-clip-text text-transparent"
           data-aos="zoom-out-up"
         >
           <p>{'"Exploring Blockchain :'}</p>
@@ -74,11 +74,11 @@ function HeroWS() {
         </div>
         <div className="mt-8 font-GameOfSquid text-white text-center text-[12px] lg:text-[0.8333vw]">
           <div
-            className="flex flex-col text-[12px] lg:text-[0.833vw]"
+            className="flex flex-col text-[12px] lg:text-[2vw] xl:text-[1.2vw]"
             data-aos="zoom-out-up"
           >
             <p>Benefit </p>
-            <div className="font-Montserrat text-[14px] lg:text-[0.9vw]">
+            <div className="font-Montserrat text-[14px] lg:text-[2vw] xl:text-[1.4vw]">
               <ul>Sertifikat</ul>
               <ul>Knowledge</ul>
               <ul>E-Money</ul>
@@ -86,28 +86,28 @@ function HeroWS() {
           </div>
         </div>
         <div
-          className="mt-4 font-GameOfSquid text-white"
+          className="mt-4 lg:mt-0 font-GameOfSquid text-white"
           data-aos="zoom-out-up"
         >
           Sisa waktu pendaftaran
         </div>
         <div className="flex text-white" data-aos="zoom-out-up">
-          <h4 className="font-GameOfSquid text-[#EE8478] text-[4.44vw] md:text-[3.125vw] lg:text-[1.25vw]">
+          <h4 className="font-GameOfSquid text-[#EE8478] text-[4.44vw] md:text-[3.125vw] lg:text-[2.2vw] xl:text-[1.25vw]">
             {timeRemaining.days}
           </h4>
-          <h4 className="font-Montserrat flex items-center text-[3.214vw] lg:text-[0.72vw]">
+          <h4 className="font-Montserrat flex items-center text-[3.214vw] lg:text-[1.6vw] xl:text-[0.72vw]">
             &nbsp;hari
           </h4>
-          <h4 className="font-GameOfSquid  text-[#EE8478] text-[4.44vw] md:text-[3.125vw] lg:text-[1.25vw]">
+          <h4 className="font-GameOfSquid  text-[#EE8478] text-[4.44vw] md:text-[3.125vw] lg:text-[2.2vw] xl:text-[1.25vw]">
             &nbsp;|&nbsp;{timeRemaining.hours}
           </h4>
-          <h4 className="font-Montserrat flex items-center text-[3.214vw] lg:text-[0.72vw]">
+          <h4 className="font-Montserrat flex items-center text-[3.214vw] lg:text-[1.6vw] xl:text-[0.72vw]">
             &nbsp;jam
           </h4>
-          <h4 className="font-GameOfSquid text-[#EE8478] text-[4.44vw] md:text-[3.125vw] lg:text-[1.25vw]">
+          <h4 className="font-GameOfSquid text-[#EE8478] text-[4.44vw] md:text-[3.125vw] lg:text-[2.2vw] xl:text-[1.25vw]">
             &nbsp;|&nbsp;{timeRemaining.minutes}
           </h4>
-          <h4 className="font-Montserrat flex items-center text-[3.214vw] lg:text-[0.72vw]">
+          <h4 className="font-Montserrat flex items-center text-[3.214vw] lg:text-[1.6vw] xl:text-[0.72vw]">
             &nbsp;menit
           </h4>
         </div>
