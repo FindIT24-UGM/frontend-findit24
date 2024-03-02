@@ -4,7 +4,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
 import CompCard from "./CompCard";
 
 import CTF from "../../../assets/Logo/CTF.png";
@@ -147,6 +149,8 @@ const CompetitionComp = () => {
           <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
             <Swiper
               slidesPerView={1.45}
+              pagination={{clickable: true}}
+              modules={[Pagination]}
               centeredSlides={false}
               onSlideChange={(swiper) => {
                 setActiveIndex(swiper.activeIndex);
@@ -187,6 +191,8 @@ const CompetitionComp = () => {
           <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
             <Swiper
               slidesPerView={1.25}
+              pagination={{clickable: true}}
+              modules={[Pagination]}
               centeredSlides={true}
               onSlideChange={(swiper) => {
                 setActiveIndex(swiper.activeIndex);
@@ -236,6 +242,8 @@ const CompetitionComp = () => {
               onSwiper={setSwiper}
               spaceBetween="60vw"
               grabCursor={true}
+              pagination={{clickable: true}}
+              modules={[Pagination]}
               className="w-full"
             >
               {cards.map((card, idx) => {

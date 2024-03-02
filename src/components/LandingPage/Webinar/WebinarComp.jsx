@@ -22,7 +22,7 @@ const WebinarComp = () => {
       {/* content */}
       <div className="border-x-[6px] border-[#92C2D0] w-[90%] lg:w-[80%]">
         <div className="gap-y-1 font-bold mt-16 lg:mt-24 md:text-center md:pl-0 text-left pl-10">
-          <h2 className="font-GameOfSquid text-text-placeholder-light text-sm md:text-2xl lg:text-6xl"
+          <h2 className="font-GameOfSquid text-text-placeholder-light text-[10vw] md:text-[10vw] lg:text-6xl"
           data-aos="zoom-out-up">
             WORKSHOP
           </h2>
@@ -33,7 +33,7 @@ const WebinarComp = () => {
         </div>
         <div className="lg:flex lg:justify-between lg:items-center mt-7 space-y-10 lg:gap-x-7">
           <div data-aos="fade-up">
-            <div className="bg-[url('https://i.ibb.co/gRcH1C0/Webinar-Place-Holder.png')] bg-cover lg:w-[85vh] md:w-[67.3vw] w-[48vw] flex justify-center items-center">
+            <div className="bg-[url('https://i.ibb.co/gRcH1C0/Webinar-Place-Holder.png')] bg-cover lg:w-[85vh] md:w-[67.3vw] w-[80vw] flex justify-center items-center">
               <Image
                 src={Accademy}
                 className="w-[62%] pl-4"
@@ -43,7 +43,7 @@ const WebinarComp = () => {
           </div>
           <div className="space-y-5 flex flex-col items-center lg:items-start justify-center px-5 lg:text-left lg:px-0 pb-10"
           data-aos="zoom-out-up">
-            <p className="font-Montserrat text-white text-center lg:text-left">
+            <p className="font-Montserrat text-white text-center lg:text-left text-[2vw] md:text-[2vw] lg:text-[1.2vw]">
               Workshop FIND IT! akan membahas teknologi blockchain, mulai dari
               dasar-dasar hingga aplikasi praktis dalam industri. Peserta akan
               memahami bagaimana teknologi ini mengubah cara transaksi, keamanan

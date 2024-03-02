@@ -10,7 +10,7 @@ const CompCard = (props) => {
     props;
   return (
     <div className="w-full flex lg:justify-center lg:items-center p-5">
-      <div className="bg-gradient-to-b from-[#ED7C80] to-[#F9C883] border-4 border-black rounded-md flex flex-col md:flex-row md:justify-between py-5 px-2 lg:px-10 lg:min-h-[23vw] md:min-h-[35vw] min-h-[90vw]">
+      <div className="bg-gradient-to-b from-[#ED7C80] to-[#F9C883] border-4 border-black rounded-md flex flex-col md:flex-row md:justify-between py-5 px-2 lg:px-10 lg:min-h-[23vw] md:min-h-[35vw] min-h-[95vw]">
         <div className="order-2 md:order-1 md:w-1/2 md:flex md:items-center my-5 md:my-0">
           <div className="space-y-5 flex flex-col items-center">
             <p className="text-center font-Montserrat text-white text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]">
