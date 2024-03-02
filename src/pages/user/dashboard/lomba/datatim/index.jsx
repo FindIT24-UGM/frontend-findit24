@@ -64,46 +64,49 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
   }, [selectedLomba]);
 
   return (
-    <div className="lg:w-5/6 flex flex-col lg:flex-row justify-between items-center">
-      <p className="font-CreatoDisplay font-bold text-3xl text-shade-white">
-        Buat Tim
-      </p>
-      <p className="font-CreatoDisplay font-bold text-3xl text-shade-white">
-        {lomba}
-      </p>
-      <select
-        aria-placeholder="Select Receiver"
-        className="p-2 rounded"
-        value={selectedLomba}
-        onChange={(e) => setSelectedLomba(e.currentTarget.value)}
-      >
-        <option value="">Pilih Lomba</option>
-        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_CTF}>
-          Capture The Flag
-        </option>
-        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON}>
-          Hackathon
-        </option>
-        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_ML}>
-          Esport - Mobile Legends
-        </option>
-        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_CP}>
-          Competitive Programming
-        </option>
-        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_DAC}>
-          Data Analytics Competition
-        </option>
-        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT}>
-          Esport - Valorant
-        </option>
-        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_IC}>
-          Informatics Competitions
-        </option>
-        <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE}>
-          UX Competition
-        </option>
-      </select>
-      <p className="font-CreatoDisplay font-bold text-xl text-shade-white">
+    <div className="w-5/6 flex flex-col lg:flex-row justify-between items-center max-md:items-start">
+      <div className=" px-4 flex">
+        <p className="font-CreatoDisplay font-bold text-3xl text-shade-white self-center">
+          Buat Tim
+        </p>
+        <p className="font-CreatoDisplay font-bold text-3xl text-shade-white">
+          {lomba}
+        </p>
+        <select
+          aria-placeholder="Select Receiver"
+          className="p-2 ml-8 max-sm:ml-5 rounded my-[2vw] bg-white text-[#B6B7BA] font-Montserrat font-medium max-sm:w-[50%] bg-border-none"
+          value={selectedLomba}
+          onChange={(e) => setSelectedLomba(e.currentTarget.value)}
+        >
+          <option value="">Pilih Lomba</option>
+          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_CTF}>
+            Capture The Flag
+          </option>
+          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON}>
+            Hackathon
+          </option>
+          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_ML}>
+            Esport - Mobile Legends
+          </option>
+          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_CP}>
+            Competitive Programming
+          </option>
+          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_DAC}>
+            Data Analytics Competition
+          </option>
+          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT}>
+            Esport - Valorant
+          </option>
+          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_IC}>
+            Informatics Competitions
+          </option>
+          <option value={process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE}>
+            UX Competition
+          </option>
+        </select>
+      </div>
+      
+      <p className="font-CreatoDisplay font-bold text-xl text-shade-white max-md:justify-normal max-md:justify-items-start max-md:mt-[2vw] max-md:ml-[2vw] max-sm:ml-[3vw]">
         Total Fee: {harga}
       </p>
     </div>
