@@ -78,6 +78,7 @@ const Navbar = () => {
       }).then((result) => {
         if (result.isConfirmed) {
           dispatch(logout());
+          console.log(result);
           Swal.fire("Logout", "", "success");
           router.push("/login");
         } else {
