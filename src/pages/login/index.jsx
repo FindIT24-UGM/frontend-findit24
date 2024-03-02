@@ -21,13 +21,15 @@ import axios from "axios";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { isAuthenticated, isLoading } = useSelector((state) => state.auth);
+  const { isAuthenticated, user, isLoading } = useSelector(
+    (state) => state.auth
+  );
 
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [message, setMessage] = useState("");
-  const [user, setUser] = useState({});
+  const [pengguna, setPengguna] = useState({});
 
   // useEffect(() => {
   //   if (isAuthenticated) {
@@ -44,17 +46,28 @@ const LoginPage = () => {
   //       });
   //   }
   // }, [isAuthenticated]);
+
+  // const handleKeyPress = (event) => {
+  //   if (event.key === "Enter") {
+  //     loginHandler();
+  //   }
+  // };
+
   const loginHandler = async (e) => {
     e.preventDefault();
     const loginData = {
-      ...user,
+      ...pengguna,
     };
     dispatch(login(loginData))
       .unwrap()
       .then((res) => {
         dispatch(loadingEnd());
         toast.success("Login successfully");
-        router.push("/user/dashboard/beranda");
+        if (user?.role !== process.env.NEXT_PUBLIC_ADMIN_ROLE) {
+          router.push("/user/dashboard/beranda");
+        } else {
+          router.push("/admin/dashboard/statistic");
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -67,9 +80,9 @@ const LoginPage = () => {
     const name = e.target.id;
     const value = e.target.value;
 
-    setUser(() => {
+    setPengguna(() => {
       return {
-        ...user,
+        ...pengguna,
         [name]: value,
       };
     });
@@ -149,6 +162,7 @@ const LoginPage = () => {
             <Button
               fullW
               onClick={loginHandler}
+              onPress={loginHandler}
               customClass={"font-Montserrat text-black font-semibold"}
               text="Sign in"
             />
