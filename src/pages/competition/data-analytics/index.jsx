@@ -115,7 +115,12 @@ function DataAnaytics() {
             {/* Konten */}
             <div className="w-full flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between md:justify-around gap-y-8 md:gap-y-12 lg:gap-y-20 gap-x-12 container max-w-[1500px] py-20 lg:py-0">
               <div data-aos="zoom-out-down">
-                <Title competitionTitle="Data Analytics" linkGuidebook={'https://drive.google.com/drive/folders/1NryalDe7l-71Gu_judgdVUx7-R6ZNZ7E?usp=sharing'} />
+                <Title
+                  competitionTitle="Data Analytics"
+                  linkGuidebook={
+                    "https://drive.google.com/drive/folders/1OK9Up9L8rho0P2xrKrL7Jlrgsu6PPdne?usp=sharing"
+                  }
+                />
               </div>
               <div className="mx-10 md:mx-0 relative">
                 <Image
