@@ -25,48 +25,6 @@ export default function Question() {
   return (
     <div className="h-fit bg-background-skyblue flex justify-center z-[-4]">
       <div className="relative flex justify-center">
-        <div className="min-w-fit h-auto absolute hidden lg:flex -top-[418px]">
-          <div className="min-w-fit h-auto scale-125 flex relative object-none object-right">
-            <Image
-              alt="bg"
-              src={CloudsDekstop}
-              className="overflow-visible animate-swipeRight2"
-            />
-            <Image
-              alt="bg"
-              src={CloudsDekstop}
-              className="overflow-visible absolute animate-swipeRight1"
-            />
-          </div>
-        </div>
-        <div className="min-w-fit h-auto absolute hidden sm:flex lg:hidden -top-72">
-          <div className="min-w-fit h-auto flex relative object-none object-right scale-[1.8]">
-            <Image
-              alt="bg"
-              src={CloudsTablet}
-              className="overflow-visible animate-swipeRight2"
-            />
-            <Image
-              alt="bg"
-              src={CloudsTablet}
-              className="overflow-visible absolute animate-swipeRight1"
-            />
-          </div>
-        </div>
-        <div className="min-w-fit h-auto absolute flex sm:hidden -top-40">
-          <div className="min-w-fit h-auto flex relative object-none object-right scale-[2]">
-            <Image
-              alt="bg"
-              src={CloudsMobile}
-              className="overflow-visible animate-swipeRight2"
-            />
-            <Image
-              alt="bg"
-              src={CloudsMobile}
-              className="overflow-visible absolute animate-swipeRight1"
-            />
-          </div>
-        </div>
         <div className="relative w-[55vw] bg-no-repeat bg-contain grid-cols-2 grid z-10 max-md:w-[90vw] max-sm:grid-cols-1 translate-y-[8vw] max-md:translate-y-[12vw]">
           {windowWidth < 640 ? (
             <Image src={"/placeholderHP.svg"} fill alt="container" className="max-md:translate-y-[-26vw]"/>
