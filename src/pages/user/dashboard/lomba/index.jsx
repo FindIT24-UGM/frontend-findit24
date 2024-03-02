@@ -250,7 +250,9 @@ const Index = ({ nameAbr }) => {
               <div className="w-[212px]">
                 <Link
                   href={
-                    isAuthenticated ? "/competition/register/ctf" : "auth/login"
+                    isAuthenticated
+                      ? `/competition/register/${competitionName}`
+                      : "/login"
                   }
                 >
                   <Button
@@ -575,9 +577,7 @@ const Index = ({ nameAbr }) => {
               <div className="w-[212px]">
                 <Link
                   href={
-                    isAuthenticated
-                      ? "/user/dashboard/lomba/datatim"
-                      : "/auth/login"
+                    isAuthenticated ? "/user/dashboard/lomba/datatim" : "/login"
                   }
                 >
                   <Button fullW customClass={"lg:py-1"} text="Buat Tim" />

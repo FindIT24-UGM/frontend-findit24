@@ -23,6 +23,10 @@ const Index = () => {
         withCredentials: true,
       })
       .then((result) => {
+        console.log(result);
+        if (result.data.user.length > 0) {
+          setIsJoinWorkshop(true);
+        }
         setCourseUser(...result.data.user);
       })
       .catch((err) => {
@@ -33,7 +37,7 @@ const Index = () => {
   const handleDaftarWorkshop = () => {
     router.push("/user/dashboard/webinar/daftarWorkshop");
   };
-
+  console.log(courseUser);
   const uploadPaymentCourse = (e) => {
     const formData = new FormData();
     const file = e.target.files[0];
@@ -87,7 +91,7 @@ const Index = () => {
               teknologi Blockchain bersama pembicara berpengalaman pada bidang
               tersebut.
             </p>
-            {courseUser?.paymentFile === "" ? (
+            {courseUser?.paymentFile === "" || null ? (
               <label className="text-center text-[16px] text-black font-bold py-2 bg-background-skyblue w-full font-GameOfSquid rounded-md">
                 Upload Pembayaran
                 <input

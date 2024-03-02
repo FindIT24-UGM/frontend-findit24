@@ -64,9 +64,12 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
   }, [selectedLomba]);
 
   return (
-    <div className="w-5/6 flex justify-between items-center">
+    <div className="lg:w-5/6 flex flex-col lg:flex-row justify-between items-center">
       <p className="font-CreatoDisplay font-bold text-3xl text-shade-white">
-        Buat Tim {lomba}
+        Buat Tim
+      </p>
+      <p className="font-CreatoDisplay font-bold text-3xl text-shade-white">
+        {lomba}
       </p>
       <select
         aria-placeholder="Select Receiver"
@@ -290,10 +293,9 @@ const DataTimGeneral = () => {
             Kembali
           </p>
         </button>
-        <div className="w-2/3 bg-text-placeholder-light p-4 rounded-xl border-[3px] border-shade-black">
+        <div className="w-[91vw] md:w-[70.7vw] lg:w-2/3 bg-text-placeholder-light p-4 rounded-xl border-[3px] border-shade-black">
           <div className="w-full flex flex-col justify-center items-center gap-8 bg-primary-500 py-8 rounded-xl">
             <DaftarLombaDanHarga
-              lomba={"catf"}
               selectedLomba={selectedLomba}
               setSelectedLomba={setSelectedLomba}
             />
