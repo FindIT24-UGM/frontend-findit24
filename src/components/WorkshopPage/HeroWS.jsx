@@ -1,9 +1,12 @@
+"use client";
+
 import BG_WS from "../../assets/workshoppage/BG_WS.png";
 import React from "react";
 import Image from "next/image";
 import { BiMouse } from "react-icons/bi";
 import { useState, useEffect } from "react";
-import useRouter from "next/router";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 import Link from "next/link";
 
 import AOS from "aos";
@@ -13,6 +16,14 @@ function HeroWS() {
   const router = useRouter();
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
   const { isAuthenticated } = useSelector((state) => state.auth);
+
+  const handleDaftarWorkshop = () => {
+    if (isAuthenticated) {
+      router.replace("/user/dashboard/webinar");
+    } else {
+      router.replace("/login");
+    }
+  };
 
   useEffect(() => {
     AOS.init({
@@ -104,11 +115,7 @@ function HeroWS() {
           <button
             className="flex justify-center items-center p-3 w-fit rounded-xl bg-gradient-to-b from-[#FF8C5A] to-[#F95949] "
             data-aos="fade-right"
-            onClick={
-              isAuthenticated
-                ? router.push("/login")
-                : router.push("user/dashboard/webinar")
-            }
+            onClick={handleDaftarWorkshop}
           >
             <div className="text-white font-GameOfSquid">Daftar</div>
           </button>
