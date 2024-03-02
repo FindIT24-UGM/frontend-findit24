@@ -20,7 +20,8 @@ export default function PrizeCard({ type, prize }) {
       additionalStyle = "bg-[#82512C]";
   }
   return (
-    <div className="aspect-[532/305] w-[80vw] md:w-[40vw] relative bg-cover flex flex-col justify-center items-center gap-y-4">
+    <div className="aspect-[532/305] w-[80vw] md:w-[40vw] relative bg-cover flex flex-col justify-center items-center gap-y-4"
+    data-aos="flip-right">
       <Image src={BGCard} fill alt="BG_Card.png" loading="lazy" />
       <div className="relative w-[47.778vw] md:w-[20.833vw] lg:w-[14.5vw] flex flex-col text-end font-Montserrat italic text-[18px] lg:text-[1.25vw]">
         {type}

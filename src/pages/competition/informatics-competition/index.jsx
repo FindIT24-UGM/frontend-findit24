@@ -57,7 +57,7 @@ function InformaticsCompetition() {
             <div className="absolute left-0 hidden lg:flex">
               <Image src={Pattern_Kiri} alt="Pattern_Kiri.png" />
             </div>
-            <div className="absolute -left-2 md:-left-4 lg:left-0 top-12">
+            <div className="absolute -left-2 md:-left-4 lg:left-0 top-12"  data-aos="zoom-out-right">
               <Image
                 src={Awan_Kiri}
                 className="w-[28vw] md:w-[15.3vw] lg:w-[6.25vw]"
@@ -108,14 +108,6 @@ function InformaticsCompetition() {
                 alt="Bintang"
               />
             </div>
-            {/* Belum Responsive cik */}
-            <div className="absolute -top-12 lg:-top-28 right-1 lg:-right-24 -rotate-[15deg] lg:rotate-0 lg:flex">
-              <Image
-                src={Bintang_Group}
-                className="w-[101vw] 2xl:w-[93vw]"
-                alt="Bintang"
-              />
-            </div>
             {/* Belum Responsive cik*/}
             <div className="absolute bottom-0 flex font-Montserrat 2xl:text-[0.72vw] text-white">
               <Link href="#!">Gulir Ke Bawah</Link>
@@ -137,6 +129,7 @@ function InformaticsCompetition() {
                   width={545}
                   height={532}
                   className="relative z-40 w-[50vw] md:w-[35.5vw] xl:w-[600px] mx-auto"
+                  data-aos="zoom-out-up"
                   priority
                 />
               </div>

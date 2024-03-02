@@ -13,8 +13,18 @@ import Micro_Pattern from "../../../assets/compepage/bghero/Micro_Pattern.png";
 import Micro_Atas from "../../../assets/compepage/bghero/Micro_Atas.png";
 import Second from "../../../components/competitionpage/Second";
 import Footer from "../../../components/footer";
+import { useState, useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function CaptureTheFlag() {
+  useEffect(()=>{
+    AOS.init({
+      disable: false,
+      duration: 1300,
+    })
+  },[])
+
   const CTFInformation = [
     {
       title: "Kategori Peserta",
@@ -118,6 +128,7 @@ export default function CaptureTheFlag() {
                   className="relative z-40 w-[50vw] md:w-[35.5vw] xl:w-[600px] mx-auto"
                   priority
                   alt="Logo.png"
+                  data-aos="zoom-out-up"
                 />
               </div>
             </div>

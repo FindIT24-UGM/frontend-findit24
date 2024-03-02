@@ -23,7 +23,7 @@ function HexagonDot() {
 
 function LineH1() {
   return (
-    <div className="w-[14.56vw] flex items-center">
+    <div className="w-[14.56vw] flex items-center" data-aos="flip-down">
       <HexagonDot />
       <div className="w-full h-[0.75vw] bg-gradient-to-l from-[#FF8C5A] to-[#F95949] -m-[1vw]"></div>
     </div>
@@ -32,7 +32,7 @@ function LineH1() {
 
 function LineV1() {
   return (
-    <div className="h-[25vw] w-fit">
+    <div className="h-[25vw] w-fit" data-aos="flip-down">
       <HexagonDot />
       <div className="h-full w-[45%] bg-gradient-to-b from-[#FF8C5A] to-[#F95949] mx-auto"></div>
     </div>
@@ -42,10 +42,10 @@ function LineV1() {
 export default function Timeline({ data }) {
   return (
     <div className="bg-background-skyblue min-h-screen w-full py-10 relative">
-      <h2 className="font-GameOfSquid text-[48px] font-bold text-white text-center lg:text-left lg:pl-10 mb-14 px-10">
+      <h2 className="font-GameOfSquid text-[48px] font-bold text-white text-center lg:text-left lg:pl-10 mb-14 px-10" data-aos="zoom-out-up">
         Timeline
       </h2>
-      <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:justify-start lg:overflow-auto lg:scrollbar-none lg:flex-col w-full px-10 z-10">
+      <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:justify-start lg:overflow-auto lg:scrollbar-none lg:flex-col w-full px-10 z-10" >
         <div className="mt-[13vw] space-y-[20vw] lg:hidden">
           {data.map((item, i) => (
             <p
@@ -79,7 +79,7 @@ export default function Timeline({ data }) {
             const nextItem = data[i + 1];
             return (
               i % 2 !== 1 && (
-                <div className="flex space-x-[4.28vw]">
+                <div className="flex space-x-[4.28vw]"  data-aos="flip-down">
                   <div className="my-[1vw]">
                     <TimeLineCard content={item.name} key={i} />
                   </div>
@@ -94,7 +94,7 @@ export default function Timeline({ data }) {
           })}
         </div>
         {/* horizontal line */}
-        <div className="hidden lg:flex w-[120%] ml-[7.28vw]">
+        <div className="hidden lg:flex w-[120%] ml-[7.28vw]" data-aos="flip-down">
           {data.map((item, i) => {
             return i !== data.length - 1 && <LineH1 key={i} />;
           })}
@@ -106,7 +106,7 @@ export default function Timeline({ data }) {
             const prevItem = data[i - 1];
             return (
               i % 2 === 1 && (
-                <div className="flex space-x-[4.28vw]">
+                <div className="flex space-x-[4.28vw]"  data-aos="flip-down">
                   {prevItem && (
                     <p className="flex justify-center items-center text-center font-GameOfSquid text-white w-[6vw]">
                       {prevItem.date}

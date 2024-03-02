@@ -15,7 +15,8 @@ export default function Prize({
         <p className="absolute font-Ava text-[8.889vw] md:text-[5vw] lg:text-[3.33vw] lg:rotate-90 font-normal bottom-16 lg:bottom-96 lg:-left-48 leading-[4vw] drop-shadow-[0_4px_12px_rgba(255,255,255,1)] opacity-50">
           {"//Beyond The Sky"}
         </p>
-        <div className="mx-auto mt-8 lg:mt-0 flex sm:justify-center sm:items-center lg:justify-start lg:items-start lg:mx-36 font-GameOfSquid text-[6.667vw] md:text-[4.167vw] lg:text-[2.5vw]">
+        <div className="mx-auto mt-8 lg:mt-0 flex sm:justify-center sm:items-center lg:justify-start lg:items-start lg:mx-36 font-GameOfSquid text-[6.667vw] md:text-[4.167vw] lg:text-[2.5vw]"
+        data-aos="zoom-out-up">
           {" "}
           Prize Pool
         </div>
@@ -30,6 +31,7 @@ export default function Prize({
           src={Roket}
           className="absolute right-0 -bottom-24 md:-bottom-36 lg:-bottom-60 z-30 w-[55vw] md:w-[45vw] lg:w-[25vw]"
           alt="Roket.png"
+          data-aos="zoom-out-up"
         ></Image>
       </div>
     </div>
