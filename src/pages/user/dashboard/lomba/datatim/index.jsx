@@ -299,8 +299,8 @@ const DataTimGeneral = () => {
               selectedLomba={selectedLomba}
               setSelectedLomba={setSelectedLomba}
             />
-            <div className="w-3/4 flex gap-8">
-              <div className="w-[45%] flex flex-col gap-2">
+            <div className="w-3/4 flex gap-8 max-sm:flex-col">
+              <div className="w-[45%] flex flex-col gap-2 max-sm:w-[100%]">
                 <div className="w-full flex flex-col gap-2">
                   <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
                     Status
@@ -414,7 +414,7 @@ const DataTimGeneral = () => {
                 </div>
               </div>
               <div className="min-h-full border border-text-placeholder-light" />
-              <div className="w-[45%] flex flex-col gap-2">
+              <div className="w-[45%] flex flex-col gap-2 max-sm:w-[100%]">
                 <div className="w-full flex flex-col gap-2">
                   <p className="font-Montserrat font-bold text-text-placeholder-light">
                     Tanggal Pembayaran
