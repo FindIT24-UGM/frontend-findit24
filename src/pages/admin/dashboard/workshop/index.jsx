@@ -3,21 +3,22 @@ import AdminDashboadrLayout from "../layout";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import Accordion from "../../../../components/LandingPage/Dashboard/Accordion";
 import Card from "../team/Card";
 
 const Index = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const [course, setCourse] = useState([]);
-  const [count, setCount] = useState(null);
+  const [courseMember, setCourseMember] = useState([]);
+  const [count, setCount] = useState(0);
   useEffect(() => {
     const getAllTeam = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/course/get`,
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/course/${process.env.NEXT_PUBLIC_COMPETITION_ID_WORKSHOP}`, 
           { withCredentials: true }
         );
         if (response.data) {
-          setCourse(response.data.user);
+          setCourseMember(response.data.user);
           setCount(response.data.user.length);
         }
       } catch (err) {
@@ -34,19 +35,29 @@ const Index = () => {
           {count} course participant found
         </h2>
         <div className="text-black">
-          {course &&
-            course.map((participant, id) => (
-              <Link
+          {courseMember &&
+            courseMember.map((participant, id) => (
+              <div
                 key={id}
-                href={`${process.env.NEXT_PUBLIC_FE_URL}/admin/dashboard/${participant._id}`}
+                // href={`${process.env.NEXT_PUBLIC_FE_URL}/admin/dashboard/${participant._id}`}
               >
-                <Card
+                <Accordion
                   key={participant._id}
                   name={participant.name}
-                  date={participant.createdAt}
+                  email={participant.email}
+                  dateOfBirth={participant.dateOfBirth}
+                  province={participant.province}
+                  address={participant.address}
+                  phone={participant.phone}
+                  id={participant._id}
+                  status={participant.statusUser}
+                  institutionName={participant.institutionName}
+                  institutionNumber={participant.institutionNumber}
+                  institutionFile={participant.paymentFile}
+                  date={participant.dateOfBirth}
                   isverified={participant.verified}
                 />
-              </Link>
+              </div>
             ))}
         </div>
       </div>
