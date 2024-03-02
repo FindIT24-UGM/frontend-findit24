@@ -58,12 +58,16 @@ export default function CaptureTheFlag() {
               {"//Beyond The Sky"}
             </p>
             <div className="absolute left-0 hidden lg:flex">
-              <Image src={Pattern_Kiri} alt="Pattern_Kiri.png" />
+              <Image
+                src={Pattern_Kiri}
+                alt="Pattern_Kiri.png"
+                className="opacity-30"
+              />
             </div>
             <div className="absolute -left-2 md:-left-4 lg:left-0 top-12">
               <Image
                 src={Awan_Kiri}
-                className="w-[28vw] md:w-[15.3vw] lg:w-[6.25vw]"
+                className="w-[28vw] md:w-[15.3vw] lg:w-[6.25vw] z-[30]"
                 alt="Awan_Kiri.png"
               />
             </div>
@@ -99,7 +103,12 @@ export default function CaptureTheFlag() {
             {/* Belum Responsive cik*/}
             <div className="w-full flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between md:justify-around gap-y-8 md:gap-y-12 lg:gap-y-20 gap-x-12 container max-w-[1500px] py-20 lg:py-0">
               <div data-aos="zoom-out-down">
-                <Title competitionTitle="Capture The Flag" linkGuidebook={'https://drive.google.com/drive/folders/1NryalDe7l-71Gu_judgdVUx7-R6ZNZ7E?usp=sharing'} />
+                <Title
+                  competitionTitle="Capture The Flag"
+                  linkGuidebook={
+                    "https://drive.google.com/drive/folders/1NryalDe7l-71Gu_judgdVUx7-R6ZNZ7E?usp=sharing"
+                  }
+                />
               </div>
               <div className="mx-10 md:mx-0 relative">
                 <Image
