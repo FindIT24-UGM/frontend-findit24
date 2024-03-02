@@ -73,7 +73,7 @@ const DaftarWorkshop = () => {
     dispatch({ type: "UPDATE_FIELD", field: name, value });
   };
 
-  const handleDateChange = ({ date }) => {
+  const handleDateChange = ( date ) => {
     dispatch({ type: "UPDATE_FIELD", field: "paymentDate", value: date });
   };
 

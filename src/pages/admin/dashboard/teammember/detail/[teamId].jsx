@@ -50,11 +50,11 @@ export default function Detail() {
         )
         .then((res) => {
           toast.success("berhasil verified team");
-          console.log(res.data);
+
         })
         .catch((err) => {
           toast.error("update verified gagal");
-          console.log(err);
+
         });
     } else if (!isVerified) {
       axios
@@ -65,11 +65,9 @@ export default function Detail() {
         )
         .then((res) => {
           toast.success("berhasil unverified team");
-          console.log(res.data);
         })
         .catch((err) => {
           toast.error("update unverified gagal");
-          console.log(err);
         });
     }
   };

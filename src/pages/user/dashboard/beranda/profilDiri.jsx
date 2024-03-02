@@ -257,7 +257,6 @@ const ProfilDiri = () => {
           withCredentials: true,
         })
         .then((res) => {
-          console.log(res);
           toast.success("Berhasil upload file");
         })
         .catch((err) => {
@@ -338,7 +337,7 @@ const ProfilDiri = () => {
       )
       .then((res) => {
         //bisa diganti message atau apalah
-        console.log(res);
+        toast.success("berhasil update user");
       })
       .catch((err) => {
         console.log(err);

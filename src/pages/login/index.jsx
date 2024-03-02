@@ -58,7 +58,6 @@ const LoginPage = () => {
       })
       .catch((err) => {
         console.log(err);
-        console.log(loginData);
         toast.error("Email not found or password incorrect");
         dispatch(loadingEnd());
       });
@@ -74,8 +73,6 @@ const LoginPage = () => {
         [name]: value,
       };
     });
-
-    // console.log(user)
   }
 
   const googleLoginHandler = async (e) => {
