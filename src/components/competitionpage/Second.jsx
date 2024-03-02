@@ -108,10 +108,17 @@ function TimeLineCard({ data }) {
       className={`bg-[url('https://i.ibb.co/Jsxq84v/cardcompe2.png')] flex justify-center items-center bg-cover w-[41.0vw] h-[22.4vw] lg:w-[20.5vw] lg:h-[11.2vw] `}
     >
       <div className="flex flex-col w-full">
-        <h2 className="font-Montserrat text-center text-[2vw] lg:text-[1vw] font-bold mb-2">{data.title}</h2>
+        <h2 className="font-Montserrat text-center text-[2vw] lg:text-[1vw] font-bold mb-2">
+          {data.title}
+        </h2>
         <div className="flex flex-col justify-start items-start pl-[1.2vw]">
-          {data.items.map((item, i) => (
-            <li className="font-Montserrat text-[2vw] lg:text-[0.9vw]" key={i}>{item}</li>
+          {data.items.map((item, idx) => (
+            <li
+              className="font-Montserrat text-[2vw] lg:text-[0.9vw]"
+              key={idx}
+            >
+              {item}
+            </li>
           ))}
         </div>
       </div>
@@ -130,12 +137,12 @@ function TimeLine({ data }) {
           })}
           <HexagonDot />
         </div>
-        <div className="flex flex-col lg:hidden text-black" >
-          {data.map((item, i) => {
-            console.log(i);
+        <div className="flex flex-col lg:hidden text-black">
+          {data.map((item, index) => {
+            console.log(index);
             return (
-              <div key={i} className="my-[1vw]">
-                <TimeLineCard key={i} data={item} />
+              <div key={index} className="my-[1vw]">
+                <TimeLineCard data={item} />
               </div>
             );
           })}
@@ -143,20 +150,20 @@ function TimeLine({ data }) {
 
         {/* horizontal line */}
         <div className="hidden lg:flex ml-[10.25vw]">
-          {data.map((item, i) => {
-            return i !== data.length - 1 && <LineH1 key={i} />;
+          {data.map((item, index) => {
+            return index !== data.length - 1 && <LineH1 key={index} />;
           })}
           <HexagonDot />
         </div>
         <div className="hidden lg:flex space-x-[4vw] text-center text-black">
-          {data.map((item, i) => {
+          {data.map((item, index) => {
             return (
-              <div className="flex space-x-[4.28vw]">
+              <div className="flex space-x-[4.28vw]" key={index}>
                 <div className="my-[1vw]">
-                  <TimeLineCard data={item} key={i} />
+                  <TimeLineCard data={item} />
                 </div>
               </div>
-            )
+            );
           })}
         </div>
       </div>
@@ -224,5 +231,3 @@ export default function Second({
     </main>
   );
 }
-
-
