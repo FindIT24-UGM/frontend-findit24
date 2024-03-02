@@ -65,6 +65,36 @@
         "category": "Capture the flag"
     },
     {
+        "question": "Plagiarism source code seperti apa ya?",
+        "ans": "Jika terdapat 80% jawaban sama (seperti ganti variabel saja) maka  dianggap plagiarisme. Jika algoritma sama tetapi cara menulis/syntax berbeda, tidak dianggap plagiarisme.",
+        "category": "Competitive Programming"
+    },
+    {
+        "question": "Apakah wajib mengikuti warm up?",
+        "ans": "Wajib, untuk mengetahui cara kerja pengerjaan sebelum penyisihan dimulai.",
+        "category": "Competitive Programming"
+    },
+    {
+        "question": "Eventnya online atau offline?",
+        "ans": "Babak penyisihan dilakukan secara online, tetapi babak final dilakukan secara offline di gedung Departemen Teknik Elektro dan Teknologi Informasi (DTETI) Fakultas Teknik UGM.",
+        "category": "Competitive Programming"
+    },
+    {
+        "question": "Apakah panitia akan menanggung biaya akomodasi?",
+        "ans": "Tidak, peserta bertanggung jawab atas biaya akomodasi masing-masing.",
+        "category": "Competitive Programming"
+    },
+    {
+        "question": " Saya tidak dapat mengikuti awarding, apabila saya menjadi juara, bagaimana ya untuk hadiahnya?",
+        "ans": "Khusus untuk kompetisi Informatics Competition, peserta yang berasal dari luar daerah DIY tidak diwajibkan untuk mengikuti rangkaian kegiatan pada tanggal … diluar babak final lomba yang diikuti. Peserta yang berasal dari daerah DIY disarankan untuk mengikuti acara Awarding dan Closing Find IT! 2024. Apabila menjadi juara, panitia akan mengirimkan hadiah ke alamat salah satu anggota tim. Biaya kirim akan ditanggung panitia",
+        "category": "Competitive Programming"
+    },
+    {
+        "question": "Apakah peserta diwajibkan membawa perangkat seperti laptop pada babak final?",
+        "ans": "Tidak diwajibkan, perangkat yang digunakan untuk babak final akan disediakan oleh panitia.",
+        "category": "Competitive Programming"
+    },
+    {
         "question": "Apakah UX Competition diselenggarakan secara offline?",
         "ans": "UX Competition diselenggarakan secara online dan offline. Tahap abstrak dan penyisihan dilaksanakan secara online, sedangkan tahap final akan diselenggarakan secara offline di DTETI (Departemen Teknik Elektro dan Teknologi Informasi) UGM. Keterangan lebih lanjut akan dijelaskan saat technical meeting.",
         "category": "UX Competition"
@@ -85,12 +115,12 @@
         "category": "UX Competition"
     },
     {
-        "question": "Apakah seorang peserta diperbolehkan menjadi anggota dari beberapa tim yang terdaftar kompetisi UX Competition FindIT! 2023?",
-        "ans": "Tidak boleh. Peserta hanya diperbolehkan menjadi anggota atau seorang ketua dari satu tim saja di kompetisi UX Competition FindIT! 2023.",
+        "question": "Apakah seorang peserta diperbolehkan menjadi anggota dari beberapa tim yang terdaftar kompetisi UX Competition FindIT! 2024?",
+        "ans": "Tidak boleh. Peserta hanya diperbolehkan menjadi anggota atau seorang ketua dari satu tim saja di kompetisi UX Competition FindIT! 2024.",
         "category": "UX Competition"
     },
     {
-        "question": "Apakah seorang peserta diperbolehkan mengikuti lomba lain yang diselenggarakan FindIT! 2023?",
+        "question": "Apakah seorang peserta diperbolehkan mengikuti lomba lain yang diselenggarakan FindIT! 2024?",
         "ans": "Boleh, asalkan dapat menghadiri babak final lomba UX Competition.",
         "category": "UX Competition"
     },
@@ -130,7 +160,7 @@
         "category": "UX Competition"
     },
     {
-        "question": "Siapa saja yang boleh mendaftar Informatics Competition Find IT! 2023?",
+        "question": "Siapa saja yang boleh mendaftar Informatics Competition Find IT! 2024?",
         "ans": "Pelajar SMA/Sederajat dibuktikan dengan scan kartu pelajar yang masih aktif.",
         "category": "Informatics Competition"
     },
@@ -186,7 +216,7 @@
     },
     {
         "question": "Saya tidak dapat mengikuti awarding, apabila saya menjadi juara, bagaimana ya untuk hadiahnya?",
-        "ans": "Khusus untuk kompetisi Informatics Competition, peserta yang berasal dari luar daerah DIY tidak diwajibkan untuk mengikuti rangkaian kegiatan pada tanggal … diluar babak final lomba yang diikuti. Peserta yang berasal dari daerah DIY disarankan untuk mengikuti acara Awarding dan Closing Find IT! 2023. Apabila menjadi juara, panitia akan mengirimkan hadiah ke alamat salah satu anggota tim. Biaya kirim akan ditanggung panitia.",
+        "ans": "Khusus untuk kompetisi Informatics Competition, peserta yang berasal dari luar daerah DIY tidak diwajibkan untuk mengikuti rangkaian kegiatan pada tanggal … diluar babak final lomba yang diikuti. Peserta yang berasal dari daerah DIY disarankan untuk mengikuti acara Awarding dan Closing Find IT! 2024. Apabila menjadi juara, panitia akan mengirimkan hadiah ke alamat salah satu anggota tim. Biaya kirim akan ditanggung panitia.",
         "category": "Informatics Competition"
     },
     {
@@ -340,8 +370,8 @@
         "category": "Hackaton"
     },
     {
-        "question": "Apakah seorang peserta diperbolehkan menjadi anggota dari beberapa tim yang terdaftar kompetisi Hackathon FindIT! 2023?",
-        "ans": "Tidak boleh. Peserta hanya diperbolehkan menjadi anggota atau seorang ketua dari satu tim saja di kompetisi Hackathon FindIT! 2023.",
+        "question": "Apakah seorang peserta diperbolehkan menjadi anggota dari beberapa tim yang terdaftar kompetisi Hackathon FindIT! 2024?",
+        "ans": "Tidak boleh. Peserta hanya diperbolehkan menjadi anggota atau seorang ketua dari satu tim saja di kompetisi Hackathon FindIT! 2024.",
         "category": "Hackaton"
     },
     {
@@ -355,7 +385,7 @@
         "category": "Hackaton"
     },
     {
-        "question": "Apakah seorang peserta diperbolehkan mengikuti lomba lain yang diselenggarakan FindIT! 2023?",
+        "question": "Apakah seorang peserta diperbolehkan mengikuti lomba lain yang diselenggarakan FindIT! 2024?",
         "ans": "Boleh. Namun saat tahap presentasi di babak final, minimal harus ada satu anggota tim yang melakukan dan tidak boleh diwakilkan orang lain.",
         "category": "Hackaton"
     },
