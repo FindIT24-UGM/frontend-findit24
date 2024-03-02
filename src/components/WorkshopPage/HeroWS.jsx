@@ -66,7 +66,7 @@ function HeroWS() {
             className="flex flex-col text-[12px] lg:text-[0.833vw]"
             data-aos="zoom-out-up"
           >
-            <p>Benefit</p>
+            <p>Benefit </p>
             <div className="font-Montserrat text-[14px] lg:text-[0.9vw]">
               <ul>Sertifikat</ul>
               <ul>Knowledge</ul>
