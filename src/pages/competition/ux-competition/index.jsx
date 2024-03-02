@@ -89,7 +89,7 @@ function UxCompetition() {
               />
             </div>
             {/* Belum Responsive cik */}
-            <div className="absolute -top-12 lg:-top-28 right-1 lg:-right-24 -rotate-[15deg] lg:rotate-0 lg:flex">
+            <div className="absolute -top-12 lg:-top-28 right-1 lg:-right-24 -rotate-[15deg] lg:rotate-0 lg:flex" data-aos="zoom-out-down">
               <Image
                 src={Bintang_Group}
                 className="w-[101vw] 2xl:w-[93vw]"
@@ -117,6 +117,7 @@ function UxCompetition() {
                   height={532}
                   alt="Logo"
                   className="relative z-40 w-[50vw] md:w-[35.5vw] xl:w-[600px] mx-auto"
+                  data-aos="zoom-out-up"
                   priority
                 />
               </div>

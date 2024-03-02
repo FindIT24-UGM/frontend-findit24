@@ -86,7 +86,7 @@ function HexagonDot() {
 
 function LineH1() {
   return (
-    <div className="w-[24.5vw] flex items-center">
+    <div className="w-[24.5vw] flex items-center" data-aos="flip-down">
       <HexagonDot />
       <div className="w-full h-[0.75vw] bg-gradient-to-l from-[#FF8C5A] to-[#F95949] -m-[1vw]"></div>
     </div>
@@ -95,7 +95,7 @@ function LineH1() {
 
 function LineV1() {
   return (
-    <div className="h-[24.4vw] w-fit">
+    <div className="h-[24.4vw] w-fit" data-aos="flip-down">
       <HexagonDot />
       <div className="h-full w-[45%] bg-gradient-to-b from-[#FF8C5A] to-[#F95949] mx-auto"></div>
     </div>
@@ -106,7 +106,7 @@ function TimeLineCard({ data }) {
   return (
     <div
       className={`bg-[url('https://i.ibb.co/Jsxq84v/cardcompe2.png')] flex justify-center items-center bg-cover w-[41.0vw] h-[22.4vw] lg:w-[20.5vw] lg:h-[11.2vw] `}
-    >
+      data-aos="flip-right">
       <div className="flex flex-col w-full">
         <h2 className="font-Montserrat text-center text-[2vw] lg:text-[1vw] font-bold mb-2">
           {data.title}
@@ -200,7 +200,9 @@ export default function Second({
           alt="Pattern.png"
         />
       </div>
-      <div className="absolute left-0 top-[-8vw] w-[15vw] z-30 max-md:w-[32vw] max-md:top-[-22vw] max-sm:w-[24vw] max-sm:top-[-10vw]">
+      <div className="absolute left-0 top-[-8vw] w-[15vw] z-30 max-md:w-[32vw] max-md:top-[-22vw] max-sm:w-[24vw] max-sm:top-[-10vw]" 
+      data-aos="fade-up"
+      data-aos-delay="50">
         <Image src={Roket1} alt="Roket.png" />
       </div>
       <div className="w-full h-[20vw] flex justify-center items-center relative ">
@@ -211,19 +213,23 @@ export default function Second({
       <Image
         src={Bintang1}
         className="absolute w-[40vw] left-[20vw] top-[16vw] z-0"
+        data-aos="zoom-out-down"
         alt="Bintang.png"
       />
       <Image
         src={Bintang1}
         className="absolute w-[40vw] left-[40vw] top-[24vw] z-0"
+        data-aos="zoom-out-down"
         alt="Bintang.png"
       />
       <Image
         src={Bintang2}
         className="absolute w-[50vw] left-[30vw] top-[48vw] z-0"
+        data-aos="zoom-out-down"
         alt="Bintang.png"
       />
-      <div className="font-Montserrat text-[3.85vw] md:text-[2.1vw] lg:text-[1vw] w-[83.33vw] md:w-[52vw] lg:w-[28vw] flex justify-center items-center text-center mx-auto my-20 max-md:w-[54%] max-md:text-[2vw]  max-sm:w-[60%] max-sm:text-[3vw]">
+      <div className="font-Montserrat text-[3.85vw] md:text-[2.1vw] lg:text-[1vw] w-[83.33vw] md:w-[52vw] lg:w-[28vw] flex justify-center items-center text-center mx-auto my-20 max-md:w-[54%] max-md:text-[2vw]  max-sm:w-[60%] max-sm:text-[3vw]"
+      data-aos="zoom-out-up">
         {competitionDescription}
       </div>
 

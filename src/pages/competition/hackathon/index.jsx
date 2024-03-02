@@ -138,6 +138,7 @@ function Hackaton() {
                   width={545}
                   height={532}
                   className="relative z-40 w-[50vw] md:w-[35.5vw] xl:w-[600px] mx-auto"
+                  data-aos="zoom-out-up"
                   priority
                 />
               </div>

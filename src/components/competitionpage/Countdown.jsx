@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function Countdown({ deadline }) {
   const [hari, setHari] = useState(0);
@@ -6,6 +8,13 @@ function Countdown({ deadline }) {
   const [menit, setMenit] = useState(0);
   const [detik, setDetik] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(()=>{
+    AOS.init({
+      disable: false,
+      duration: 1300,
+    })
+  },[])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,7 +43,7 @@ function Countdown({ deadline }) {
 
   return (
     <div className="flex flex-col">
-      <div className="w-[78.85vw] md:w-[35.9vw] lg:w-[18.25vw]">
+      <div className="w-[78.85vw] md:w-[35.9vw] lg:w-[18.25vw]" data-aos="zoom-out-up">
         <h4 className="font-Montserrat text-[3.858vw] md:text-[1.783vw] lg:text-[1.25vw] text-white font-bold">
           Sisa waktu pendaftaran
         </h4>
