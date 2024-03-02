@@ -9,58 +9,12 @@ import bg1 from "../../assets/background/bg1.svg";
 import Link from "next/link";
 import { HiArrowRight } from "react-icons/hi";
 
-import CloudsDekstop from "../../assets/background/awanSponsorsDekstop.png";
-import CloudsTablet from "../../assets/background/awanSponsorsTablet.png";
-import CloudsMobile from "../../assets/background/awanSponsorsMobile.png";
-
 export default function Question() {
   const handleContactUsClick = () => {};
 
   return (
     <div className="h-fit bg-background-skyblue flex justify-center z-[-4]">
       <div className="relative flex justify-center">
-        <div className="min-w-fit h-auto absolute hidden lg:flex -top-[418px]">
-          <div className="min-w-fit h-auto scale-125 flex relative object-none object-right">
-            <Image
-              alt="bg"
-              src={CloudsDekstop}
-              className="overflow-visible animate-swipeRight2"
-            />
-            <Image
-              alt="bg"
-              src={CloudsDekstop}
-              className="overflow-visible absolute animate-swipeRight1"
-            />
-          </div>
-        </div>
-        <div className="min-w-fit h-auto absolute hidden sm:flex lg:hidden -top-72">
-          <div className="min-w-fit h-auto flex relative object-none object-right scale-[1.8]">
-            <Image
-              alt="bg"
-              src={CloudsTablet}
-              className="overflow-visible animate-swipeRight2"
-            />
-            <Image
-              alt="bg"
-              src={CloudsTablet}
-              className="overflow-visible absolute animate-swipeRight1"
-            />
-          </div>
-        </div>
-        <div className="min-w-fit h-auto absolute flex sm:hidden -top-40">
-          <div className="min-w-fit h-auto flex relative object-none object-right scale-[2]">
-            <Image
-              alt="bg"
-              src={CloudsMobile}
-              className="overflow-visible animate-swipeRight2"
-            />
-            <Image
-              alt="bg"
-              src={CloudsMobile}
-              className="overflow-visible absolute animate-swipeRight1"
-            />
-          </div>
-        </div>
         <div className="bg-[url('../assets/background/placeholder.svg')] w-[55vw] bg-no-repeat bg-contain grid-cols-2 grid z-10 max-md:w-[90vw] max-sm:bg-[url('../assets/background/placeholderHP.svg')] max-sm:grid-cols-1 translate-y-[8vw] max-md:translate-y-[12vw]">
           <div className=" scale-125 max-sm:scale-60 translate-y-[-10vw] translate-x-[-2vw] w-fit max-sm:flex max-sm:place-self-center max-sm:translate-x-[0vw] max-md:translate-y-[-15vw] max-sm:translate-y-[-65vw] max-sm:mt-[25vw] max-sm:mb-[15vw]">
             <Image src={hmm1} alt="logo" className="w-[80vw] max-sm:w-[50vw]" />
