@@ -1,21 +1,79 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Button from "../Button";
 import hmm1 from "../../assets/background/hmm1.png";
-import placeholder from "../../assets/background/placeholder.svg";
 import rightPlanet from "../../assets/background/rightPlanet.png";
-import placeholderHP from "../../assets/background/placeholderHP.svg";
 import bg1 from "../../assets/background/bg1.svg";
 import Link from "next/link";
 import { HiArrowRight } from "react-icons/hi";
 
 export default function Question() {
-  const handleContactUsClick = () => {};
+  const [windowWidth, setWindowWidth] = useState(null);
+
+  useEffect(() => {
+    const updateWindowsWidth = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    updateWindowsWidth();
+
+    return () => {
+      window.addEventListener("resize", updateWindowsWidth);
+    };
+  }, []);
 
   return (
     <div className="h-fit bg-background-skyblue flex justify-center z-[-4]">
       <div className="relative flex justify-center">
-        <div className="bg-[url('../assets/background/placeholder.svg')] w-[55vw] bg-no-repeat bg-contain grid-cols-2 grid z-10 max-md:w-[90vw] max-sm:bg-[url('../assets/background/placeholderHP.svg')] max-sm:grid-cols-1 translate-y-[8vw] max-md:translate-y-[12vw]">
+        <div className="min-w-fit h-auto absolute hidden lg:flex -top-[418px]">
+          <div className="min-w-fit h-auto scale-125 flex relative object-none object-right">
+            <Image
+              alt="bg"
+              src={CloudsDekstop}
+              className="overflow-visible animate-swipeRight2"
+            />
+            <Image
+              alt="bg"
+              src={CloudsDekstop}
+              className="overflow-visible absolute animate-swipeRight1"
+            />
+          </div>
+        </div>
+        <div className="min-w-fit h-auto absolute hidden sm:flex lg:hidden -top-72">
+          <div className="min-w-fit h-auto flex relative object-none object-right scale-[1.8]">
+            <Image
+              alt="bg"
+              src={CloudsTablet}
+              className="overflow-visible animate-swipeRight2"
+            />
+            <Image
+              alt="bg"
+              src={CloudsTablet}
+              className="overflow-visible absolute animate-swipeRight1"
+            />
+          </div>
+        </div>
+        <div className="min-w-fit h-auto absolute flex sm:hidden -top-40">
+          <div className="min-w-fit h-auto flex relative object-none object-right scale-[2]">
+            <Image
+              alt="bg"
+              src={CloudsMobile}
+              className="overflow-visible animate-swipeRight2"
+            />
+            <Image
+              alt="bg"
+              src={CloudsMobile}
+              className="overflow-visible absolute animate-swipeRight1"
+            />
+          </div>
+        </div>
+        <div className="relative w-[55vw] bg-no-repeat bg-contain grid-cols-2 grid z-10 max-md:w-[90vw] max-sm:grid-cols-1 translate-y-[8vw] max-md:translate-y-[12vw]">
+          {windowWidth < 640 ? (
+            <Image src={"/placeholderHP.svg"} fill alt="container" className="max-md:translate-y-[-26vw]"/>
+
+          ) : (
+            <Image src={"/placeholder.svg"} fill alt="container" />
+          )}
           <div className=" scale-125 max-sm:scale-60 translate-y-[-10vw] translate-x-[-2vw] w-fit max-sm:flex max-sm:place-self-center max-sm:translate-x-[0vw] max-md:translate-y-[-15vw] max-sm:translate-y-[-65vw] max-sm:mt-[25vw] max-sm:mb-[15vw]">
             <Image src={hmm1} alt="logo" className="w-[80vw] max-sm:w-[50vw]" />
           </div>

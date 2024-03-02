@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, isValid, parseISO } from "date-fns";
 import React from "react";
 import { useState } from "react";
 import { MdPlayArrow } from "react-icons/md";
@@ -16,7 +16,12 @@ export default function Accordion({
   institutionNumber,
   institutionFile,
 }) {
-  const formattedDateOfBirth = format(new Date(`${dateOfBirth}`), "dd MMMM y");
+  const parsedDateOfBirth = isValid(parseISO(dateOfBirth))
+    ? parseISO(dateOfBirth)
+    : null;
+  const formattedDateOfBirth = parsedDateOfBirth
+    ? format(parsedDateOfBirth, "dd MMMM y")
+    : "";
   const array = [1, 2, 3, 4, 5];
 
   const [isExpand, setIsExpand] = useState(0);
@@ -41,8 +46,8 @@ export default function Accordion({
         }}
       >
         <div className="flex items-center space-x-4">
-          {array.map((idx) => {
-            <div key={idx}>{array[idx]}</div>;
+          {array.map((value, idx) => {
+            <div key={idx}>{value}</div>;
           })}
           <p>{name}</p>
         </div>

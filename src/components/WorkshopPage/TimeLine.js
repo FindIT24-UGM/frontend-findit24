@@ -47,16 +47,18 @@ const dummyData = [
 export default function Timeline() {
   return (
     <div className="bg-text-placeholder-dark min-h-screen w-full p-10">
-      <h2 className="font-GameOfSquid text-[48px] font-bold text-white text-center mb-14">
+      <h2 className="font-GameOfSquid text-[48px] font-bold text-white text-center mb-14"
+      data-aos="zoom-out-up">
         Timeline
       </h2>
       <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:flex-col">
         {/* date */}
-        <div className="mt-[12vw] space-y-[19.5vw] lg:space-y-0 lg:flex lg:space-x-[16.78vw] lg:mt-0 lg:ml-[6.28vw]">
+        <div className="mt-[12vw] space-y-[19.5vw] lg:space-y-0 lg:flex lg:space-x-[16.78vw] lg:mt-0 lg:ml-[6.28vw]"
+        data-aos="fade-right">
           {dummyData.map((item, i) => {
             return (
               <p
-                key={item.name + i} // Menggunakan kombinasi item.name dan indeks i
+                key={item.name + i}
                 className="font-GameOfSquid text-white h-[5vw] my-auto lg:h-fit lg:w-[6vw] text-center"
               >
                 {item.date}
@@ -65,34 +67,32 @@ export default function Timeline() {
           })}
         </div>
         {/* vertikal line */}
-        <div className="mt-[12vw] lg:hidden">
+        <div className="mt-[12vw] lg:hidden" data-aos="fade-down">
           {dummyData.map((item, indexv) => {
             return (
               indexv !== dummyData.length - 1 && (
                 <LineV1 key={item.name + indexv} />
               )
-            ); // Menggunakan kombinasi item.name dan indeks indexv
+            );
           })}
           <HexagonDot />
         </div>
         {/* horoizontal line */}
-        <div className="hidden lg:flex ml-[9.28vw]">
+        <div className="hidden lg:flex ml-[9.28vw]" data-aos="fade-right">
           {dummyData.map((item, indexh) => {
             return (
               indexh !== dummyData.length - 1 && (
                 <LineH1 key={item.name + indexh} />
               )
-            ); // Menggunakan kombinasi item.name dan indeks indexh
+            );
           })}
           <HexagonDot />
         </div>
         {/* card */}
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col lg:flex-row" >
           {dummyData.map((item, indexcard) => {
             return (
-              <div className="my-[1vw] lg:mx-[4vw]" key={item.name + indexcard}>
-                {" "}
-                {"// Menggunakan kombinasi item.name dan indeks indexcard"}
+              <div className="my-[1vw] lg:mx-[4vw]" data-aos="flip-right" key={item.name + indexcard}>
                 <TimeLineCard content={item.name} />
               </div>
             );

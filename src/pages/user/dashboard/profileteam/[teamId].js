@@ -14,7 +14,7 @@ import { HiArrowLeft } from "react-icons/hi";
 
 import Comment from "./Comment";
 import Status from "./Status";
-import Accordion from "./Accordion";
+import Accordion from "../../../../components/LandingPage/Dashboard/Accordion";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { format } from "date-fns";
@@ -164,12 +164,20 @@ export default function Index() {
       {/* header */}
       <div className="flex items-center space-x-5 text-white text-xl lg:hidden">
         <FaArrowLeft />
-        <h2 className="font-GameOfSquid font-bold">DASHBOARD LOMBA</h2>
+        <button
+          onClick={() => {
+            router.push(`/user/dashboard/lomba`);
+          }}
+        >
+          <h2 className="font-GameOfSquid bg-black font-bold">
+            DASHBOARD LOMBA
+          </h2>
+        </button>
       </div>
       <button
-        className="absolute left-12 w-5/6 max-h-[10vh] flex items-center gap-4 mt-6"
+        className="absolute left-12 w-1/6 max-h-[10vh] flex items-center gap-4 mt-6"
         onClick={() => {
-          router.back();
+          router.push(`/user/dashboard/lomba`);
         }}
       >
         <HiArrowLeft size={20} color="white" />
@@ -245,7 +253,7 @@ export default function Index() {
           <div className="border-b-[1px] pb-5 border-slate-600">
             <div className="flex items-center justify-between">
               <h2 className="font-CreatoDisplay font-bold text-[24px]">
-                {dataTeam?.teamName}
+                {dataTeam?.teamName}1
               </h2>
               <Status isVerified={dataTeam?.verified} />
             </div>
@@ -403,7 +411,7 @@ export default function Index() {
           </div>
           <button
             onClick={() =>
-              router.replace("/user/dashboard/profileteam/editteam" + teamId)
+              router.replace(`/user/dashboard/profileteam/editteam/${teamId}`)
             }
             className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
           >

@@ -25,31 +25,37 @@ const OurPartnerComp = () => {
           alt="bg"
           src={StarsDekstop}
           className="bg-cover absolute hidden lg:flex w-full"
+          data-aos="fade-down"
         />
         <Image
           alt="bg"
           src={StarsTablet}
           className="bg-cover absolute hidden md:flex lg:hidden w-full"
+          data-aos="fade-down"
         />
         <Image
           alt="bg"
           src={StarsMobile}
           className="bg-cover absolute flex md:hidden lg:hidden w-full"
+          data-aos="fade-down"
         />
         <Image
           alt="bg"
           src={PlanetMobile}
           className="absolute top-[15px] flex md:hidden lg:hidden"
+          data-aos="fade-right"
         />
         <Image
           alt="bg"
           src={PlanetTablet}
           className="absolute top-[60px] left-[22px] hidden md:flex lg:hidden"
+          data-aos="fade-right"
         />
         <Image
           alt="bg"
           src={PlanetLeft}
           className="absolute hidden top-[150px] left-[70px] lg:flex"
+          data-aos="fade-right"
         />
         <div className="min-w-fit h-auto absolute hidden lg:flex top-[418px]">
           <div className="min-w-fit h-auto scale-125 flex relative object-none object-right">
@@ -99,18 +105,21 @@ const OurPartnerComp = () => {
             <div className="flex justify-center items-center ">
               <div className="flex flex-col lg:flex-row justify-center lg:justify-between lg:items-center w-[74vw]">
                 <div className=" text-[#FCFCFC] text-[9vw] lg:text-[4.470vw] flex justify-center">
-                  <div className=" inline-flex py-[1.2vw] font-GameOfSquid gap-x-3 sm:gap-x-5 lg:gap-x-8 items-center">
+                  <div className=" inline-flex py-[1.2vw] font-GameOfSquid gap-x-3 sm:gap-x-5 lg:gap-x-8 items-center"
+                  data-aos="zoom-out-up">
                     <p className="drop-shadow-[0_0px_2px_rgba(255,255,255,1)] sm:drop-shadow-[0_0px_4px_rgba(255,255,255,1)] lg:drop-shadow-[0_0px_6px_rgba(255,255,255,1)]">
                       our
                     </p>
-                    <div className="border-solid z-30 border-[#92C2D0] border-[0.55vw] lg:border-[0.3vw] rounded-[1.8vw] lg:rounded-[0.9vw] lg:py-0 px-[1.5vw] lg:px-[1.1vw]">
+                    <div className="border-solid z-30 border-[#92C2D0] border-[0.55vw] lg:border-[0.3vw] rounded-[1.8vw] lg:rounded-[0.9vw] lg:py-0 px-[1.5vw] lg:px-[1.1vw]"
+                    data-aos="zoom-out-up">
                       <p className="drop-shadow-[0_0px_2px_rgba(255,255,255,1)] sm:drop-shadow-[0_0px_4px_rgba(255,255,255,1)] lg:drop-shadow-[0_0px_6px_rgba(255,255,255,1)]">
                         PARTNER
                       </p>
                     </div>
                   </div>
-                </div>
-                <p className="flex justify-center items-center font-CreatoDisplay text-[#92C2D0] text-center align-top lg:text-justify text-xs sm:text-xl lg:text-2xl lg:leading-6 font-medium lg:font-bold lg:w-[33.5vw] lg:h-[2.5vw] mt-4 sm:mt-8 lg:mt-0 z-30">
+                </div >
+                <p className="flex justify-center items-center font-CreatoDisplay text-[#92C2D0] text-center align-top lg:text-justify text-xs sm:text-xl lg:text-2xl lg:leading-6 font-medium lg:font-bold lg:w-[33.5vw] lg:h-[2.5vw] mt-4 sm:mt-8 lg:mt-0 z-30"
+                data-aos="zoom-out-up">
                   We sincerely express our appreciation to our sponsors for
                   their generous support and confidence in our event.
                 </p>
