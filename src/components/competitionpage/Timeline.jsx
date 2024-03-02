@@ -48,7 +48,10 @@ export default function Timeline({ data }) {
       <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:justify-start lg:overflow-auto lg:scrollbar-none lg:flex-col w-full px-10 z-10">
         <div className="mt-[13vw] space-y-[20vw] lg:hidden">
           {data.map((item, i) => (
-            <p key={i} className="font-GameOfSquid text-white h-[5vw] my-auto text-[2.6vw]">
+            <p
+              key={i}
+              className="font-GameOfSquid text-white h-[5vw] my-auto text-[2.6vw]"
+            >
               {item.date}
             </p>
           ))}
@@ -118,8 +121,16 @@ export default function Timeline({ data }) {
           })}
         </div>
         <div className="absolute flex -mt-[8vh] lg:hidden">
-          <Image src={VerticalVector} alt="gambar vector h-[200vh]" />
-          <Image src={VerticalVector} alt="gambar vector h-[200vh]" />
+          <Image
+            src={VerticalVector}
+            alt="gambar vector h-[200vh]"
+            className="opacity-30"
+          />
+          <Image
+            src={VerticalVector}
+            alt="gambar vector h-[200vh]"
+            className="opacity-30"
+          />
         </div>
         <div className="w-full relative hidden lg:flex -mt-[45vh]">
           <Image src={HorizontalVector} alt="gambar vector" />
