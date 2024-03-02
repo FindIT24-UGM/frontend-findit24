@@ -128,7 +128,7 @@ function TimeLineCard({ data }) {
 
 function TimeLine({ data }) {
   return (
-    <div className="min-h-screen w-full flex justify-center items-center">
+    <div className="h-80% w-full flex justify-center items-center">
       <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:flex-col px-10 z-10 lg:w-fit w-full">
         {/* vertikal line */}
         <div className="lg:hidden mt-[11.2vw]">
@@ -177,7 +177,7 @@ export default function Second({
   cardAllItems,
 }) {
   return (
-    <main className="w-screen items-center justify-center text-center relative max-sm:mb-[50vw]">
+    <main className="w-screen items-center justify-center text-center relative mb-[8vw]">
       <div className="relative w-full">
         <Image
           src={Pattern1}
