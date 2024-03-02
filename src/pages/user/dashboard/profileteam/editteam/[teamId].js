@@ -5,6 +5,7 @@ import { HiArrowLeft } from "react-icons/hi";
 import { BsCalendar2PlusFill } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import ModalParent from "../../../../../components/modal/modalparent";
