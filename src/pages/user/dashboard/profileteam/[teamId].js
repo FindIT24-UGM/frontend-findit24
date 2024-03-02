@@ -409,15 +409,34 @@ export default function Index() {
               )}
             </div>
           </div>
-          <button
-            onClick={() =>
-              router.replace(`/user/dashboard/profileteam/editteam/${teamId}`)
-            }
-            className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
-          >
-            <HiCheckCircle />
-            <p className="text-[16px] font-bold">AJUKAN VERIFIKASI</p>
-          </button>
+          {!dataTeam?.teamPayment &&
+          !dataTeam?.paymentSender &&
+          !dataTeam?.bankAccountId &&
+          !dataTeam?.bankName &&
+          !dataTeam?.paymentFile &&
+          !dataTeam?.twibbonTeam ? (
+            <button
+              onClick={() =>
+                router.replace(`/user/dashboard/profileteam/editteam/${teamId}`)
+              }
+              className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
+            >
+              <HiCheckCircle />
+              <p className="text-[16px] font-bold">Edit Profil Tim</p>
+            </button>
+          ) : (
+            <button
+              onClick={() =>
+                router.replace(`/user/dashboard/profileteam/editteam/${teamId}`)
+              }
+              className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
+            >
+              <HiCheckCircle />
+              <p className="text-[16px] font-bold">
+                Silahkan tunggu diverifikasi
+              </p>
+            </button>
+          )}
         </div>
         <div className="px-3 py-5 bg-primary-500 rounded-md md:w-1/2">
           <h2 className="text-2xl font-Montserrat text-white font-bold">

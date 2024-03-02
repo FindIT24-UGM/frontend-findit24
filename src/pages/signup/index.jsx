@@ -143,7 +143,7 @@ const SignUpPage = () => {
               customClass={"font-Montserrat text-black font-semibold"}
               text="Sign Up"
             />
-            <button
+            {/* <button
               onClick={googleSignupHandler}
               className="relative flex flex-row items-center w-full px-3 py-2 text-black bg-white rounded-lg"
             >
@@ -155,7 +155,7 @@ const SignUpPage = () => {
                 alt="Google"
               />
               <p className="mx-auto font-semibold">Sign Up with Google</p>
-            </button>
+            </button> */}
           </div>
           <div className="flex flex-row items-center my-2 mt-4 font-thin gap-x-1">
             <p className="">Already have an account ?</p>
