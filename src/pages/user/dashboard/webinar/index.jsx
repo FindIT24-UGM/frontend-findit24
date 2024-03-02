@@ -38,7 +38,7 @@ const Index = () => {
   const handleDaftarWorkshop = () => {
     router.push("/user/dashboard/webinar/daftarWorkshop");
   };
-
+  console.log(courseUser);
   const uploadPaymentCourse = (e) => {
     const formData = new FormData();
     const file = e.target.files[0];

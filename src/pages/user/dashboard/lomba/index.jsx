@@ -224,7 +224,9 @@ const Index = ({ nameAbr }) => {
               <div className="w-[212px]">
                 <Link
                   href={
-                    isAuthenticated ? "/competition/register/ctf" : "auth/login"
+                    isAuthenticated
+                      ? `/competition/register/${competitionName}`
+                      : "/login"
                   }
                 >
                   <Button
@@ -547,13 +549,7 @@ const Index = ({ nameAbr }) => {
             </p>
             <div className="w-full h-auto flex justify-center items-center flex-col lg:flex-row gap-[10px] sm:gap-3 lg:gap-4">
               <div className="w-[212px]">
-                <Link
-                  href={
-                    isAuthenticated
-                      ? "/user/dashboard/lomba/datatim"
-                      : "/auth/login"
-                  }
-                >
+                <Link href={"/user/dashboard/lomba/datatim"}>
                   <Button fullW customClass={"lg:py-1"} text="Buat Tim" />
                 </Link>
               </div>
