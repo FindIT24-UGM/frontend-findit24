@@ -214,16 +214,14 @@ const DataTimGeneral = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data.request);
         router.push(
           `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/berhasilteam/${res.data.request.teamId}`
         );
         return res.data.data;
       })
       .catch((err) => {
-        console.log(err.response.data.message);
         toast.error(err.response.data.message);
-        return err.response.data;
+        // return err.response.data;
       });
   };
 

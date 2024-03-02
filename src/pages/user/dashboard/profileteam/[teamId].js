@@ -35,7 +35,6 @@ export default function Index() {
         })
         .then((res) => {
           setDataTeam(res.data.info);
-          console.log(res.data.info);
           axios
             .get(
               `${process.env.NEXT_PUBLIC_API_URL}/team/get-announcements/${teamId}`,
@@ -85,12 +84,10 @@ export default function Index() {
           }
         )
         .then((res) => {
-          console.log(res);
           toast.success("berhasil upload twibbon");
         })
         .catch((err) => {
           console.log(err);
-          console.log(formTwibbon);
         });
     }
   };
@@ -115,12 +112,10 @@ export default function Index() {
           }
         )
         .then((res) => {
-          console.log(res);
           toast.success("berhasil upload bukti pembayaran");
         })
         .catch((err) => {
           console.log(err);
-          console.log(formPayment);
         });
     }
   };
@@ -145,12 +140,10 @@ export default function Index() {
           }
         )
         .then((res) => {
-          console.log(res);
           toast.success("berhasil upload abstrak");
         })
         .catch((err) => {
           console.log(err);
-          console.log(formAbstract);
         });
     }
   };
@@ -229,16 +222,15 @@ export default function Index() {
             </div>
           </div>
           <div className="max-h-72 md:max-h-56 lg:max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-white">
-            {announcements &&
+            <Comment
+              key={dataTeam._id}
+              title={dataTeam.title}
+              toTeam={dataTeam.teamName}
+              content={dataTeam.rejectionMessage}
+            />
+            {/* {announcements &&
               announcements.map((announcement) => (
-                <Comment
-                  key={announcement._id}
-                  title={announcement.title}
-                  toTeam={announcement.toTeam.teamName}
-                  content={announcement.content}
-                  createdAt={announcement.createdAt}
-                />
-              ))}
+              ))} */}
           </div>
         </div>
       </div>

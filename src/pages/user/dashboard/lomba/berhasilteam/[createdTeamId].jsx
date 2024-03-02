@@ -33,7 +33,6 @@ export default function Berhasil() {
         })
         .then((res) => {
           setInvitationCode(res.data.info.teamCode);
-          console.log(res.data);
         })
         .catch((err) => {
           console.log(err);

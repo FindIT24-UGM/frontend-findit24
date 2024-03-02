@@ -42,7 +42,6 @@ const SessionProvider = ({ children }) => {
             withCredentials: true,
           }
         );
-        console.log(response);
         if (response.status >= 200 && response.status < 305) {
           setSession({ status: "authenticated", user: response.data.user });
         } else {

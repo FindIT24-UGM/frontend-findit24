@@ -59,15 +59,8 @@ const Index = ({ nameAbr }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (userTeam) {
-      setCountLomba(userTeam?.asMember?.length);
+      setCountLomba(userTeam?.teams?.length);
     }
-    // dispatch(getTeamsToSearch(process.env.NEXT_PUBLIC_COMPETITION_ID_CTF))
-    //   .unwrap()
-    //   .then((res) => {
-    //     dispatch(loadingEnd());
-    // console.log(res);
-    // setCountLomba(res.asMember.length)
-    // });
   }, [isAuthenticated]);
 
   const searchTeam = () => {
@@ -90,26 +83,7 @@ const Index = ({ nameAbr }) => {
       });
     dispatch(loadingEnd);
   };
-
-  // const createNewTeam = (eventId, teamCode) => {
-  //   axios
-  //     .post(
-  //       `${process.env.NEXT_PUBLIC_API_URL}/team/new`,
-  //       {
-  //         eventId,
-  //         teamCode,
-  //       },
-  //       {
-  //         withCredentials: true,
-  //       }
-  //     )
-  //     .then((res) => {
-  //       console.log(res.data.message);
-  //       setOpenConfirmation(true);
-  //       setOpenInvitation(false);
-  //     });
-  // };
-
+  
   const joinTeam = (eventId, teamId, teamLeaderId) => {
     axios
       .post(

@@ -23,7 +23,12 @@ const Index = () => {
         withCredentials: true,
       })
       .then((result) => {
-        setCourseUser(...result.data.user);
+        if (Array.isArray(result.data.user) && result.data.user.length === 0) {
+          setIsJoinWorkshop(false);
+        } else {
+          setIsJoinWorkshop(true)
+          setCourseUser(...result.data.user);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -39,7 +44,6 @@ const Index = () => {
     const file = e.target.files[0];
 
     formData.append("paymentFile", file);
-    console.log(formData);
     if (formData) {
       axios
         .post(
@@ -78,7 +82,16 @@ const Index = () => {
                 </p>
               </div>
             ) : (
-              <div></div>
+              <div className="w-full bg-text-placeholder-light p-6 flex items-center gap-4 rounded-lg">
+                <HiExclamationCircle
+                  size={38}
+                  color="#233E51"
+                  className="min-w-[32px]"
+                />
+                <p className="font-Montserrat font-bold text-text-placeholder-dark text-xs sm:text-sm lg:text-base">
+                  Silakan unggah bukti pembayaran dan tunggu admin melakukan verifikasi.
+                </p>
+              </div>
             )}
           </div>
           <div className="w-5/6 flex flex-col justify-center items-center gap-4">
@@ -87,7 +100,7 @@ const Index = () => {
               teknologi Blockchain bersama pembicara berpengalaman pada bidang
               tersebut.
             </p>
-            {courseUser?.paymentFile === "" ? (
+            {isJoinWorkshop && courseUser?.paymentFile === "" ? (
               <label className="text-center text-[16px] text-black font-bold py-2 bg-background-skyblue w-full font-GameOfSquid rounded-md">
                 Upload Pembayaran
                 <input
@@ -101,11 +114,17 @@ const Index = () => {
               </label>
             ) : (
               <div className="w-full">
-                <button className="text-center text-[16px] text-black font-bold py-2 bg-background-skyblue w-full font-GameOfSquid rounded-md">
-                  {" "}
-                  Lihat
-                </button>
               </div>
+            )}
+            {courseUser && courseUser?.paymentFile !=="" ? (
+              <div className="w-full">
+                <button onClick={() => window.open(`${courseUser?.paymentFile}`, "_blank")} className="text-center text-[16px] text-black font-bold py-2 bg-background-skyblue w-full font-GameOfSquid rounded-md">
+                {" "}
+                Lihat
+                </button>              
+              </div>              
+            ) : (
+              <div></div>
             )}
             {isAuthenticated ? (
               isJoinWorkshop === false ? (
