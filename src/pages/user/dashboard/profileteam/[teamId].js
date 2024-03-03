@@ -346,10 +346,7 @@ export default function Index() {
             </div>
             <div className="font-Montserrat flex items-center">
               <div className="w-[200px]">
-                <p className="font-bold">Informasi</p>
-                <p className="text-neutral-300 font-bold text-[11.57px]">
-                  buktiPembayaran.png
-                </p>
+                <p className="font-bold">Bukti Pembayaran</p>
               </div>
               {dataTeam?.paymentFile === "" ? (
                 <label className="w-[160px] flex justify-center hover:cursor-pointer border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1">
@@ -372,12 +369,15 @@ export default function Index() {
                 </button>
               )}
             </div>
+
+            <div className="">
+              <p className="text-[16px] text-black">
+                Silahkan transfer ke rekening di bawah ini
+              </p>
+            </div>
             <div className="font-Montserrat flex items-center">
               <div className="w-[200px]">
                 <p className="font-bold">Bukti Twibbon</p>
-                <p className="text-neutral-300 font-bold text-[11.57px]">
-                  anda belum upload
-                </p>
               </div>
               {dataTeam?.twibbonTeam === "" ? (
                 <label className="w-[160px] flex justify-center border-4 hover:cursor-pointer border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1">
@@ -401,33 +401,28 @@ export default function Index() {
               )}
             </div>
           </div>
+          <button
+            onClick={() =>
+              router.replace(`/user/dashboard/profileteam/editteam/${teamId}`)
+            }
+            className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
+          >
+            <HiCheckCircle />
+            <p className="text-[16px] font-bold">Edit Profil Tim</p>
+          </button>
+
+          <p className="font-Montserrat text-[8px] lg:text-[12px] text-center">
+            Admin sedang memverifikasi. Silahkan menunggu!
+          </p>
           {!dataTeam?.teamPayment &&
           !dataTeam?.paymentSender &&
           !dataTeam?.bankAccountId &&
           !dataTeam?.bankName &&
           !dataTeam?.paymentFile &&
           !dataTeam?.twibbonTeam ? (
-            <button
-              onClick={() =>
-                router.replace(`/user/dashboard/profileteam/editteam/${teamId}`)
-              }
-              className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
-            >
-              <HiCheckCircle />
-              <p className="text-[16px] font-bold">Edit Profil Tim</p>
-            </button>
+            <></>
           ) : (
-            <button
-              onClick={() =>
-                router.replace(`/user/dashboard/profileteam/editteam/${teamId}`)
-              }
-              className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
-            >
-              <HiCheckCircle />
-              <p className="text-[16px] font-bold">
-                Silahkan tunggu diverifikasi
-              </p>
-            </button>
+            <></>
           )}
         </div>
         <div className="px-3 py-5 bg-primary-500 rounded-md md:w-1/2">

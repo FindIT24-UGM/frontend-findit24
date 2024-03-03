@@ -36,7 +36,7 @@ import { toast } from "react-toastify";
 //   institutionName: undefined,
 //   institutionNumber: undefined,
 // };
-const reducer = ( state, action ) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case "UPDATE_FIELD":
       return { ...state, [action.field]: action.value };
@@ -239,17 +239,19 @@ const ProfilDiri = () => {
   const [imagePreview, setImagePreview] = useState("");
   const uploadInstitutionFile = (e) => {
     const formData = new FormData();
-    const file = e.target.files[0];
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
 
-    formData.append("institutionFile", file);
+      formData.append("institutionFile", file);
 
-    const regex = /\.(jpg|jpeg|png)$/i;
-    if (regex.test(file.name)) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImagePreview(e.target.result);
-      };
-      reader.readAsDataURL(file);
+      const regex = /\.(jpg|jpeg|png)$/i;
+      if (regex.test(file.name)) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setImagePreview(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
     }
     if (formData) {
       axios
@@ -317,7 +319,7 @@ const ProfilDiri = () => {
     dispatch({ type: "UPDATE_FIELD", field: name, value });
   };
 
-  const handleDateChange = ( date ) => {
+  const handleDateChange = (date) => {
     dispatch({ type: "UPDATE_FIELD", field: "dateOfBirth", value: date });
   };
 

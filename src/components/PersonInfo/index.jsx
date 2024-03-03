@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import RootLayout from "../layout.jsx";
+import RootLayout from "../../pages/layout.jsx";
 import {
   BsPersonBadgeFill,
   BsCalendarDateFill,
@@ -12,10 +12,10 @@ import { IoSchool } from "react-icons/io5";
 import { HiPhone } from "react-icons/hi";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Button from "../../components/Button.jsx";
+import Button from "../Button.jsx";
 import axios from "axios";
 import { useRouter } from "next/router.js";
-import ElectricPattern from "../../components/ElectricPattern.jsx";
+import ElectricPattern from "../ElectricPattern.jsx";
 
 const PersonalInfo = () => {
   const router = useRouter();

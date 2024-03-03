@@ -74,7 +74,7 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
         </p>
         <select
           aria-placeholder="Select Receiver"
-          className="p-2 ml-8 max-sm:ml-5 rounded my-[2vw] bg-white text-[#B6B7BA] font-Montserrat font-medium max-sm:w-[50%] bg-border-none"
+          className="p-2 ml-8 max-sm:ml-5 rounded my-[2vw] bg-white text-black font-bold font-Montserrat font-medium max-sm:w-[50%] bg-border-none"
           value={selectedLomba}
           onChange={(e) => setSelectedLomba(e.currentTarget.value)}
         >
@@ -105,7 +105,7 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
           </option>
         </select>
       </div>
-      
+
       <p className="font-CreatoDisplay font-bold text-xl text-shade-white max-md:justify-normal max-md:justify-items-start max-md:mt-[2vw] max-md:ml-[2vw] max-sm:ml-[3vw]">
         Total Fee: {harga}
       </p>
@@ -398,6 +398,9 @@ const DataTimGeneral = () => {
                     onChange={(e) => setinstitusi(e.currentTarget.value)}
                   />
                 </div>
+              </div>
+              <div className="min-h-full border border-text-placeholder-light" />
+              <div className="w-[45%] flex flex-col gap-2 max-md:w-[100%] max-sm:w-[100%]">
                 <div className="w-full flex flex-col gap-2">
                   <p className="font-Montserrat font-bold text-text-placeholder-light">
                     Nama Tim
@@ -413,10 +416,7 @@ const DataTimGeneral = () => {
                     onChange={(e) => setNamaTim(e.currentTarget.value)}
                   />
                 </div>
-              </div>
-              <div className="min-h-full border border-text-placeholder-light" />
-              <div className="w-[45%] flex flex-col gap-2 max-md:w-[100%] max-sm:w-[100%]">
-                <div className="w-full flex flex-col gap-2">
+                {/* <div className="w-full flex flex-col gap-2">
                   <p className="font-Montserrat font-bold text-text-placeholder-light">
                     Tanggal Pembayaran
                   </p>
@@ -431,7 +431,7 @@ const DataTimGeneral = () => {
                     yearDropdownItemNumber={50}
                     scrollableYearDropdown
                   />
-                </div>
+                </div> */}
                 <div className="w-full flex flex-col gap-2">
                   <p className="font-Montserrat font-bold text-text-placeholder-light">
                     Nama Pengirim

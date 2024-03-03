@@ -8,6 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Image from "next/image";
 import ModalParent from "../../../../../components/modal/modalparent";
 import ModalVerification from "../../../../../components/modal/modalverif";
 
@@ -110,6 +111,41 @@ export default function Index() {
     },
   ];
 
+  const [imagePreview, setImagePreview] = useState("");
+  const uploadPembayaranFile = (e) => {
+    const formData = new FormData();
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+
+      formData.append("institutionFile", file);
+
+      const regex = /\.(jpg|jpeg|png)$/i;
+      if (regex.test(file.name)) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setImagePreview(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+    if (formData) {
+      axios
+        .post(process.env.NEXT_PUBLIC_API_URL + "/user/upload-file", formData, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          toast.success("Berhasil upload file");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  const handleFileChange = (e) => {
+    uploadPembayaranFile(e);
+  };
+
   const CustomInput = ({ value, onClick }) => {
     return (
       <div className="w-full">
@@ -169,10 +205,10 @@ export default function Index() {
             Kembali
           </p>
         </button>
-        <div className="w-2/3 bg-text-placeholder-light p-4 rounded-xl border-[3px] border-shade-black">
+        <div className="w-[85%] md:w-3/4 lg:w-2/3 bg-text-placeholder-light p-4 rounded-xl border-[3px] border-shade-black">
           <div className="w-full flex flex-col justify-center items-center gap-8 bg-primary-500 py-8 rounded-xl">
-            <div className="w-3/4 flex gap-8">
-              <div className="w-[45%] flex flex-col gap-2">
+            <div className="w-3/4 flex flex-col md:flex-row gap-8">
+              <div className="w-full md:w-[45%] flex flex-col gap-2">
                 <div className="w-full flex flex-col gap-2">
                   <p className="font-Montserrat font-bold text-text-placeholder-light">
                     Nomor Utama
@@ -233,9 +269,20 @@ export default function Index() {
                     onChange={handleChange}
                   />
                 </div>
+                <div className="w-full flex flex-col gap-y-4">
+                  <p className="font-Montserrat font-bold text-text-placeholder-light flex flex-col gap-y-4 md:gap-y-2">
+                    <p>Nomor rekening pembayaran :</p>
+                    <p className="text-[12px]">
+                      1212134197 (BNI ) a.n. Nadia Khairunnisa Agma
+                    </p>
+                    <p className="text-[12px]">
+                      3200925130 (BCA ) a.n. Lisa Olivia Putri Maharani
+                    </p>
+                  </p>
+                </div>
               </div>
               <div className="min-h-full border border-text-placeholder-light" />
-              <div className="w-[45%] flex flex-col gap-2">
+              <div className="w-full md:w-[45%] flex flex-col gap-2">
                 <div className="w-full flex flex-col gap-2">
                   <p className="font-Montserrat font-bold text-text-placeholder-light">
                     Tanggal Pembayaran
@@ -296,6 +343,35 @@ export default function Index() {
                     value={state.bankName}
                     onChange={handleChange}
                   />
+                </div>
+                <div>
+                  <div className="flex justify-between items-center w-full">
+                    <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
+                      Upload Bukti Pembayaran
+                    </p>
+                    <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
+                      {imagePreview && (
+                        <Image
+                          width={200}
+                          height={200}
+                          src={imagePreview}
+                          alt="kartu identitas"
+                          className="mb-4"
+                        />
+                      )}
+                      <input
+                        className="hidden"
+                        type="file"
+                        id="institutionFile"
+                        name="institutionFile"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                      />
+                      <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
+                        Unggah
+                      </p>
+                    </label>
+                  </div>
                 </div>
                 {selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_CTF &&
                 selectedLomba !==
