@@ -370,9 +370,15 @@ export default function Index() {
               )}
             </div>
 
-            <div className="">
-              <p className="text-[16px] text-black">
-                Silahkan transfer ke rekening di bawah ini
+            <div className="flex flex-col text-black font-Montserrat">
+              <p className="text-[16px] text-black font-Montserrat">
+                Silahkan transfer ke rekening di bawah ini:
+              </p>
+              <p className="text-[12px]">
+                1212134197 (BNI ) a.n. Nadia Khairunnisa Agma
+              </p>
+              <p className="text-[12px]">
+                3200925130 (BCA ) a.n. Lisa Olivia Putri Maharani
               </p>
             </div>
             <div className="font-Montserrat flex items-center">
