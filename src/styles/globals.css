@@ -19,6 +19,16 @@
   src: url("/assets/fonts/CreatoDisplay-Regular.otf");
 }
 
+.outline-title {
+     color: #2A93C2;
+     text-shadow:
+        1px 1px 0 #FFF,
+        -1px -1px 0 #FFF,  
+        1px -1px 0 #FFF,
+        -1px 1px 0 #FFF,
+        1px 1px 0 #FFF;
+  }
+
 * {
   box-sizing: border-box;
   padding: 0;

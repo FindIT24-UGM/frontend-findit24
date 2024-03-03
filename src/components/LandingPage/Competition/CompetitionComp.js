@@ -186,7 +186,7 @@ const CompetitionComp = () => {
               })}
             </Swiper>
             <div className="flex flex-col items-center">
-              <div className="font-Ava text-white text-[9vw] md:text-[5vw] 2xl:text-[2vw]">
+              <div className="font-Ava text-[9vw] md:text-[5vw] 2xl:text-[2vw] outline-title">
                 {cards[activeIndex].name}
               </div>
             </div>
@@ -228,7 +228,7 @@ const CompetitionComp = () => {
               })}
             </Swiper>
             <div className="flex flex-col items-center">
-              <div className="font-Ava text-white text-[9vw] md:text-[5vw] 2xl:text-[2vw]">
+              <div className="font-Ava text-[9vw] md:text-[5vw] 2xl:text-[2vw] outline-title">
                 {cards[activeIndex].name}
               </div>
             </div>
@@ -270,7 +270,7 @@ const CompetitionComp = () => {
               })}
             </Swiper>
             <div className="flex flex-col items-center">
-              <div className="font-Ava text-white text-[9vw] md:text-[5vw] 2xl:text-[2vw]">
+              <div className="font-Ava text-[9vw] md:text-[5vw] 2xl:text-[2vw] outline-title">
                 {cards[activeIndex].name}
               </div>
             </div>
