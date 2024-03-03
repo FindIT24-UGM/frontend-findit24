@@ -21,28 +21,32 @@ const Gap = () => {
       <div className="w-full flex flex-col items-center absolute">
         <Image
           src={LogoFindIT}
-          className="w-[20%] lg:w-[12%] md:w-[18%] z-1"
+          className="w-[30%] lg:w-[12%] md:w-[18%] mt-[-8px] z-1"
           alt="LogoFindIT.png"
           data-aos="fade-up"
         />
         <Image
           src={AwanKiriAtas}
-          className="w-[28%] right-[75vw] top-[20vh] absolute"
+          className="w-[35%] lg:w-[28%] left-4 md:left-[-40px] lg:left-[-30px] right-[75vw] top-[20vh] absolute"
           alt="AwanKiri.png"
           data-aos="fade-left"
         />
         <Image
           src={AwanKananAtas}
-          className="w-[20%] left-[70vw] top-[40vh] absolute"
+          className="w-[20%] left-[70vw] top-[40vh] absolute awan-kanan"
           alt="AwanKanan.png"
           data-aos="fade-right"
         />
-        <h2 className="font-Montserrat lg:text-[30px] text-transparent bg-gradient-to-b from-orange-400 to-red-500 bg-clip-text"
-        data-aos="zoom-out-up">
+        <h2
+          className="font-Montserrat lg:text-[30px] text-transparent bg-gradient-to-b from-orange-400 to-red-500 bg-clip-text"
+          data-aos="zoom-out-up"
+        >
           WHEN INNOVATION
         </h2>
-        <h2 className="font-GameOfSquid lg:text-[30px] text-white font-bold"
-        data-aos="zoom-out-up">
+        <h2
+          className="font-GameOfSquid lg:text-[30px] text-white font-bold"
+          data-aos="zoom-out-up"
+        >
           HITS EVERYONE’S IMAGINATION
         </h2>
         <Image
@@ -53,7 +57,7 @@ const Gap = () => {
         />
         <Image
           src={Gloey}
-          className="absolute animate-spin-slow w-[45vw] bottom-[-75vw] md:bottom-[-48vw]"
+          className="absolute animate-spin-slow w-[45vw] bottom-[-50vw] md:bottom-[-48vw]"
           alt="Gloey.png"
           data-aos="fade-up"
           data-aos-delay="50"
@@ -63,17 +67,17 @@ const Gap = () => {
         {/* awan awan */}
         <Image
           src={AwanBawahDesktop}
-          className="w-full bg-cover hidden lg:flex "
+          className="w-full bg-cover hidden lg:flex awan"
           alt="AwanBawahDesktop.png"
         />
         <Image
           src={AwanBawahTab}
-          className="w-full bg-cover hidden md:flex lg:hidden "
+          className="w-full bg-cover hidden md:flex lg:hidden awan"
           alt="AwanBawahTab.png"
         />
         <Image
           src={AwanBawahMobile}
-          className="w-full bg-cover flex md:hidden"
+          className="w-full bg-cover flex md:hidden awan"
           alt="AwanBawahMobile.png"
         />
         {/* electric pattern */}

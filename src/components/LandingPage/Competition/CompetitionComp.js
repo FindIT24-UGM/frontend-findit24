@@ -4,9 +4,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
 import CompCard from "./CompCard";
 
 import CTF from "../../../assets/Logo/CTF.png";
@@ -132,12 +132,16 @@ const CompetitionComp = () => {
         <div className="flex flex-col items-center">
           <div className="lg:w-[70%] pt-20">
             <div className="flex flex-col items-center mx-auto">
-              <div className="font-GameOfSquid text-[#FCFCFC] text-[9.331vw] lg:text-[4.5vw] drop-shadow-competitions"
-              data-aos="zoom-out-up">
+              <div
+                className="font-GameOfSquid text-[#FCFCFC] text-[9.331vw] lg:text-[4.5vw] drop-shadow-competitions"
+                data-aos="zoom-out-up"
+              >
                 Competitions
               </div>
-              <div className="text-center font-CreatoDisplay text-[#92C2D0] text-[3.214vw] md:text-[2.604vw] lg:text-[1.25vw] font-bold"
-              data-aos="zoom-out-up">
+              <div
+                className="text-center font-CreatoDisplay text-[#92C2D0] text-[3.214vw] md:text-[2.604vw] lg:text-[1.25vw] font-bold"
+                data-aos="zoom-out-up"
+              >
                 There are sevens competitions, each contributing to the
                 development of creativity and innovation in Information
                 Technology
@@ -148,8 +152,8 @@ const CompetitionComp = () => {
         {windowWidth < 450 ? (
           <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
             <Swiper
-              slidesPerView={1.45}
-              pagination={{clickable: true}}
+              slidesPerView={1}
+              pagination={{ clickable: true }}
               modules={[Pagination]}
               centeredSlides={false}
               onSlideChange={(swiper) => {
@@ -191,7 +195,7 @@ const CompetitionComp = () => {
           <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
             <Swiper
               slidesPerView={1.25}
-              pagination={{clickable: true}}
+              pagination={{ clickable: true }}
               modules={[Pagination]}
               centeredSlides={true}
               onSlideChange={(swiper) => {
@@ -242,7 +246,7 @@ const CompetitionComp = () => {
               onSwiper={setSwiper}
               spaceBetween="60vw"
               grabCursor={true}
-              pagination={{clickable: true}}
+              pagination={{ clickable: true }}
               modules={[Pagination]}
               className="w-full"
             >
