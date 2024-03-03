@@ -50,11 +50,9 @@ export default function Detail() {
         )
         .then((res) => {
           toast.success("berhasil verified team");
-
         })
         .catch((err) => {
           toast.error("update verified gagal");
-
         });
     } else if (!isVerified) {
       axios
