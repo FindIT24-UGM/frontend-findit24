@@ -152,6 +152,32 @@ export default function Index() {
   const copyOnclick = () => {};
   const editOnclick = () => {};
 
+  const calculateTimeLeft = () => {
+    const deadline = new Date('2024-03-23');
+    const difference = +deadline - +new Date();
+    let timeLeft = {};
+
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+      };
+    }
+
+    return timeLeft;
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 60000);
+
+    return () => clearTimeout(timer);
+  });
+
   return (
     <TeamProfileLayout>
       {/* header */}
@@ -178,7 +204,7 @@ export default function Index() {
       </button>
       <div className="space-y-5 text-black md:space-y-0 md:flex md:flex-row md:justify-between md:gap-x-5 lg:flex-col lg:gap-y-5 lg:order-2">
         {/* deadline verif box */}
-        <div className="bg-text-placeholder-light px-5 py-5 rounded-md border-4 border-black md:order-2 lg:order-1 md:w-[40%] lg:w-full">
+        <div className="bg-text-placeholder-light px-5 py-5 rounded-2xl border-4 border-black md:order-2 lg:order-1 md:w-[40%] lg:w-full">
           <div className="flex items-center space-x-2">
             <IoTime />
             <h2 className="font-Montserrat font-bold">Deadline Verifikasi</h2>
@@ -186,7 +212,7 @@ export default function Index() {
           <div className="flex justify-between my-5 md:flex md:flex-col lg:flex-row">
             <div className="bg-gradient-to-b from-orange-400 to-red-400 rounded p-2 w-1/3 mx-2 md:mx-[2px] text-white space-y-2 md:w-full md:flex md:items-center md:justify-between md:my-1 lg:w-1/3">
               <h2 className="font-GameOfSquid text-[16px] md:text-[26px]">
-                20
+                {timeLeft.days}
               </h2>
               <p className="font-Montserrat font-bold text-[10px] md:text-[16px]">
                 Hari
@@ -194,7 +220,7 @@ export default function Index() {
             </div>
             <div className="bg-gradient-to-b from-orange-400 to-red-400 rounded p-2 w-1/3 mx-2 md:mx-[2px] text-white space-y-2 md:w-full md:flex md:items-center md:justify-between md:my-1 lg:w-1/3">
               <h2 className="font-GameOfSquid text-[16px] md:text-[26px]">
-                22
+                {timeLeft.hours}
               </h2>
               <p className="font-Montserrat font-bold text-[10px] md:text-[16px]">
                 Jam
@@ -202,7 +228,7 @@ export default function Index() {
             </div>
             <div className="bg-gradient-to-b from-orange-400 to-red-400 rounded p-2 w-1/3 mx-2 md:mx-[2px] text-white space-y-2 md:w-full md:flex md:items-center md:justify-between md:my-1 lg:w-1/3">
               <h2 className="font-GameOfSquid text-[16px] md:text-[26px]">
-                14
+                {timeLeft.minutes}
               </h2>
               <p className="font-Montserrat font-bold text-[10px] md:text-[16px]">
                 Menit
@@ -211,15 +237,15 @@ export default function Index() {
           </div>
         </div>
         {/* komentar admn box */}
-        <div className="bg-text-placeholder-light px-5 py-5 rounded-md border-4 border-black space-y-4 md:order-1 lg:order-2 md:w-[60%] lg:w-full lg:h-full">
+        <div className="bg-text-placeholder-light px-5 py-5 rounded-2xl border-4 border-black space-y-4 md:order-1 lg:order-2 md:w-[60%] lg:w-full lg:h-full">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <BsChatSquareTextFill />
               <h2 className="font-Montserrat font-bold">Komentar Admin</h2>
             </div>
-            <div className="w-fit text-[#E1820A] bg-[#E8C81B] p-1 rounded-md font-Montserrat font-bold">
+            {/* <div className="w-fit text-[#E1820A] bg-[#E8C81B] p-1 rounded-md font-Montserrat font-bold">
               1 BARU
-            </div>
+            </div> */}
           </div>
           <div className="max-h-72 md:max-h-56 lg:max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-white">
             <Comment
@@ -236,7 +262,7 @@ export default function Index() {
       </div>
 
       {/* team info box */}
-      <div className="bg-text-placeholder-light text-black px-5 py-5 rounded-md border-4 border-black space-y-8 md:flex md:gap-x-5 lg:order-1 lg:row-span-2 lg:col-span-2">
+      <div className="bg-text-placeholder-light text-black px-5 py-5 rounded-2xl border-4 border-black space-y-8 md:flex md:gap-x-5 lg:order-1 lg:row-span-2 lg:col-span-2">
         <div className="space-y-4 text-left md:w-1/2 text-black">
           <div className="flex items-center space-x-2">
             <BsPeopleFill />
@@ -466,7 +492,7 @@ export default function Index() {
 
       {/* pertanyaan box */}
       <div className="lg:order-3">
-        <div className="bg-primary-500 px-5 py-5 text-white rounded-md border-4 border-black space-y-5">
+        <div className="bg-primary-500 px-5 py-5 text-white rounded-2xl border-4 border-black space-y-5">
           <div className="font-bold flex items-center space-x-2 font-Montserrat">
             <BsQuestionOctagonFill />
             <h2>Butuh Bantuan?</h2>
