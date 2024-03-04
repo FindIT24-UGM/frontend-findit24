@@ -79,7 +79,7 @@ export default function Question() {
             <Image src={"/placeholder.svg"} fill alt="container" />
           )}
           <div className=" scale-125 max-sm:scale-60 translate-y-[-10vw] translate-x-[-2vw] w-fit max-sm:flex max-sm:place-self-center max-sm:translate-x-[0vw] max-md:translate-y-[-15vw] max-sm:translate-y-[-65vw] max-sm:mt-[25vw] max-sm:mb-[15vw]">
-            <Image src={hmm1} alt="logo" className="w-[80vw] max-sm:w-[50vw]" />
+            <Image src={hmm1} alt="logo" className="w-[80vw] max-sm:w-[50vw] animate-cloudRight" />
           </div>
           <div className="flex flex-col mt-6 translate-y-[3vw] translate-x-[-5vw] max-sm:text-center max-sm:translate-y-[-80vw] max-sm:translate-x-[0vw]">
             <div className="grid font-GameOfSquid text-[#FCFCFC] text-[3.7vw] leading-[4vw] max-md:text-[6vw] max-md:leading-9 max-sm:text-[9vw] max-sm:leading-10">

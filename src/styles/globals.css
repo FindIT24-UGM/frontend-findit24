@@ -191,5 +191,32 @@ a {
 }
 
 .awan-kanan {
-  animation: awan-ke-kanan 30s ease-in-out infinite alternate;
+  animation: awan-ke-kanan 20s ease-in-out infinite alternate;
+}
+
+@keyframes cloudRight {
+    0% {
+      transform: translatex(0) translateY(0); /* Posisi awal */
+    }
+  
+    25% {
+      transform: translatex(10px) translateY(10px); /* Geser ke bawah */
+    }
+
+    50% {
+      transform: translatex(-10px) translateY(20px); /* Geser ke bawah */
+    }
+
+    75% {
+      transform: translatex(-20px) translateY(10px); /* Geser ke bawah */
+    }
+  
+    100% {
+      transform: translateY(0px); /* Geser ke atas */
+    }
+  }
+
+
+.animate-cloudRight {
+  animation: cloudRight 15s infinite;
 }
