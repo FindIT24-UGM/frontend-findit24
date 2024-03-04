@@ -9,6 +9,7 @@ import Accademy from "../../../assets/Logo/Academy.png";
 import TopSeparator from "../../../assets/background/TopSeparatorWebinar.png";
 import BottomSeparator from "../../../assets/background/BottomSeparatorWebinar.png";
 
+ //dsjkhk buat commit
 
 const WebinarComp = () => {
 
@@ -42,7 +43,7 @@ const WebinarComp = () => {
             </div>
           </div>
           <div className="space-y-5 flex flex-col items-center lg:items-start justify-center px-5 lg:text-left lg:px-0 pb-10"
-          data-aos="zoom-out-up">
+          data-aos="zoom-out-up"> 
             <p className="font-Montserrat text-white text-center lg:text-left text-[2vw] md:text-[2vw] lg:text-[1.2vw]">
               Workshop FIND IT! akan membahas teknologi blockchain, mulai dari
               dasar-dasar hingga aplikasi praktis dalam industri. Peserta akan
@@ -57,7 +58,7 @@ const WebinarComp = () => {
         </div>
       </div>
 
-      {/* background */}
+      {/* background dajsijdi*/} 
       <div className="absolute bottom-0">
         <Image src={BottomSeparator} alt="Bottom Separator.png"></Image>
       </div>
