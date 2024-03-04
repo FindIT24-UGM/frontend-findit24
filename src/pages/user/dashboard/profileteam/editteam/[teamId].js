@@ -448,14 +448,12 @@ export default function Index() {
                         </p>
                       </label>
                     </div>
-                    <Link
-                      href={"bit.ly/TwibbonFindIT2024"}
-                      className="flex flex-col text-blue-600 underline font-Montserrat"
+                    <a
+                      href="bit.ly/TwibbonFindIT2024"
+                      className="flex flex-col text-blue-600 text-[16px] underline font-Montserrat font-medium"
                     >
-                      <p className="text-[16px] font-Montserrat font-medium">
-                        Klik disini untuk link twibbon
-                      </p>
-                    </Link>
+                      Klik disini untuk link twibbon
+                    </a>
                   </div>
                 </div>
                 {selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_CTF &&

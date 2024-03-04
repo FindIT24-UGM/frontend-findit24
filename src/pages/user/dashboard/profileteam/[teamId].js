@@ -408,14 +408,16 @@ export default function Index() {
                 3200925130 (BCA ) a.n. Lisa Olivia Putri Maharani
               </p>
             </div>
-            <Link
-              href={"bit.ly/TwibbonFindIT2024"}
-              className="flex flex-col text-blue-400 underline font-Montserrat"
-            >
-              <p className="text-[16px]  font-Montserrat">
+            {typeof window !== "undefined" ? (
+              <a
+                className="flex flex-col text-blue-400 underline font-Montserrat text-[16px]"
+                href="https://bit.ly/TwibbonFindIT2024"
+              >
                 Klik disini untuk link twibbon
-              </p>
-            </Link>
+              </a>
+            ) : (
+              <></>
+            )}
             <div className="font-Montserrat flex items-center">
               <div className="w-[200px]">
                 <p className="font-bold">Bukti Twibbon</p>
