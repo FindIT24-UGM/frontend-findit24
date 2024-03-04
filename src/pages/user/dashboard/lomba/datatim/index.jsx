@@ -212,7 +212,6 @@ const DataTimGeneral = () => {
           teamContact: [number1, number2],
           discordID,
           inGameID,
-          paymentDate: date,
           paymentSender: namaPengirim,
           bankAccountId: noRekening,
           bankName: bank,
