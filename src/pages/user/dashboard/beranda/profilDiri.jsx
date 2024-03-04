@@ -584,7 +584,7 @@ const ProfilDiri = () => {
                     </p>
                     <input
                       className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm"
-                      placeholder="20/25425/TK/23541"
+                      placeholder="12345678"
                       required
                       type="text"
                       id="institutionNumber"
