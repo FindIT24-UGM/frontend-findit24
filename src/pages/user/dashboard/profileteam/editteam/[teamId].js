@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import Image from "next/image";
 import ModalParent from "../../../../../components/modal/modalparent";
 import ModalVerification from "../../../../../components/modal/modalverif";
+import Link from "next/link";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -57,6 +58,10 @@ export default function Index() {
     bankAccountId: undefined,
     bankName: undefined,
   });
+
+  {
+    /* Handler untuk nulis form */
+  }
   const handleChange = (e) => {
     const { name, value } = e.target;
     // Jika name adalah 'teamContact', maka kita perlu memeriksa id input
@@ -84,6 +89,9 @@ export default function Index() {
     }
   };
 
+  {
+    /* Handler untuk tanggal */
+  }
   const handleDateChange = (date) => {
     dispatch({ type: "UPDATE_FIELD", field: "paymentDate", value: date });
   };
@@ -110,6 +118,10 @@ export default function Index() {
       name: "Umum",
     },
   ];
+
+  {
+    /* Handler untuk upload pembayaran */
+  }
 
   const [imagePreview, setImagePreview] = useState("");
   const uploadPembayaranFile = (e) => {
@@ -141,10 +153,46 @@ export default function Index() {
         });
     }
   };
+  // End Handler Pembayaran
 
+  {
+    /* Handler upload file */
+  }
   const handleFileChange = (e) => {
     uploadPembayaranFile(e);
   };
+  // End Handler File
+
+  {
+    /* Handler untuk upload Twibbon */
+  }
+  const handleUploadTwibbon = (e) => {
+    const formTwibbon = new FormData();
+    const file = e.target.files[0];
+
+    formTwibbon.append("twibbonTeam", file);
+
+    const regex = /\.(pdf)$/i;
+
+    if (formTwibbon) {
+      axios
+        .post(
+          `${process.env.NEXT_PUBLIC_API_URL}/team/upload-twibbon/${teamId}`,
+          formTwibbon,
+          {
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          toast.success("berhasil upload twibbon");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  // End
 
   const CustomInput = ({ value, onClick }) => {
     return (
@@ -371,6 +419,43 @@ export default function Index() {
                         Unggah
                       </p>
                     </label>
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center w-full">
+                      <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
+                        Upload Bukti Twibbon
+                      </p>
+                      <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
+                        {imagePreview && (
+                          <Image
+                            width={200}
+                            height={200}
+                            src={imagePreview}
+                            alt="kartu identitas"
+                            className="mb-4"
+                          />
+                        )}
+                        <input
+                          className="hidden"
+                          type="file"
+                          id="institutionFile"
+                          name="institutionFile"
+                          accept="image/*"
+                          onChange={handleUploadTwibbon}
+                        />
+                        <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
+                          Unggah
+                        </p>
+                      </label>
+                    </div>
+                    <Link
+                      href={"bit.ly/TwibbonFindIT2024"}
+                      className="flex flex-col text-blue-600 underline font-Montserrat"
+                    >
+                      <p className="text-[16px] font-Montserrat font-medium">
+                        Klik disini untuk link twibbon
+                      </p>
+                    </Link>
                   </div>
                 </div>
                 {selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_CTF &&

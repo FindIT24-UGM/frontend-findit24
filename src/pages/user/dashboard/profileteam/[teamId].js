@@ -17,6 +17,7 @@ import Status from "./Status";
 import Accordion from "../../../../components/LandingPage/Dashboard/Accordion";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Link from "next/link";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
 
@@ -153,7 +154,7 @@ export default function Index() {
   const editOnclick = () => {};
 
   const calculateTimeLeft = () => {
-    const deadline = new Date('2024-03-23');
+    const deadline = new Date("2024-03-23");
     const difference = +deadline - +new Date();
     let timeLeft = {};
 
@@ -407,6 +408,14 @@ export default function Index() {
                 3200925130 (BCA ) a.n. Lisa Olivia Putri Maharani
               </p>
             </div>
+            <Link
+              href={"bit.ly/TwibbonFindIT2024"}
+              className="flex flex-col text-blue-400 underline font-Montserrat"
+            >
+              <p className="text-[16px]  font-Montserrat">
+                Klik disini untuk link twibbon
+              </p>
+            </Link>
             <div className="font-Montserrat flex items-center">
               <div className="w-[200px]">
                 <p className="font-bold">Bukti Twibbon</p>
