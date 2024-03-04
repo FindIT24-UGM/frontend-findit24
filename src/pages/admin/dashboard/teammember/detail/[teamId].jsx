@@ -145,7 +145,7 @@ export default function Detail() {
           <div>
             <textarea
               rows="8"
-              className="p-2 w-full font-light border-2d"
+              className="p-2 w-full font-light border-2 border-black"
               onChange={(e) => {
                 setMessage(e.currentTarget.value);
               }}
