@@ -27,15 +27,15 @@ const Gap = () => {
         />
         <Image
           src={AwanKiriAtas}
-          className="w-[35%] lg:w-[28%] left-4 md:left-[-40px] lg:left-[-30px] right-[75vw] top-[20vh] absolute"
+          className="w-[30%] lg:w-[24%] left-0 md:left-[-40px] lg:left-[6vw] right-[75vw] top-[-10vh] lg:top-[-6vh] absolute awan-kanan"
           alt="AwanKiri.png"
           data-aos="fade-left"
         />
         <Image
           src={AwanKananAtas}
-          className="w-[20%] left-[70vw] top-[40vh] absolute awan-kanan"
-          alt="AwanKanan.png"
           data-aos="fade-right"
+          className="w-[24%] right-[2vw] lg:right-[6vw] top-[0vh] lg:top-[6vh] absolute awan-kanan"
+          alt="AwanKanan.png"
         />
         <h2
           className="font-Montserrat lg:text-[30px] text-transparent bg-gradient-to-b from-orange-400 to-red-500 bg-clip-text"

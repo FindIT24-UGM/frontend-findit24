@@ -91,7 +91,7 @@ const HeroComp = () => {
               <Image
                 alt="heroImage"
                 src={heroImage}
-                className="absolute lg:w-[400px] md:w-[320px] w-[270px] lg:pt-48 lg:pb-0"
+                className="absolute lg:w-[400px] md:w-[320px] w-[270px] lg:pt-48 lg:pb-0 animate-cloudRight"
               />
             </div>
             <div className="">
