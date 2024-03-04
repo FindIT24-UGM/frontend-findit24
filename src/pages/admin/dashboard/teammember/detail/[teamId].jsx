@@ -145,10 +145,11 @@ export default function Detail() {
           <div>
             <textarea
               rows="8"
-              className="p-2 w-full font-light border-2 border-black"
+              className="p-2 w-full font-light border-2 border-black font-Montserrat rounded-md"
               onChange={(e) => {
                 setMessage(e.currentTarget.value);
               }}
+              placeholder="Write here..."
             ></textarea>
           </div>
           <button
