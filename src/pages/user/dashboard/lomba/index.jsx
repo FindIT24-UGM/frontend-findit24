@@ -25,6 +25,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router.js";
 import { toast } from "react-toastify";
+import { format } from "date-fns";
 
 const Index = ({ nameAbr }) => {
   const router = useRouter();
@@ -83,7 +84,7 @@ const Index = ({ nameAbr }) => {
       });
     dispatch(loadingEnd);
   };
-  
+
   const joinTeam = (eventId, teamId, teamLeaderId) => {
     axios
       .post(
@@ -108,7 +109,9 @@ const Index = ({ nameAbr }) => {
       });
   };
 
-  function TeamCard({ id, competition, teamName, verify }) {
+  function TeamCard({ id, competition, teamName, verify, date }) {
+    const parsedDate = date ? new Date(date) : null;
+    const formattedDate = parsedDate ? format(parsedDate, "dd MMMM y") : "";
     return (
       <Link href={`/user/dashboard/profileteam/${id}`}>
         <div className="bg-white w-full rounded-lg py-4 px-3 lg:px-8 lg:py-4 flex justify-between items-center gap-[17px] mt-[14px]">
@@ -149,7 +152,7 @@ const Index = ({ nameAbr }) => {
                     Registered
                   </p>
                   <p className="font-medium text-xs lg:text-sm font-Montserrat text-neutral-700">
-                    16 Feb 2024
+                    {formattedDate}
                   </p>
                 </div>
                 {verify === "VERIFIED" ? (
@@ -318,6 +321,7 @@ const Index = ({ nameAbr }) => {
                             teamName={team.team.teamName}
                             verify={team.team.verified}
                             key={team._id}
+                            date={team.team.createdAt}
                           />
                         );
                       })}
