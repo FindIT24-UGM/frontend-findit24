@@ -129,7 +129,7 @@ export default function Index() {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
 
-      formData.append("institutionFile", file);
+      formData.append("paymentFile", file);
 
       const regex = /\.(jpg|jpeg|png)$/i;
       if (regex.test(file.name)) {
@@ -142,9 +142,13 @@ export default function Index() {
     }
     if (formData) {
       axios
-        .post(process.env.NEXT_PUBLIC_API_URL + "/user/upload-file", formData, {
-          withCredentials: true,
-        })
+        .post(
+          `${process.env.NEXT_PUBLIC_API_URL}/team/verification/${teamId}`,
+          formData,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           toast.success("Berhasil upload file");
         })
@@ -166,11 +170,25 @@ export default function Index() {
   {
     /* Handler untuk upload Twibbon */
   }
+  const [imagePreviewTwibbon, setImagePreviewTwibbon] = useState("");
   const handleUploadTwibbon = (e) => {
     const formTwibbon = new FormData();
     const file = e.target.files[0];
 
-    formTwibbon.append("twibbonTeam", file);
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+
+      formTwibbon.append("twibbonTeam", file);
+
+      const regex = /\.(jpg|jpeg|png)$/i;
+      if (regex.test(file.name)) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setImagePreviewTwibbon(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
 
     const regex = /\.(pdf)$/i;
 
@@ -426,11 +444,11 @@ export default function Index() {
                         Upload Bukti Twibbon
                       </p>
                       <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
-                        {imagePreview && (
+                        {imagePreviewTwibbon && (
                           <Image
                             width={200}
                             height={200}
-                            src={imagePreview}
+                            src={imagePreviewTwibbon}
                             alt="kartu identitas"
                             className="mb-4"
                           />
