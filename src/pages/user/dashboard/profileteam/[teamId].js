@@ -67,6 +67,8 @@ export default function Index() {
   }, [dataTeam.paymentDate]);
 
   /*---------handle upload twibbon (pdf) ss twibbon smua anggota jadiin satu pdf------- */
+
+  console.log(dataTeam.twibbonTeam);
   const handleUploadTwibbon = (e) => {
     const formTwibbon = new FormData();
     const file = e.target.files[0];
@@ -418,7 +420,7 @@ export default function Index() {
               <div className="w-[200px]">
                 <p className="font-bold">Bukti Twibbon</p>
               </div>
-              {dataTeam?.twibbonTeam === "" ? (
+              {dataTeam?.twibbonTeam === undefined ? (
                 <label className="w-[160px] flex justify-center border-4 hover:cursor-pointer border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1">
                   <input
                     className="hidden"
@@ -440,28 +442,39 @@ export default function Index() {
               )}
             </div>
           </div>
-          <button
-            onClick={() =>
-              router.replace(`/user/dashboard/profileteam/editteam/${teamId}`)
-            }
-            className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
-          >
-            <HiCheckCircle />
-            <p className="text-[16px] font-bold">Edit Profil Tim</p>
-          </button>
-
-          <p className="font-Montserrat text-[8px] lg:text-[12px] text-center">
-            Admin sedang memverifikasi. Silahkan menunggu!
-          </p>
-          {!dataTeam?.teamPayment &&
-          !dataTeam?.paymentSender &&
-          !dataTeam?.bankAccountId &&
-          !dataTeam?.bankName &&
-          !dataTeam?.paymentFile &&
-          !dataTeam?.twibbonTeam ? (
-            <></>
+          {dataTeam?.paymentDate === undefined &&
+          dataTeam?.teamPayment === undefined &&
+          dataTeam?.paymentSender === undefined &&
+          dataTeam?.bankAccountId === undefined &&
+          dataTeam?.bankName === undefined &&
+          dataTeam?.paymentFile === undefined &&
+          dataTeam?.twibbonTeam === undefined ? (
+            <button
+              onClick={() =>
+                router.replace(`/user/dashboard/profileteam/editteam/${teamId}`)
+              }
+              className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
+            >
+              <HiCheckCircle />
+              <p className="text-[16px] font-bold">Lengkapi Pembayaran</p>
+            </button>
           ) : (
-            <></>
+            <>
+              <button
+                onClick={() =>
+                  router.replace(
+                    `/user/dashboard/profileteam/editteam/${teamId}`
+                  )
+                }
+                className="w-full py-3 rounded-sm flex items-center justify-center space-x-3 font-GameOfSquid bg-primary-300"
+              >
+                <HiCheckCircle />
+                <p className="text-[16px] font-bold">Edit Profil Tim</p>
+              </button>
+              <p className="font-Montserrat text-[8px] lg:text-[12px] text-center">
+                Admin sedang memverifikasi. Silahkan menunggu!
+              </p>
+            </>
           )}
         </div>
         <div className="px-3 py-5 bg-primary-500 rounded-md md:w-1/2">

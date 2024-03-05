@@ -7,14 +7,14 @@ import Accordion from "../../../../components/LandingPage/Dashboard/Accordion";
 import Card from "../team/Card";
 
 const Index = () => {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   const [courseMember, setCourseMember] = useState([]);
   const [count, setCount] = useState(0);
   useEffect(() => {
     const getAllTeam = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/admin/course/${process.env.NEXT_PUBLIC_COMPETITION_ID_WORKSHOP}`, 
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/course/${process.env.NEXT_PUBLIC_COMPETITION_ID_WORKSHOP}`,
           { withCredentials: true }
         );
         if (response.data) {
@@ -41,22 +41,17 @@ const Index = () => {
                 key={id}
                 // href={`${process.env.NEXT_PUBLIC_FE_URL}/admin/dashboard/${participant._id}`}
               >
-                <Accordion
-                  key={participant._id}
-                  name={participant.name}
-                  email={participant.email}
-                  dateOfBirth={participant.dateOfBirth}
-                  province={participant.province}
-                  address={participant.address}
-                  phone={participant.phone}
-                  id={participant._id}
-                  status={participant.statusUser}
-                  institutionName={participant.institutionName}
-                  institutionNumber={participant.institutionNumber}
-                  institutionFile={participant.paymentFile}
-                  date={participant.dateOfBirth}
-                  isverified={participant.verified}
-                />
+                <Link
+                  key={id}
+                  href={`${process.env.NEXT_PUBLIC_FE_URL}/admin/dashboard/workshop/detail/${user._id}`}
+                >
+                  <Card
+                    key={user._id}
+                    name={user.name}
+                    date={user.createdAt}
+                    isverified={user.verified}
+                  />
+                </Link>
               </div>
             ))}
         </div>
