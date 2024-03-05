@@ -14,28 +14,28 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
   const router = useRouter();
   useEffect(() => {
     const today = new Date();
-    const earlyBird = new Date("2024-03-01");
+    const earlyBird = new Date("2024-03-13");
 
     if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_CTF) {
-      if (today >= earlyBird) {
+      if (today <= earlyBird) {
         setHarga("95.000");
       } else {
         setHarga("125.000");
       }
     } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_CP) {
-      if (today >= earlyBird) {
+      if (today <= earlyBird) {
         setHarga("90.000");
       } else {
         setHarga("120.000");
       }
     } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_DAC) {
-      if (today >= earlyBird) {
+      if (today <= earlyBird) {
         setHarga("100.000");
       } else {
         setHarga("130.000");
       }
     } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_IC) {
-      if (today >= earlyBird) {
+      if (today <= earlyBird) {
         setHarga("60.000");
       } else {
         setHarga("90.000");
