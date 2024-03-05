@@ -16,6 +16,7 @@ import EsportLogo from "../../../../assets/Logo/DashboardLomba/EsportLogo.jsx";
 import IcLogo from "../../../../assets/Logo/DashboardLomba/IcLogo.jsx";
 import ArrowRight from "../../../../assets/Logo/DashboardLomba/ArrowRight.jsx";
 import { useDispatch, useSelector } from "react-redux";
+import Status from "../profileteam/Status.js";
 import {
   getTeamsToSearch,
   getUserTeam,
@@ -44,6 +45,37 @@ const Index = ({ nameAbr }) => {
   const [openTimTdkKetemu, setOpenTimTdkKetemu] = useState(false);
   const haveJoined = countLomba !== 0;
   const [windowWidth, setWindowWidth] = useState(null);
+
+  const [dataTeam, setDataTeam] = useState([]);
+  const { teamId } = router.query;
+
+  useEffect(() => {
+    if (teamId) {
+      axios
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/team/${teamId}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          setDataTeam(res.data.info);
+          axios
+            .get(
+              `${process.env.NEXT_PUBLIC_API_URL}/team/get-announcements/${teamId}`,
+              {
+                withCredentials: true,
+              }
+            )
+            .then((announ) => {
+              setAnnouncements(announ.data.announcements);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [teamId]);
 
   useEffect(() => {
     const updateWindowsWidth = () => {
@@ -109,7 +141,7 @@ const Index = ({ nameAbr }) => {
       });
   };
 
-  function TeamCard({ id, competition, teamName, verify, date }) {
+  function TeamCard({ id, competition, teamName, date }) {
     const parsedDate = date ? new Date(date) : null;
     const formattedDate = parsedDate ? format(parsedDate, "dd MMMM y") : "";
     return (
@@ -126,21 +158,7 @@ const Index = ({ nameAbr }) => {
           <div className="basis-1/2 flex items-center justify-end gap-4 lg:gap-12">
             {windowWidth < 640 ? (
               <>
-                {verify === "VERIFIED" ? (
-                  <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2">
-                    <div className="p-[6px] bg-success-900 rounded" />
-                    <p className="font-bold font-Montserrat text-xs text-success-900">
-                      Verified
-                    </p>
-                  </div>
-                ) : (
-                  <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-error-100 rounded px-8 flex items-center justify-center gap-2">
-                    <div className="p-[6px] bg-warning-900 rounded" />
-                    <p className="font-bold font-Montserrat text-xs text-error-900">
-                      Unverified
-                    </p>
-                  </div>
-                )}
+                <Status isVerified={dataTeam?.verified} />
                 <div className="mr-4 md:mr-0">
                   <ArrowRight />
                 </div>
@@ -155,21 +173,7 @@ const Index = ({ nameAbr }) => {
                     {formattedDate}
                   </p>
                 </div>
-                {verify === "VERIFIED" ? (
-                  <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-success-100 rounded px-8 flex items-center justify-center gap-2">
-                    <div className="p-[6px] bg-success-900 rounded" />
-                    <p className="font-bold font-Montserrat text-xs text-success-900">
-                      Verified
-                    </p>
-                  </div>
-                ) : (
-                  <div className="w-[100px] lg:w-[148px] h-8 lg:h-9 bg-error-100 rounded px-8 flex items-center justify-center gap-2">
-                    <div className="p-[6px] bg-warning-900 rounded" />
-                    <p className="font-bold font-Montserrat text-xs text-error-900">
-                      Unverified
-                    </p>
-                  </div>
-                )}
+                <Status isVerified={dataTeam?.verified} />
                 <ArrowRight />
               </>
             )}
@@ -205,61 +209,61 @@ const Index = ({ nameAbr }) => {
     };
 
     /* */
-    const openConfirmation = ({ competitionName, nameAbr }) => {
-      return (
-        <div className="fixed inset-0 w-full flex justify-center items-center bg-black/70 z-50">
-          <div className="relative h-auto flex flex-col gap-[25px] lg:gap-11 items-center justify-center w-[330px] sm:w-[370px] lg:w-[570px] bg-text-placeholder-light rounded-lg lg:rounded-xl border-[3px] border-black py-8 px-[10px]">
-            <IoCloseCircle
-              className="absolute fill-text-placeholder-dark size-6 sm:size-8 lg:size-9 top-2 right-[10.5px] sm:top-[5px] sm:right-[7px] lg:top-[17px] lg:right-[21px]"
-              onClick={() => setOpenConfirmation(false)}
-            />
-            <p className="w-full h-auto font-bold lg:mt-[17.5px] text-text-placeholder-dark font-Montserrat lg:font-CreatoDisplay text-xl lg:text-2xl lg:leading-6 text-center">
-              {competitionName}
-            </p>
-            <p className="text-sm lg:text-base font-medium text-text-placeholder-dark font-Montserrat text-center text-balance">
-              Anda dapat membuat
-              <span className="font-bold text-nowrap"> Tim Baru </span>
-              atau memasukkan
-              <span className="font-bold text-nowrap"> Invitation Code </span>
-              milik teman anda untuk bergabung tim
-            </p>
-            <div className="w-full h-auto flex justify-center items-center flex-col lg:flex-row gap-[10px] sm:gap-3 lg:gap-4">
-              <div className="w-[212px]">
-                <Link
-                  href={
-                    isAuthenticated
-                      ? `/competition/register/${competitionName}`
-                      : "/login"
-                  }
-                >
-                  <Button
-                    fullW
-                    onClick={() => {
-                      setOpenConfirmation(false);
-                      setOpenInvitation(true);
-                    }}
-                    customClass={"lg:py-1"}
-                    text="Buat Tim"
-                  />
-                </Link>
-              </div>
-              <div className="w-[212px]">
-                <Button
-                  fullW
-                  onClick={() => {
-                    setOpenConfirmation(false);
-                    setOpenInvitation(true);
-                  }}
-                  customClass={"lg:py-1"}
-                  text="Gabung Tim"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    };
-    /* */
+    // const openConfirmation = ({ competitionName, nameAbr }) => {
+    //   return (
+    //     <div className="fixed inset-0 w-full flex justify-center items-center bg-black/70 z-50">
+    //       <div className="relative h-auto flex flex-col gap-[25px] lg:gap-11 items-center justify-center w-[330px] sm:w-[370px] lg:w-[570px] bg-text-placeholder-light rounded-lg lg:rounded-xl border-[3px] border-black py-8 px-[10px]">
+    //         <IoCloseCircle
+    //           className="absolute fill-text-placeholder-dark size-6 sm:size-8 lg:size-9 top-2 right-[10.5px] sm:top-[5px] sm:right-[7px] lg:top-[17px] lg:right-[21px]"
+    //           onClick={() => setOpenConfirmation(false)}
+    //         />
+    //         <p className="w-full h-auto font-bold lg:mt-[17.5px] text-text-placeholder-dark font-Montserrat lg:font-CreatoDisplay text-xl lg:text-2xl lg:leading-6 text-center">
+    //           {competitionName}
+    //         </p>
+    //         <p className="text-sm lg:text-base font-medium text-text-placeholder-dark font-Montserrat text-center text-balance">
+    //           Anda dapat membuat
+    //           <span className="font-bold text-nowrap"> Tim Baru </span>
+    //           atau memasukkan
+    //           <span className="font-bold text-nowrap"> Invitation Code </span>
+    //           milik teman anda untuk bergabung tim
+    //         </p>
+    //         <div className="w-full h-auto flex justify-center items-center flex-col lg:flex-row gap-[10px] sm:gap-3 lg:gap-4">
+    //           <div className="w-[212px]">
+    //             <Link
+    //               href={
+    //                 isAuthenticated
+    //                   ? `/competition/register/${competitionName}`
+    //                   : "/login"
+    //               }
+    //             >
+    //               <Button
+    //                 fullW
+    //                 onClick={() => {
+    //                   setOpenConfirmation(false);
+    //                   setOpenInvitation(true);
+    //                 }}
+    //                 customClass={"lg:py-1"}
+    //                 text="Buat Tim"
+    //               />
+    //             </Link>
+    //           </div>
+    //           <div className="w-[212px]">
+    //             <Button
+    //               fullW
+    //               onClick={() => {
+    //                 setOpenConfirmation(false);
+    //                 setOpenInvitation(true);
+    //               }}
+    //               customClass={"lg:py-1"}
+    //               text="Gabung Tim"
+    //             />
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   );
+    // };
+    // /* */
 
     return (
       <>
@@ -319,7 +323,6 @@ const Index = ({ nameAbr }) => {
                             id={team.team._id}
                             competition={team.team.event[0].eventName}
                             teamName={team.team.teamName}
-                            verify={team.team.verified}
                             key={team._id}
                             date={team.team.createdAt}
                           />
