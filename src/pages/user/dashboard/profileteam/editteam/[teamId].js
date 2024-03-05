@@ -449,7 +449,7 @@ export default function Index() {
                       </label>
                     </div>
                     <a
-                      href="bit.ly/TwibbonFindIT2024"
+                      href="https://bit.ly/TwibbonFindIT2024"
                       className="flex flex-col text-blue-600 text-[16px] underline font-Montserrat font-medium"
                     >
                       Klik disini untuk link twibbon

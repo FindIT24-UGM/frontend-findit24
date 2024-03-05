@@ -272,7 +272,7 @@ export default function Index() {
           <div className="border-b-[1px] pb-5 border-slate-600">
             <div className="flex items-center justify-between">
               <h2 className="font-CreatoDisplay font-bold text-[24px]">
-                {dataTeam?.teamName}1
+                {dataTeam?.teamName}
               </h2>
               <Status isVerified={dataTeam?.verified} />
             </div>
@@ -408,16 +408,12 @@ export default function Index() {
                 3200925130 (BCA ) a.n. Lisa Olivia Putri Maharani
               </p>
             </div>
-            {typeof window !== "undefined" ? (
-              <a
-                className="flex flex-col text-blue-400 underline font-Montserrat text-[16px]"
-                href="https://bit.ly/TwibbonFindIT2024"
-              >
-                Klik disini untuk link twibbon
-              </a>
-            ) : (
-              <></>
-            )}
+            <a
+              className="flex flex-col text-blue-400 underline font-Montserrat text-[16px]"
+              href="https://bit.ly/TwibbonFindIT2024"
+            >
+              Klik disini untuk link twibbon
+            </a>
             <div className="font-Montserrat flex items-center">
               <div className="w-[200px]">
                 <p className="font-bold">Bukti Twibbon</p>
