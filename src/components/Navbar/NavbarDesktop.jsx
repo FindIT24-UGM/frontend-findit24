@@ -141,7 +141,7 @@ const NavbarDesktop = ({ isLogin, onSignClick }) => {
       </div>
       {isLogin && (
         <button
-          className="absolute left-[50px] transition-all duration-300 hover:text-primary-500 max-lg:hidden font-GameOfSquid text-primary-300 rounded-lg text-sm"
+          className="absolute left-[50px] transition-all duration-300 hover:text-primary-500 font-GameOfSquid text-primary-300 rounded-lg text-sm max-md:hidden"
           onClick={() =>
             router.push(
               user?.role === process.env.NEXT_PUBLIC_ADMIN_ROLE
