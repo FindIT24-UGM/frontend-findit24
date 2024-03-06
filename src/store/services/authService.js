@@ -43,9 +43,9 @@ const activate = async (token) => {
 
 //LOGOUT USER
 const logout = async () => {
-  if (typeof window !== "undefined") {
-    localStorage.clear();
-  }
+  // if (typeof window !== "undefined") {
+  //   localStorage.clear();
+  // }
   const response = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/auth/logout`,
     {
@@ -61,7 +61,7 @@ const getUser = async (token, user) => {
     //   authorization: `Bearer ${token}`,
     // },
     withCredentials: true,
-  },)
+  })
   return response.data;
 };
 

@@ -68,7 +68,6 @@ export default function Index() {
 
   /*---------handle upload twibbon (pdf) ss twibbon smua anggota jadiin satu pdf------- */
 
-  console.log(dataTeam.twibbonTeam);
   const handleUploadTwibbon = (e) => {
     const formTwibbon = new FormData();
     const file = e.target.files[0];

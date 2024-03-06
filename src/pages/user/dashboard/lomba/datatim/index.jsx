@@ -9,7 +9,7 @@ import { Router, useRouter } from "next/router";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
+const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba, doubleSlot, setDoubleSlot }) => {
   const [harga, setHarga] = useState("");
   const router = useRouter();
   useEffect(() => {
@@ -22,24 +22,28 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
       } else {
         setHarga("125.000");
       }
+      setDoubleSlot(false)
     } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_CP) {
       if (today <= earlyBird) {
         setHarga("90.000");
       } else {
         setHarga("120.000");
       }
+      setDoubleSlot(false)
     } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_DAC) {
       if (today <= earlyBird) {
         setHarga("100.000");
       } else {
         setHarga("130.000");
       }
+      setDoubleSlot(false)
     } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_IC) {
       if (today <= earlyBird) {
         setHarga("60.000");
       } else {
         setHarga("90.000");
       }
+      setDoubleSlot(false)
     } else if (
       selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE
     ) {
@@ -47,12 +51,21 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
         `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/datatim/datatimux`
       );
       setHarga("120.000");
+      setDoubleSlot(false)
     } else if (
       selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT
     ) {
-      setHarga("75.000");
+      if(doubleSlot === true){
+        setHarga("150.000")
+      } else if (doubleSlot === false) {
+        setHarga("75.000");
+      }
     } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_ML) {
-      setHarga("75.000");
+      if(doubleSlot === true){
+        setHarga("150.000")
+      } else if (doubleSlot ===false) {
+        setHarga("75.000");
+      }
     } else if (
       selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON
     ) {
@@ -60,8 +73,9 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
         `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/datatim/datatimhackathon`
       );
       setHarga("150.000");
+      setDoubleSlot(false)
     }
-  }, [selectedLomba]);
+  }, [selectedLomba, doubleSlot]);
 
   return (
     <div className="w-5/6 flex flex-col lg:flex-row justify-between items-center max-md:items-start">
@@ -74,7 +88,7 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba }) => {
         </p>
         <select
           aria-placeholder="Select Receiver"
-          className="p-2 ml-8 max-sm:ml-5 rounded my-[2vw] bg-white text-black font-bold font-Montserrat font-medium max-sm:w-[50%] bg-border-none"
+          className="p-2 ml-8 max-sm:ml-5 rounded my-[2vw] bg-white text-black font-bold font-Montserrat max-sm:w-[50%] bg-border-none"
           value={selectedLomba}
           onChange={(e) => setSelectedLomba(e.currentTarget.value)}
         >
@@ -123,6 +137,7 @@ const DataTimGeneral = () => {
   const [noRekening, setNoRekening] = useState(undefined);
   const [bank, setBank] = useState(undefined);
   const [selectedLomba, setSelectedLomba] = useState(null);
+  const [doubleSlot, setDoubleSlot] = useState(false);
 
   const [number1, setNumber1] = useState(null);
   const [number2, setNumber2] = useState(null);
@@ -215,6 +230,7 @@ const DataTimGeneral = () => {
           paymentSender: namaPengirim,
           bankAccountId: noRekening,
           bankName: bank,
+          doubleSlot
         },
         { withCredentials: true }
       )
@@ -298,6 +314,8 @@ const DataTimGeneral = () => {
             <DaftarLombaDanHarga
               selectedLomba={selectedLomba}
               setSelectedLomba={setSelectedLomba}
+              doubleSlot={doubleSlot}
+              setDoubleSlot={setDoubleSlot}
             />
             <div className="w-3/4 flex gap-8 max-md:flex-col max-sm:flex-col">
               <div className="w-[45%] flex flex-col gap-2 max-md:w-[100%] max-sm:w-[100%]">
@@ -397,6 +415,31 @@ const DataTimGeneral = () => {
                     onChange={(e) => setinstitusi(e.currentTarget.value)}
                   />
                 </div>
+                {selectedLomba ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT ||
+                selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
+                <div className="font-bold font-Montserrat text-[17px] space-y-2 pb-8 mb-3">
+                  Double Slot?
+                <div className="flex space-x-1 items-center">
+                  <input
+                    onClick={() => setDoubleSlot(true)}
+                    type="radio"
+                    name="doubleSlot"
+                  />
+                  <label htmlFor="doubleSlot">Ya</label>
+                </div>
+                <div className="flex space-x-1 items-center">
+                  <input
+                    onClick={() => setDoubleSlot(false)}
+                    type="radio"
+                    name="doubleSlot"
+                  />
+                  <label htmlFor="doubleSlot">Tidak</label>
+                </div>
+                </div>
+                ) : (
+                  <div></div>
+                )}
               </div>
               <div className="min-h-full border border-text-placeholder-light" />
               <div className="w-[45%] flex flex-col gap-2 max-md:w-[100%] max-sm:w-[100%]">

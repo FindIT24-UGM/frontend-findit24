@@ -57,6 +57,7 @@ export default function Index() {
     paymentSender: undefined,
     bankAccountId: undefined,
     bankName: undefined,
+    doubleSlot: false
   });
 
   {
@@ -84,6 +85,11 @@ export default function Index() {
           value: [state.teamContact[0], value],
         });
       }
+    }
+    if (name === "doubleSlot") {
+      let isDoubleSlot = value;
+      value === 'true' ? isDoubleSlot = true : isDoubleSlot = false
+      dispatch({ type: "UPDATE_FIELD", field: "doubleSlot", value: isDoubleSlot });
     } else {
       dispatch({ type: "UPDATE_FIELD", field: name, value });
     }
@@ -97,8 +103,6 @@ export default function Index() {
   };
 
   const [statusSelected, setStatusSelected] = useState(undefined);
-
-  const [selectedLomba, setSelectedLomba] = useState(null);
 
   // const [phone, setPhone] = useState([]);
 
@@ -258,7 +262,6 @@ export default function Index() {
         toast.error(err.response.data.message);
       });
   };
-
   return (
     <RootLayout>
       <div className="bg-background-skyblue w-screen min-h-screen flex flex-col justify-center items-center gap-5">
@@ -335,6 +338,35 @@ export default function Index() {
                     onChange={handleChange}
                   />
                 </div>
+                {dataTeam?.eventId ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT ||
+                dataTeam?.eventId === process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
+                  <div className="font-bold font-Montserrat text-[17px] space-y-2 pb-8 mb-3">
+                    Double Slot?
+                  <div className="flex space-x-1 items-center">
+                    <input
+                      onClick={handleChange}
+                      type="radio"
+                      name="doubleSlot"
+                      value={true}
+                      // checked={state.doubleSlot === true}
+                    />
+                    <label htmlFor="doubleSlot">Ya</label>
+                  </div>
+                  <div className="flex space-x-1 items-center">
+                    <input
+                      onClick={handleChange}
+                      type="radio"
+                      name="doubleSlot"
+                      value={false}
+                      // checked={state.doubleSlot === false}
+                    />
+                    <label htmlFor="doubleSlot">Tidak</label>
+                  </div>
+                  </div>
+                  ) : (
+                  <div></div>
+                )}
                 <div className="w-full flex flex-col gap-y-4">
                   <p className="font-Montserrat font-bold text-text-placeholder-light flex flex-col gap-y-4 md:gap-y-2">
                     <p>Nomor rekening pembayaran :</p>
@@ -410,6 +442,49 @@ export default function Index() {
                     onChange={handleChange}
                   />
                 </div>
+                {dataTeam?.eventId !== process.env.NEXT_PUBLIC_COMPETITION_ID_CTF &&
+                dataTeam?.eventId !==
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT &&
+                dataTeam?.eventId !== process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
+                  <div></div>
+                ) : (
+                  <div className="w-full flex flex-col gap-2">
+                    <p className="font-Montserrat font-bold text-text-placeholder-light">
+                      ID Discord
+                    </p>
+                    <input
+                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
+                      placeholder="Samsan Tech"
+                      required
+                      type="text"
+                      id="discordID"
+                      name="discordID"
+                      value={discordID}
+                      onChange={(e) => setDiscordID(e.currentTarget.value)}
+                    />
+                  </div>
+                )}
+                {dataTeam?.eventId ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT ||
+                dataTeam?.eventId === process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
+                  <div className="w-full flex flex-col gap-2">
+                    <p className="font-Montserrat font-bold text-text-placeholder-light">
+                      ID Game
+                    </p>
+                    <input
+                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
+                      placeholder="Samsan Tech"
+                      required
+                      type="text"
+                      id="inGameID"
+                      name="inGameID"
+                      value={inGameID}
+                      onChange={(e) => setInGameID(e.currentTarget.value)}
+                    />
+                  </div>
+                ) : (
+                  <div></div>
+                )} 
                 <div>
                   <div className="flex justify-between items-center w-full">
                     <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
@@ -474,50 +549,6 @@ export default function Index() {
                     </a>
                   </div>
                 </div>
-                {selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_CTF &&
-                selectedLomba !==
-                  process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT &&
-                selectedLomba !== process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
-                  <div></div>
-                ) : (
-                  <div className="w-full flex flex-col gap-2">
-                    <p className="font-Montserrat font-bold text-text-placeholder-light">
-                      ID Discord
-                    </p>
-                    <input
-                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
-                      placeholder="Samsan Tech"
-                      required
-                      type="text"
-                      id="discordID"
-                      name="discordID"
-                      value={discordID}
-                      onChange={(e) => setDiscordID(e.currentTarget.value)}
-                    />
-                  </div>
-                )}
-
-                {selectedLomba ===
-                  process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT ||
-                selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
-                  <div className="w-full flex flex-col gap-2">
-                    <p className="font-Montserrat font-bold text-text-placeholder-light">
-                      ID Game
-                    </p>
-                    <input
-                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
-                      placeholder="Samsan Tech"
-                      required
-                      type="text"
-                      id="inGameID"
-                      name="inGameID"
-                      value={inGameID}
-                      onChange={(e) => setInGameID(e.currentTarget.value)}
-                    />
-                  </div>
-                ) : (
-                  <div></div>
-                )}
               </div>
             </div>
             <div className="w-full flex justify-center">

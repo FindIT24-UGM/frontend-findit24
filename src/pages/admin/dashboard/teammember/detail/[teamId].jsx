@@ -14,6 +14,7 @@ export default function Detail() {
   const [date, setDate] = useState(null);
   const [isVerified, setIsverified] = useState(false);
   const [message, setMessage] = useState(null);
+  const [isDoubleSlot, setIsDoubleSlot] = useState(false)
 
   useEffect(() => {
     if (teamId) {
@@ -23,6 +24,7 @@ export default function Detail() {
         })
         .then((res) => {
           setDataTeam(res.data.info);
+          setIsDoubleSlot(res.data.info.doubleSlot)
         })
         .catch((err) => {
           console.log(err);
@@ -37,6 +39,11 @@ export default function Detail() {
         "dd MMM y"
       );
       setDate(formattedDate);
+    }
+    if (dataTeam?.doubleSlot === true) {
+      setIsDoubleSlot("Ya")
+    } else if (dataTeam?.doubleSlot === false) {
+      setIsDoubleSlot("Tidak")
     }
   }, [dataTeam]);
 
@@ -99,11 +106,27 @@ export default function Detail() {
               <p>Team ID</p>
               <p>Code</p>
               <p>Leader</p>
+              {dataTeam?.eventId === process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT ||
+                dataTeam?.eventId === process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
+                  <p className="text-black">
+                      Double slot ?
+                  </p>
+                ) : (
+                  <p></p>
+                )}
             </div>
             <div className="flex flex-col space-y-2">
               <p className="text-neutral-700">{dataTeam?._id}</p>
               <p className="text-background-skyblue">{dataTeam?.teamCode}</p>
               <p className="text-neutral-700">{dataTeam?.teamLeader}</p>
+            {dataTeam?.eventId === process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT ||
+                dataTeam?.eventId === process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
+                  <p className="text-black">
+                      {isDoubleSlot} 
+                  </p>
+                ) : (
+                  <p></p>
+                )}
             </div>
           </div>
           <div className="flex space-x-10 font-Montserrat text-[17px] font-bold pb-8 text-black border border-x-0 border-t-0 border-b-neutral-300 mb-8">

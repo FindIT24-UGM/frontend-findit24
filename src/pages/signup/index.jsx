@@ -43,6 +43,9 @@ const SignUpPage = () => {
         { email, password, confirmPassword },
         { withCredentials: true }
       );
+      if(response.data){
+        console.log(response.data);
+      }
       router.push("/signup/check");
     } catch (err) {
       //LOGIC IF ERROR (EMAIL IS TAKEN / PASSWORD KRG BAIK)
