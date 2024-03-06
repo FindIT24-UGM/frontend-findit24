@@ -86,7 +86,7 @@ const LoginPage = () => {
       <ElectricPattern>
         <div className="flex flex-col items-center justify-center w-screen h-screen px-5 py-20 overflow-auto bg-background-skyblue lg:px-12 md:px-8">
           <h1 className="text-4xl font-GameOfSquid">Sign in</h1>
-          <h2>
+          <h2 className="mt-3 text-center font-Montserrat">
             Log in with your data that you entered during your registration
           </h2>
           <div className="flex flex-col gap-y-3 w-[80%] lg:w-[37%] mt-10">
@@ -165,7 +165,8 @@ const LoginPage = () => {
                 {message}
               </p>
             )}
-            <div className="flex flex-row items-center my-2 mt-4 font-thin gap-x-1">
+            <div className="flex flex-col items-center justify-center mt-3 text-center gap-y-2">
+            <div className="flex flex-row items-center font-semibold gap-x-1">
               <p className="">{"Don't have an account ?"}</p>
               <Link
                 href={"/signup"}
@@ -174,7 +175,7 @@ const LoginPage = () => {
                 Create an account
               </Link>
             </div>
-            <div className="flex flex-row items-center my-2 mt-4 font-thin gap-x-1">
+            <div className="flex flex-row items-center font-semibold gap-x-1">
               <p className="">Forgot Password ?</p>
               <Link
                 href={"/login/resetPassword"}
@@ -182,7 +183,8 @@ const LoginPage = () => {
               >
                 Reset password
               </Link>
-            </div>
+              </div>
+              </div>
           </div>
         </div>
       </ElectricPattern>
