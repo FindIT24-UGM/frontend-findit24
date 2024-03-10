@@ -12,6 +12,7 @@ import Image from "next/image";
 import ModalParent from "../../../../../components/modal/modalparent";
 import ModalVerification from "../../../../../components/modal/modalverif";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -214,6 +215,9 @@ export default function Index() {
     }
   };
 
+  const handleTwibbonChange = (e) => {
+    handleUploadTwibbon(e);
+  };
   // End
 
   const CustomInput = ({ value, onClick }) => {
@@ -503,8 +507,8 @@ export default function Index() {
                       <input
                         className="hidden"
                         type="file"
-                        id="institutionFile"
-                        name="institutionFile"
+                        id="paymentFile"
+                        name="paymentFile"
                         accept="image/*"
                         onChange={handleFileChange}
                       />
@@ -531,10 +535,10 @@ export default function Index() {
                         <input
                           className="hidden"
                           type="file"
-                          id="institutionFile"
-                          name="institutionFile"
-                          accept="image/*"
-                          onChange={handleUploadTwibbon}
+                          id="twibbonTeam"
+                          name="twibbonTeam"
+                          accept="application/*"
+                          onChange={handleTwibbonChange}
                         />
                         <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
                           Unggah
