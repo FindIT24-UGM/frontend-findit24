@@ -25,21 +25,21 @@ export default function Accordion({
 
   return (
     <div
-      className={`bg-white p-2 rounded-lg my-4 text-black overflow-hidden ${
+      className={`bg-white p-2 rounded-lg my-4 text-black overflow-hidden cursor-default ${
         expand ? "h-fit" : "h-10"
       } duration-200`}
     >
-      <div
-        className="flex items-center justify-between text-[17px] cursor-pointer"
-        onClick={() => setExpand(!expand)}
-        aria-expanded={expand ? "true" : "false"}
-      >
+      <div className="flex items-center justify-between text-[17px]">
         <h2 className="font-bold">{name}</h2>
-        <div className={`${expand ? "rotate-90" : ""} duration-200`}>
+        <div
+          className={`cursor-pointer ${expand ? "rotate-90" : ""} duration-200`}
+          onClick={() => setExpand(!expand)}
+          aria-expanded={expand ? "true" : "false"}
+        >
           <TiChevronRight />
         </div>
       </div>
-      <div className="font-Montserrat text-[13px] py-5 md:flex md:justify-between">
+      <div className="font-Montserrat text-[13px] py-5 md:flex md:justify-between cursor-text select-text">
         {/* contain email, tanggal lahir, alamat, no.hp*/}
         <div className="md:w-1/2">
           <div className="py-2">
