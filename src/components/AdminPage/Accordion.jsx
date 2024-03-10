@@ -39,14 +39,14 @@ export default function Accordion({
           <TiChevronRight />
         </div>
       </div>
-      <div className="font-Montserrat text-[13px] py-5 md:flex md:justify-between cursor-text select-text">
+      <div className="font-Montserrat text-[13px] py-5 md:flex md:justify-between select-text">
         {/* contain email, tanggal lahir, alamat, no.hp*/}
         <div className="md:w-1/2">
-          <div className="py-2">
-            <h2 className="font-bold">Email</h2>
+          <div className="py-2 cursor-text">
+            <h2 className="font-bold ">Email</h2>
             <p>{email}</p>
           </div>
-          <div className="py-2">
+          <div className="py-2  cursor-text">
             <h2 className="font-bold">Tanggal Lahir</h2>
             <p>
               {dateOfBirth
@@ -54,30 +54,30 @@ export default function Accordion({
                 : null}
             </p>
           </div>
-          <div className="py-2">
+          <div className="py-2 cursor-text">
             <h2 className="font-bold">Alamat</h2>
             <p>{address}</p>
           </div>
-          <div className="py-2">
+          <div className="py-2 cursor-text">
             <h2 className="font-bold">Nomor HP</h2>
             <p>{phone}</p>
           </div>
         </div>
         {/* contain status, institusi, no.institusi, kartu institusi */}
         <div className="md:w-1/2">
-          <div className="py-2">
+          <div className="py-2 cursor-text">
             <h2 className="font-bold">Status</h2>
             <p>{status}</p>
           </div>
-          <div className="py-2">
+          <div className="py-2 cursor-text">
             <h2 className="font-bold">Institusi</h2>
             <p>{institutionName}</p>
           </div>
-          <div className="py-2">
+          <div className="py-2 cursor-text">
             <h2 className="font-bold">Nomor Institusi</h2>
             <p>{institutionNumber}</p>
           </div>
-          <div className="py-2">
+          <div className="py-2 cursor-text">
             <h2 className="font-bold">Kartu Institusi</h2>
             <button
               onClick={handleClick}
