@@ -133,6 +133,7 @@ export default function Detail() {
             <div className="flex flex-col space-y-2">
               <p>Tanggal Pembayaran</p>
               <p>Bukti Pembayaran</p>
+              <p>Twibbon Team</p>
             </div>
             <div className="flex flex-col space-y-2">
               {/* for date */}
@@ -140,6 +141,14 @@ export default function Detail() {
               <button
                 onClick={() =>
                   window.open(`${dataTeam?.paymentFile}`, "_blank")
+                }
+                className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
+              >
+                Lihat
+              </button>
+              <button
+                onClick={() =>
+                  window.open(`${dataTeam?.twibbonTeam}`, "_blank")
                 }
                 className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
               >

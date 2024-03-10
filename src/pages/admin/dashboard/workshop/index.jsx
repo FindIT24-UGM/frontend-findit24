@@ -43,13 +43,13 @@ const Index = () => {
               >
                 <Link
                   key={id}
-                  href={`${process.env.NEXT_PUBLIC_FE_URL}/admin/dashboard/workshop/detail/${user._id}`}
+                  href={`${process.env.NEXT_PUBLIC_FE_URL}/admin/dashboard/workshop/detail/${participant._id}`}
                 >
                   <Card
-                    key={user._id}
-                    name={user.name}
-                    date={user.createdAt}
-                    isverified={user.verified}
+                    key={participant._id}
+                    name={participant.name}
+                    date={participant.createdAt}
+                    isverified={participant.verified}
                   />
                 </Link>
               </div>

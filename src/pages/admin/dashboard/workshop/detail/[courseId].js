@@ -9,47 +9,47 @@ import { toast } from "react-toastify";
 
 export default function DetailWorkshop() {
   const router = useRouter();
-  const { teamId } = router.query;
-  const [dataTeam, setDataTeam] = useState([]);
+  const { courseId } = router.query;
+  const [dataUserCourse, setdataUserCourse] = useState([]);
   const [date, setDate] = useState(null);
   const [isVerified, setIsverified] = useState(false);
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    if (teamId) {
+    if (courseId) {
       axios
-        .get(`${process.env.NEXT_PUBLIC_API_URL}/team/${teamId}`, {
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/course/get/${courseId}`, {
           withCredentials: true,
         })
         .then((res) => {
-          setDataTeam(res.data.info);
+          setdataUserCourse(res.data.user);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [teamId]);
+  }, [courseId]);
 
   useEffect(() => {
-    if (dataTeam?.paymentDate) {
+    if (dataUserCourse?.paymentDate) {
       const formattedDate = format(
-        new Date(`${dataTeam?.paymentDate}`),
+        new Date(`${dataUserCourse?.paymentDate}`),
         "dd MMM y"
       );
       setDate(formattedDate);
     }
-  }, [dataTeam]);
+  }, [dataUserCourse]);
 
   const handleVerified = (isVerified) => {
     if (isVerified) {
       axios
         .patch(
-          `${process.env.NEXT_PUBLIC_API_URL}/admin/teams/accept-team/${teamId}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/course/accept-course/${courseId}`,
           { message },
           { withCredentials: true }
         )
         .then((res) => {
-          toast.success("berhasil verified team");
+          toast.success("berhasil verified course participant");
         })
         .catch((err) => {
           toast.error("update verified gagal");
@@ -57,12 +57,12 @@ export default function DetailWorkshop() {
     } else if (!isVerified) {
       axios
         .patch(
-          `${process.env.NEXT_PUBLIC_API_URL}/admin/teams/reject-team/${teamId}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/course/reject-course/${courseId}`,
           { message },
           { withCredentials: true }
         )
         .then((res) => {
-          toast.success("berhasil unverified team");
+          toast.success("berhasil unverified course participant");
         })
         .catch((err) => {
           toast.error("update unverified gagal");
@@ -79,19 +79,19 @@ export default function DetailWorkshop() {
               router.back();
             }}
           >
-            <div className="flex items-center space-x-3 mb-12">
+            <div className="flex text-black items-center space-x-3 mb-12">
               <IoArrowBack className="text-[20px]" />
               <span className="font-GameOfSquid text-[16px]">
-                TEAM INFORMATION
+                COURSE MEMBER INFORMATION
               </span>
             </div>
           </button>
           <div className="pb-8 border border-x-0 border-t-0 border-b-neutral-300 text-black mb-8">
             <h2 className="font-CreatoDisplay font-bold text-[42px]">
-              {dataTeam?.teamName}
+              {dataUserCourse?.name}
             </h2>
             <p className="font-Montserrat font-bold text-[16px]">
-              {dataTeam?.event}
+              {dataUserCourse?.email}
             </p>
           </div>
           <div className="flex space-x-10 font-Montserrat text-[17px] font-bold pb-8 border border-x-0 border-t-0 border-b-neutral-300 mb-8">
@@ -101,9 +101,9 @@ export default function DetailWorkshop() {
               <p>No. Rek</p>
             </div>
             <div className="flex flex-col space-y-2">
-              <p className="text-neutral-700">{dataTeam?._id}</p>
-              <p className="text-background-skyblue">{dataTeam?.teamCode}</p>
-              <p className="text-neutral-700">{dataTeam?.teamLeader}</p>
+              <p className="text-neutral-700">{date}</p>
+              <p className="text-background-skyblue">{dataUserCourse?.paymentSender}</p>
+              <p className="text-neutral-700">{dataUserCourse?.bankAccountId}</p>
             </div>
           </div>
           <div className="flex space-x-10 font-Montserrat text-[17px] font-bold pb-8 text-black border border-x-0 border-t-0 border-b-neutral-300 mb-8">
@@ -116,7 +116,7 @@ export default function DetailWorkshop() {
               <p>{date}</p>
               <button
                 onClick={() =>
-                  window.open(`${dataTeam?.paymentFile}`, "_blank")
+                  window.open(`${dataUserCourse?.paymentFile}`, "_blank")
                 }
                 className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
               >
@@ -162,9 +162,21 @@ export default function DetailWorkshop() {
         </div>
         <div className="px-5 py-10 bg-primary-500 rounded-lg mt-14 lg:mt-0 lg:w-2/3">
           <h2 className="font-bold font-CreatoDisplay text-[34px] text-white">
-            Bukti Pembayaran
+            Data Peserta
           </h2>
-          <div className="flex flex-col"></div>
+          <div className="flex flex-col">
+            <Accordion 
+              name={dataUserCourse?.userId?.name}
+              email={dataUserCourse?.userId?.email}
+              dateOfBirth={dataUserCourse?.userId?.dateOfBirth}
+              address={dataUserCourse?.userId?.address}
+              phone={dataUserCourse?.userId?.phone}
+              status={dataUserCourse?.userId?.status}
+              institutionName={dataUserCourse?.userId?.institutionName}
+              institutionNumber={dataUserCourse?.userId?.institutionNumber}
+              institutionFile={dataUserCourse?.userId?.institutionFile}
+              key={dataUserCourse?.userId?.institutionNumber}            />
+          </div>
         </div>
       </div>
     </div>
