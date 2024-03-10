@@ -16,12 +16,16 @@ const CompCard = (props) => {
             <p className="text-center font-Montserrat text-white text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]">
               {mainDesc}
             </p>
-            <button className="flex items-center p-2 space-x-3 text-white bg-black rounded-md lg:hidden">
+
+            <Link
+              href={linkDestination}
+              className="flex items-center p-2 space-x-3 text-white bg-black rounded-md lg:hidden"
+            >
               <p className="font-GameOfSquid font-bold bg text-[2.5vw]">
                 see more
               </p>
               <HiArrowRight />
-            </button>
+            </Link>
           </div>
         </div>
         <div className="order-1 md:order-2 w-full flex justify-center md:w-1/2 lg:w-full md:my-auto">
