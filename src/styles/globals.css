@@ -131,28 +131,21 @@ a {
 
   30% {
     transform: translate(10px);
-    transform: translateY(6px);
+    transform: translateY(12.5px);
     /* transform: scale(1.0065); */
   }
 
   50% {
     transform: translate(10px);
-    transform: translateY(12px);
+    transform: translateY(25px);
     /* transform: scale(1.01); */
   }
 
-  70% {
+  75% {
     transform: translate(20px);
-    transform: translateY(6px);
+    transform: translateY(12.5px);
     /* transform: scale(1.006); */
   }
-
-  85% {
-    transform: translate(20px);
-    transform: translateY(3px);
-    /* transform: scale(1.005); */
-  }
-
 
   100% {
     transform: translate(0);
