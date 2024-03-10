@@ -102,8 +102,12 @@ export default function DetailWorkshop() {
             </div>
             <div className="flex flex-col space-y-2">
               <p className="text-neutral-700">{date}</p>
-              <p className="text-background-skyblue">{dataUserCourse?.paymentSender}</p>
-              <p className="text-neutral-700">{dataUserCourse?.bankAccountId}</p>
+              <p className="text-background-skyblue">
+                {dataUserCourse?.paymentSender}
+              </p>
+              <p className="text-neutral-700">
+                {dataUserCourse?.bankAccountId}
+              </p>
             </div>
           </div>
           <div className="flex space-x-10 font-Montserrat text-[17px] font-bold pb-8 text-black border border-x-0 border-t-0 border-b-neutral-300 mb-8">
@@ -145,7 +149,7 @@ export default function DetailWorkshop() {
           <div>
             <textarea
               rows="8"
-              className="p-2 w-full font-light border-2 border-black font-Montserrat rounded-md"
+              className="p-2 w-full font-light border-2 border-black font-Montserrat font-medium rounded-md"
               onChange={(e) => {
                 setMessage(e.currentTarget.value);
               }}
@@ -165,7 +169,7 @@ export default function DetailWorkshop() {
             Data Peserta
           </h2>
           <div className="flex flex-col">
-            <Accordion 
+            <Accordion
               name={dataUserCourse?.userId?.name}
               email={dataUserCourse?.userId?.email}
               dateOfBirth={dataUserCourse?.userId?.dateOfBirth}
@@ -175,7 +179,8 @@ export default function DetailWorkshop() {
               institutionName={dataUserCourse?.userId?.institutionName}
               institutionNumber={dataUserCourse?.userId?.institutionNumber}
               institutionFile={dataUserCourse?.userId?.institutionFile}
-              key={dataUserCourse?.userId?.institutionNumber}            />
+              key={dataUserCourse?.userId?.institutionNumber}
+            />
           </div>
         </div>
       </div>
