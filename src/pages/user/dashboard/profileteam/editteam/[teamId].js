@@ -51,14 +51,14 @@ export default function Index() {
   const [state, dispatch] = useReducer(reducer, {
     teamName: undefined,
     teamInstitution: undefined,
-    teamContact: [undefined, undefined],
+    teamContact: ["", ""],
     discordID: undefined,
     inGameID: undefined,
     paymentDate: undefined,
     paymentSender: undefined,
     bankAccountId: undefined,
     bankName: undefined,
-    doubleSlot: false
+    doubleSlot: false,
   });
 
   {
@@ -69,28 +69,48 @@ export default function Index() {
     // Jika name adalah 'teamContact', maka kita perlu memeriksa id input
     if (name === "teamContact") {
       const id = e.target.id; // Ambil id input
+      const updatedContacts = [...state.teamContact]; // Salin array teamContact yang ada
 
       // Jika id adalah 'teamContactPrimary', simpan nilai ke indeks 0
       if (id === "teamContactPrimary") {
-        dispatch({
-          type: "UPDATE_FIELD",
-          field: name,
-          value: [value, state.teamContact[1]],
-        });
+        updatedContacts[0] = value;
       }
       // Jika id adalah 'teamContactSecondary', simpan nilai ke indeks 1
       else if (id === "teamContactSecondary") {
-        dispatch({
-          type: "UPDATE_FIELD",
-          field: name,
-          value: [state.teamContact[0], value],
-        });
+        updatedContacts[1] = value;
       }
-    }
-    if (name === "doubleSlot") {
+
+      // Perbarui state dengan nilai nomor telepon yang baru
+      dispatch({
+        type: "UPDATE_FIELD",
+        field: name,
+        value: updatedContacts,
+      });
+
+      // // Jika id adalah 'teamContactPrimary', simpan nilai ke indeks 0
+      // if (id === "teamContactPrimary") {
+      //   dispatch({
+      //     type: "UPDATE_FIELD",
+      //     field: name,
+      //     value: [value, state.teamContact[1]],
+      //   });
+      // }
+      // // Jika id adalah 'teamContactSecondary', simpan nilai ke indeks 1
+      // else if (id === "teamContactSecondary") {
+      //   dispatch({
+      //     type: "UPDATE_FIELD",
+      //     field: name,
+      //     value: [state.teamContact[0], value],
+      //   });
+      // }
+    } else if (name === "doubleSlot") {
       let isDoubleSlot = value;
-      value === 'true' ? isDoubleSlot = true : isDoubleSlot = false
-      dispatch({ type: "UPDATE_FIELD", field: "doubleSlot", value: isDoubleSlot });
+      value === "true" ? (isDoubleSlot = true) : (isDoubleSlot = false);
+      dispatch({
+        type: "UPDATE_FIELD",
+        field: "doubleSlot",
+        value: isDoubleSlot,
+      });
     } else {
       dispatch({ type: "UPDATE_FIELD", field: name, value });
     }
@@ -220,6 +240,38 @@ export default function Index() {
   };
   // End
 
+  // Handle Proposal File
+  const handleUploadAbstract = (e) => {
+    const formAbstract = new FormData();
+    const file = e.target.files[0];
+
+    formAbstract.append("abstractFile", file);
+
+    const regex = /\.(pdf)$/i;
+
+    if (formAbstract) {
+      axios
+        .post(
+          `${process.env.NEXT_PUBLIC_API_URL}/team/upload-abstract/${teamId}`,
+          formAbstract,
+          {
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          toast.success("berhasil upload abstrak");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  const handleAbstractChange = (e) => {
+    handleUploadAbstract(e);
+  };
+  // END
+
   const CustomInput = ({ value, onClick }) => {
     return (
       <div className="w-full">
@@ -287,7 +339,7 @@ export default function Index() {
                     Nomor Utama
                   </p>
                   <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
+                    className="h-5 p-5 bg-shade-white rounded-lg text-black font-Montserrat font-bold text-sm relative"
                     placeholder="0812345678"
                     required
                     type="text"
@@ -302,7 +354,7 @@ export default function Index() {
                     Nomor cadangan
                   </p>
                   <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
+                    className="h-5 p-5 bg-shade-white rounded-lg text-black font-Montserrat font-bold text-sm relative"
                     placeholder="0812345678"
                     required
                     type="text"
@@ -312,144 +364,215 @@ export default function Index() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="w-full flex flex-col gap-2">
-                  <p className="font-Montserrat font-bold text-text-placeholder-light">
-                    Institusi
-                  </p>
-                  <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
-                    placeholder="Universitas Diponegoro"
-                    required
-                    type="text"
-                    id="teamInstitution"
-                    name="teamInstitution"
-                    value={state.teamInstitution}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="w-full flex flex-col gap-2">
-                  <p className="font-Montserrat font-bold text-text-placeholder-light">
-                    Nama Tim
-                  </p>
-                  <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
-                    placeholder="Samsan Tech"
-                    required
-                    type="text"
-                    id="teamName"
-                    name="teamName"
-                    value={state.teamName}
-                    onChange={handleChange}
-                  />
-                </div>
+                {dataTeam?.eventId ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON ||
+                dataTeam?.eventId ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE ? (
+                  <></>
+                ) : (
+                  <>
+                    <div className="w-full flex flex-col gap-2">
+                      <p className="font-Montserrat font-bold text-text-placeholder-light">
+                        Institusi
+                      </p>
+                      <input
+                        className="h-5 p-5 bg-shade-white rounded-lg text-black font-Montserrat font-bold text-sm relative"
+                        placeholder="Universitas Diponegoro"
+                        required
+                        type="text"
+                        id="teamInstitution"
+                        name="teamInstitution"
+                        value={state.teamInstitution}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="w-full flex flex-col gap-2">
+                      <p className="font-Montserrat font-bold text-text-placeholder-light">
+                        Nama Tim
+                      </p>
+                      <input
+                        className="h-5 p-5 bg-shade-white rounded-lg text-black font-Montserrat font-bold text-sm relative"
+                        placeholder="Samsan Tech"
+                        required
+                        type="text"
+                        id="teamName"
+                        name="teamName"
+                        value={state.teamName}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </>
+                )}
                 {dataTeam?.eventId ===
                   process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT ||
-                dataTeam?.eventId === process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
+                dataTeam?.eventId ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
                   <div className="font-bold font-Montserrat text-[17px] space-y-2 pb-8 mb-3">
                     Double Slot?
-                  <div className="flex space-x-1 items-center">
-                    <input
-                      onClick={handleChange}
-                      type="radio"
-                      name="doubleSlot"
-                      value={true}
-                      // checked={state.doubleSlot === true}
-                    />
-                    <label htmlFor="doubleSlot">Ya</label>
+                    <div className="flex space-x-1 items-center">
+                      <input
+                        onClick={handleChange}
+                        type="radio"
+                        name="doubleSlot"
+                        value={true}
+                        // checked={state.doubleSlot === true}
+                      />
+                      <label htmlFor="doubleSlot">Ya</label>
+                    </div>
+                    <div className="flex space-x-1 items-center">
+                      <input
+                        onClick={handleChange}
+                        type="radio"
+                        name="doubleSlot"
+                        value={false}
+                        // checked={state.doubleSlot === false}
+                      />
+                      <label htmlFor="doubleSlot">Tidak</label>
+                    </div>
                   </div>
-                  <div className="flex space-x-1 items-center">
-                    <input
-                      onClick={handleChange}
-                      type="radio"
-                      name="doubleSlot"
-                      value={false}
-                      // checked={state.doubleSlot === false}
-                    />
-                    <label htmlFor="doubleSlot">Tidak</label>
-                  </div>
-                  </div>
-                  ) : (
+                ) : (
                   <div></div>
                 )}
-                <div className="w-full flex flex-col gap-y-4">
-                  <p className="font-Montserrat font-bold text-text-placeholder-light flex flex-col gap-y-4 md:gap-y-2">
-                    <p>Nomor rekening pembayaran :</p>
-                    <p className="text-[12px]">
-                      1212134197 (BNI ) a.n. Nadia Khairunnisa Agma
-                    </p>
-                    <p className="text-[12px]">
-                      3200925130 (BCA ) a.n. Lisa Olivia Putri Maharani
-                    </p>
-                  </p>
-                </div>
+                {dataTeam?.eventId ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON ||
+                dataTeam?.eventId ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE ? (
+                  <></>
+                ) : (
+                  <>
+                    <div className="w-full flex flex-col gap-y-4">
+                      <p className="font-Montserrat font-bold text-text-placeholder-light flex flex-col gap-y-4 md:gap-y-2">
+                        <p>Nomor rekening pembayaran :</p>
+                        <p className="text-[12px]">
+                          1212134197 (BNI ) a.n. Nadia Khairunnisa Agma
+                        </p>
+                        <p className="text-[12px]">
+                          3200925130 (BCA ) a.n. Lisa Olivia Putri Maharani
+                        </p>
+                      </p>
+                    </div>
+                  </>
+                )}
               </div>
+
               <div className="min-h-full border border-text-placeholder-light" />
               <div className="w-full md:w-[45%] flex flex-col gap-2">
-                <div className="w-full flex flex-col gap-2">
-                  <p className="font-Montserrat font-bold text-text-placeholder-light">
-                    Tanggal Pembayaran
-                  </p>
-                  <DatePicker
-                    selected={state.paymentDate}
-                    onChange={handleDateChange}
-                    customInput={<CustomInput />}
-                    dateFormat="dd/MM/yyyy"
-                    placeholderText="MM/DD/YYYY"
-                    showMonthDropdown
-                    showYearDropdown
-                    yearDropdownItemNumber={50}
-                    scrollableYearDropdown
-                  />
-                </div>
-                <div className="w-full flex flex-col gap-2">
-                  <p className="font-Montserrat font-bold text-text-placeholder-light">
-                    Nama Pengirim
-                  </p>
-                  <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
-                    placeholder="John Doe"
-                    required
-                    type="text"
-                    id="paymentSender"
-                    name="paymentSender"
-                    value={state.paymentSender}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="w-full flex flex-col gap-2">
-                  <p className="font-Montserrat font-bold text-text-placeholder-light">
-                    Nomor Rekening
-                  </p>
-                  <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
-                    placeholder="0123456789"
-                    required
-                    type="text"
-                    id="bankAccountId"
-                    name="bankAccountId"
-                    value={state.bankAccountId}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="w-full flex flex-col gap-2">
-                  <p className="font-Montserrat font-bold text-text-placeholder-light">
-                    Bank
-                  </p>
-                  <input
-                    className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
-                    placeholder="Bank BCA"
-                    required
-                    type="text"
-                    id="bankName"
-                    name="bankName"
-                    value={state.bankName}
-                    onChange={handleChange}
-                  />
-                </div>
-                {dataTeam?.eventId !== process.env.NEXT_PUBLIC_COMPETITION_ID_CTF &&
+                {dataTeam?.eventId ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON ||
+                dataTeam?.eventId ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE ? (
+                  <>
+                    <div className="w-full flex flex-col gap-2">
+                      <p className="font-Montserrat font-bold text-text-placeholder-light">
+                        Institusi
+                      </p>
+                      <input
+                        className="h-5 p-5 bg-shade-white rounded-lg text-black font-Montserrat font-bold text-sm relative"
+                        placeholder="Universitas Diponegoro"
+                        required
+                        type="text"
+                        id="teamInstitution"
+                        name="teamInstitution"
+                        value={state.teamInstitution}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="w-full flex flex-col gap-2">
+                      <p className="font-Montserrat font-bold text-text-placeholder-light">
+                        Nama Tim
+                      </p>
+                      <input
+                        className="h-5 p-5 bg-shade-white rounded-lg text-black font-Montserrat font-bold text-sm relative"
+                        placeholder="Samsan Tech"
+                        required
+                        type="text"
+                        id="teamName"
+                        name="teamName"
+                        value={state.teamName}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="w-full flex flex-col gap-2">
+                      <p className="font-Montserrat font-bold text-text-placeholder-light">
+                        Tanggal Pembayaran
+                      </p>
+                      <DatePicker
+                        selected={state.paymentDate}
+                        onChange={handleDateChange}
+                        customInput={<CustomInput />}
+                        dateFormat="dd/MM/yyyy"
+                        placeholderText="MM/DD/YYYY"
+                        showMonthDropdown
+                        showYearDropdown
+                        yearDropdownItemNumber={50}
+                        scrollableYearDropdown
+                      />
+                    </div>
+                  </>
+                )}
+                {dataTeam?.eventId ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON ||
+                dataTeam?.eventId ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE ? (
+                  <></>
+                ) : (
+                  <>
+                    <div className="w-full flex flex-col gap-2">
+                      <p className="font-Montserrat font-bold text-text-placeholder-light">
+                        Nama Pengirim
+                      </p>
+                      <input
+                        className="h-5 p-5 bg-shade-white rounded-lg text-black font-Montserrat font-bold text-sm relative"
+                        placeholder="John Doe"
+                        required
+                        type="text"
+                        id="paymentSender"
+                        name="paymentSender"
+                        value={state.paymentSender}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="w-full flex flex-col gap-2">
+                      <p className="font-Montserrat font-bold text-text-placeholder-light">
+                        Nomor Rekening
+                      </p>
+                      <input
+                        className="h-5 p-5 bg-shade-white rounded-lg text-black font-Montserrat font-bold text-sm relative"
+                        placeholder="0123456789"
+                        required
+                        type="text"
+                        id="bankAccountId"
+                        name="bankAccountId"
+                        value={state.bankAccountId}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="w-full flex flex-col gap-2">
+                      <p className="font-Montserrat font-bold text-text-placeholder-light">
+                        Bank
+                      </p>
+                      <input
+                        className="h-5 p-5 bg-shade-white rounded-lg text-black font-Montserrat font-bold text-sm relative"
+                        placeholder="Bank BCA"
+                        required
+                        type="text"
+                        id="bankName"
+                        name="bankName"
+                        value={state.bankName}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </>
+                )}
+                {dataTeam?.eventId !==
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_CTF &&
                 dataTeam?.eventId !==
                   process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT &&
-                dataTeam?.eventId !== process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
+                dataTeam?.eventId !==
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
                   <div></div>
                 ) : (
                   <div className="w-full flex flex-col gap-2">
@@ -457,7 +580,7 @@ export default function Index() {
                       ID Discord
                     </p>
                     <input
-                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
+                      className="h-5 p-5 bg-shade-white rounded-lg text-black font-Montserrat font-bold text-sm relative"
                       placeholder="Samsan Tech"
                       required
                       type="text"
@@ -470,13 +593,14 @@ export default function Index() {
                 )}
                 {dataTeam?.eventId ===
                   process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT ||
-                dataTeam?.eventId === process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
+                dataTeam?.eventId ===
+                  process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
                   <div className="w-full flex flex-col gap-2">
                     <p className="font-Montserrat font-bold text-text-placeholder-light">
                       ID Game
                     </p>
                     <input
-                      className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm relative"
+                      className="h-5 p-5 bg-shade-white rounded-lg text-black font-Montserrat font-bold text-sm relative"
                       placeholder="Samsan Tech"
                       required
                       type="text"
@@ -488,35 +612,69 @@ export default function Index() {
                   </div>
                 ) : (
                   <div></div>
-                )} 
-                <div>
-                  <div className="flex justify-between items-center w-full">
-                    <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
-                      Upload Bukti Pembayaran
-                    </p>
-                    <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
-                      {imagePreview && (
-                        <Image
-                          width={200}
-                          height={200}
-                          src={imagePreview}
-                          alt="kartu identitas"
-                          className="mb-4"
-                        />
-                      )}
-                      <input
-                        className="hidden"
-                        type="file"
-                        id="paymentFile"
-                        name="paymentFile"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                      />
-                      <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
-                        Unggah
+                )}
+
+                <div className="flex flex-col gap-y-2">
+                  {dataTeam?.eventId ===
+                    process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON ||
+                  dataTeam?.eventId ===
+                    process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE ? (
+                    <div className="flex justify-between items-center w-full">
+                      <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
+                        Upload Abstract File
                       </p>
-                    </label>
-                  </div>
+                      <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
+                        {imagePreview && (
+                          <Image
+                            width={200}
+                            height={200}
+                            src={imagePreview}
+                            alt="kartu identitas"
+                            className="mb-4"
+                          />
+                        )}
+                        <input
+                          className="hidden"
+                          type="file"
+                          id="paymentFile"
+                          name="paymentFile"
+                          accept="image/*"
+                          onChange={handleAbstractChange}
+                        />
+                        <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
+                          Unggah
+                        </p>
+                      </label>
+                    </div>
+                  ) : (
+                    <div className="flex justify-between items-center w-full">
+                      <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
+                        Upload Bukti Pembayaran
+                      </p>
+                      <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
+                        {imagePreview && (
+                          <Image
+                            width={200}
+                            height={200}
+                            src={imagePreview}
+                            alt="kartu identitas"
+                            className="mb-4"
+                          />
+                        )}
+                        <input
+                          className="hidden"
+                          type="file"
+                          id="paymentFile"
+                          name="paymentFile"
+                          accept="image/*"
+                          onChange={handleFileChange}
+                        />
+                        <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
+                          Unggah
+                        </p>
+                      </label>
+                    </div>
+                  )}
                   <div>
                     <div className="flex justify-between items-center w-full">
                       <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">

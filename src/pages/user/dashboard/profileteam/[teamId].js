@@ -272,8 +272,13 @@ export default function Index() {
           </div>
           <div className="border-b-[1px] pb-5 border-slate-600">
             <div className="flex items-center justify-between">
-              <h2 className="font-CreatoDisplay font-bold text-[24px]">
-                {dataTeam?.teamName}
+              <h2 className="flex flex-col">
+                <p className=" font-CreatoDisplay font-bold text-[24px]">
+                  {dataTeam?.teamName}
+                </p>
+                <p className="font-CreatoDisplay font-medium text-[16px]">
+                  {dataTeam?.event}
+                </p>
               </h2>
               <Status isVerified={dataTeam?.verified} />
             </div>
@@ -332,8 +337,8 @@ export default function Index() {
                   <p>Informasi</p>
                   <p>Proposal</p>
                 </div>
-                {dataTeam?.abstractFile === "" ? (
-                  <label className="flex items-center w-[160px] justify-center border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1">
+                {dataTeam?.abstractFile === undefined ? (
+                  <label className="flex items-center hover:cursor-pointer w-[160px] justify-center border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1">
                     <input
                       className="hidden"
                       type="file"
@@ -356,59 +361,69 @@ export default function Index() {
             ) : (
               <div></div>
             )}
-            <div className="font-Montserrat flex items-center">
-              <h2 className="font-bold w-[200px]">Tanggal Pembayaran</h2>
-              {date ? <p>{date}</p> : <p>-</p>}
-            </div>
-            <div className="font-Montserrat flex items-center">
-              <h2 className="font-bold w-[200px]">Nama Pengirim</h2>
-              <p>{dataTeam?.paymentSender}</p>
-            </div>
-            <div className="font-Montserrat flex items-center">
-              <h2 className="font-bold w-[200px]">No. Rek</h2>
-              <p>{dataTeam?.bankAccountId}</p>
-            </div>
-            <div className="font-Montserrat flex items-center">
-              <h2 className="font-bold w-[200px]">Bank</h2>
-              <p>{dataTeam?.bankName}</p>
-            </div>
-            <div className="font-Montserrat flex items-center">
-              <div className="w-[200px]">
-                <p className="font-bold">Bukti Pembayaran</p>
-              </div>
-              {dataTeam?.paymentFile === "" ? (
-                <label className="w-[160px] flex justify-center hover:cursor-pointer border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1">
-                  <input
-                    className="hidden"
-                    type="file"
-                    id="paymentFile"
-                    name="paymentFile"
-                    accept="image/*"
-                    onChange={handleUploadPaymentFile}
-                  />
-                  <p>Unggah</p>
-                </label>
-              ) : (
-                <button
-                  onClick={() => router.push(`${dataTeam?.paymentFile}`)}
-                  className="w-[160px] hover:cursor-pointer border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
-                >
-                  <p>Lihat</p>
-                </button>
-              )}
-            </div>
+            {dataTeam?.eventId ===
+              process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON ||
+            dataTeam?.eventId ===
+              process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE ? (
+              <></>
+            ) : (
+              <>
+                <div className="font-Montserrat flex items-center">
+                  <h2 className="font-bold w-[200px]">Tanggal Pembayaran</h2>
+                  {date ? <p>{date}</p> : <p>-</p>}
+                </div>
+                <div className="font-Montserrat flex items-center">
+                  <h2 className="font-bold w-[200px]">Nama Pengirim</h2>
+                  <p>{dataTeam?.paymentSender}</p>
+                </div>
+                <div className="font-Montserrat flex items-center">
+                  <h2 className="font-bold w-[200px]">No. Rek</h2>
+                  <p>{dataTeam?.bankAccountId}</p>
+                </div>
+                <div className="font-Montserrat flex items-center">
+                  <h2 className="font-bold w-[200px]">Bank</h2>
+                  <p>{dataTeam?.bankName}</p>
+                </div>
 
-            <div className="flex flex-col text-black font-Montserrat">
-              <p className="text-[16px] text-black font-Montserrat">
-                Silahkan transfer ke rekening di bawah ini:
-              </p>
-              <p className="text-[12px]">
-                1212134197 (BNI ) a.n. Nadia Khairunnisa Agma
-              </p>
-              <p className="text-[12px]">
-                3200925130 (BCA ) a.n. Lisa Olivia Putri Maharani
-              </p>
-            </div>
+                <div className="font-Montserrat flex items-center">
+                  <div className="w-[200px]">
+                    <p className="font-bold">Bukti Pembayaran</p>
+                  </div>
+                  {dataTeam?.paymentFile === "" ? (
+                    <label className="w-[160px] flex justify-center hover:cursor-pointer border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1">
+                      <input
+                        className="hidden"
+                        type="file"
+                        id="paymentFile"
+                        name="paymentFile"
+                        accept="image/*"
+                        onChange={handleUploadPaymentFile}
+                      />
+                      <p>Unggah</p>
+                    </label>
+                  ) : (
+                    <button
+                      onClick={() => router.push(`${dataTeam?.paymentFile}`)}
+                      className="w-[160px] hover:cursor-pointer border-4 border-background-skyblue rounded-md text-background-skyblue font-bold space-x-1"
+                    >
+                      <p>Lihat</p>
+                    </button>
+                  )}
+                </div>
+
+                <div className="flex flex-col text-black font-Montserrat">
+                  <p className="text-[16px] text-black font-Montserrat">
+                    Silahkan transfer ke rekening di bawah ini:
+                  </p>
+                  <p className="text-[12px]">
+                    1212134197 (BNI ) a.n. Nadia Khairunnisa Agma
+                  </p>
+                  <p className="text-[12px]">
+                    3200925130 (BCA ) a.n. Lisa Olivia Putri Maharani
+                  </p>
+                </div>
+              </>
+            )}
             <a
               className="flex flex-col text-blue-400 underline font-Montserrat text-[16px]"
               href="https://bit.ly/TwibbonFindIT2024"

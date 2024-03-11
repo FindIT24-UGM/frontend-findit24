@@ -132,12 +132,31 @@ export default function Detail() {
           <div className="flex space-x-10 font-Montserrat text-[17px] font-bold pb-8 text-black border border-x-0 border-t-0 border-b-neutral-300 mb-8">
             <div className="flex flex-col space-y-2">
               <p>Tanggal Pembayaran</p>
+              <p>Nama Pengirim</p>
+              <p>Nomor Rekening</p>
+              <p>Bank</p>
               <p>Bukti Pembayaran</p>
               <p>Twibbon Team</p>
             </div>
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-1.5">
               {/* for date */}
-              <p>{date}</p>
+              {date ? <p>{date}</p> : <p className="text-center">-</p>}
+              {dataTeam?.paymentSender !== undefined ? (
+                <p>{dataTeam?.paymentSender}</p>
+              ) : (
+                <p className="text-center">-</p>
+              )}
+              {console.log(dataTeam.paymentSender)}
+              {dataTeam?.bankAccountId !== undefined ? (
+                <p>{dataTeam?.bankAccountId}</p>
+              ) : (
+                <p className="text-center">-</p>
+              )}
+              {dataTeam?.bankName !== undefined ? (
+                <p>{dataTeam?.bankName}</p>
+              ) : (
+                <p className="text-center">-</p>
+              )}
               <button
                 onClick={() =>
                   window.open(`${dataTeam?.paymentFile}`, "_blank")
