@@ -141,17 +141,13 @@ export default function Detail() {
                 </div>
                 <div className="flex flex-col space-y-1.5">
                   <button
-                    onClick={() =>
-                      window.open(`${dataTeam?.abstractFile}`, "_blank")
-                    }
+                    onClick={() => router.push(`${dataTeam?.abstractFile}`)}
                     className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
                   >
                     Lihat
                   </button>
                   <button
-                    onClick={() =>
-                      window.open(`${dataTeam?.twibbonTeam}`, "_blank")
-                    }
+                    onClick={() => router.push(`${dataTeam?.twibbonTeam}`)}
                     className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
                   >
                     Lihat
@@ -198,9 +194,7 @@ export default function Detail() {
                     Lihat
                   </button>
                   <button
-                    onClick={() =>
-                      window.open(`${dataTeam?.twibbonTeam}`, "_blank")
-                    }
+                    onClick={() => router.push(`${dataTeam?.twibbonTeam}`)}
                     className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
                   >
                     Lihat
