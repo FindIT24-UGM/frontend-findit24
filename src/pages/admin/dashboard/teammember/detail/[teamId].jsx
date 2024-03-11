@@ -129,52 +129,86 @@ export default function Detail() {
               )}
             </div>
           </div>
-          <div className="flex space-x-10 font-Montserrat text-[17px] font-bold pb-8 text-black border border-x-0 border-t-0 border-b-neutral-300 mb-8">
-            <div className="flex flex-col space-y-2">
-              <p>Tanggal Pembayaran</p>
-              <p>Nama Pengirim</p>
-              <p>Nomor Rekening</p>
-              <p>Bank</p>
-              <p>Bukti Pembayaran</p>
-              <p>Twibbon Team</p>
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              {/* for date */}
-              {date ? <p>{date}</p> : <p className="text-center">-</p>}
-              {dataTeam?.paymentSender !== undefined ? (
-                <p>{dataTeam?.paymentSender}</p>
-              ) : (
-                <p className="text-center">-</p>
-              )}
-              {console.log(dataTeam.paymentSender)}
-              {dataTeam?.bankAccountId !== undefined ? (
-                <p>{dataTeam?.bankAccountId}</p>
-              ) : (
-                <p className="text-center">-</p>
-              )}
-              {dataTeam?.bankName !== undefined ? (
-                <p>{dataTeam?.bankName}</p>
-              ) : (
-                <p className="text-center">-</p>
-              )}
-              <button
-                onClick={() =>
-                  window.open(`${dataTeam?.paymentFile}`, "_blank")
-                }
-                className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
-              >
-                Lihat
-              </button>
-              <button
-                onClick={() =>
-                  window.open(`${dataTeam?.twibbonTeam}`, "_blank")
-                }
-                className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
-              >
-                Lihat
-              </button>
-            </div>
-          </div>
+          {dataTeam?.eventId ===
+            process.env.NEXT_PUBLIC_COMPETITION_ID_HACKATHON ||
+          dataTeam?.eventId ===
+            process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE ? (
+            <>
+              <div className="flex space-x-10 font-Montserrat text-[17px] font-bold pb-8 text-black border border-x-0 border-t-0 border-b-neutral-300 mb-8">
+                <div className="flex flex-col space-y-3">
+                  <p>Abstrak File</p>
+                  <p>Twibbon Team</p>
+                </div>
+                <div className="flex flex-col space-y-1.5">
+                  <button
+                    onClick={() =>
+                      window.open(`${dataTeam?.abstractFile}`, "_blank")
+                    }
+                    className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
+                  >
+                    Lihat
+                  </button>
+                  <button
+                    onClick={() =>
+                      window.open(`${dataTeam?.twibbonTeam}`, "_blank")
+                    }
+                    className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
+                  >
+                    Lihat
+                  </button>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex space-x-10 font-Montserrat text-[17px] font-bold pb-8 text-black border border-x-0 border-t-0 border-b-neutral-300 mb-8">
+                <div className="flex flex-col space-y-2">
+                  <p>Tanggal Pembayaran</p>
+                  <p>Nama Pengirim</p>
+                  <p>Nomor Rekening</p>
+                  <p>Bank</p>
+                  <p>Bukti Pembayaran</p>
+                  <p>Twibbon Team</p>
+                </div>
+                <div className="flex flex-col space-y-1.5">
+                  {/* for date */}
+                  {date ? <p>{date}</p> : <p className="text-center">-</p>}
+                  {dataTeam?.paymentSender !== undefined ? (
+                    <p>{dataTeam?.paymentSender}</p>
+                  ) : (
+                    <p className="text-center">-</p>
+                  )}
+                  {console.log(dataTeam.paymentSender)}
+                  {dataTeam?.bankAccountId !== undefined ? (
+                    <p>{dataTeam?.bankAccountId}</p>
+                  ) : (
+                    <p className="text-center">-</p>
+                  )}
+                  {dataTeam?.bankName !== undefined ? (
+                    <p>{dataTeam?.bankName}</p>
+                  ) : (
+                    <p className="text-center">-</p>
+                  )}
+                  <button
+                    onClick={() =>
+                      window.open(`${dataTeam?.paymentFile}`, "_blank")
+                    }
+                    className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
+                  >
+                    Lihat
+                  </button>
+                  <button
+                    onClick={() =>
+                      window.open(`${dataTeam?.twibbonTeam}`, "_blank")
+                    }
+                    className="text-[13px] text-center px-1 py-[5px] rounded-lg border-2 border-background-skyblue text-background-skyblue"
+                  >
+                    Lihat
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
           <div className="font-bold font-Montserrat text-[17px] text-black space-y-2 pb-8 mb-3">
             <div className="flex space-x-1 items-center">
               <input
