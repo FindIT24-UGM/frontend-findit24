@@ -31,8 +31,10 @@ export default function Title({
 
   return (
     <div className="px-[27px] md:px-0">
-      <div className="flex flex-col gap-y-12">
-        <h1 className="text-[8.889vw] md:text-[6.25vw] lg:text-[4.167vw] font-GameOfSquid bg-gradient-to-b from-[#FF8C5A] to-[#F95949] bg-clip-text text-transparent leading-normal md:leading-tight uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.25)]" data-aos="zoom-out-up">
+      <div className="flex flex-col gap-2 md:gap-y-8 px-4 lg:pl-24">
+        <h1
+          className="text-[8.889vw] md:text-[6.25vw] lg:text-[4.167vw] font-GameOfSquid bg-gradient-to-b from-[#FF8C5A] to-[#F95949] bg-clip-text text-transparent leading-normal md:leading-tight uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.25)]"
+          data-aos="zoom-out-up">
           {competitionTitle}
         </h1>
         <Countdown deadline="24 Mar 2024" />

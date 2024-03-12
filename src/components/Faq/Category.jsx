@@ -29,14 +29,14 @@ const SELECTION = [
 
 const Category = ({ setSelected, setCompetition, competition, selected }) => {
   return (
-    <div className="flex flex-row items-center justify-center max-sm:w-[80%] w-[50%] p-2 bg-text-placeholder-dark rounded-xl border-2 border-black mt-5 gap-x-2">
+    <div className="flex flex-row items-center justify-center max-sm:w-[90%] w-[50%] px-2 py-1 md:py-2 bg-text-placeholder-dark rounded-lg lg:rounded-xl border-2 border-black mt-5 gap-x-2">
       {SELECTION.map((sel) => {
         if (!CATEGORY.includes(sel)) return;
         return (
           <div
             key={sel}
             className={twMerge(
-              "flex items-center text-[11px] md:text-[15px] lg:text-[20px] justify-center flex-1 rounded-lg cursor-pointer font-GameOfSquid text-neutral-300 hover:text-white hover:bg-primary-300 transition-all duration-300  py-1",
+              "flex items-center h-[80%] md:h-full text-[12px] md:text-base lg:text-lg justify-center flex-1 rounded-lg cursor-pointer font-GameOfSquid text-neutral-300 hover:text-white hover:bg-primary-300 transition-all duration-300  py-1",
               sel !== "Lomba" &&
                 selected == sel &&
                 "bg-primary-500 text-white  border-2 border-black",
@@ -49,8 +49,7 @@ const Category = ({ setSelected, setCompetition, competition, selected }) => {
             onClick={() => {
               if (sel == "Lomba") return;
               setSelected(sel);
-            }}
-          >
+            }}>
             <p className="mx-auto">{sel == "Lomba" ? competition : sel}</p>
             {sel == "Lomba" && <IoMdArrowDropdown size={30} />}
             {sel == "Lomba" && (
@@ -61,8 +60,7 @@ const Category = ({ setSelected, setCompetition, competition, selected }) => {
                   sel == selected && "opacity-100 z-10",
                   "group-hover:opacity-100 group-hover:z-10",
                   "transition-all duration-500"
-                )}
-              >
+                )}>
                 {LOMBA.map((l) => (
                   <div
                     key={l.short}
@@ -71,8 +69,7 @@ const Category = ({ setSelected, setCompetition, competition, selected }) => {
                       e.stopPropagation();
                       setCompetition(l.short);
                       setSelected(l.full);
-                    }}
-                  >
+                    }}>
                     {l.full}
                   </div>
                 ))}

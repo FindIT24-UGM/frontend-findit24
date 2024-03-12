@@ -58,27 +58,24 @@ function HeroWS() {
         src={BG_WS}
         className="top-0 w-[120vw] lg:w-[75vw]"
         alt="Background.png"
-        data-aos="fade-down"
-      ></Image>
+        data-aos="fade-down"></Image>
       <div className="flex flex-col justify-center items-center gap-y-8 absolute">
-        <p className="font-Ava text-white text-[20px] lg:text-[2.5vw] 2xl:text-[1.25vw] mt-4 lg:mt-8">
+        <p className="font-Ava text-white text-base mt-4 lg:mt-8">
           {"//Workshop"}
         </p>
         <div
-          className="font-GameOfSquid text-center text-[5.556vw] md:text-[3.125vw] lg:text-[2.5vw] xl:text-[1.25vw] bg-gradient-to-b from-[#FF8C5A] to-[#F95949] bg-clip-text text-transparent"
-          data-aos="zoom-out-up"
-        >
+          className="font-GameOfSquid text-center text-base lg:text-2xl bg-gradient-to-b from-[#FF8C5A] to-[#F95949] bg-clip-text text-transparent"
+          data-aos="zoom-out-up">
           <p>{'"Exploring Blockchain :'}</p>
           <p>Embracing Future</p>
           <p>Technology</p>
         </div>
-        <div className="mt-8 font-GameOfSquid text-white text-center text-[12px] lg:text-[0.8333vw]">
+        <div className="mt-0 font-GameOfSquid text-white text-center text-[12px] lg:text-[0.8333vw]">
           <div
             className="flex flex-col text-[12px] lg:text-[2vw] xl:text-[1.2vw]"
-            data-aos="zoom-out-up"
-          >
+            data-aos="zoom-out-up">
             <p>Benefit </p>
-            <div className="font-Montserrat text-[14px] lg:text-[2vw] xl:text-[1.4vw]">
+            <div className="font-Montserrat text-[14px] lg:text-[2vw] xl:text-[1.4vw] mt-4">
               <ul>Sertifikat</ul>
               <ul>Knowledge</ul>
               <ul>E-Money</ul>
@@ -86,9 +83,8 @@ function HeroWS() {
           </div>
         </div>
         <div
-          className="mt-4 lg:mt-0 font-GameOfSquid text-white"
-          data-aos="zoom-out-up"
-        >
+          className="mt-4 lg:mt-0 font-GameOfSquid text-white -mb-4"
+          data-aos="zoom-out-up">
           Sisa waktu pendaftaran
         </div>
         <div className="flex text-white" data-aos="zoom-out-up">
@@ -111,33 +107,27 @@ function HeroWS() {
             &nbsp;menit
           </h4>
         </div>
-        <div className="flex gap-x-2">
+        <div className="flex gap-x-2 lg:gap-x-5">
           <button
-            className="flex justify-center items-center p-3 w-fit rounded-xl bg-gradient-to-b from-[#FF8C5A] to-[#F95949] "
+            className="flex justify-center items-center py-3 px-5 w-fit rounded-lg bg-gradient-to-b from-[#FF8C5A] to-[#F95949] "
             data-aos="fade-right"
-            onClick={handleDaftarWorkshop}
-          >
+            onClick={handleDaftarWorkshop}>
             <div className="text-white font-GameOfSquid">Daftar</div>
           </button>
           <button
-            className="flex justify-center items-center p-3 w-fit rounded-xl bg-white"
-            data-aos="fade-left"
-          >
+            className="flex justify-center items-center py-3 px-5 w-fit rounded-lg bg-white"
+            data-aos="fade-left">
             <Link
               className="text-black font-GameOfSquid"
               href={
                 "https://drive.google.com/drive/folders/1qKxHY8v6nULKy3R9n0OPEJkvWK8-9bRT?usp=sharing "
-              }
-            >
+              }>
               Guidebook
             </Link>
           </button>
         </div>
 
-        <div
-          className="flex justify-center items-center bottom-0 gap-x-2"
-          data-aos="fade-up"
-        >
+        <div className="flex justify-center items-center bottom-0 gap-x-2">
           <BiMouse />
           <p className="font-Montserrat text-white">Gulir ke bawah</p>
         </div>

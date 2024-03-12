@@ -50,14 +50,16 @@ function InformaticsCompetition() {
         <div className="min-h-screen relative">
           <div className="min-h-screen relative flex items-center mx-auto justify-around md:px-[50px] lg:px-[74px] pt-[20%] md:pt-[100px]">
             {/* Background Assets Layout Desktop */}
-            <p className="absolute font-Ava text-white text-[8.889vw] md:text-[5vw] lg:text-[3.33vw] rotate-90 font-normal  -right-20 bottom-16 lg:bottom-48 lg:-right-48 leading-[4vw] drop-shadow-[0_4px_12px_rgba(255,255,255,1)] opacity-50">
+            <p className="hidden sm:block absolute font-Ava text-white text-[8.889vw] md:text-[5vw] lg:text-[3.33vw] rotate-90 font-normal -right-36 sm:-right-56 md:-right-24 bottom-16 lg:bottom-48 lg:-right-36 leading-[4vw] drop-shadow-[0_4px_12px_rgba(255,255,255,1)] opacity-50">
               {"//Beyond The Sky"}
             </p>
 
             <div className="absolute left-0 hidden lg:flex">
               <Image src={Pattern_Kiri} alt="Pattern_Kiri.png" />
             </div>
-            <div className="absolute -left-2 md:-left-4 lg:left-0 top-12"  data-aos="zoom-out-right">
+            <div
+              className="absolute -left-2 md:-left-4 lg:left-0 top-12"
+              data-aos="zoom-out-right">
               <Image
                 src={Awan_Kiri}
                 className="w-[28vw] md:w-[15.3vw] lg:w-[6.25vw]"
@@ -71,7 +73,7 @@ function InformaticsCompetition() {
                 alt="Awan.png"
               />
             </div>
-            <div className="absolute md:-top-20 2xl:-top-52 md:-right-12 2xl:-right-16 opacity-60">
+            {/* <div className="absolute md:-top-20 2xl:-top-52 md:-right-12 2xl:-right-16 opacity-60">
               <Image
                 src={Micro_Atas}
                 className="w-[28vw] md:w-[102vw] lg:w-[64vw] 2xl:w-[60vw]"
@@ -84,7 +86,7 @@ function InformaticsCompetition() {
                 className="w-[28vw] md:w-[102vw] lg:w-[64vw] 2xl:w-[45vw]"
                 alt="Asset BG.png"
               />
-            </div>
+            </div> */}
             {/* Belum Responsive cik */}
             <div className="absolute -top-12 lg:-top-28 right-1 lg:-right-24 -rotate-[15deg] lg:rotate-0 lg:flex">
               <Image
@@ -93,13 +95,13 @@ function InformaticsCompetition() {
                 alt="Asset BG.png"
               />
             </div>
-            <div className="absolute -right-20 2xl:right-48 2xl:top-1/3 opacity-60">
+            {/* <div className="absolute -right-20 2xl:right-48 2xl:top-1/3 opacity-60">
               <Image
                 src={Micro_Pattern}
                 className="w-[28vw] md:w-[102vw] 2xl:w-[45vw]"
                 alt="Bg"
               />
-            </div>
+            </div> */}
             {/* Belum Responsive cik */}
             <div className="absolute -top-12 lg:-top-28 right-1 lg:-right-24 -rotate-[15deg] lg:rotate-0 lg:flex">
               <Image
@@ -109,11 +111,11 @@ function InformaticsCompetition() {
               />
             </div>
             {/* Belum Responsive cik*/}
-            <div className="absolute bottom-0 flex font-Montserrat 2xl:text-[0.72vw] text-white">
+            {/* <div className="absolute bottom-0 flex font-Montserrat 2xl:text-[0.72vw] text-white">
               <Link href="#!">Gulir Ke Bawah</Link>
-            </div>
+            </div> */}
             {/* Konten */}
-            <div className="w-full flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between md:justify-around gap-y-8 md:gap-y-12 lg:gap-y-20 gap-x-12 container max-w-[1500px] py-20 lg:py-0">
+            <div className="w-full flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between md:justify-around gap-y-8 md:gap-y-12 lg:gap-y-20 gap-x-12 container max-w-[1500px] py-20 lg:py-0 -mt-28 lg:-mt-40">
               <div data-aos="zoom-out-down">
                 <Title
                   competitionTitle="Informatics Competition"

@@ -20,14 +20,14 @@
 }
 
 .outline-title {
-     color: #2A93C2;
-     text-shadow:
-        1px 1px 0 #FFF,
-        -1px -1px 0 #FFF,  
-        1px -1px 0 #FFF,
-        -1px 1px 0 #FFF,
-        1px 1px 0 #FFF;
-  }
+  color: #2a93c2;
+  text-shadow:
+    1px 1px 0 #fff,
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+}
 
 * {
   box-sizing: border-box;
@@ -82,7 +82,6 @@ a {
   }
 }
 
-
 /* ScrollBar */
 
 /* ? Scrollbar */
@@ -95,7 +94,7 @@ a {
 
 ::-webkit-scrollbar-thumb {
   /* background: rgba(9, 134, 218, 1); */
-  background: #EE8478;
+  background: #ee8478;
   opacity: 0.8;
   border-radius: 99px;
   width: 8px;
@@ -118,7 +117,7 @@ a {
 }
 
 .animate-spin-slow {
-  animation: spin-slow 5s linear infinite;
+  animation: spin-slow 24s linear infinite;
 }
 
 /* Awan */
@@ -161,7 +160,6 @@ a {
 
   30% {
     transform: translateX(20px);
-    
   }
 
   50% {
@@ -172,7 +170,6 @@ a {
   85% {
     transform: translateX(20px);
   }
-
 
   100% {
     transform: translateX(-6px);
@@ -188,27 +185,26 @@ a {
 }
 
 @keyframes cloudRight {
-    0% {
-      transform: translatex(0) translateY(0); /* Posisi awal */
-    }
-  
-    25% {
-      transform: translatex(10px) translateY(10px); /* Geser ke bawah */
-    }
-
-    50% {
-      transform: translatex(-10px) translateY(20px); /* Geser ke bawah */
-    }
-
-    75% {
-      transform: translatex(-20px) translateY(10px); /* Geser ke bawah */
-    }
-  
-    100% {
-      transform: translateY(0px); /* Geser ke atas */
-    }
+  0% {
+    transform: translatex(0) translateY(0); /* Posisi awal */
   }
 
+  25% {
+    transform: translatex(10px) translateY(10px); /* Geser ke bawah */
+  }
+
+  50% {
+    transform: translatex(-10px) translateY(20px); /* Geser ke bawah */
+  }
+
+  75% {
+    transform: translatex(-20px) translateY(10px); /* Geser ke bawah */
+  }
+
+  100% {
+    transform: translateY(0px); /* Geser ke atas */
+  }
+}
 
 .animate-cloudRight {
   animation: cloudRight 15s infinite;

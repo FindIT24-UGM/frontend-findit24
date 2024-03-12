@@ -31,8 +31,7 @@ const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
       }}
       transition={{ duration: 0.5 }}
       animate={isSideNav ? "visible" : "hidden"}
-      initial={isSideNav ? "hidden" : "visible"}
-    >
+      initial={isSideNav ? "hidden" : "visible"}>
       <div className="flex flex-col items-end ml-32 mr-8 text-lg gap-y-10">
         <Link href="/workshop">
           <p className="text-white transition-all duration-300 cursor-pointer hover:text-primary-500">
@@ -41,8 +40,7 @@ const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
         </Link>
         <div
           className="flex flex-col items-end gap-y-3-2 "
-          onClick={() => setIsCompetition(!isCompetition)}
-        >
+          onClick={() => setIsCompetition(!isCompetition)}>
           <div className="flex flex-row justify-end cursor-pointer gap-x-2">
             <p className="text-white transition-all duration-100 cursor-pointer hover:text-primary-500">
               Competition
@@ -57,8 +55,7 @@ const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
             className={twMerge(
               "grid transition-all duration-500",
               isCompetition ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-            )}
-          >
+            )}>
             <div className="flex flex-col overflow-hidden gap-y-2">
               {LOMBA.map((l, idx) => (
                 <Link
@@ -69,9 +66,8 @@ const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
                   className={twMerge(
                     idx == 0 && "mt-10",
                     idx == LOMBA.length - 1 && "mb-2"
-                  )}
-                >
-                  <p>{l}</p>
+                  )}>
+                  <p className="text-right">{l}</p>
                 </Link>
               ))}
             </div>
@@ -93,8 +89,7 @@ const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
         className={twMerge(
           "w-[80%] h-fit py-3 text-black rounded-lg bg-primary-300 mx-auto mt-16 hover:bg-primary-500 duration-300 transition-all"
         )}
-        onClick={onSignClick}
-      >
+        onClick={onSignClick}>
         {isLogin ? "Sign Out" : "Sign in"}
       </button>
       {isLogin && (
@@ -108,8 +103,7 @@ const NavbarMobile = ({ isSideNav, isLogin, onSignClick }) => {
                 ? "/admin/dashboard/statistic"
                 : "/user/dashboard/beranda"
             )
-          }
-        >
+          }>
           Dashboard
         </button>
       )}
