@@ -17,11 +17,12 @@ const HeroPlaceHolder = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="bg-cover p-0 md:p-8 lg:bg-[url('https://i.ibb.co/pJ75N28/placeholder-Desktop.png')] lg:w-[1000px] lg:h-[250px] md:bg-[url('https://i.ibb.co/NTRcSNC/placeholder-Tab.png')] md:w-[702px] md:h-[245px] bg-[url('https://i.ibb.co/4SXs1b0/placeholder-Mobile.png')] w-[360px] h-[275px]"
-      data-aos="zoom-out-up">
+      <div
+        className="bg-cover p-0 md:p-8 lg:bg-[url('https://i.ibb.co/pJ75N28/placeholder-Desktop.png')] lg:w-[1000px] lg:h-[250px] md:bg-[url('https://i.ibb.co/NTRcSNC/placeholder-Tab.png')] md:w-[702px] md:h-[245px] bg-[url('https://i.ibb.co/4SXs1b0/placeholder-Mobile.png')] w-[360px] h-[275px]"
+        data-aos="zoom-out-up">
         <div className="w-full h-full flex justify-between items-center lg:gap-72">
           <div className="lg:w-1/2 lg:m-auto">
-            <p className="mb-10 lg:mb-0 text-white text-center">
+            <p className="mb-3 md:mb-6 lg:mb-0 text-white text-center">
               <span className="font-bold">
                 Future Innovations and Discovery IT
               </span>
@@ -31,17 +32,15 @@ const HeroPlaceHolder = () => {
               <span className="font-bold">lomba-lomba</span> yang mendorong
               inovasi di era digital.
             </p>
-            <div className="flex flex-row gap-x-5 justify-center lg:hidden font-GameOfSquid font-bold text-white">
+            <div className="flex flex-row gap-x-2 md:gap-x-5 justify-center lg:hidden font-GameOfSquid font-normal text-white">
               <button
-                className="bg-shade-black p-2 rounded-md"
-                onClick={handleDaftarClick}
-              >
+                className="w-36 md:w-52 border-4 bg-shade-black border-shade-black py-2 px-3 rounded-md text-neutral-100"
+                onClick={handleDaftarClick}>
                 DAFTAR KOMPETISI
               </button>
               <button
-                className="border-2 border-shade-black p-2 rounded-md"
-                onClick={() => router.replace("/aboutus")}
-              >
+                className="w-36 md:w-52 border-4 border-shade-black py-2 px-3 rounded-md text-shade-black"
+                onClick={() => router.replace("/aboutus")}>
                 ABOUT US
               </button>
             </div>
@@ -50,14 +49,14 @@ const HeroPlaceHolder = () => {
             <p className="text-center text-white">
               Siapkan diri anda untuk berinovasi dan melampaui batas imajinasi.
             </p>
-            <div className="flex flex-row gap-x-5 justify-center font-GameOfSquid font-bold text-white">
+            <div className="flex flex-row gap-x-3 justify-center font-GameOfSquid font-normal text-white">
               <Link href="/competition/capture-the-flag">
-                <button className="bg-shade-black p-2 rounded-md">
+                <button className="border-[3px] bg-shade-black border-shade-black py-2 px-3 rounded-md text-neutral-100">
                   DAFTAR KOMPETISI
                 </button>
               </Link>
               <Link href="/aboutus">
-                <button className="border-2 border-shade-black p-2 rounded-md">
+                <button className="border-[3px] border-shade-black py-2 px-3 rounded-md text-shade-black ">
                   ABOUT US
                 </button>
               </Link>

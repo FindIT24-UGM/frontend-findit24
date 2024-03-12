@@ -15,20 +15,20 @@ import heroImage from "../../../assets/Logo/mascotHeroFindIT24.png";
 
 import Gap from "./Gap";
 
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useEffect } from "react";
 
 const HeroComp = () => {
-  useEffect(()=>{
+  useEffect(() => {
     AOS.init({
       disable: false,
       duration: 1300,
-    })
-  },[])
+    });
+  }, []);
 
   return (
-    <div className="">
+    <div>
       <div>
         {/* background */}
         <Image
@@ -70,24 +70,26 @@ const HeroComp = () => {
         <div className="bg-background-skyblue h-[220vh] w-full absolute -z-[50]"></div>
         {/* content */}
         <div className="">
-          <h2 className="font-Ava lg:text-[50px] md:text-[48px] text-[28px] text-center text-secondary-blue"
-          data-aos="fade-down">
+          <h2
+            className="font-Ava lg:text-[50px] md:text-[48px] text-[28px] text-center text-secondary-blue"
+            data-aos="fade-down">
             2024
           </h2>
-          <div className="text-center"
-          data-aos="fade-down">
-            <q className="font-CreatoDisplay lg:text-[20px] md:text-[18px] text-[12px] text-secondary-blue">
+          <div className="text-center" data-aos="fade-down">
+            <q className="font-CreatoDisplay lg:text-[20px] md:text-[18px] text-[12px] text-secondary-blue font-bold">
               Tech Horizon: Beyond the Digital Sky
             </q>
           </div>
           <div className="flex flex-col">
-            <div className="font-GameOfSquid lg:text-[150px] md:text-[100px] text-[60px] flex items-center justify-center space-x-8 md:space-x-16 text-text-placeholder-light z-10"
-            data-aos="zoom-out-up">
-              <div className="h-fit">FIND</div>
-              <div className="h-fit">IT!</div>
+            <div
+              className="font-GameOfSquid lg:text-[150px] md:text-[100px] text-[72px] flex items-center justify-center space-x-8 md:space-x-16 text-text-placeholder-light z-10"
+              data-aos="zoom-out-up">
+              <div className="h-fit drop-shadow-competitions">fiNd</div>
+              <div className="h-fit drop-shadow-competitions">It!</div>
             </div>
-            <div className="flex justify-center items-center pt-[111px] pb-20 lg:pt-0 lg:pb-0 z-20"
-            data-aos="zoom-out-up">
+            <div
+              className="flex justify-center items-center pt-[111px] pb-20 lg:pt-0 lg:pb-0 z-20"
+              data-aos="zoom-out-up">
               <Image
                 alt="heroImage"
                 src={heroImage}

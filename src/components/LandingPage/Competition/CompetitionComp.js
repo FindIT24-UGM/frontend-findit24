@@ -130,18 +130,16 @@ const CompetitionComp = () => {
     <div className="min-h-screen flex flex-col justify-center items-center lg:px-[54px] bg-background-skyblue">
       <div className="w-[90%] lg:w-[80%] flex flex-col justify-center items-center border-x-[6px] border-[#92C2D0] pb-20">
         <div className="flex flex-col items-center">
-          <div className="lg:w-[70%] pt-20">
+          <div className="lg:w-[70%] pt-14 -mb-10">
             <div className="flex flex-col items-center mx-auto">
               <div
                 className="font-GameOfSquid text-[#FCFCFC] text-[9.331vw] lg:text-[4.5vw] drop-shadow-competitions"
-                data-aos="zoom-out-up"
-              >
+                data-aos="zoom-out-up">
                 Competitions
               </div>
               <div
-                className="text-center font-CreatoDisplay text-[#92C2D0] text-[3.214vw] md:text-[2.604vw] lg:text-[1.25vw] font-bold"
-                data-aos="zoom-out-up"
-              >
+                className="text-center font-CreatoDisplay text-[#92C2D0] text-[3.4vw] md:text-[2.604vw] lg:text-[1.25vw] font-bold"
+                data-aos="zoom-out-up">
                 There are sevens competitions, each contributing to the
                 development of creativity and innovation in Information
                 Technology
@@ -150,7 +148,7 @@ const CompetitionComp = () => {
           </div>
         </div>
         {windowWidth < 450 ? (
-          <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
+          <div className="w-full h-fit mt-8 flex flex-col justify-center items-center">
             <Swiper
               slidesPerView={1}
               pagination={{ clickable: true }}
@@ -164,15 +162,13 @@ const CompetitionComp = () => {
               onSwiper={setSwiper}
               spaceBetween="13vw"
               grabCursor={true}
-              className="w-full"
-            >
+              className="w-full">
               {cards.map((card, idx) => {
                 return (
                   <SwiperSlide
                     key={card.name}
                     className="py-10 flex flex-col items-center justify-center"
-                    onClick={() => handleSlideClick(card.ownIndex)}
-                  >
+                    onClick={() => handleSlideClick(card.ownIndex)}>
                     <CompCard
                       name={card.name}
                       activeIndex={activeIndex}
@@ -186,13 +182,13 @@ const CompetitionComp = () => {
               })}
             </Swiper>
             <div className="flex flex-col items-center">
-              <div className="font-Ava text-[9vw] md:text-[5vw] 2xl:text-[2vw] outline-title">
+              <div className="font-Ava text-center text-[9vw] md:text-[5vw] 2xl:text-[2vw] outline-title">
                 {cards[activeIndex].name}
               </div>
             </div>
           </div>
         ) : windowWidth < 860 ? (
-          <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
+          <div className="w-full h-fit mt-8 flex flex-col justify-center items-center">
             <Swiper
               slidesPerView={1.25}
               pagination={{ clickable: true }}
@@ -204,17 +200,15 @@ const CompetitionComp = () => {
                 console.log(cards.name);
               }}
               onSwiper={setSwiper}
-              spaceBetween="10vw"
+              spaceBetween="16vw"
               grabCursor={true}
-              className="w-full"
-            >
+              className="w-full">
               {cards.map((card, idx) => {
                 return (
                   <SwiperSlide
                     key={card.name}
                     className="py-10 flex flex-col items-center justify-center"
-                    onClick={() => handleSlideClick(card.ownIndex)}
-                  >
+                    onClick={() => handleSlideClick(card.ownIndex)}>
                     <CompCard
                       name={card.name}
                       activeIndex={activeIndex}
@@ -228,13 +222,13 @@ const CompetitionComp = () => {
               })}
             </Swiper>
             <div className="flex flex-col items-center">
-              <div className="font-Ava text-[9vw] md:text-[5vw] 2xl:text-[2vw] outline-title">
+              <div className="font-Ava text-center text-[9vw] md:text-[5vw] 2xl:text-[2vw] outline-title">
                 {cards[activeIndex].name}
               </div>
             </div>
           </div>
         ) : (
-          <div className="w-full h-fit mt-8 flex flex-col justify-center items-center pl-4">
+          <div className="w-full h-fit mt-8 flex flex-col justify-center items-center">
             <Swiper
               slidesPerView={1.2}
               centeredSlides={true}
@@ -244,19 +238,17 @@ const CompetitionComp = () => {
                 console.log(cards.name);
               }}
               onSwiper={setSwiper}
-              spaceBetween="60vw"
+              spaceBetween="40vw"
               grabCursor={true}
               pagination={{ clickable: true }}
               modules={[Pagination]}
-              className="w-full"
-            >
+              className="w-full">
               {cards.map((card, idx) => {
                 return (
                   <SwiperSlide
                     key={card.name}
                     className="py-10 flex flex-col items-center justify-center"
-                    onClick={() => handleSlideClick(card.ownIndex)}
-                  >
+                    onClick={() => handleSlideClick(card.ownIndex)}>
                     <CompCard
                       name={card.name}
                       activeIndex={activeIndex}
@@ -270,7 +262,7 @@ const CompetitionComp = () => {
               })}
             </Swiper>
             <div className="flex flex-col items-center">
-              <div className="font-Ava text-[9vw] md:text-[5vw] 2xl:text-[2vw] outline-title">
+              <div className="font-Ava text-center text-[9vw] md:text-[5vw] 2xl:text-[2vw] outline-title">
                 {cards[activeIndex].name}
               </div>
             </div>

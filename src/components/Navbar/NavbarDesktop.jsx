@@ -41,60 +41,54 @@ const NavbarDesktop = ({ isLogin, onSignClick }) => {
         <div
           className={twMerge(
             "absolute flex flex-row w-fit h-20 items-center -translate-x-[100%] -translate-y-[50%] gap-x-14 max-lg:hidden"
-          )}
-        >
+          )}>
           <Link href="/workshop">
             <p
               className={twMerge(
-                "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
+                "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-[#EE8478]",
                 pathName == "/workshop" && "text-primary-500"
-              )}
-            >
+              )}>
               Workshop
             </p>
           </Link>
-          <div className="relative flex flex-row items-center text-sm gap-x-3">
+          <div
+            className="relative flex flex-row items-center text-sm gap-x-3 hover:cursor-pointer hover:text-[#EE8478]"
+            onClick={() => {
+              setSpanCompetition(!spanCompetition);
+            }}>
             <p
               className={twMerge(
-                "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
+                "text-white transition-all duration-200 whitespace-nowrap hover:text-[#EE8478]",
                 pathName == "/competition" && "text-primary-500"
-              )}
-              onClick={() => {
-                setSpanCompetition(!spanCompetition);
-              }}
-            >
+              )}>
               Competition
             </p>
-            <button
+            <span
               className={twMerge(
                 spanCompetition && "rotate-180",
-                "transition-all duration-300"
-              )}
-            >
+                "transition-all duration-300 "
+              )}>
               <IoMdArrowDropdown size={25} />
-            </button>
+            </span>
             <div
               className={twMerge(
-                "absolute top-[260%] left-0 -translate-x-[25%] flex flex-col w-[300%] h-fit bg-text-placeholder-dark rounded-lg px-5 py-6",
+                "absolute top-[260%] left-0 -translate-x-[36.5%] flex flex-col w-[300%] h-fit bg-text-placeholder-dark rounded-lg px-5 py-6",
                 hideCompetition && "hidden",
                 !opacityCompetition && "opacity-0",
                 opacityCompetition && "opacity-100",
                 "transition-all duration-500"
-              )}
-            >
+              )}>
               {LOMBA.map((l) => (
                 <Link
                   key={l}
                   href={
                     "/competition" + `/${l.split(" ").join("-").toLowerCase()}`
-                  }
-                >
+                  }>
                   <p
                     className="flex items-center justify-center flex-1 w-full py-2 text-white rounded-lg cursor-pointer hover:bg-primary-300 font-Montserrat"
                     onClick={(e) => {
                       e.stopPropagation();
-                    }}
-                  >
+                    }}>
                     {l}
                   </p>
                 </Link>
@@ -107,8 +101,8 @@ const NavbarDesktop = ({ isLogin, onSignClick }) => {
         <Image
           className="max-lg:mr-auto"
           src={"/assets/images/logoFindITPutih.png"}
-          width={70}
-          height={70}
+          width={45}
+          height={45}
           alt="FindIT.png"
           priority
         />
@@ -117,23 +111,20 @@ const NavbarDesktop = ({ isLogin, onSignClick }) => {
         <div
           className={twMerge(
             "absolute flex flex-row w-fit h-20 items-center  -translate-y-[50%] gap-x-14 max-lg:hidden"
-          )}
-        >
+          )}>
           <p
             className={twMerge(
-              "text-white transition-all duration-200 cursor-pointer whitespace-nowrap text-sm hover:text-gray-300",
+              "text-white transition-all duration-200 cursor-pointer whitespace-nowrap text-sm hover:text-[#EE8478]",
               pathName == "/aboutus" && "text-primary-500"
-            )}
-          >
+            )}>
             <Link href="/aboutus">About Us</Link>
           </p>
           <Link href="/faq">
             <p
               className={twMerge(
-                "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-gray-300",
+                "text-white transition-all duration-200 cursor-pointer whitespace-nowrap hover:text-[#EE8478]",
                 pathName == "/faq" && "text-primary-500"
-              )}
-            >
+              )}>
               FAQ
             </p>
           </Link>
@@ -148,16 +139,14 @@ const NavbarDesktop = ({ isLogin, onSignClick }) => {
                 ? "/admin/dashboard/statistic"
                 : "/user/dashboard/beranda"
             )
-          }
-        >
+          }>
           Dashboard
         </button>
       )}
       {/* sign in button */}
       <button
-        className="absolute right-[50px] transition-all duration-300 hover:bg-primary-500 max-lg:hidden font-GameOfSquid bg-primary-300 rounded-lg text-black p-2 text-sm"
-        onClick={onSignClick}
-      >
+        className="absolute right-[50px] transition-all duration-300 hover:bg-primary-500 max-lg:hidden font-GameOfSquid bg-primary-300 rounded-lg text-black p-2 text-sm px-4"
+        onClick={onSignClick}>
         {isLogin ? "Sign Out" : "Sign In"}
       </button>
     </>

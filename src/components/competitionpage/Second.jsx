@@ -40,11 +40,10 @@ function NamaLomba({ content }) {
 
   return (
     <div className="w-[250%] md:w-[150%] lg:w-[120%] relative flex items-center text-center justify-center mt-32">
-      <div className="absolute left-[-10vw] w-full h-[5vw] max-md:h-[6vw] bg-gradient-to-b border-4 border-black from-[#FF8C5A] to-[#F95949]"></div>
+      <div className="absolute left-[-10vw] w-full lg:h-16 h-8 md:h-12 bg-gradient-to-b border-4 border-black from-[#FF8C5A] to-[#F95949]"></div>
       <div
         ref={sliderTrackRef}
-        className="relative whitespace-nowrap font-GameOfSquid text-[3.33vw] md:text-[2.6vw] lg:text-[1.8vw] text-black flex justify-between w-full z-10"
-      >
+        className="relative whitespace-nowrap font-GameOfSquid text-[3.33vw] md:text-[2.6vw] lg:text-[1.8vw] text-black flex justify-between w-full z-10">
         {content}&emsp;
         {content}&emsp;
         {content}&emsp;
@@ -78,8 +77,7 @@ function HexagonDot() {
         sizes={36}
         alt="Hexagon Dot.png"
         className="relative"
-        loading="lazy"
-      ></Image>
+        loading="lazy"></Image>
     </div>
   );
 }
@@ -115,8 +113,7 @@ function TimeLineCard({ data }) {
           {data.items.map((item, idx) => (
             <li
               className="font-Montserrat text-[2vw] lg:text-[0.9vw]"
-              key={idx}
-            >
+              key={idx}>
               {item}
             </li>
           ))}
@@ -200,9 +197,10 @@ export default function Second({
           alt="Pattern.png"
         />
       </div>
-      <div className="absolute left-0 top-[-8vw] w-[15vw] z-30 max-md:w-[32vw] max-md:top-[-22vw] max-sm:w-[24vw] max-sm:top-[-10vw]" 
-      data-aos="fade-up"
-      data-aos-delay="50">
+      <div
+        className="absolute left-0 top-[-8vw] w-[15vw] z-30 max-md:w-[32vw] max-md:top-[-22vw] max-sm:w-[24vw] max-sm:top-[-10vw]"
+        data-aos="fade-up"
+        data-aos-delay="50">
         <Image src={Roket1} alt="Roket.png" />
       </div>
       <div className="w-full h-[20vw] flex justify-center items-center relative ">
@@ -228,8 +226,9 @@ export default function Second({
         data-aos="zoom-out-down"
         alt="Bintang.png"
       />
-      <div className="font-Montserrat text-[3.85vw] md:text-[2.1vw] lg:text-[1vw] w-[83.33vw] md:w-[52vw] lg:w-[28vw] flex justify-center items-center text-center mx-auto my-20 max-md:w-[54%] max-md:text-[2vw]  max-sm:w-[60%] max-sm:text-[3vw]"
-      data-aos="zoom-out-up">
+      <div
+        className="font-Montserrat text-[3.85vw] md:text-[2.1vw] lg:text-[1vw] w-[83.33vw] md:w-[52vw] lg:w-[28vw] flex justify-center items-center text-center mx-auto my-20 max-md:w-[54%] max-md:text-[2vw]  max-sm:w-[60%] max-sm:text-[3vw]"
+        data-aos="zoom-out-up">
         {competitionDescription}
       </div>
 

@@ -38,7 +38,7 @@ export default function AutoSlider() {
         <div className="w-full border-y-8 border-[#92C2D0] overflow-hidden">
           <div
             ref={sliderTrackRef}
-            className="sliderTrack flex gap-x-6 font-GameOfSquid text-[52.72px] whitespace-nowrap"
+            className="sliderTrack flex gap-x-6 font-GameOfSquid text-[52.72px] py-3 whitespace-nowrap"
             style={{ width: "800vw" }} // Adjust the width according to your content
           >
             {[...Array(8)].map((_, index) => (

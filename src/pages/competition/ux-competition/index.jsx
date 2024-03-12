@@ -54,7 +54,7 @@ function UxCompetition() {
         <div className="min-h-screen relative">
           <div className="min-h-screen relative flex items-center mx-auto justify-around md:px-[50px] lg:px-[74px] pt-[20%] md:pt-[100px]">
             {/* Background Assets Layout Desktop */}
-            <p className="absolute font-Ava text-white text-[8.889vw] md:text-[5vw] lg:text-[3.33vw] rotate-90 font-normal  -right-20 bottom-16 lg:bottom-48 lg:-right-48 leading-[4vw] drop-shadow-[0_4px_12px_rgba(255,255,255,1)] opacity-50">
+            <p className="hidden sm:block absolute font-Ava text-white text-[8.889vw] md:text-[5vw] lg:text-[3.33vw] rotate-90 font-normal -right-36 sm:-right-56 md:-right-24 bottom-16 lg:bottom-48 lg:-right-36 leading-[4vw] drop-shadow-[0_4px_12px_rgba(255,255,255,1)] opacity-50">
               {"//Beyond The Sky"}
             </p>
             <div className="absolute left-0 hidden lg:flex">
@@ -74,7 +74,7 @@ function UxCompetition() {
                 alt="Awan.png"
               />
             </div>
-            <div className="absolute md:-top-20 2xl:-top-52 md:-right-12 2xl:-right-16 opacity-60">
+            {/* <div className="absolute md:-top-20 2xl:-top-52 md:-right-12 2xl:-right-16 opacity-60">
               <Image
                 src={Micro_Atas}
                 className="w-[28vw] md:w-[102vw] 2xl:w-[60vw]"
@@ -87,9 +87,11 @@ function UxCompetition() {
                 className="w-[28vw] md:w-[102vw] 2xl:w-[45vw]"
                 alt="Bg"
               />
-            </div>
+            </div> */}
             {/* Belum Responsive cik */}
-            <div className="absolute -top-12 lg:-top-28 right-1 lg:-right-24 -rotate-[15deg] lg:rotate-0 lg:flex" data-aos="zoom-out-down">
+            <div
+              className="absolute -top-12 lg:-top-28 right-1 lg:-right-24 -rotate-[15deg] lg:rotate-0 lg:flex"
+              data-aos="zoom-out-down">
               <Image
                 src={Bintang_Group}
                 className="w-[101vw] 2xl:w-[93vw]"
@@ -97,11 +99,11 @@ function UxCompetition() {
               />
             </div>
             {/* Belum Responsive cik*/}
-            <div className="absolute bottom-0 flex font-Montserrat 2xl:text-[0.72vw] text-white">
+            {/* <div className="absolute bottom-0 flex font-Montserrat 2xl:text-[0.72vw] text-white">
               <Link href="#!">Gulir Ke Bawah</Link>
-            </div>
+            </div> */}
             {/* Konten */}
-            <div className="w-full flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between md:justify-around gap-y-8 md:gap-y-12 lg:gap-y-20 gap-x-12 container max-w-[1500px] py-20 lg:py-0">
+            <div className="w-full flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between md:justify-around gap-y-8 md:gap-y-12 lg:gap-y-20 gap-x-12 container max-w-[1500px] py-20 lg:py-0 -mt-28 lg:-mt-40">
               <div data-aos="zoom-out-down">
                 <Title
                   competitionTitle="UX Competition"
@@ -113,10 +115,10 @@ function UxCompetition() {
               <div className="mx-10 md:mx-0 relative">
                 <Image
                   src={UX}
-                  width={545}
-                  height={532}
+                  width={480}
+                  height={480}
                   alt="Logo"
-                  className="relative z-40 w-[50vw] md:w-[35.5vw] xl:w-[600px] mx-auto"
+                  className="relative z-40 mx-auto"
                   data-aos="zoom-out-up"
                   priority
                 />

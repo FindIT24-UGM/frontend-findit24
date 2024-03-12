@@ -105,12 +105,11 @@ const Navbar = () => {
     <>
       <div
         className={twMerge(
-          "h-20 z-[999] border-b-4 w-full border-black bg-text-placeholder-dark font-GameOfSquid flex flex-row justify-center px-7 items-center py-12",
+          "h-16 z-[999] border-b-4 w-full border-black bg-text-placeholder-dark font-GameOfSquid flex flex-row justify-center px-7 items-center py-12",
           "max-lg:justify-start",
           "lg:gap-x-20",
           "relative"
-        )}
-      >
+        )}>
         {/* navbar desktop */}
         <NavbarDesktop isLogin={isAuthenticated} onSignClick={onSignClick} />
         {/* navbar button */}
@@ -124,8 +123,7 @@ const Navbar = () => {
           }}
           transition={{ duration: 0.5 }}
           animate={isSideNav ? "hidden" : "visible"}
-          initial={isSideNav ? "visible" : "hidden"}
-        >
+          initial={isSideNav ? "visible" : "hidden"}>
           <GiHamburgerMenu size={40} />
         </motion.button>
         <motion.button
@@ -137,8 +135,7 @@ const Navbar = () => {
           transition={{ duration: 0.5 }}
           animate={isSideNav ? "visible" : "hidden"}
           initial={isSideNav ? "hidden" : "visible"}
-          onClick={() => setIsSideNav(!isSideNav)}
-        >
+          onClick={() => setIsSideNav(!isSideNav)}>
           <RxCross1 size={40} />
         </motion.button>
         {/* navbar mobile */}

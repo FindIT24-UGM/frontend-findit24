@@ -14,8 +14,7 @@ function HexagonDot() {
         src={HexagonDot_Desktop}
         sizes={36}
         alt="Hexagon Dot.png"
-        className="relative"
-      ></Image>
+        className="relative"></Image>
     </div>
   );
 }
@@ -49,22 +48,19 @@ export default function Timeline() {
     <div className="bg-text-placeholder-dark min-h-screen w-full p-10">
       <h2
         className="font-GameOfSquid text-[48px] font-bold text-white text-center mb-14"
-        data-aos="zoom-out-up"
-      >
+        data-aos="zoom-out-up">
         Timeline
       </h2>
       <div className="flex gap-x-3 justify-center lg:gap-x-0 lg:flex-col">
         {/* date */}
         <div
           className="mt-[12vw] space-y-[19.5vw] lg:space-y-0 lg:flex lg:space-x-[16.78vw] lg:mt-0 lg:ml-[6.28vw]"
-          data-aos="fade-right"
-        >
+          data-aos="fade-right">
           {dummyData.map((item, i) => {
             return (
               <p
                 key={item.name + i}
-                className="font-GameOfSquid text-white h-[5vw] my-auto lg:h-fit lg:w-[6vw] text-center"
-              >
+                className="font-GameOfSquid text-white h-[5vw] my-auto lg:h-fit lg:w-[6vw] text-center">
                 {item.date}
               </p>
             );
@@ -99,8 +95,7 @@ export default function Timeline() {
               <div
                 className="my-[1vw] lg:mx-[4vw]"
                 data-aos="flip-right"
-                key={item.name + indexcard}
-              >
+                key={item.name + indexcard}>
                 <TimeLineCard content={item.name} />
               </div>
             );

@@ -132,7 +132,7 @@ export default function Footer() {
                 </p>
                 <ul>
                   <li className="text-sm text-center lg:text-left 2xl:text-lg">
-                    <Link className="hover:opacity-80" href={"/workshop"}>
+                    <Link className="hover:text-[#EE8478]" href={"/workshop"}>
                       Workshop
                     </Link>
                   </li>
@@ -146,12 +146,10 @@ export default function Footer() {
                   {competitions.map((competition, index) => (
                     <li
                       key={index}
-                      className="mb-2.5 lg:mb-2 text-xs lg:text-sm text-center lg:text-left 2xl:text-lg"
-                    >
+                      className="mb-2.5 lg:mb-2 text-xs lg:text-sm text-center lg:text-left 2xl:text-lg">
                       <Link
-                        className="hover:opacity-80"
-                        href={competition.href}
-                      >
+                        className="hover:text-[#EE8478]"
+                        href={competition.href}>
                         {competition.text}
                       </Link>
                     </li>
@@ -188,8 +186,7 @@ export default function Footer() {
                   <Link
                     href="mailto:findituniversitasgadjahmada@gmail.com"
                     target="_blank"
-                    className="hover:opacity-80 2xl:text-lg"
-                  >
+                    className="hover:text-[#EE8478] 2xl:text-lg">
                     findituniversitasgadjahmada@gmail.com
                   </Link>
                 </p>
@@ -197,8 +194,7 @@ export default function Footer() {
                   <Link
                     href={`https://wa.me/${whatsappNumber}`}
                     target="_blank"
-                    className="hover:opacity-80 2xl:text-lg"
-                  >
+                    className="hover:text-[#EE8478] 2xl:text-lg">
                     {whatsappNumber}
                   </Link>
                 </p>

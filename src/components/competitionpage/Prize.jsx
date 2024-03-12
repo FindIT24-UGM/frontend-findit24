@@ -9,14 +9,15 @@ export default function Prize({
   thirdPlacePrize,
 }) {
   return (
-    <div className="min-h-screen w-full bg-[url('https://i.ibb.co/k5Cstkf/Vector-109.png')] md:bg-[url('https://i.ibb.co/zmxHCHq/Vector-108.png)'] lg:bg-[url('https://i.ibb.co/Dt4g96d/Vector-110.png')] bg-cover">
+    <div className="min-h-screen w-full bg-[url('https://i.ibb.co/k5Cstkf/Vector-109.png')] md:bg-[url('https://i.ibb.co/zmxHCHq/Vector-108.png)'] lg:bg-[url('https://i.ibb.co/Dt4g96d/Vector-110.png')] bg-cover mt-14">
       <div className="relative pt-2 pb-40 sm:pt-20 gap-y-20 flex flex-col font-bold text-white ">
         {/* Beyond The Sky */}
         <p className="absolute font-Ava text-[8.889vw] md:text-[5vw] lg:text-[3.33vw] lg:rotate-90 font-normal bottom-16 lg:bottom-96 lg:-left-48 leading-[4vw] drop-shadow-[0_4px_12px_rgba(255,255,255,1)] opacity-50">
           {"//Beyond The Sky"}
         </p>
-        <div className="mx-auto mt-8 lg:mt-0 flex sm:justify-center sm:items-center lg:justify-start lg:items-start lg:mx-36 font-GameOfSquid text-[6.667vw] md:text-[4.167vw] lg:text-[2.5vw]"
-        data-aos="zoom-out-up">
+        <div
+          className="mx-auto mt-8 lg:mt-0 flex sm:justify-center sm:items-center lg:justify-start lg:items-start lg:mx-36 font-GameOfSquid text-[6.667vw] md:text-[4.167vw] lg:text-[2.5vw]"
+          data-aos="zoom-out-up">
           {" "}
           Prize Pool
         </div>
@@ -31,8 +32,7 @@ export default function Prize({
           src={Roket}
           className="absolute right-0 -bottom-24 md:-bottom-36 lg:-bottom-60 z-30 w-[55vw] md:w-[45vw] lg:w-[25vw]"
           alt="Roket.png"
-          data-aos="zoom-out-up"
-        ></Image>
+          data-aos="zoom-out-up"></Image>
       </div>
     </div>
   );
