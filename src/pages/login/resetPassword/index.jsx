@@ -3,11 +3,15 @@ import { IoMail } from 'react-icons/io5';
 import RootLayout from '../../layout';
 import Button from '../../../components/Button';
 import ElectricPattern from '../../../components/ElectricPattern';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const Reset = () => {
     const [emailIsNotRegistered, setEmailNotRegistered] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
-
+    const [email, setEmail] = useState(null)
+    const [message, setMessage] = useState("");
+    const router = useRouter()
     useEffect(() => {
         const handleResize = () => {
             setIsSmallScreen(window.innerWidth < 640);
@@ -21,10 +25,21 @@ const Reset = () => {
             window.removeEventListener('resize', handleResize);
         }
     }, [])
-
     const handleSendInstruction = () => {
         {/* cek email terdaftar atau belum */}
-        setEmailNotRegistered(true);
+        setMessage('Mohon Tunggu')
+        axios
+        .put(`${process.env.NEXT_PUBLIC_API_URL}/auth/forgotpassword`, 
+        { email },
+        { withCredentials:true })
+        .then(result => {
+            setMessage('Berhasil')
+            router.push('/login/resetPassword/check')
+        })
+        .catch(err => {
+            setMessage(err.response.data.errors)
+            setEmailNotRegistered(true);
+        })
     }
 
     return (
@@ -45,13 +60,15 @@ const Reset = () => {
                                 type='email'
                                 id='emailResetPassword'
                                 name='emailResetPassword'
+                                value={email}
                                 required
                                 placeholder='johndoe@gmail.com'
+                                onChange={(e) => setEmail(e.currentTarget.value)}
                                 className='w-full bg-white py-2 px-4 rounded-lg text-black focus:outline-none focus:border-[3px] focus:border-black cursor-pointer'
                             />
                         </div>
                         {emailIsNotRegistered && (
-                            <p className='font-Montserrat font-medium text-center text-sm sm:text-base text-error-500'>E-mail is not Registered</p>
+                            <p className='font-Montserrat font-medium text-center text-sm sm:text-base text-error-500'>{message}</p>
                         )}
                         <Button 
                             customClass={'font-Montserrat font-bold w-full text-sm sm:text-base'}

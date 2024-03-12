@@ -1,8 +1,10 @@
 import React from 'react';
 import RootLayout from '../../layout';
 import Button from '../../../components/Button';
+import { useRouter } from 'next/router';
 
 const Success = () => {
+    const router = useRouter()
     return (
         <RootLayout>
             <div className='flex flex-col items-center justify-center h-screen w-screen bg-background-skyblue'>
@@ -17,6 +19,7 @@ const Success = () => {
                     <Button 
                         customClass={'font-Montserrat font-bold w-full'}
                         text='Sign In'
+                        onClick={() => router.push('/login')}
                     />
                 </div>
             </div>

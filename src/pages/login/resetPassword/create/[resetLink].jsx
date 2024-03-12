@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import RootLayout from '../../layout';
-import Button from '../../../components/Button';
+import RootLayout from '../../../layout';
+import Button from '../../../../components/Button';
 import { IoKey } from 'react-icons/io5';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
-import ElectricPattern from '../../../components/ElectricPattern';
+import ElectricPattern from '../../../../components/ElectricPattern';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const Create = () => {
     const [newPassword, setNewPassword] = useState('');
@@ -12,6 +14,8 @@ const Create = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [isSmallScreen, setIsSmallScreen] = useState(false);
+    const router = useRouter();
+    const { resetLink } = router.query;
 
     useEffect(() => {
         const handleResize = () => {
@@ -27,10 +31,10 @@ const Create = () => {
         };
     }, []);
 
-    const handlePasswordChange = (e, setPassword) => {
-        setPassword(e.target.value);
-    }
 
+    // const handlePasswordChange = (e, setPassword) => {
+    //     setPassword(e.target.value);
+    // }
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
     }
@@ -49,6 +53,18 @@ const Create = () => {
         } else {
             setErrorMessage('Both passwords should match');
         }
+        axios.put(`${process.env.NEXT_PUBLIC_API_URL}/auth/resetpassword`, 
+        {
+            resetPasswordLink: resetLink,
+            newPassword,
+            confirmPassword
+        }, { withCredentials: true })
+        .then(result => {
+            router.push('/login/resetPassword/success')
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }
 
     return (
@@ -69,9 +85,8 @@ const Create = () => {
                                 <input 
                                     type={showPassword ? 'text' : 'password'}
                                     id='newPassword'
-                                    name='newPassword'
                                     value={newPassword}
-                                    onChange={(e) => handlePasswordChange(e, setNewPassword)}
+                                    onChange={(e) => setNewPassword(e.currentTarget.value)}
                                     required
                                     placeholder='at least 8 characters'
                                     className='w-full bg-white focus:outline-none focus:border-[3px] focus:border-black rounded-lg text-black text-sm md:text-base cursor-pointer px-4 py-2'
@@ -97,9 +112,8 @@ const Create = () => {
                                 <input 
                                     type={showConfirmPassword ? 'text' : 'password'}
                                     id='confirmPassword'
-                                    name='confirmPassword'
                                     value={confirmPassword}
-                                    onChange={(e) => handlePasswordChange(e, setConfirmPassword)}
+                                    onChange={(e) => setConfirmPassword(e.currentTarget.value)}
                                     required
                                     placeholder='at least 8 characters'
                                     className='w-full bg-white focus:outline-none focus:border-[3px] focus:border-black rounded-lg text-black text-sm md:text-base cursor-pointer px-4 py-2'
