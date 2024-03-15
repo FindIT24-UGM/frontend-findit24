@@ -50,7 +50,7 @@ function AdminDashboadrLayout({ children }) {
             <h2 className="font-CreatoDisplay font-bold text-text-placeholder-light text-4xl pt-5 py-8">
               Dashboard
             </h2>
-            <div className="flex flex-row lg:flex-col gap-2 lg:gap-4">
+            <div className="flex flex-row lg:flex-col gap-2 lg:gap-4 overflow-auto lg:overflow-hidden">
               {menuItems.map((item) => (
                 <div
                   key={item.path}
