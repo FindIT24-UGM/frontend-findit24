@@ -37,11 +37,7 @@ const DaftarLombaDanHarga = ({
       }
       setDoubleSlot(false);
     } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_DAC) {
-      if (today <= earlyBird) {
-        setHarga("100.000");
-      } else {
-        setHarga("130.000");
-      }
+      setHarga("100.000");
       setDoubleSlot(false);
     } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_IC) {
       if (today <= earlyBird) {
