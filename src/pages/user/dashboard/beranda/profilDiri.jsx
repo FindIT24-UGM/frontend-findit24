@@ -56,7 +56,6 @@ const ProfilDiri = () => {
     province: user ? user.province : "",
     address: user ? user.address : "",
     status: user ? user.status : "",
-    institutionFile: user ? user.institutionFile : "",
     institutionName: user ? user.institutionName : "",
     institutionNumber: user ? user.institutionNumber : "",
   });
