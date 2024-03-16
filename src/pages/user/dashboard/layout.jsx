@@ -45,7 +45,7 @@ const UserDashboardLayout = ({ children }) => {
       const userId = JSON.parse(localStorage.getItem("user"));
       dispatch(loadingStart());
       dispatch(getUserData(token));
-      // dispatch(getUserTeam(token))
+      dispatch(getUserTeam(token));
       const baseUrl = process.env.NEXT_PUBLIC_API_URL;
     } else {
       console.log(`isAuth : ${isAuthenticated}`);
