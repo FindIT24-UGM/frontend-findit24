@@ -11,7 +11,7 @@ let token = {};
 //   if (storedUser) {
 //     user = JSON.parse(storedUser);
 //   }
-  
+
 //   const storedToken = localStorage.getItem("token");
 //   if (storedToken) {
 //     token = JSON.parse(storedToken);
@@ -21,9 +21,7 @@ let token = {};
 
 const initialState = {
   // isAuthenticated: user === null || {} ? false : true,
-  isAuthenticated: false,
-  user: user ? user : null,
-  // isAuthenticated: false,
+  isAuthenticated: token ? true : false,
   user: user ? user : null,
   isLoading: false,
   isError: false,
@@ -130,7 +128,7 @@ export const authSlice = createSlice({
       .addCase(signup.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.isAuthenticated = false;
+        state.isAuthenticated = true;
       })
       .addCase(signup.rejected, (state, action) => {
         state.isLoading = false;
@@ -151,7 +149,6 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        state.isAuthenticated = false;
         state.user = null;
       })
       .addCase(getUserData.pending, (state) => {
@@ -166,7 +163,6 @@ export const authSlice = createSlice({
       .addCase(getUserData.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.isAuthenticated = false;
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;

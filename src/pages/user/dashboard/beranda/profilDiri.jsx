@@ -579,7 +579,7 @@ const ProfilDiri = () => {
                   </div>
                   <div className="flex flex-col gap-2 relative">
                     <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
-                      No. Institusi
+                      No. Institusi (NPSN)
                     </p>
                     <input
                       className="h-5 p-5 bg-shade-white rounded-lg cursor-pointer text-black font-Montserrat font-bold text-sm"

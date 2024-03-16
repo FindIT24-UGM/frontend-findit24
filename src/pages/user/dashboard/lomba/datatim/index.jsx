@@ -9,7 +9,13 @@ import { Router, useRouter } from "next/router";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba, doubleSlot, setDoubleSlot }) => {
+const DaftarLombaDanHarga = ({
+  lomba,
+  selectedLomba,
+  setSelectedLomba,
+  doubleSlot,
+  setDoubleSlot,
+}) => {
   const [harga, setHarga] = useState("");
   const router = useRouter();
   useEffect(() => {
@@ -22,28 +28,24 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba, doubleSlo
       } else {
         setHarga("125.000");
       }
-      setDoubleSlot(false)
+      setDoubleSlot(false);
     } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_CP) {
       if (today <= earlyBird) {
         setHarga("90.000");
       } else {
         setHarga("120.000");
       }
-      setDoubleSlot(false)
+      setDoubleSlot(false);
     } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_DAC) {
-      if (today <= earlyBird) {
-        setHarga("100.000");
-      } else {
-        setHarga("130.000");
-      }
-      setDoubleSlot(false)
+      setHarga("100.000");
+      setDoubleSlot(false);
     } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_IC) {
       if (today <= earlyBird) {
         setHarga("60.000");
       } else {
         setHarga("90.000");
       }
-      setDoubleSlot(false)
+      setDoubleSlot(false);
     } else if (
       selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE
     ) {
@@ -51,19 +53,19 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba, doubleSlo
         `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/datatim/datatimux`
       );
       setHarga("120.000");
-      setDoubleSlot(false)
+      setDoubleSlot(false);
     } else if (
       selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT
     ) {
-      if(doubleSlot === true){
-        setHarga("150.000")
+      if (doubleSlot === true) {
+        setHarga("150.000");
       } else if (doubleSlot === false) {
         setHarga("75.000");
       }
     } else if (selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_ML) {
-      if(doubleSlot === true){
-        setHarga("150.000")
-      } else if (doubleSlot ===false) {
+      if (doubleSlot === true) {
+        setHarga("150.000");
+      } else if (doubleSlot === false) {
         setHarga("75.000");
       }
     } else if (
@@ -73,7 +75,7 @@ const DaftarLombaDanHarga = ({ lomba, selectedLomba, setSelectedLomba, doubleSlo
         `${process.env.NEXT_PUBLIC_FE_URL}/user/dashboard/lomba/datatim/datatimhackathon`
       );
       setHarga("150.000");
-      setDoubleSlot(false)
+      setDoubleSlot(false);
     }
   }, [selectedLomba, doubleSlot]);
 
@@ -230,7 +232,7 @@ const DataTimGeneral = () => {
           paymentSender: namaPengirim,
           bankAccountId: noRekening,
           bankName: bank,
-          doubleSlot
+          doubleSlot,
         },
         { withCredentials: true }
       )
@@ -418,25 +420,25 @@ const DataTimGeneral = () => {
                 {selectedLomba ===
                   process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT ||
                 selectedLomba === process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
-                <div className="font-bold font-Montserrat text-[17px] space-y-2 pb-8 mb-3">
-                  Double Slot?
-                <div className="flex space-x-1 items-center">
-                  <input
-                    onClick={() => setDoubleSlot(true)}
-                    type="radio"
-                    name="doubleSlot"
-                  />
-                  <label htmlFor="doubleSlot">Ya</label>
-                </div>
-                <div className="flex space-x-1 items-center">
-                  <input
-                    onClick={() => setDoubleSlot(false)}
-                    type="radio"
-                    name="doubleSlot"
-                  />
-                  <label htmlFor="doubleSlot">Tidak</label>
-                </div>
-                </div>
+                  <div className="font-bold font-Montserrat text-[17px] space-y-2 pb-8 mb-3">
+                    Double Slot?
+                    <div className="flex space-x-1 items-center">
+                      <input
+                        onClick={() => setDoubleSlot(true)}
+                        type="radio"
+                        name="doubleSlot"
+                      />
+                      <label htmlFor="doubleSlot">Ya</label>
+                    </div>
+                    <div className="flex space-x-1 items-center">
+                      <input
+                        onClick={() => setDoubleSlot(false)}
+                        type="radio"
+                        name="doubleSlot"
+                      />
+                      <label htmlFor="doubleSlot">Tidak</label>
+                    </div>
+                  </div>
                 ) : (
                   <div></div>
                 )}
