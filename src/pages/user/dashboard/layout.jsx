@@ -40,22 +40,21 @@ const UserDashboardLayout = ({ children }) => {
   // }, []);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      const token = JSON.parse(localStorage.getItem("token"));
-      const userId = JSON.parse(localStorage.getItem("user"));
-      dispatch(loadingStart());
-      dispatch(getUserData(token));
-      dispatch(getUserTeam(token));
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-    } else {
+    if (!isAuthenticated) {
       console.log(`isAuth : ${isAuthenticated}`);
-      toast.error("Sign in to access dashboard", {
-        className: "toast-error",
-      });
-      router.replace("/login");
-      dispatch(loadingEnd());
+      router.push("/login");
+      return;
     }
-  }, []);
+    if (router.asPath === "/user/dashboard") {
+      router.replace("/user/dashboard/beranda");
+    }
+    dispatch(loadingStart());
+    dispatch(getUserTeam())
+      .unwrap()
+      .then((res) => {
+        dispatch(loadingEnd());
+      });
+  }, [isAuthenticated, router]);
 
   // console.log(isAuthenticated);
 
