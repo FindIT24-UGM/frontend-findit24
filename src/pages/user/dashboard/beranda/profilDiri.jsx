@@ -343,6 +343,9 @@ const ProfilDiri = () => {
         router.back();
       })
       .catch((err) => {
+        toast.error(
+          "Something is wrong. Cannot update profile. Please check ur data"
+        );
         console.log(err);
       });
 
