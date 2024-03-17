@@ -334,17 +334,13 @@ const ProfilDiri = () => {
 
   const submitHandler = () => {
     axios
-      .patch(
-        `${process.env.NEXT_PUBLIC_API_URL}/user`,
-        state,
-        {
-          withCredentials: true,
-        },
-        router.back()
-      )
+      .patch(`${process.env.NEXT_PUBLIC_API_URL}/user`, state, {
+        withCredentials: true,
+      })
       .then((res) => {
         //bisa diganti message atau apalah
         toast.success("berhasil update user");
+        router.back();
       })
       .catch((err) => {
         console.log(err);
