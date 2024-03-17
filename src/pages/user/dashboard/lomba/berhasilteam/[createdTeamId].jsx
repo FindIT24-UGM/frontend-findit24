@@ -41,25 +41,25 @@ export default function Berhasil() {
   }, [createdTeamId]);
 
   useEffect(() => {
-    const generateInvitationCode = () => {
-      const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-      const numbers = "0123456789";
+    // const generateInvitationCode = () => {
+    //   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    //   const numbers = "0123456789";
 
-      let code = "";
-      for (let i = 0; i < 8; i++) {
-        if (i === 0 || i === 3 || i === 6) {
-          code += numbers.charAt(Math.floor(Math.random() * numbers.length));
-        } else if (i === 1 || i === 2 || i === 4 || i === 5) {
-          code += characters.charAt(
-            Math.floor(Math.random() * characters.length)
-          );
-        } else if (i === 7) {
-          code += "@";
-        }
-      }
-      return code;
-    };
-    setInvitationCode(generateInvitationCode());
+    //   let code = "";
+    //   for (let i = 0; i < 8; i++) {
+    //     if (i === 0 || i === 3 || i === 6) {
+    //       code += numbers.charAt(Math.floor(Math.random() * numbers.length));
+    //     } else if (i === 1 || i === 2 || i === 4 || i === 5) {
+    //       code += characters.charAt(
+    //         Math.floor(Math.random() * characters.length)
+    //       );
+    //     } else if (i === 7) {
+    //       code += "@";
+    //     }
+    //   }
+    //   return code;
+    // };
+    setInvitationCode("-");
   }, []);
 
   const copyInvitationCode = () => {
