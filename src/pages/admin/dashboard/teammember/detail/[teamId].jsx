@@ -77,7 +77,6 @@ export default function Detail() {
     }
   };
 
-  console.log(dataTeam?.discordID);
 
   return (
     <div className="bg-background-skyblue min-h-screen lg:flex py-20 px-5 lg:px-12 md:px-8">
@@ -147,23 +146,23 @@ export default function Detail() {
               ) : (
                 <p></p>
               )}
-              {dataTeam?.eventId ===
+              {dataTeam?.eventId !==
                 process.env.NEXT_PUBLIC_COMPETITION_ID_CTF &&
-              dataTeam?.eventId ===
+              dataTeam?.eventId !==
                 process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT &&
-              dataTeam?.eventId ===
+              dataTeam?.eventId !==
                 process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
-                <p className="text-black">{dataTeam?.discordId}</p>
-              ) : (
                 <p></p>
+                ) : (
+                <p className="text-black">{dataTeam?.discordID}</p>
               )}
-              {dataTeam?.eventId ===
+              {dataTeam?.eventId !==
                 process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT &&
-              dataTeam?.eventId ===
+              dataTeam?.eventId !==
                 process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
-                <p className="text-black">{dataTeam?.inGameId}</p>
-              ) : (
-                <p></p>
+                  <p></p>
+                  ) : (
+                <p className="text-black">{dataTeam?.inGameID}</p>
               )}
             </div>
           </div>
