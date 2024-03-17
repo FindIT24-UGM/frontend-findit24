@@ -77,6 +77,8 @@ export default function Detail() {
     }
   };
 
+  console.log(dataTeam?.discordID);
+
   return (
     <div className="bg-background-skyblue min-h-screen lg:flex py-20 px-5 lg:px-12 md:px-8">
       <div className="bg-white rounded-lg border-2 border-black py-10 px-5 lg:flex w-full justify-between">
@@ -114,6 +116,24 @@ export default function Detail() {
               ) : (
                 <p></p>
               )}
+              {dataTeam?.eventId !==
+                process.env.NEXT_PUBLIC_COMPETITION_ID_CTF &&
+              dataTeam?.eventId !==
+                process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT &&
+              dataTeam?.eventId !==
+                process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
+                <div></div>
+              ) : (
+                <p>ID Discord</p>
+              )}
+              {dataTeam?.eventId !==
+                process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT &&
+              dataTeam?.eventId !==
+                process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
+                <div></div>
+              ) : (
+                <p>ID Game</p>
+              )}
             </div>
             <div className="flex flex-col space-y-2">
               <p className="text-neutral-700">{dataTeam?._id}</p>
@@ -124,6 +144,24 @@ export default function Detail() {
               dataTeam?.eventId ===
                 process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
                 <p className="text-black">{isDoubleSlot}</p>
+              ) : (
+                <p></p>
+              )}
+              {dataTeam?.eventId ===
+                process.env.NEXT_PUBLIC_COMPETITION_ID_CTF &&
+              dataTeam?.eventId ===
+                process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT &&
+              dataTeam?.eventId ===
+                process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
+                <p className="text-black">{dataTeam?.discordId}</p>
+              ) : (
+                <p></p>
+              )}
+              {dataTeam?.eventId ===
+                process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT &&
+              dataTeam?.eventId ===
+                process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
+                <p className="text-black">{dataTeam?.inGameId}</p>
               ) : (
                 <p></p>
               )}
@@ -174,7 +212,6 @@ export default function Detail() {
                   ) : (
                     <p className="text-center">-</p>
                   )}
-                  {console.log(dataTeam.paymentSender)}
                   {dataTeam?.bankAccountId !== undefined ? (
                     <p>{dataTeam?.bankAccountId}</p>
                   ) : (
