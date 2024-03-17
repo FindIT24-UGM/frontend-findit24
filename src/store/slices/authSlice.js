@@ -4,7 +4,6 @@ import authService from "../services/authService";
 import { toast } from "react-toastify";
 import { Router } from "next/router";
 let user = {};
-let token = {};
 
 // if (typeof localStorage !== 'undefined') {
 //   const storedUser = localStorage.getItem("user");
@@ -20,9 +19,8 @@ let token = {};
 // }
 
 const initialState = {
-  // isAuthenticated: user === null || {} ? false : true,
-  isAuthenticated: token ? true : false,
   user: user ? user : null,
+  isAuthenticated: user ? true : false,
   isLoading: false,
   isError: false,
   isSuccess: false,
@@ -128,12 +126,13 @@ export const authSlice = createSlice({
       .addCase(signup.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.isAuthenticated = true;
+        state.isAuthenticated = false;
       })
       .addCase(signup.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+        state.isAuthenticated = false;
         state.user = null;
       })
       .addCase(login.pending, (state) => {
@@ -156,13 +155,13 @@ export const authSlice = createSlice({
       })
       .addCase(getUserData.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.isAuthenticated = true;
         state.isLoading = false;
         state.isSuccess = true;
       })
       .addCase(getUserData.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
+        state.isAuthenticated = false;
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
