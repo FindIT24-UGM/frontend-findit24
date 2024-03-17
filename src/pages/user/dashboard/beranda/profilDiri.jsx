@@ -72,6 +72,7 @@ const ProfilDiri = () => {
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [updateUser, setUpdateUser] = useState({});
+  const [waitMessage, setWaitMessage] = useState("");
 
   const router = useRouter();
 
@@ -253,11 +254,16 @@ const ProfilDiri = () => {
       }
     }
     if (formData) {
+      setWaitMessage(
+        "Proses ini membutuhkan beberapa waktu, mohon tunggu sampai file berhasil terupload!"
+      );
+      // toast(waitMessage);
       axios
         .post(process.env.NEXT_PUBLIC_API_URL + "/user/upload-file", formData, {
           withCredentials: true,
         })
         .then((res) => {
+          setWaitMessage("File telah berhasil diupload!");
           toast.success("Berhasil upload file");
         })
         .catch((err) => {
@@ -591,6 +597,15 @@ const ProfilDiri = () => {
                       value={state.institutionNumber}
                       onChange={handleChange}
                     />
+                    {waitMessage === "File telah berhasil diupload!" ? (
+                      <p className="font-Montserrat font-bold text-center text-green-600 text-sm">
+                        {waitMessage}
+                      </p>
+                    ) : (
+                      <p className="font-Montserrat font-bold text-center text-red-900 text-sm">
+                        {waitMessage}
+                      </p>
+                    )}
                   </div>
                   <div className="flex justify-between items-center w-full">
                     <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
