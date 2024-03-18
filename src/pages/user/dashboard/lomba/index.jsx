@@ -141,7 +141,7 @@ const Index = ({ nameAbr }) => {
       });
   };
 
-  function TeamCard({ id, competition, teamName, date }) {
+  function TeamCard({ id, competition, teamName, date, isVerif }) {
     const parsedDate = date ? new Date(date) : null;
     const formattedDate = parsedDate ? format(parsedDate, "dd MMMM y") : "";
     return (
@@ -158,7 +158,7 @@ const Index = ({ nameAbr }) => {
           <div className="basis-1/2 flex items-center justify-end gap-4 lg:gap-12">
             {windowWidth < 640 ? (
               <>
-                <Status isVerified={dataTeam?.verified} />
+                <Status isVerified={isVerif} />
                 <div className="mr-4 md:mr-0">
                   <ArrowRight />
                 </div>
@@ -173,7 +173,7 @@ const Index = ({ nameAbr }) => {
                     {formattedDate}
                   </p>
                 </div>
-                <Status isVerified={dataTeam?.verified} />
+                <Status isVerified={isVerif} />
                 <ArrowRight />
               </>
             )}
@@ -319,13 +319,18 @@ const Index = ({ nameAbr }) => {
                     {userTeam &&
                       userTeam.teams?.map((team) => {
                         return (
-                          <TeamCard
-                            id={team.team._id}
-                            competition={team.team.event[0].eventName}
-                            teamName={team.team.teamName}
-                            key={team._id}
-                            date={team.team.createdAt}
-                          />
+                          <>
+                            <TeamCard
+                              id={team.team._id}
+                              competition={team.team.event[0].eventName}
+                              teamName={team.team.teamName}
+                              key={team._id}
+                              date={team.team.createdAt}
+                              isVerif={
+                                team.team.status === "VERIFIED" ? true : false
+                              }
+                            />
+                          </>
                         );
                       })}
                   </div>
