@@ -4,6 +4,7 @@ import authService from "../services/authService";
 import { toast } from "react-toastify";
 import { Router } from "next/router";
 let user = {};
+let token = {};
 
 // if (typeof localStorage !== 'undefined') {
 //   const storedUser = localStorage.getItem("user");
