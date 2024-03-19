@@ -31,6 +31,8 @@ export default function Index() {
   const [date, setDate] = useState(null);
 
   const [showModalVerification, setShowModalVerification] = useState(0);
+  const [twibMessage, setTwibMessage] = useState("");
+  const [payMessage, setPayMessage] = useState("");
   const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -166,6 +168,9 @@ export default function Index() {
       }
     }
     if (formData) {
+      setPayMessage(
+        "Proses ini membutuhkan beberapa waktu, mohon tunggu sampai file berhasil terupload!"
+      );
       axios
         .post(
           `${process.env.NEXT_PUBLIC_API_URL}/team/verification/${teamId}`,
@@ -175,6 +180,7 @@ export default function Index() {
           }
         )
         .then((res) => {
+          setPayMessage("Pembayaran telah berhasil diupload!");
           toast.success("Berhasil upload file");
         })
         .catch((err) => {
@@ -218,6 +224,9 @@ export default function Index() {
     const regex = /\.(pdf)$/i;
 
     if (formTwibbon) {
+      setTwibMessage(
+        "Proses ini membutuhkan beberapa waktu, mohon tunggu sampai file berhasil terupload!"
+      );
       axios
         .post(
           `${process.env.NEXT_PUBLIC_API_URL}/team/upload-twibbon/${teamId}`,
@@ -227,6 +236,7 @@ export default function Index() {
           }
         )
         .then((res) => {
+          setTwibMessage("Twibbon telah berhasil diupload!");
           toast.success("berhasil upload twibbon");
         })
         .catch((err) => {
@@ -647,39 +657,60 @@ export default function Index() {
                       </label>
                     </div>
                   ) : (
-                    <div className="flex justify-between items-center w-full">
-                      <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
-                        Upload Bukti Pembayaran
-                      </p>
-                      <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
-                        {imagePreview && (
-                          <Image
-                            width={200}
-                            height={200}
-                            src={imagePreview}
-                            alt="kartu identitas"
-                            className="mb-4"
-                          />
-                        )}
-                        <input
-                          className="hidden"
-                          type="file"
-                          id="paymentFile"
-                          name="paymentFile"
-                          accept="image/*"
-                          onChange={handleFileChange}
-                        />
-                        <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
-                          Unggah
+                    <div className="flex flex-col">
+                      {payMessage === "Pembayaran telah berhasil diupload!" ? (
+                        <p className="font-Montserrat font-bold text-green-600 text-sm">
+                          {payMessage}
                         </p>
-                      </label>
+                      ) : (
+                        <p className="font-Montserrat font-bold text-red-900 text-sm">
+                          {payMessage}
+                        </p>
+                      )}
+                      <div className="flex justify-between items-center w-full">
+                        <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
+                          Upload Bukti Pembayaran
+                        </p>
+                        <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
+                          {imagePreview && (
+                            <Image
+                              width={200}
+                              height={200}
+                              src={imagePreview}
+                              alt="kartu identitas"
+                              className="mb-4"
+                            />
+                          )}
+                          <input
+                            className="hidden"
+                            type="file"
+                            id="paymentFile"
+                            name="paymentFile"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                          />
+                          <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
+                            Unggah
+                          </p>
+                        </label>
+                      </div>
                     </div>
                   )}
                   <div>
+                    {twibMessage === "Twibbon telah berhasil diupload!" ? (
+                      <p className="font-Montserrat font-bold text-center text-green-600 text-sm">
+                        {twibMessage}
+                      </p>
+                    ) : (
+                      <p className="font-Montserrat font-bold text-center text-red-900 text-sm">
+                        {twibMessage}
+                      </p>
+                    )}
                     <div className="flex justify-between items-center w-full">
                       <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
                         Upload Bukti Twibbon
                       </p>
+
                       <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
                         {imagePreviewTwibbon && (
                           <Image

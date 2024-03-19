@@ -27,6 +27,9 @@ export default function Index() {
   const [dataTeam, setDataTeam] = useState([]);
   const [announcements, setAnnouncements] = useState([]);
   const [date, setDate] = useState(null);
+  const [twibMessage, setTwibMessage] = useState("");
+  const [abstractMessage, setAbstractMessage] = useState("");
+  const [payMessage, setPayMessage] = useState("");
 
   useEffect(() => {
     if (teamId) {
@@ -77,6 +80,9 @@ export default function Index() {
     const regex = /\.(pdf)$/i;
 
     if (formTwibbon) {
+      setTwibMessage(
+        "Proses ini membutuhkan beberapa waktu, mohon tunggu sampai file berhasil terupload!"
+      );
       axios
         .post(
           `${process.env.NEXT_PUBLIC_API_URL}/team/upload-twibbon/${teamId}`,
@@ -86,6 +92,7 @@ export default function Index() {
           }
         )
         .then((res) => {
+          setTwibMessage("Twibbon telah berhasil diupload!");
           toast.success("berhasil upload twibbon");
         })
         .catch((err) => {
@@ -105,6 +112,9 @@ export default function Index() {
     const regex = /\.(jpg|jpeg|png)$/i;
 
     if (formPayment) {
+      setPayMessage(
+        "Proses ini membutuhkan beberapa waktu, mohon tunggu sampai file berhasil terupload!"
+      );
       axios
         .post(
           `${process.env.NEXT_PUBLIC_API_URL}/team/verification/${teamId}`,
@@ -114,6 +124,7 @@ export default function Index() {
           }
         )
         .then((res) => {
+          setPayMessage("Bukti Pembayaran telah berhasil diupload!");
           toast.success("berhasil upload bukti pembayaran");
         })
         .catch((err) => {
@@ -133,6 +144,9 @@ export default function Index() {
     const regex = /\.(pdf)$/i;
 
     if (formAbstract) {
+      setAbstractMessage(
+        "Proses ini membutuhkan beberapa waktu, mohon tunggu sampai file berhasil terupload!"
+      );
       axios
         .post(
           `${process.env.NEXT_PUBLIC_API_URL}/team/upload-abstract/${teamId}`,
@@ -142,6 +156,7 @@ export default function Index() {
           }
         )
         .then((res) => {
+          setAbstractMessage("Abstrak telah berhasil diupload!");
           toast.success("berhasil upload abstrak");
         })
         .catch((err) => {
@@ -179,6 +194,8 @@ export default function Index() {
 
     return () => clearTimeout(timer);
   });
+
+  console.log(dataTeam?.verified);
 
   return (
     <TeamProfileLayout>
@@ -333,6 +350,15 @@ export default function Index() {
             dataTeam?.eventId ===
               process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE ? (
               <div className="font-Montserrat flex items-center">
+                {abstractMessage === "Twibbon telah berhasil diupload!" ? (
+                  <p className="font-Montserrat font-bold text-green-600 text-sm">
+                    {abstractMessage}
+                  </p>
+                ) : (
+                  <p className="font-Montserrat font-bold text-red-900 text-sm">
+                    {abstractMessage}
+                  </p>
+                )}
                 <div className="w-[200px]">
                   <p>Informasi</p>
                   <p>Proposal</p>
@@ -385,6 +411,15 @@ export default function Index() {
                   <p>{dataTeam?.bankName}</p>
                 </div>
 
+                {payMessage === "Twibbon telah berhasil diupload!" ? (
+                  <p className="font-Montserrat font-bold text-green-600 text-sm">
+                    {payMessage}
+                  </p>
+                ) : (
+                  <p className="font-Montserrat font-bold text-red-900 text-sm">
+                    {payMessage}
+                  </p>
+                )}
                 <div className="font-Montserrat flex items-center">
                   <div className="w-[200px]">
                     <p className="font-bold">Bukti Pembayaran</p>
@@ -431,6 +466,15 @@ export default function Index() {
               Klik disini untuk link twibbon
             </a>
             <div className="font-Montserrat flex items-center">
+              {twibMessage === "Twibbon telah berhasil diupload!" ? (
+                <p className="font-Montserrat font-bold text-green-600 text-sm">
+                  {twibMessage}
+                </p>
+              ) : (
+                <p className="font-Montserrat font-bold text-red-900 text-sm">
+                  {twibMessage}
+                </p>
+              )}
               <div className="w-[200px]">
                 <p className="font-bold">Bukti Twibbon</p>
               </div>
