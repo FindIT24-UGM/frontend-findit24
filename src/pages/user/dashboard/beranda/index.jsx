@@ -73,14 +73,14 @@ const Index = () => {
         setDate(formattedDateOfBirth);
       }
     }
-    if (userTeam && eventIds) {
-      dispatch(getTeamAnnouncements(eventIds))
-        .unwrap()
-        .then((res) => {
-          dispatch(loadingEnd());
-        })
-        .catch((err) => {});
-    }
+    // if (userTeam && eventIds) {
+    //   dispatch(getTeamAnnouncements(eventIds))
+    //     .unwrap()
+    //     .then((res) => {
+    //       dispatch(loadingEnd());
+    //     })
+    //     .catch((err) => {});
+    // }
   }, [isAuthenticated, userTeam]);
   /*----------------END----------------- */
 

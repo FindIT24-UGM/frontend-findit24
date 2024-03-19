@@ -46,36 +46,36 @@ const Index = ({ nameAbr }) => {
   const haveJoined = countLomba !== 0;
   const [windowWidth, setWindowWidth] = useState(null);
 
-  const [dataTeam, setDataTeam] = useState([]);
-  const { teamId } = router.query;
+  // const [dataTeam, setDataTeam] = useState([]);
+  // const { teamId } = router.query;
 
-  useEffect(() => {
-    if (teamId) {
-      axios
-        .get(`${process.env.NEXT_PUBLIC_API_URL}/team/${teamId}`, {
-          withCredentials: true,
-        })
-        .then((res) => {
-          setDataTeam(res.data.info);
-          axios
-            .get(
-              `${process.env.NEXT_PUBLIC_API_URL}/team/get-announcements/${teamId}`,
-              {
-                withCredentials: true,
-              }
-            )
-            .then((announ) => {
-              setAnnouncements(announ.data.announcements);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [teamId]);
+  // useEffect(() => {
+  //   if (teamId) {
+  //     axios
+  //       .get(`${process.env.NEXT_PUBLIC_API_URL}/team/${teamId}`, {
+  //         withCredentials: true,
+  //       })
+  //       .then((res) => {
+  //         setDataTeam(res.data.info);
+  //         axios
+  //           .get(
+  //             `${process.env.NEXT_PUBLIC_API_URL}/team/get-announcements/${teamId}`,
+  //             {
+  //               withCredentials: true,
+  //             }
+  //           )
+  //           .then((announ) => {
+  //             setAnnouncements(announ.data.announcements);
+  //           })
+  //           .catch((err) => {
+  //             console.log(err);
+  //           });
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }, [teamId]);
 
   useEffect(() => {
     const updateWindowsWidth = () => {
