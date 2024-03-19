@@ -241,6 +241,7 @@ export default function Index() {
         })
         .catch((err) => {
           console.log(err);
+          toast.error(err);
         });
     }
   };
@@ -631,7 +632,7 @@ export default function Index() {
                     process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE ? (
                     <div className="flex justify-between items-center w-full">
                       <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
-                        Upload Abstract File
+                        Upload Abstract File (max 5mb)
                       </p>
                       <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
                         {imagePreview && (
@@ -669,7 +670,7 @@ export default function Index() {
                       )}
                       <div className="flex justify-between items-center w-full">
                         <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
-                          Upload Bukti Pembayaran
+                          Upload Bukti Pembayaran (max 2mb)
                         </p>
                         <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
                           {imagePreview && (
@@ -708,7 +709,7 @@ export default function Index() {
                     )}
                     <div className="flex justify-between items-center w-full">
                       <p className="font-Montserrat font-bold text-text-placeholder-light text-sm lg:text-base">
-                        Upload Bukti Twibbon
+                        Upload Bukti Twibbon (jadikan 1 file pdf dan max 5mb)
                       </p>
 
                       <label className="rounded border-2 border-text-placeholder-light px-6 py-1">
