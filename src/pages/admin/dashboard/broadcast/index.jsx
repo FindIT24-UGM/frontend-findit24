@@ -45,11 +45,12 @@ export default function Index() {
   }, [isAuthenticated]);
 
   const uploadAnnouncement = () => {
-    axios
+    if(selectedOption === 'allParticipant') {
+      axios
       .post(
         `${process.env.NEXT_PUBLIC_API_URL}/admin/announcement/create`,
         {
-          toEvent: selectedOption,
+          toAll: true,
           title,
           content,
         },
@@ -61,6 +62,24 @@ export default function Index() {
       .catch((err) => {
         console.log(err);
       });
+    } else {
+      axios
+        .post(
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/announcement/create`,
+          {
+            toEvent: selectedOption,
+            title,
+            content,
+          },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          setMessage(res.data.message);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   let maxTitleLength = 50;
@@ -113,6 +132,11 @@ export default function Index() {
                     value={process.env.NEXT_PUBLIC_COMPETITION_ID_UXCOMPE}
                   >
                     UX Competition
+                  </option>
+                  <option
+                    value={'allParticipant'}
+                  >
+                    Semua Peserta
                   </option>
                 </select>
                 {isOpen ? (

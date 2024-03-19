@@ -48,9 +48,15 @@ const Index = () => {
     return (
       <div className="font-Montserrat text-black">
         <h1 className="text-[13px] 2xl:text-[0.868vw] font-bold">{title}</h1>
+        {toEvent ? (
         <p className="text-[11.57px] font-bold leading-[200%]">
           To: Peserta {toEvent}
         </p>
+        ) : (
+          <p className="text-[11.57px] font-bold leading-[200%]">
+          To: Seluruh Peserta
+        </p>
+        )}
         <p className="font-semibold text-justify text-[13.39px]">{content}</p>
         <p className="text-[12px] leading-[200%]">{formattedDate}</p>
         <div className="w-full h-[1px] bg-black bg-opacity-60 mt-3 mb-5"></div>
@@ -73,14 +79,14 @@ const Index = () => {
         setDate(formattedDateOfBirth);
       }
     }
-    // if (userTeam && eventIds) {
-    //   dispatch(getTeamAnnouncements(eventIds))
-    //     .unwrap()
-    //     .then((res) => {
-    //       dispatch(loadingEnd());
-    //     })
-    //     .catch((err) => {});
-    // }
+    if (userTeam && eventIds) {
+      dispatch(getTeamAnnouncements(eventIds))
+        .unwrap()
+        .then((res) => {
+          dispatch(loadingEnd());
+        })
+        .catch((err) => {});
+    }
   }, [isAuthenticated, userTeam]);
   /*----------------END----------------- */
 
@@ -123,7 +129,7 @@ const Index = () => {
                 <AnnouncementItem
                   key={announcement._id}
                   title={announcement.title}
-                  toEvent={announcement.toEvent.eventName}
+                  toEvent={announcement?.toEvent?.eventName}
                   content={announcement.content}
                   createdAt={announcement.createdAt}
                 />
