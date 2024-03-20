@@ -170,7 +170,7 @@ export default function Index() {
   const editOnclick = () => {};
 
   const calculateTimeLeft = () => {
-    const deadline = new Date("2024-03-23");
+    const deadline = new Date("2024-04-10");
     const difference = +deadline - +new Date();
     let timeLeft = {};
 
