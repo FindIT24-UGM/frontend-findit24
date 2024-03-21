@@ -226,9 +226,7 @@ export default function Index() {
         <div className="bg-text-placeholder-light px-5 py-5 rounded-2xl border-4 border-black md:order-2 lg:order-1 md:w-[40%] lg:w-full">
           <div className="flex items-center space-x-2">
             <IoTime />
-            <h2 className="font-Montserrat font-bold">
-              Deadline Pengajuan Verifikasi
-            </h2>
+            <h2 className="font-Montserrat font-bold">Penutupan Registrasi</h2>
           </div>
           <div className="flex justify-between my-5 md:flex md:flex-col lg:flex-row">
             <div className="bg-gradient-to-b from-orange-400 to-red-400 rounded p-2 w-1/3 mx-2 md:mx-[2px] text-white space-y-2 md:w-full md:flex md:items-center md:justify-between md:my-1 lg:w-1/3">
