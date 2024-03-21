@@ -45,23 +45,23 @@ export default function Index() {
   }, [isAuthenticated]);
 
   const uploadAnnouncement = () => {
-    if(selectedOption === 'allParticipant') {
+    if (selectedOption === "allParticipant") {
       axios
-      .post(
-        `${process.env.NEXT_PUBLIC_API_URL}/admin/announcement/create`,
-        {
-          toAll: true,
-          title,
-          content,
-        },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        setMessage(res.data.message);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .post(
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/announcement/create`,
+          {
+            toAll: true,
+            title,
+            content,
+          },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          setMessage(res.data.message);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       axios
         .post(
@@ -82,8 +82,8 @@ export default function Index() {
     }
   };
 
-  let maxTitleLength = 50;
-  let maxMessageLength = 500;
+  let maxTitleLength = 100;
+  let maxMessageLength = 1000;
 
   return (
     <AdminDashboadrLayout>
@@ -133,11 +133,7 @@ export default function Index() {
                   >
                     UX Competition
                   </option>
-                  <option
-                    value={'allParticipant'}
-                  >
-                    Semua Peserta
-                  </option>
+                  <option value={"allParticipant"}>Semua Peserta</option>
                 </select>
                 {isOpen ? (
                   <IoMdArrowDropdown
