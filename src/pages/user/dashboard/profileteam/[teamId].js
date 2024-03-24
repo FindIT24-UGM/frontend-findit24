@@ -20,6 +20,7 @@ import axios from "axios";
 import Link from "next/link";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 export default function Index() {
   const router = useRouter();
@@ -30,6 +31,7 @@ export default function Index() {
   const [twibMessage, setTwibMessage] = useState("");
   const [abstractMessage, setAbstractMessage] = useState("");
   const [payMessage, setPayMessage] = useState("");
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (teamId) {
@@ -195,7 +197,7 @@ export default function Index() {
     return () => clearTimeout(timer);
   });
 
-  console.log(dataTeam?.verified);
+  // console.log(dataTeam);
 
   return (
     <TeamProfileLayout>
@@ -545,24 +547,46 @@ export default function Index() {
                 key={id}
                 className="mt-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-black scrollbar-track-primary-500 scroll-m-2 max-h-[720px]"
               >
-                {/* name, email, dateOfBirth, province, address, phone, id, status, institutionName, institutionNumber, institutionFile */}
-                <Accordion
-                  name={member.userId.name}
-                  email={member.userId.email}
-                  dateOfBirth={member.userId.dateOfBirth}
-                  province={member.userId.province}
-                  address={member.userId.address}
-                  phone={member.userId.phone}
-                  id={member.userId._id}
-                  status={member.userId.status}
-                  institutionName={member.userId.institutionName}
-                  institutionNumber={member.userId.institutionNumber}
-                  institutionFile={member.userId.institutionFile}
-                  key={member}
-                />
+                {/* {console.log(`${member.isLeader}`)} */}
+                {dataTeam?.teamLeaderId._id === user?._id ? (
+                  <Accordion
+                    name={member.userId.name}
+                    email={member.userId.email}
+                    dateOfBirth={member.userId.dateOfBirth}
+                    province={member.userId.province}
+                    address={member.userId.address}
+                    phone={member.userId.phone}
+                    id={member.userId._id}
+                    status={member.userId.status}
+                    institutionName={member.userId.institutionName}
+                    institutionNumber={member.userId.institutionNumber}
+                    institutionFile={member.userId.institutionFile}
+                    key={member}
+                    idLeader={dataTeam.teamLeaderId._id}
+                    idMember={member?._id}
+                    isLeader={true}
+                  />
+                ) : (
+                  <Accordion
+                    name={member.userId.name}
+                    email={member.userId.email}
+                    dateOfBirth={member.userId.dateOfBirth}
+                    province={member.userId.province}
+                    address={member.userId.address}
+                    phone={member.userId.phone}
+                    id={member.userId._id}
+                    status={member.userId.status}
+                    institutionName={member.userId.institutionName}
+                    institutionNumber={member.userId.institutionNumber}
+                    institutionFile={member.userId.institutionFile}
+                    key={member}
+                    idLeader={dataTeam.teamLeaderId._id}
+                    idMember={member?._id}
+                  />
+                )}
                 {/* <Accordion />
-              <Accordion />
-              <Accordion /> */}
+                <Accordion />
+                <Accordion /> */}
               </div>
             ))}
         </div>
