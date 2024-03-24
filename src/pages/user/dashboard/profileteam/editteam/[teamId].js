@@ -649,7 +649,7 @@ export default function Index() {
                           type="file"
                           id="paymentFile"
                           name="paymentFile"
-                          accept="image/*"
+                          accept="application/*"
                           onChange={handleAbstractChange}
                         />
                         <p className="font-Montserrat font-medium text-xs lg:text-sm text-text-placeholder-light">
