@@ -77,7 +77,6 @@ export default function Detail() {
     }
   };
 
-
   return (
     <div className="bg-background-skyblue min-h-screen lg:flex py-20 px-5 lg:px-12 md:px-8">
       <div className="bg-white rounded-lg border-2 border-black py-10 px-5 lg:flex w-full justify-between">
@@ -153,15 +152,15 @@ export default function Detail() {
               dataTeam?.eventId !==
                 process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
                 <p></p>
-                ) : (
+              ) : (
                 <p className="text-black">{dataTeam?.discordID}</p>
               )}
               {dataTeam?.eventId !==
                 process.env.NEXT_PUBLIC_COMPETITION_ID_VALORANT &&
               dataTeam?.eventId !==
                 process.env.NEXT_PUBLIC_COMPETITION_ID_ML ? (
-                  <p></p>
-                  ) : (
+                <p></p>
+              ) : (
                 <p className="text-black">{dataTeam?.inGameID}</p>
               )}
             </div>
@@ -294,6 +293,7 @@ export default function Detail() {
                   institutionNumber={member.userId.institutionNumber}
                   institutionFile={member.userId.institutionFile}
                   key={member.userId.institutionNumber}
+                  isLeader={member.userId.isLeader}
                 />
               </button>
             ))}

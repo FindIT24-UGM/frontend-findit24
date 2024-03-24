@@ -8,7 +8,6 @@ export default function Button({
   fullW = false,
   disabled = false,
   customClass = "", // Pastikan ada nilai default untuk customClass
-  onPress = () => {},
   onClick = () => {},
 }) {
   const widthStyle = fullW ? "w-full" : "w-fit";
@@ -43,7 +42,7 @@ export default function Button({
 
   if (!disabled) {
     return (
-      <button className={buttonClasses} onClick={onClick} onPress={onPress}>
+      <button className={buttonClasses} onClick={onClick}>
         <p>{text}</p>
       </button>
     );

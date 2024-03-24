@@ -55,6 +55,7 @@ const LoginPage = () => {
 
   const loginHandler = async (e) => {
     e.preventDefault();
+    dispatch(loadingStart);
     const loginData = {
       ...pengguna,
     };
@@ -162,7 +163,6 @@ const LoginPage = () => {
             <Button
               fullW
               onClick={loginHandler}
-              onPress={loginHandler}
               customClass={"font-Montserrat text-black font-semibold"}
               text="Sign in"
             />
@@ -199,7 +199,7 @@ const LoginPage = () => {
                 Create an account
               </Link>
             </div>
-            <div className="flex flex-row items-center my-2 mt-4 font-thin gap-x-1">
+            <div className="flex flex-row items-center my-2 md:ml-2 mt-4 font-thin gap-x-1">
               <p className="">Forgot Password ?</p>
               <Link
                 href={"/login/resetPassword"}

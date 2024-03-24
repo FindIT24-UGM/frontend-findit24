@@ -24,6 +24,7 @@ const Index = () => {
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const router = useRouter();
+  console.log(userTeam);
 
   const handleEditProfile = () => {
     router.push("/user/dashboard/beranda/profilDiri");
@@ -49,13 +50,13 @@ const Index = () => {
       <div className="font-Montserrat text-black">
         <h1 className="text-[13px] 2xl:text-[0.868vw] font-bold">{title}</h1>
         {toEvent ? (
-        <p className="text-[11.57px] font-bold leading-[200%]">
-          To: Peserta {toEvent}
-        </p>
+          <p className="text-[11.57px] font-bold leading-[200%]">
+            To: Peserta {toEvent}
+          </p>
         ) : (
           <p className="text-[11.57px] font-bold leading-[200%]">
-          To: Seluruh Peserta
-        </p>
+            To: Seluruh Peserta
+          </p>
         )}
         <p className="font-semibold text-justify text-[13.39px]">{content}</p>
         <p className="text-[12px] leading-[200%]">{formattedDate}</p>
@@ -69,7 +70,6 @@ const Index = () => {
     if (isAuthenticated) {
       userTeam?.teams?.map((team) => {
         setEventIds((prevEventIds) => [...prevEventIds, team.eventId]);
-
       });
       if (user?.dateOfBirth) {
         const formattedDateOfBirth = format(
@@ -83,6 +83,7 @@ const Index = () => {
       dispatch(getTeamAnnouncements(eventIds))
         .unwrap()
         .then((res) => {
+          console.log(res.data);
           dispatch(loadingEnd());
         })
         .catch((err) => {});

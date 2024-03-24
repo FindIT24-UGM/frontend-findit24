@@ -1,5 +1,5 @@
 import axios from "axios";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 // REGISTER USER
 const signup = async (userData) => {
@@ -26,7 +26,6 @@ const login = async (userData) => {
     }
   );
   return response.data;
-
 };
 
 // ACTIVATE ACCOUNT
@@ -56,12 +55,12 @@ const logout = async () => {
 
 // GET USER INFO
 const getUser = async (token, user) => {
-  const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + '/user', {
-    // headers: {
-    //   authorization: `Bearer ${token}`,
-    // },
+  const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + "/user", {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
     withCredentials: true,
-  })
+  });
   return response.data;
 };
 
