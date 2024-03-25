@@ -78,7 +78,7 @@ export default function Index() {
         setDate(formattedDate);
       }
     }
-  }, [dataTeam.paymentDate]);
+  }, [dataTeam.paymentDate, isLoading]);
 
   // console.log("Data Team :", dataTeam.teamLeaderId);
 
@@ -209,19 +209,17 @@ export default function Index() {
   });
 
   // console.log("dataTeamMember :", dataTeam?.teamLeaderId);
-  // useEffect(() => {
-  //   if (dataTeam.teamLeader === user?.name) {
-  //     setIsLeaderTeam(true);
-  //   }
-  //   if (dataTeam) {
-  //     console.log(dataTeam.teamLeaderId.address);
-  //     setTeamLeaderId(dataTeam.teamLeaderId._id);
-  //   }
-  // }, [dataTeam]);
-
-  if (!isLoading) {
-    const leaderId = dataTeam?.teamLeaderId._id;
-  }
+  useEffect(() => {
+    if (!isLoading) {
+      if (dataTeam) {
+        console.log(dataTeam.teamLeaderId.address);
+        setTeamLeaderId(dataTeam.teamLeaderId._id);
+      }
+      if (dataTeam?.teamLeaderId._id === user?._id) {
+        setIsLeaderTeam(true);
+      }
+    }
+  }, [dataTeam, isLoading, user._id]);
 
   return (
     <TeamProfileLayout>
@@ -587,9 +585,9 @@ export default function Index() {
                     institutionNumber={member.userId.institutionNumber}
                     institutionFile={member.userId.institutionFile}
                     key={member}
-                    idLeader={dataTeam.teamLeaderId._id}
+                    idLeader={teamLeaderId}
                     idMember={member?._id}
-                    isLeader={true}
+                    isLeader={isLeaderTeam}
                   />
                 ) : (
                   <Accordion
@@ -605,7 +603,7 @@ export default function Index() {
                     institutionNumber={member.userId.institutionNumber}
                     institutionFile={member.userId.institutionFile}
                     key={member}
-                    idLeader={dataTeam.teamLeaderId._id}
+                    idLeader={teamLeaderId}
                     idMember={member?._id}
                   />
                 )}
