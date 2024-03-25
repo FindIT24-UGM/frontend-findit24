@@ -547,7 +547,7 @@ export default function Index() {
                 key={id}
                 className="mt-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-black scrollbar-track-primary-500 scroll-m-2 max-h-[720px]"
               >
-                {/* {console.log(`${member.isLeader}`)} */}
+                {console.log(`${member.userId._id === user?._id}`)}
                 {dataTeam?.teamLeaderId._id === user?._id ? (
                   <Accordion
                     name={member.userId.name}
@@ -563,7 +563,7 @@ export default function Index() {
                     institutionFile={member.userId.institutionFile}
                     key={member}
                     idLeader={dataTeam.teamLeaderId._id}
-                    idMember={member?._id}
+                    idMember={member._id}
                     isLeader={true}
                   />
                 ) : (
@@ -581,7 +581,8 @@ export default function Index() {
                     institutionFile={member.userId.institutionFile}
                     key={member}
                     idLeader={dataTeam.teamLeaderId._id}
-                    idMember={member?._id}
+                    idMember={member._id}
+                    isLeader={false}
                   />
                 )}
                 {/* <Accordion />
