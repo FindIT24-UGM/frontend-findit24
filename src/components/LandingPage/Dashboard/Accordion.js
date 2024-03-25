@@ -54,7 +54,7 @@ export default function Accordion({
     if (idMember !== undefined) {
       axios
         .patch(
-          `${process.env.NEXT_PUBLIC_API_URL}/team/kick-member/`,
+          `${process.env.NEXT_PUBLIC_API_URL}/team/kick-member`,
           { teamId: idTeam, memberId: idMember },
           {
             withCredentials: true,
@@ -70,7 +70,8 @@ export default function Accordion({
     }
   };
   /*----------END------------ */
-
+console.log(idTeam);
+console.log(idMember);
   // console.log(`idMember: ${idMember}`);
   return (
     <div

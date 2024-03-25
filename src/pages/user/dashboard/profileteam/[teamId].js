@@ -585,6 +585,7 @@ export default function Index() {
                     institutionFile={member.userId.institutionFile}
                     key={member}
                     idLeader={dataTeam.teamLeaderID}
+                    idTeam={dataTeam._id}
                     idMember={member?._id}
                     ableToKick={true}
                   />
@@ -603,6 +604,7 @@ export default function Index() {
                     institutionFile={member.userId.institutionFile}
                     key={member}
                     idLeader={dataTeam.teamLeaderID}
+                    idTeam={dataTeam._id}
                     idMember={member?._id}
                     ableToKick={false}
                   />
