@@ -31,6 +31,7 @@ export default function Index() {
   const [twibMessage, setTwibMessage] = useState("");
   const [abstractMessage, setAbstractMessage] = useState("");
   const [payMessage, setPayMessage] = useState("");
+  const [isLeaderTeam, setIsLeaderTeam] = useState(false);
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -70,6 +71,14 @@ export default function Index() {
       setDate(formattedDate);
     }
   }, [dataTeam.paymentDate]);
+
+  console.log(dataTeam);
+
+  useEffect(() => {
+    if (dataTeam.teamLeader === user?.name) {
+      setIsLeaderTeam(true);
+    }
+  }, [dataTeam.teamLeader, user?._id]);
 
   /*---------handle upload twibbon (pdf) ss twibbon smua anggota jadiin satu pdf------- */
 
@@ -547,44 +556,24 @@ export default function Index() {
                 key={id}
                 className="mt-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-black scrollbar-track-primary-500 scroll-m-2 max-h-[720px]"
               >
-                {console.log(`${member.userId._id === user?._id}`)}
-                {dataTeam?.teamLeaderId._id === user?._id ? (
-                  <Accordion
-                    name={member.userId.name}
-                    email={member.userId.email}
-                    dateOfBirth={member.userId.dateOfBirth}
-                    province={member.userId.province}
-                    address={member.userId.address}
-                    phone={member.userId.phone}
-                    id={member.userId._id}
-                    status={member.userId.status}
-                    institutionName={member.userId.institutionName}
-                    institutionNumber={member.userId.institutionNumber}
-                    institutionFile={member.userId.institutionFile}
-                    key={member}
-                    idLeader={dataTeam.teamLeaderId._id}
-                    idMember={member._id}
-                    isLeader={true}
-                  />
-                ) : (
-                  <Accordion
-                    name={member.userId.name}
-                    email={member.userId.email}
-                    dateOfBirth={member.userId.dateOfBirth}
-                    province={member.userId.province}
-                    address={member.userId.address}
-                    phone={member.userId.phone}
-                    id={member.userId._id}
-                    status={member.userId.status}
-                    institutionName={member.userId.institutionName}
-                    institutionNumber={member.userId.institutionNumber}
-                    institutionFile={member.userId.institutionFile}
-                    key={member}
-                    idLeader={dataTeam.teamLeaderId._id}
-                    idMember={member._id}
-                    isLeader={false}
-                  />
-                )}
+                {/* {console.log(`${member.userId._id === user?._id}`)} */}
+                <Accordion
+                  name={member.userId.name}
+                  email={member.userId.email}
+                  dateOfBirth={member.userId.dateOfBirth}
+                  province={member.userId.province}
+                  address={member.userId.address}
+                  phone={member.userId.phone}
+                  id={member.userId._id}
+                  status={member.userId.status}
+                  institutionName={member.userId.institutionName}
+                  institutionNumber={member.userId.institutionNumber}
+                  institutionFile={member.userId.institutionFile}
+                  key={member}
+                  idLeader={dataTeam.teamLeaderId._id}
+                  idMember={member._id}
+                  isLeader={isLeaderTeam}
+                />
                 {/* <Accordion />
                 <Accordion />
                 <Accordion /> */}
