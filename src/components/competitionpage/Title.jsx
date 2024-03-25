@@ -37,7 +37,7 @@ export default function Title({
           data-aos="zoom-out-up">
           {competitionTitle}
         </h1>
-        <Countdown deadline="24 Mar 2024" />
+        <Countdown deadline="1 Apr 2024" />
         <div className="flex gap-x-2 mt-8">
           <Button
             text="Daftar"
