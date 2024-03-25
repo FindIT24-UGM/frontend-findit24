@@ -209,17 +209,17 @@ export default function Index() {
   });
 
   // console.log("dataTeamMember :", dataTeam?.teamLeaderId);
-  useEffect(() => {
-    if (!isLoading) {
-      if (dataTeam) {
-        console.log(dataTeam.teamLeaderId.address);
-        setTeamLeaderId(dataTeam.teamLeaderId._id);
-      }
-      if (dataTeam?.teamLeaderId._id === user?._id) {
-        setIsLeaderTeam(true);
-      }
-    }
-  }, [dataTeam, isLoading, user._id]);
+  // useEffect(() => {
+  //   if (!isLoading) {
+  //     if (dataTeam) {
+  //       console.log(dataTeam.teamLeaderId.address);
+  //       setTeamLeaderId(dataTeam.teamLeaderId._id);
+  //     }
+  //     if (dataTeam?.teamLeaderId._id === user?._id) {
+  //       setIsLeaderTeam(true);
+  //     }
+  //   }
+  // }, [dataTeam, isLoading, user._id]);
 
   return (
     <TeamProfileLayout>
@@ -570,8 +570,7 @@ export default function Index() {
                 key={id}
                 className="mt-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-black scrollbar-track-primary-500 scroll-m-2 max-h-[720px]"
               >
-                {/* {console.log(member)} */}
-                {dataTeam?.teamLeaderId._id === user?._id ? (
+                {dataTeam?.teamLeaderID === user?._id ? (
                   <Accordion
                     name={member.userId.name}
                     email={member.userId.email}
@@ -585,9 +584,9 @@ export default function Index() {
                     institutionNumber={member.userId.institutionNumber}
                     institutionFile={member.userId.institutionFile}
                     key={member}
-                    idLeader={teamLeaderId}
+                    idLeader={dataTeam.teamLeaderID}
                     idMember={member?._id}
-                    isLeader={isLeaderTeam}
+                    ableToKick={true}
                   />
                 ) : (
                   <Accordion
@@ -603,8 +602,9 @@ export default function Index() {
                     institutionNumber={member.userId.institutionNumber}
                     institutionFile={member.userId.institutionFile}
                     key={member}
-                    idLeader={teamLeaderId}
+                    idLeader={dataTeam.teamLeaderID}
                     idMember={member?._id}
+                    ableToKick={false}
                   />
                 )}
                 {/* <Accordion />

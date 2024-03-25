@@ -24,7 +24,7 @@ export default function Accordion({
   idLeader,
   idTeam,
   idMember,
-  isLeader,
+  ableToKick
 }) {
   const parsedDateOfBirth = isValid(parseISO(dateOfBirth))
     ? parseISO(dateOfBirth)
@@ -150,7 +150,7 @@ export default function Accordion({
             </button>
           </div>
 
-          {id !== idLeader && isLeader ? (
+          {ableToKick && id !== idLeader ? (
             <button
               className="relative bottom-0 left-44 md:left-56 lg:left-80"
               onClick={modalVerifHandler}

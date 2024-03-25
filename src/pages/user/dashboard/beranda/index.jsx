@@ -24,7 +24,6 @@ const Index = () => {
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const router = useRouter();
-  console.log(userTeam);
 
   const handleEditProfile = () => {
     router.push("/user/dashboard/beranda/profilDiri");
@@ -83,7 +82,6 @@ const Index = () => {
       dispatch(getTeamAnnouncements(eventIds))
         .unwrap()
         .then((res) => {
-          console.log(res.data);
           dispatch(loadingEnd());
         })
         .catch((err) => {});
