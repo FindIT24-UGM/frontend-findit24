@@ -32,6 +32,8 @@ export default function Index() {
   const [abstractMessage, setAbstractMessage] = useState("");
   const [payMessage, setPayMessage] = useState("");
   const [isLeaderTeam, setIsLeaderTeam] = useState(false);
+  const [teamLeaderId, setTeamLeaderId] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -55,30 +57,30 @@ export default function Index() {
             .catch((err) => {
               console.log(err);
             });
+          setIsLoading(false);
         })
         .catch((err) => {
           console.log(err);
+          setIsLoading(false);
         });
     }
   }, [teamId]);
 
   useEffect(() => {
-    if (dataTeam.paymentDate) {
-      const formattedDate = format(
-        new Date(`${dataTeam.paymentDate}`),
-        "dd MMMM y"
-      );
-      setDate(formattedDate);
+    if (!isLoading) {
+      if (dataTeam.paymentDate) {
+        console.log("Payment : ", dataTeam.paymentDate);
+
+        const formattedDate = format(
+          new Date(`${dataTeam.paymentDate}`),
+          "dd MMMM y"
+        );
+        setDate(formattedDate);
+      }
     }
   }, [dataTeam.paymentDate]);
 
-  console.log(dataTeam);
-
-  useEffect(() => {
-    if (dataTeam.teamLeader === user?.name) {
-      setIsLeaderTeam(true);
-    }
-  }, [dataTeam.teamLeader, user?._id]);
+  // console.log("Data Team :", dataTeam.teamLeaderId);
 
   /*---------handle upload twibbon (pdf) ss twibbon smua anggota jadiin satu pdf------- */
 
@@ -206,7 +208,20 @@ export default function Index() {
     return () => clearTimeout(timer);
   });
 
-  // console.log(dataTeam);
+  // console.log("dataTeamMember :", dataTeam?.teamLeaderId);
+  // useEffect(() => {
+  //   if (dataTeam.teamLeader === user?.name) {
+  //     setIsLeaderTeam(true);
+  //   }
+  //   if (dataTeam) {
+  //     console.log(dataTeam.teamLeaderId.address);
+  //     setTeamLeaderId(dataTeam.teamLeaderId._id);
+  //   }
+  // }, [dataTeam]);
+
+  if (!isLoading) {
+    const leaderId = dataTeam?.teamLeaderId._id;
+  }
 
   return (
     <TeamProfileLayout>
@@ -550,30 +565,50 @@ export default function Index() {
           <h2 className="text-2xl font-Montserrat text-white font-bold">
             Anggota
           </h2>
-          {dataTeam?.teamMember &&
+          {!isLoading &&
+            dataTeam?.teamMember &&
             dataTeam?.teamMember.map((member, id) => (
               <div
                 key={id}
                 className="mt-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-black scrollbar-track-primary-500 scroll-m-2 max-h-[720px]"
               >
-                {/* {console.log(`${member.userId._id === user?._id}`)} */}
-                <Accordion
-                  name={member.userId.name}
-                  email={member.userId.email}
-                  dateOfBirth={member.userId.dateOfBirth}
-                  province={member.userId.province}
-                  address={member.userId.address}
-                  phone={member.userId.phone}
-                  id={member.userId._id}
-                  status={member.userId.status}
-                  institutionName={member.userId.institutionName}
-                  institutionNumber={member.userId.institutionNumber}
-                  institutionFile={member.userId.institutionFile}
-                  key={member}
-                  idLeader={dataTeam.teamLeaderId._id}
-                  idMember={member._id}
-                  isLeader={isLeaderTeam}
-                />
+                {/* {console.log(member)} */}
+                {dataTeam?.teamLeaderId._id === user?._id ? (
+                  <Accordion
+                    name={member.userId.name}
+                    email={member.userId.email}
+                    dateOfBirth={member.userId.dateOfBirth}
+                    province={member.userId.province}
+                    address={member.userId.address}
+                    phone={member.userId.phone}
+                    id={member.userId._id}
+                    status={member.userId.status}
+                    institutionName={member.userId.institutionName}
+                    institutionNumber={member.userId.institutionNumber}
+                    institutionFile={member.userId.institutionFile}
+                    key={member}
+                    idLeader={dataTeam.teamLeaderId._id}
+                    idMember={member?._id}
+                    isLeader={true}
+                  />
+                ) : (
+                  <Accordion
+                    name={member.userId.name}
+                    email={member.userId.email}
+                    dateOfBirth={member.userId.dateOfBirth}
+                    province={member.userId.province}
+                    address={member.userId.address}
+                    phone={member.userId.phone}
+                    id={member.userId._id}
+                    status={member.userId.status}
+                    institutionName={member.userId.institutionName}
+                    institutionNumber={member.userId.institutionNumber}
+                    institutionFile={member.userId.institutionFile}
+                    key={member}
+                    idLeader={dataTeam.teamLeaderId._id}
+                    idMember={member?._id}
+                  />
+                )}
                 {/* <Accordion />
                 <Accordion />
                 <Accordion /> */}
