@@ -70,8 +70,7 @@ export default function Accordion({
     }
   };
   /*----------END------------ */
-console.log(idTeam);
-console.log(idMember);
+
   // console.log(`idMember: ${idMember}`);
   return (
     <div
@@ -99,7 +98,7 @@ console.log(idMember);
           } delay-100`}
         />
       </div>
-      <div className={`${isExpand ? "" : "hidden"}`}>
+      <div className={`${isExpand ? "overflow-hidden" : "hidden"}`}>
         <div className="px-4 pt-3">
           <div className="font-Montserrat text-[11.57px] my-2">
             <h2 className="font-bold">Email</h2>
@@ -153,7 +152,7 @@ console.log(idMember);
 
           {ableToKick && id !== idLeader ? (
             <button
-              className="relative bottom-0 left-44 md:left-56 lg:left-80"
+              className="relative overflow-hidden bottom-0 left-44 md:left-56 lg:left-80"
               onClick={modalVerifHandler}
             >
               <FaTrash className=" w-[15px] z-100" />
