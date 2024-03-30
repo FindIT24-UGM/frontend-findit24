@@ -32,6 +32,8 @@ const Index = ({ nameAbr }) => {
   const router = useRouter();
   const { isAuthenticated } = useSelector((state) => state.auth);
   const { userTeam } = useSelector((state) => state.user);
+  const now = new Date();
+  const deadlineDate = new Date("1 Apr 2024");
 
   const [countLomba, setCountLomba] = useState(0);
   const [titleLomba, setTitleLomba] = useState("");
@@ -338,17 +340,157 @@ const Index = ({ nameAbr }) => {
               </div>
             </div>
             <div className="w-full h-auto overflow-x-visible lg:px-[34px] mt-[51px] sm:mt-[37px] lg:mt-[46px]">
-              <h1 className="text-neutral-700 font-CreatoDisplay text-base lg:text-[28px] lg:leading-8 font-bold text-center sm:text-left">
-                Daftar Lomba
-              </h1>
-              {windowWidth < 640 ? (
-                <div className="pl-[5.7vw] flex items-center justify-center">
-                  <Swiper
-                    centeredSlides={true}
-                    slidesPerView={2.5}
-                    spaceBetween="60vw"
-                  >
-                    <SwiperSlide>
+              {now <= deadlineDate ? (
+                <>
+                  <h1 className="text-neutral-700 font-CreatoDisplay text-base lg:text-[28px] lg:leading-8 font-bold text-center sm:text-left">
+                    Daftar Lomba
+                  </h1>
+                  {windowWidth < 640 ? (
+                    <div className="pl-[5.7vw] flex items-center justify-center">
+                      <Swiper
+                        centeredSlides={true}
+                        slidesPerView={2.5}
+                        spaceBetween="60vw"
+                      >
+                        <SwiperSlide>
+                          <CardLomba
+                            name="Capture The Flag"
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("CTF");
+                            }}
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <CardLomba
+                            name="Competitive Programming"
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("CP");
+                            }}
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <CardLomba
+                            name="UX Competition"
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("UX Competition");
+                            }}
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <CardLomba
+                            name="Data analytics"
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("Data analytics");
+                            }}
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <CardLomba
+                            name="Hackaton"
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("Hackaton");
+                            }}
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <CardLomba
+                            name="E-Sports"
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("E-Sports");
+                            }}
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <CardLomba
+                            name="Informatics comp."
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("Informatics comp.");
+                            }}
+                          />
+                        </SwiperSlide>
+                      </Swiper>
+                    </div>
+                  ) : windowWidth < 1024 ? (
+                    <div className="w-full py-[7px]">
+                      <Swiper
+                        slidesPerView={5}
+                        spaceBetween={27}
+                        centeredSlides={true}
+                      >
+                        <SwiperSlide>
+                          <CardLomba
+                            name="Capture The Flag"
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("CTF");
+                            }}
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <CardLomba
+                            name="Competitive Programming"
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("CP");
+                            }}
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <CardLomba
+                            name="UX Competition"
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("UX Competition");
+                            }}
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <CardLomba
+                            name="Data analytics"
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("Data analytics");
+                            }}
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <CardLomba
+                            name="Hackaton"
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("Hackaton");
+                            }}
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <CardLomba
+                            name="E-Sports"
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("E-Sports");
+                            }}
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <CardLomba
+                            name="Informatics comp."
+                            clickStatus={() => {
+                              setOpenConfirmation(true);
+                              setTitleLomba("Informatics comp.");
+                            }}
+                          />
+                        </SwiperSlide>
+                      </Swiper>
+                    </div>
+                  ) : (
+                    <div className="w-full h-[240px] flex justify-center items-start gap-[31px] mt-6">
                       <CardLomba
                         name="Capture The Flag"
                         clickStatus={() => {
@@ -356,8 +498,6 @@ const Index = ({ nameAbr }) => {
                           setTitleLomba("CTF");
                         }}
                       />
-                    </SwiperSlide>
-                    <SwiperSlide>
                       <CardLomba
                         name="Competitive Programming"
                         clickStatus={() => {
@@ -365,8 +505,6 @@ const Index = ({ nameAbr }) => {
                           setTitleLomba("CP");
                         }}
                       />
-                    </SwiperSlide>
-                    <SwiperSlide>
                       <CardLomba
                         name="UX Competition"
                         clickStatus={() => {
@@ -374,8 +512,6 @@ const Index = ({ nameAbr }) => {
                           setTitleLomba("UX Competition");
                         }}
                       />
-                    </SwiperSlide>
-                    <SwiperSlide>
                       <CardLomba
                         name="Data analytics"
                         clickStatus={() => {
@@ -383,8 +519,6 @@ const Index = ({ nameAbr }) => {
                           setTitleLomba("Data analytics");
                         }}
                       />
-                    </SwiperSlide>
-                    <SwiperSlide>
                       <CardLomba
                         name="Hackaton"
                         clickStatus={() => {
@@ -392,8 +526,6 @@ const Index = ({ nameAbr }) => {
                           setTitleLomba("Hackaton");
                         }}
                       />
-                    </SwiperSlide>
-                    <SwiperSlide>
                       <CardLomba
                         name="E-Sports"
                         clickStatus={() => {
@@ -401,8 +533,6 @@ const Index = ({ nameAbr }) => {
                           setTitleLomba("E-Sports");
                         }}
                       />
-                    </SwiperSlide>
-                    <SwiperSlide>
                       <CardLomba
                         name="Informatics comp."
                         clickStatus={() => {
@@ -410,132 +540,16 @@ const Index = ({ nameAbr }) => {
                           setTitleLomba("Informatics comp.");
                         }}
                       />
-                    </SwiperSlide>
-                  </Swiper>
-                </div>
-              ) : windowWidth < 1024 ? (
-                <div className="w-full py-[7px]">
-                  <Swiper
-                    slidesPerView={5}
-                    spaceBetween={27}
-                    centeredSlides={true}
-                  >
-                    <SwiperSlide>
-                      <CardLomba
-                        name="Capture The Flag"
-                        clickStatus={() => {
-                          setOpenConfirmation(true);
-                          setTitleLomba("CTF");
-                        }}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <CardLomba
-                        name="Competitive Programming"
-                        clickStatus={() => {
-                          setOpenConfirmation(true);
-                          setTitleLomba("CP");
-                        }}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <CardLomba
-                        name="UX Competition"
-                        clickStatus={() => {
-                          setOpenConfirmation(true);
-                          setTitleLomba("UX Competition");
-                        }}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <CardLomba
-                        name="Data analytics"
-                        clickStatus={() => {
-                          setOpenConfirmation(true);
-                          setTitleLomba("Data analytics");
-                        }}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <CardLomba
-                        name="Hackaton"
-                        clickStatus={() => {
-                          setOpenConfirmation(true);
-                          setTitleLomba("Hackaton");
-                        }}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <CardLomba
-                        name="E-Sports"
-                        clickStatus={() => {
-                          setOpenConfirmation(true);
-                          setTitleLomba("E-Sports");
-                        }}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <CardLomba
-                        name="Informatics comp."
-                        clickStatus={() => {
-                          setOpenConfirmation(true);
-                          setTitleLomba("Informatics comp.");
-                        }}
-                      />
-                    </SwiperSlide>
-                  </Swiper>
-                </div>
+                    </div>
+                  )}
+                </>
               ) : (
-                <div className="w-full h-[240px] flex justify-center items-start gap-[31px] mt-6">
-                  <CardLomba
-                    name="Capture The Flag"
-                    clickStatus={() => {
-                      setOpenConfirmation(true);
-                      setTitleLomba("CTF");
-                    }}
-                  />
-                  <CardLomba
-                    name="Competitive Programming"
-                    clickStatus={() => {
-                      setOpenConfirmation(true);
-                      setTitleLomba("CP");
-                    }}
-                  />
-                  <CardLomba
-                    name="UX Competition"
-                    clickStatus={() => {
-                      setOpenConfirmation(true);
-                      setTitleLomba("UX Competition");
-                    }}
-                  />
-                  <CardLomba
-                    name="Data analytics"
-                    clickStatus={() => {
-                      setOpenConfirmation(true);
-                      setTitleLomba("Data analytics");
-                    }}
-                  />
-                  <CardLomba
-                    name="Hackaton"
-                    clickStatus={() => {
-                      setOpenConfirmation(true);
-                      setTitleLomba("Hackaton");
-                    }}
-                  />
-                  <CardLomba
-                    name="E-Sports"
-                    clickStatus={() => {
-                      setOpenConfirmation(true);
-                      setTitleLomba("E-Sports");
-                    }}
-                  />
-                  <CardLomba
-                    name="Informatics comp."
-                    clickStatus={() => {
-                      setOpenConfirmation(true);
-                      setTitleLomba("Informatics comp.");
-                    }}
-                  />
+                <div className="flex flex-col justify-center items-center gap-4">
+                  <p className="font-Montserrat font-medium text-red-700 text-center text-xs sm:text-sm lg:text-base">
+                    Mohon maaf, pendaftaran lomba FindIT! 2024 telah ditutup.
+                    Mohon untuk melengkapi registrasi bagi tim yang sudah
+                    mendaftar dan belum terverifikasi atau masih ditolak!
+                  </p>
                 </div>
               )}
             </div>

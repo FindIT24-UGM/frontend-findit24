@@ -14,6 +14,8 @@ const Index = () => {
   const router = useRouter();
   const [isJoinWorkshop, setIsJoinWorkshop] = useState(false);
   const [courseUser, setCourseUser] = useState(null);
+  const now = new Date();
+  const deadlineDate = new Date("1 Apr 2024");
 
   const whatsappNumber = "+6289510754671";
 
@@ -26,7 +28,7 @@ const Index = () => {
         if (Array.isArray(result.data.user) && result.data.user.length === 0) {
           setIsJoinWorkshop(false);
         } else {
-          setIsJoinWorkshop(true)
+          setIsJoinWorkshop(true);
           setCourseUser(...result.data.user);
         }
       })
@@ -89,62 +91,78 @@ const Index = () => {
                   className="min-w-[32px]"
                 />
                 <p className="font-Montserrat font-bold text-text-placeholder-dark text-xs sm:text-sm lg:text-base">
-                  Silakan unggah bukti pembayaran dan tunggu admin melakukan verifikasi.
+                  Silakan unggah bukti pembayaran dan tunggu admin melakukan
+                  verifikasi.
                 </p>
               </div>
             )}
           </div>
-          <div className="w-5/6 flex flex-col justify-center items-center gap-4">
-            <p className="font-Montserrat font-medium text-text-placeholder-dark text-center text-xs sm:text-sm lg:text-base">
-              Daftarkan dirimu di Workshop FIND IT! untuk mengeksplorasi
-              teknologi Blockchain bersama pembicara berpengalaman pada bidang
-              tersebut.
-            </p>
-            {isJoinWorkshop && courseUser?.paymentFile === "" ? (
-              <label className="text-center text-[16px] text-black font-bold py-2 bg-background-skyblue w-full font-GameOfSquid rounded-md">
-                Upload Pembayaran
-                <input
-                  className="hidden"
-                  type="file"
-                  id="paymentFile"
-                  name="paymentFile"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                />
-              </label>
-            ) : (
-              <div className="w-full">
-              </div>
-            )}
-            {courseUser && courseUser?.paymentFile !=="" ? (
-              <div className="w-full">
-                <button onClick={() => window.open(`${courseUser?.paymentFile}`, "_blank")} className="text-center text-[16px] text-black font-bold py-2 bg-background-skyblue w-full font-GameOfSquid rounded-md">
-                {" "}
-                Lihat
-                </button>              
-              </div>              
-            ) : (
-              <div></div>
-            )}
-            {isAuthenticated ? (
-              isJoinWorkshop === false ? (
-                <button
-                  className="bg-primary-300 w-full rounded-md py-2 flex gap-3 justify-center items-center"
-                  onClick={handleDaftarWorkshop}
-                >
-                  <p className="font-GameOfSquid text-shade-black">
-                    Daftar Workshop
-                  </p>
-                  <HiArrowRight size={20} color="black" />
-                </button>
+          {now <= deadlineDate ? (
+            <div className="w-5/6 flex flex-col justify-center items-center gap-4">
+              <p className="font-Montserrat font-medium text-text-placeholder-dark text-center text-xs sm:text-sm lg:text-base">
+                Daftarkan dirimu di Workshop FIND IT! untuk mengeksplorasi
+                teknologi Blockchain bersama pembicara berpengalaman pada bidang
+                tersebut.
+              </p>
+              {isJoinWorkshop && courseUser?.paymentFile === "" ? (
+                <label className="text-center text-[16px] text-black font-bold py-2 bg-background-skyblue w-full font-GameOfSquid rounded-md">
+                  Upload Pembayaran
+                  <input
+                    className="hidden"
+                    type="file"
+                    id="paymentFile"
+                    name="paymentFile"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+                </label>
+              ) : (
+                <div className="w-full"></div>
+              )}
+              {courseUser && courseUser?.paymentFile !== "" ? (
+                <div className="w-full">
+                  <button
+                    onClick={() =>
+                      window.open(`${courseUser?.paymentFile}`, "_blank")
+                    }
+                    className="text-center text-[16px] text-black font-bold py-2 bg-background-skyblue w-full font-GameOfSquid rounded-md"
+                  >
+                    {" "}
+                    Lihat
+                  </button>
+                </div>
               ) : (
                 <div></div>
-              )
-            ) : (
-              <div>Please Sign In</div>
-            )}
-          </div>
+              )}
+              {isAuthenticated ? (
+                isJoinWorkshop === false ? (
+                  <button
+                    className="bg-primary-300 w-full rounded-md py-2 flex gap-3 justify-center items-center"
+                    onClick={handleDaftarWorkshop}
+                  >
+                    <p className="font-GameOfSquid text-shade-black">
+                      Daftar Workshop
+                    </p>
+                    <HiArrowRight size={20} color="black" />
+                  </button>
+                ) : (
+                  <div></div>
+                )
+              ) : (
+                <div>Please Sign In</div>
+              )}
+            </div>
+          ) : (
+            <div className="w-5/6 flex flex-col justify-center items-center gap-4">
+              <p className="font-Montserrat font-medium text-red-600 text-center text-xs sm:text-sm lg:text-base">
+                Mohon Maaf, pendaftaran workshop FindIT! 2024 telah ditutup.
+                Silahkan melengkapi pendaftaran bagi yang sudah mendaftar dan
+                belum terverifikasi atau masih ditolak!
+              </p>
+            </div>
+          )}
         </div>
+        ) )
         <div className="w-full lg:w-1/3 flex flex-col gap-6 relative">
           <div className="h-2/3 bg-text-placeholder-light border-[3px] border-shade-black rounded-xl flex flex-col gap-4 p-6">
             <div className="flex justify-between items-center">

@@ -10,6 +10,8 @@ export default function Title({
   linkGuidebook,
 }) {
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const currentDate = new Date();
+  const deadlineDate = new Date("1 Apr 2024");
 
   const router = useRouter();
 
@@ -34,27 +36,34 @@ export default function Title({
       <div className="flex flex-col gap-2 md:gap-y-8 px-4 lg:pl-24">
         <h1
           className="text-[8.889vw] md:text-[6.25vw] lg:text-[4.167vw] font-GameOfSquid bg-gradient-to-b from-[#FF8C5A] to-[#F95949] bg-clip-text text-transparent leading-normal md:leading-tight uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.25)]"
-          data-aos="zoom-out-up">
+          data-aos="zoom-out-up"
+        >
           {competitionTitle}
         </h1>
         <Countdown deadline="1 Apr 2024" />
-        <div className="flex gap-x-2 mt-8">
-          <Button
-            text="Daftar"
-            fullW={true}
-            onClick={handleDaftarClick}
-            customClass="flex justify-center items-center bg-gradient-to-t from-[#ED7C80] to-[#F9C883] text-[4vw] md:text-[16px] lg:text-[1.117vw] 2xl:text-[16px] w-[105px] md:w-[13.6vw] lg:w-[9.96vw] 2xl:w-[5.5vw] z-[100]"
-          />
-          <Link href={linkGuidebook}>
-            <Button
-              text="Guidebook"
-              variant="secondary"
-              fullW={true}
-              onClick={handleGuidebookClick}
-              customClass="flex justify-center border-[#000] text-white text-[4vw] md:text-[16px] lg:text-[1.117vw] 2xl:text-[16px] w-[38vw] md:w-[18.88vw] lg:w-[10.62vw] 2xl:w-[7.7vw]"
-            />
-          </Link>
-        </div>
+        {currentDate <= deadlineDate ? (
+          <>
+            <div className="flex gap-x-2 mt-8">
+              <Button
+                text="Daftar"
+                fullW={true}
+                onClick={handleDaftarClick}
+                customClass="flex justify-center items-center bg-gradient-to-t from-[#ED7C80] to-[#F9C883] text-[4vw] md:text-[16px] lg:text-[1.117vw] 2xl:text-[16px] w-[105px] md:w-[13.6vw] lg:w-[9.96vw] 2xl:w-[5.5vw] z-[100]"
+              />
+              <Link href={linkGuidebook}>
+                <Button
+                  text="Guidebook"
+                  variant="secondary"
+                  fullW={true}
+                  onClick={handleGuidebookClick}
+                  customClass="flex justify-center border-[#000] text-white text-[4vw] md:text-[16px] lg:text-[1.117vw] 2xl:text-[16px] w-[38vw] md:w-[18.88vw] lg:w-[10.62vw] 2xl:w-[7.7vw]"
+                />
+              </Link>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
