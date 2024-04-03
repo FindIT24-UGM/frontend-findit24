@@ -62,7 +62,16 @@ export default function Title({
             </div>
           </>
         ) : (
-          <></>
+          <>
+            <Link href={linkGuidebook}>
+              <Button
+                text="Guidebook"
+                fullW={true}
+                onClick={handleGuidebookClick}
+                customClass="flex justify-center bg-gradient-to-t from-[#ED7C80] to-[#F9C883] border-[#000] text-white text-[4vw] md:text-[16px] lg:text-[1.117vw] 2xl:text-[16px] w-[38vw] md:w-[18.88vw] lg:w-[10.62vw] 2xl:w-[7.7vw]"
+              />
+            </Link>
+          </>
         )}
       </div>
     </div>
