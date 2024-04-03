@@ -12,7 +12,7 @@ export default function OurPartner() {
         {/* <div className="w-auto h-auto z-50 bg-secondary-blue border-text-placeholder-dark border-[2px] sm:border-[4px] lg:border-[8px] rounded-md sm:rounded-lg lg:rounded-2xl py-[17px] sm:py-7 lg:py-12 pr-[15px] sm:pr-[30px] lg:pr-[38px] pl-8 sm:pl-[54px] lg:pl-[87px] flex justify-center items-center gap-[10px] sm:gap-[14px] lg:gap-8"> */}
         <Image
           src={Sponsor_Bg}
-          className="w-[70.5vw] md:w-[58.5vw] lg:w-[55vw] 2xl:w-[42vw] z-50"
+          className="w-[80.5vw] md:w-[65.5vw] lg:w-[59vw] 2xl:w-[50vw] z-50"
           alt="Sponsor"
         />
         {/* </div> */}
