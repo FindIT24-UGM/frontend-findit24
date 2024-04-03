@@ -156,8 +156,6 @@ const Index = () => {
             <div className="w-5/6 flex flex-col justify-center items-center gap-4">
               <p className="font-Montserrat font-medium text-red-600 text-center text-xs sm:text-sm lg:text-base">
                 Mohon Maaf, pendaftaran workshop FindIT! 2024 telah ditutup.
-                Silahkan melengkapi pendaftaran bagi yang sudah mendaftar dan
-                belum terverifikasi atau masih ditolak!
               </p>
             </div>
           )}

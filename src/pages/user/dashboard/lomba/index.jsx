@@ -547,8 +547,6 @@ const Index = ({ nameAbr }) => {
                 <div className="flex flex-col justify-center items-center gap-4">
                   <p className="font-Montserrat font-medium text-red-700 text-center text-xs sm:text-sm lg:text-base">
                     Mohon maaf, pendaftaran lomba FindIT! 2024 telah ditutup.
-                    Mohon untuk melengkapi registrasi bagi tim yang sudah
-                    mendaftar dan belum terverifikasi atau masih ditolak!
                   </p>
                 </div>
               )}
