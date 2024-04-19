@@ -33,6 +33,11 @@ function AdminDashboadrLayout({ children }) {
       icon: <IoIosBasketball size={20} color="black" />,
       label: "Broadcast",
     },
+    {
+      path: "/admin/dashboard/informatics-competition",
+      icon: <IoIosBasketball size={20} color="black" />,
+      label: "Infor. Comp.",
+    },
   ];
 
   useEffect(() => {
