@@ -9,7 +9,28 @@ import { TiChevronRight } from "react-icons/ti";
 import { GoSquareFill } from "react-icons/go";
 import { differenceInMinutes, format } from "date-fns";
 
-function Card({ name, benar, salah, date, endTime }) {
+function Card({ name, date, endTime }) {
+  const [score, setScore] = useState(0)
+  const [benar, setBenar] = useState(0)
+  const [salah, setSalah] = useState(0)
+
+  useEffect(() => {
+    const getScore = () => {
+      axios.post(`${process.env.NEXT_PUBLIC_IC_URL}/admin/score`, 
+    {username: name})
+      .then(response => {
+        // console.log(response.data);
+        setScore(response.data.score)
+        setBenar(response.data.benar)
+        setSalah(response.data.salah)
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
+    getScore()
+  }, [name, date, endTime])
+
   // Memastikan bahwa nilai date tidak kosong dan merupakan tanggal yang valid
   const parsedDate = date !== undefined ? new Date(parseInt(date)) : new Date("1999-01-01");
   const end = new Date(parseInt(endTime))
@@ -24,6 +45,10 @@ function Card({ name, benar, salah, date, endTime }) {
         <p className="text-[13px]">dummy</p>
       </div>
       <div className="flex items-center lg:w-3/4 md:w-2/3 justify-between">
+        <div className="hidden md:flex md:flex-col text-center text-[13px]">
+          <h2 className="font-bold">skor</h2>
+          {score ? (<p>{score}</p>) : (<p>-</p>)}
+        </div>
         <div className="hidden md:flex md:flex-col text-center text-[13px]">
           <h2 className="font-bold">benar</h2>
           {benar ? (<p>{benar}</p>) : (<p>-</p>)}
@@ -54,6 +79,7 @@ const Index = () => {
   const [isNotDoing, setIsNotDoing] = useState(0);
   const [isDoing, setIsDoing] = useState(0);
   const [participants, setParticipants] = useState(0);
+
   useEffect(() => {
     const getParticipants = async () => {
       try {
@@ -124,7 +150,7 @@ const Index = () => {
               >
                 <Link
                   key={id}
-                  href={`${process.env.NEXT_PUBLIC_FE_URL}/admin/dashboard/workshop/detail/${participant._id}`}
+                  href={`${process.env.NEXT_PUBLIC_FE_URL}/admin/dashboard/informatics-competition`}
                 >
                   <Card
                     key={participant._id}
