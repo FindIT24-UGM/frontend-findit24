@@ -10,9 +10,9 @@ import { GoSquareFill } from "react-icons/go";
 import { differenceInMinutes, format } from "date-fns";
 
 function Card({ name, date, endTime }) {
-  const [score, setScore] = useState(0)
-  const [benar, setBenar] = useState(0)
-  const [salah, setSalah] = useState(0)
+  const [score, setScore] = useState(null)
+  const [benar, setBenar] = useState(null)
+  const [salah, setSalah] = useState(null)
 
   useEffect(() => {
     const getScore = () => {
@@ -47,15 +47,15 @@ function Card({ name, date, endTime }) {
       <div className="flex items-center lg:w-3/4 md:w-2/3 justify-between">
         <div className="hidden md:flex md:flex-col text-center text-[13px]">
           <h2 className="font-bold">skor</h2>
-          {score ? (<p>{score}</p>) : (<p>-</p>)}
+          {score !== null ? (<p>{score}</p>) : (<p>-</p>)}
         </div>
         <div className="hidden md:flex md:flex-col text-center text-[13px]">
           <h2 className="font-bold">benar</h2>
-          {benar ? (<p>{benar}</p>) : (<p>-</p>)}
+          {benar !== null ? (<p>{benar}</p>) : (<p>-</p>)}
         </div>
         <div className="hidden md:flex md:flex-col text-center text-[13px]">
           <h2 className="font-bold">salah</h2>
-          {salah ? (<p>{salah}</p>) : (<p>-</p>)}
+          {salah !== null ? (<p>{salah}</p>) : (<p>-</p>)}
         </div>
         <div className="hidden md:flex md:flex-col text-center text-[13px]">
           <h2 className="font-bold">durasi</h2>
