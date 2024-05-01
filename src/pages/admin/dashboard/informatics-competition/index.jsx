@@ -7,7 +7,7 @@ import Accordion from "../../../../components/LandingPage/Dashboard/Accordion";
 
 import { TiChevronRight } from "react-icons/ti";
 import { GoSquareFill } from "react-icons/go";
-import { differenceInMinutes, format } from "date-fns";
+import { differenceInMinutes, differenceInSeconds, format } from "date-fns";
 
 function Card({ name, date, endTime }) {
   const [score, setScore] = useState(null)
@@ -17,7 +17,7 @@ function Card({ name, date, endTime }) {
   useEffect(() => {
     const getScore = () => {
       axios.post(`${process.env.NEXT_PUBLIC_IC_URL}/admin/score`, 
-    {username: name})
+    {teamName: name})
       .then(response => {
         // console.log(response.data);
         setScore(response.data.score)
@@ -32,11 +32,11 @@ function Card({ name, date, endTime }) {
   }, [name, date, endTime])
 
   // Memastikan bahwa nilai date tidak kosong dan merupakan tanggal yang valid
-  const parsedDate = date !== undefined ? new Date(parseInt(date)) : new Date("1999-01-01");
-  const end = new Date(parseInt(endTime))
-  const durationMinutes = differenceInMinutes(end, parsedDate);
-  const durasi = Math.floor(durationMinutes / 60)
-
+  const parsedDate = date !== undefined ? parseInt(date) : new Date("1999-01-01");
+  const end = parseInt(endTime)
+  const durationInSec = differenceInSeconds(end, parsedDate);
+  const durasi = Math.floor(durationInSec / 60)
+  // console.log(parsedDate);
   const formattedDate = format(parsedDate, "dd MMMM y p")
   return (
     <div className="flex justify-between bg-white rounded-lg p-3 w-full my-2 cursor-pointer">
@@ -59,7 +59,7 @@ function Card({ name, date, endTime }) {
         </div>
         <div className="hidden md:flex md:flex-col text-center text-[13px]">
           <h2 className="font-bold">durasi</h2>
-          {durasi ? (<p>{durasi} jam</p>) : (<p>-</p>)}
+          {date != undefined && endTime != undefined ? (<p>{durasi} menit</p>) : (<p>-</p>)}
         </div>
         <div className="hidden md:flex md:flex-col text-center text-[13px]">
           <h2 className="font-bold">mulai</h2>
@@ -92,7 +92,7 @@ const Index = () => {
           setFinished(response.data.finished)
           setIsNotDoing(response.data.isNotDoing)
           setIsDoing(response.data.isDoing)
-          console.log(response.data.user);
+          // console.log(response.data.user);
         }
       } catch (err) {
         console.log(err);
@@ -154,7 +154,7 @@ const Index = () => {
                 >
                   <Card
                     key={participant._id}
-                    name={participant?.username}
+                    name={participant?.teamName}
                     date={participant?.startedTime}
                     endTime={participant?.endTime}
                   />
