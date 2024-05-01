@@ -11,7 +11,10 @@ function AdminDashboadrLayout({ children }) {
   const router = useRouter();
   const path = router.asPath;
   const { user } = useSelector((state) => state.auth);
-
+  if(user.role === "participant"){
+    router.push("/")
+  }
+  
   const menuItems = [
     {
       path: "/admin/dashboard/statistic",
