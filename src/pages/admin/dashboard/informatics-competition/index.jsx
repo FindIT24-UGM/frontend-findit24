@@ -7,17 +7,16 @@ import Accordion from "../../../../components/LandingPage/Dashboard/Accordion";
 
 import { TiChevronRight } from "react-icons/ti";
 import { GoSquareFill } from "react-icons/go";
-import { differenceInMinutes, differenceInSeconds, format } from "date-fns";
+import { differenceInSeconds, format } from "date-fns";
 
 function Card({ name, date, endTime }) {
   const [score, setScore] = useState(null);
   const [benar, setBenar] = useState(null);
   const [salah, setSalah] = useState(null);
   const [isExpand, setIsExpand] = useState(false);
-  /*Ini gue komen juga 
-  const [essayQuest, setEssayQuest] = useState([]);
+  /*Ini gue komen juga */
+  // const [essayQuest, setEssayQuest] = useState([]);
   const [essayAnswer, setEssayAnswer] = useState([]);
-  */
 
   useEffect(() => {
     const getScore = () => {
@@ -40,37 +39,42 @@ function Card({ name, date, endTime }) {
 
   /* GUE KOMEN DLU */
 
-  // useEffect(() => {
-  //   const getEssayAnswer = () => {
-  //     axios
-  //       .post(`${process.env.NEXT_PUBLIC_IC_URL}/admin/essayanswer`, {
-  //         teamName: name,
-  //       })
-  //       .then((response) => {
-  //         const totalData = response.data.essayanswer;
-  //         const ans = response.data.essayanswer.length; // Perbaiki penulisan
-  //         const updatedQuest = [];
-  //         const updatedAnswers = []; // Membuat array baru untuk menampung jawaban yang diperbarui
-  //         for (let i = 0; i < ans; i++) {
-  //           console.log(response.data.essayanswer[i]);
-  //           if (response.data.essayanswer[i].type == "essay") {
-  //             updatedQuest.push(response.data.essayanswer[i].no);
-  //             updatedAnswers.push(response.data.essayanswer[i].answer);
-  //           } // Memasukkan jawaban ke dalam array
-  //         }
-  //         setEssayQuest(updatedQuest);
-  //         setEssayAnswer(updatedAnswers); // Memperbarui state dengan semua jawaban
-  //         console.log(
-  //           `Essay Quest ${updatedQuest} and Answer: ${updatedAnswers}`
-  //         ); // Menampilkan semua jawaban
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   };
-  //   getEssayAnswer();
-  // }, [name]);
+  useEffect(() => {
+    const getEssayAnswer = () => {
+      axios
+        .post(`${process.env.NEXT_PUBLIC_IC_URL}/admin/essayanswer`, {
+          teamName: name,
+        })
+        .then((response) => {
 
+          const totalData = response.data.essayanswer;
+          const ans = response.data.essayanswer.length; // Perbaiki penulisan
+          const updatedQuest = [];
+          const updatedAnswers = []; // Membuat array baru untuk menampung jawaban yang diperbarui
+          setEssayAnswer(totalData)
+
+          // for (let i = 0; i < ans; i++) {
+          //   if (response.data.essayanswer[i].type == "essay") {
+          //     updatedQuest.push(response.data.essayanswer[i].no);
+          //     updatedAnswers.push(response.data.essayanswer[i].answer);
+          //   } // Memasukkan jawaban ke dalam array
+          // }
+          // setEssayQuest(updatedQuest);
+          // setEssayAnswer(updatedAnswers); // Memperbarui state dengan semua jawaban
+          // console.log(
+          //   `${name} Essay Quest ${updatedQuest} and Answer: ${updatedAnswers}`
+          // ); // Menampilkan semua jawaban
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getEssayAnswer();
+  }, [name]);
+  // essayAnswer.map(answer => {
+  //   console.log(answer);
+  // })
+  // console.log(`${name} : jawaban ${essayAnswer}`);
   // Memastikan bahwa nilai date tidak kosong dan merupakan tanggal yang valid
   const parsedDate =
     date !== undefined ? parseInt(date) : new Date("1999-01-01");
@@ -130,7 +134,16 @@ function Card({ name, date, endTime }) {
 
             <div className="md:w-1/2">
               <div className="py-2 cursor-text">
-                <h2 className="font-bold ">Testing bolo</h2>
+                <h2 className="font-bold ">Kerja Lembur Bagai Quda</h2>
+                {essayAnswer && essayAnswer.map(essay => {
+                  return (
+                    <div key={essay.no}>
+                      {essay.type === "essay" && (
+                        <h2 className="font-bold">Soal : {essay.no} == jawaban : {essay.answer}</h2>
+                      )}
+                    </div>
+                  );
+                })}
                 {/* <h2 className="font-bold ">{essayAnswer}</h2> */}
                 {/* <p>{email}</p> */}
               </div>
