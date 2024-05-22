@@ -2,7 +2,7 @@ import React from "react";
 
 import Telepeformance from "../../../assets/Logo/Teleperformance";
 import Image from "next/image";
-import Sponsor_Fix from "../../../assets/Logo/Sponsor_Fix.png";
+import Sponsor_Fix from "../../../assets/Logo/Sponsor_fix.png";
 import Gradient_Bg from "../../../assets/Logo/Gradient_Bg.png";
 
 export default function OurPartner() {
