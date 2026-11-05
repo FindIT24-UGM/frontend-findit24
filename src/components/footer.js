@@ -11,7 +11,7 @@ function SocialMediaLink({ href, target, icon, className }) {
   );
 }
 
-export default function Footer() {
+export default function Footer({ landing = false }) {
   const [screenWidth, setScreenWidth] = useState(0);
 
   useEffect(() => {
@@ -63,8 +63,8 @@ export default function Footer() {
 
   const competitions = [
     { text: "Hackathon", href: "/competition/hackathon" },
-    { text: "UX Competition", href: "/competition/ux" },
-    { text: "E-Sports", href: "/competition/e-sport" },
+    { text: "UX Competition", href: landing ? "/competition/ux-competition" : "/competition/ux" },
+    { text: "E-Sports", href: landing ? "/competition/e-sports" : "/competition/e-sport" },
     {
       text: "Informatics Competition",
       href: "/competition/informatics-competition",
@@ -93,7 +93,7 @@ export default function Footer() {
                 />
               </div>
               <p className="font-bold lg:my-[1.5vh] mt-[2vh] mb-[2.5vh] text-center sm:text-left text-sm lg:text-base 2xl:text-2xl">
-                Empower Breakthrough
+                {landing ? "Beyond The Sky" : "Empower Breakthrough"}
               </p>
               <p className="text-center sm:text-left text-xs lg:text-base 2xl:text-xl">
                 The premier annual IT event hosted by DTETI UGM. Brings together

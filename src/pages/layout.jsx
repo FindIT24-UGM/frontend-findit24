@@ -14,5 +14,6 @@ const RootLayout = ({ children }) => {
     </Provider>
   );
 };
+0;
 
 export default RootLayout;

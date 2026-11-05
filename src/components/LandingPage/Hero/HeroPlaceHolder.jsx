@@ -1,7 +1,9 @@
 import React from "react";
+import HeroPanel from "../../../../public/assets/landing/hero-panel.svg";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Image from "next/image";
 
 const HeroPlaceHolder = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -18,8 +20,16 @@ const HeroPlaceHolder = () => {
   return (
     <div className="flex justify-center items-center">
       <div
-        className="bg-cover p-0 md:p-8 lg:bg-[url('https://i.ibb.co/pJ75N28/placeholder-Desktop.png')] lg:w-[1000px] lg:h-[250px] md:bg-[url('https://i.ibb.co/NTRcSNC/placeholder-Tab.png')] md:w-[702px] md:h-[245px] bg-[url('https://i.ibb.co/4SXs1b0/placeholder-Mobile.png')] w-[360px] h-[275px]"
-        data-aos="zoom-out-up">
+        className="bg-cover p-0 md:p-8 lg:bg-[url('https://i.ibb.co/pJ75N28/placeholder-Desktop.png')] lg:w-[1000px] lg:h-[250px] md:bg-[url('https://i.ibb.co/NTRcSNC/placeholder-Tab.png')] md:w-[702px] md:h-[245px] bg-[url('https://i.ibb.co/4SXs1b0/placeholder-Mobile.png')]"
+        data-aos="zoom-out-up"
+      >
+        <Image
+          src={HeroPanel}
+          alt="Hero Panel Background"
+          fill
+          priority
+          className="-z-10"
+        />
         <div className="w-full h-full flex justify-between items-center lg:gap-72">
           <div className="lg:w-1/2 lg:m-auto">
             <p className="mb-3 md:mb-6 lg:mb-0 text-white text-center">
@@ -35,12 +45,14 @@ const HeroPlaceHolder = () => {
             <div className="flex flex-row gap-x-2 md:gap-x-5 justify-center lg:hidden font-GameOfSquid font-normal text-white">
               <button
                 className="w-36 md:w-52 border-4 bg-shade-black border-shade-black py-2 px-3 rounded-md text-neutral-100"
-                onClick={handleDaftarClick}>
+                onClick={handleDaftarClick}
+              >
                 DAFTAR KOMPETISI
               </button>
               <button
                 className="w-36 md:w-52 border-4 border-shade-black py-2 px-3 rounded-md text-shade-black"
-                onClick={() => router.replace("/aboutus")}>
+                onClick={() => router.replace("/aboutus")}
+              >
                 ABOUT US
               </button>
             </div>

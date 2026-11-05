@@ -1,0 +1,17 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="1074" height="540.788" viewBox="0 0 1074 540.788" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="HaveAnyQ placeholder">
+<use xlink:href="#stroke0_0_8" fill="url(#paint0_linear_0_8)"/>
+<mask id="stroke1_0_8" maskUnits="userSpaceOnUse" x="0" y="0" width="1074" height="541" fill="black">
+<rect fill="white" width="1074" height="541"/>
+<use xlink:href="#stroke0_0_8"/>
+</mask>
+<path d="M1068 85.3367L988.409 6H968.184L1008.26 45.825H986.507L946.429 6H925.87L965.672 45.825H944.066L904.264 6H883.765L923.634 45.825H835.259L795.359 6H60.7594L6 60.7594V534.788H334.077C335.675 534.788 337.219 534.211 338.426 533.164L363.024 511.827C364.231 510.78 365.775 510.204 367.373 510.204H1013.49L1068 455.691V85.3367Z" stroke-width="12" stroke="black" mask="url(#stroke1_0_8)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_8" x1="537" y1="6" x2="537" y2="733.44" gradientUnits="userSpaceOnUse">
+<stop stop-color="#ED7C80"/>
+<stop offset="1" stop-color="#F9C883"/>
+</linearGradient>
+<path id="stroke0_0_8" d="M988.409 6L1068 85.3367V455.691L1013.49 510.204H367.373C365.775 510.204 364.231 510.78 363.024 511.827L338.426 533.164C337.219 534.211 335.675 534.788 334.077 534.788H6V60.7594L60.7594 6H795.359L835.259 45.825H923.634L883.765 6H904.264L944.066 45.825H965.672L925.87 6H946.429L986.507 45.825H1008.26L968.184 6H988.409Z"/>
+</defs>
+</svg>

@@ -1,0 +1,909 @@
+.landing {
+  background: #2a93c2;
+  color: #fcfcfc;
+  overflow: hidden;
+  font-family: Montserrat, sans-serif;
+}
+.landing a:focus-visible,
+.landing button:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 5px;
+}
+.landing footer {
+  position: relative;
+  min-height: 23.44vw;
+}
+.landing footer img {
+  transform: none;
+}
+.landing footer img[alt="LogoFINDIT"] {
+  width: 41px;
+  height: auto;
+}
+.landing footer p,
+.landing footer li {
+  font-size: clamp(12px, 0.868vw, 17px);
+}
+.landing footer a {
+  font-size: clamp(11px, 0.723vw, 14px);
+  overflow-wrap: anywhere;
+}
+.landing footer :global(.copyright) {
+  margin-top: 3vw;
+  color: #b6b7ba;
+}
+.landing footer :global(.copyright) span {
+  color: #b6b7ba;
+  font-size: clamp(12px, 0.868vw, 17px);
+  font-weight: 400;
+}
+.prizeBanner {
+  height: 7.552vw;
+  min-height: 75px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-block: 0.4167vw solid #92c2d0;
+}
+.prizeTrack {
+  display: flex;
+  width: max-content;
+  animation: prizeScroll 35s linear infinite;
+}
+.prizeGroup {
+  display: flex;
+  flex-shrink: 0;
+  gap: 3vw;
+  padding-right: 3vw;
+}
+.prizeGroup img {
+  width: 60vw;
+  height: auto;
+  flex-shrink: 0;
+}
+@keyframes prizeScroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.hero {
+  position: relative;
+  height: 48vw;
+  isolation: isolate;
+}
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  background: url("/assets/landing/hero-background.svg") top center / 100% auto
+    no-repeat;
+  z-index: -1;
+}
+.heroStars {
+  position: absolute;
+  top: -2.5vw;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  z-index: -1;
+}
+.year {
+  padding-top: 0.8vw;
+  text-align: center;
+  font:
+    3.333vw/1.22 AVA,
+    sans-serif;
+  color: #92c2d0;
+}
+.theme {
+  margin-top: 1.65vw;
+  text-align: center;
+  font:
+    bold 1.458vw/1.15 "Creato Display",
+    sans-serif;
+  color: #92c2d0;
+}
+.heroTitle {
+  position: absolute;
+  top: 3.85vw;
+  width: 100%;
+  text-align: center;
+  font:
+    12.695vw/normal "Game-Of-Squid",
+    sans-serif;
+  text-shadow: 0 0 12px #fcfcfc;
+  white-space: nowrap;
+}
+.heroPanel {
+  position: absolute;
+  top: 23.6vw;
+  left: 12.45%;
+  width: 73.12%;
+  height: 18.25vw;
+  background: url("/assets/landing/hero-panel.svg") center / contain no-repeat;
+  display: grid;
+  grid-template-columns: 34% 28% 30%;
+  align-items: center;
+  padding: 2vw 3vw;
+}
+.intro,
+.heroAction {
+  font-size: 1.042vw;
+  line-height: 1.4;
+  text-align: center;
+}
+.heroAction {
+  grid-column: 3;
+}
+.heroAction .buttons {
+  margin-top: 1.5vw;
+}
+.heroMascot {
+  position: absolute;
+  width: 26.46%;
+  height: auto;
+  top: 18.23vw;
+  left: 36.77%;
+  pointer-events: none;
+}
+.buttons {
+  display: flex;
+  gap: 0.9vw;
+  align-items: center;
+}
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-height: 2.917vw;
+  padding: 0.15vw 1.2vw;
+  border: 3px solid black;
+  border-radius: 6px;
+  background: black;
+  color: #fcfcfc;
+  font:
+    0.833vw/1.5 "Game-Of-Squid",
+    sans-serif;
+  white-space: nowrap;
+  transition:
+    filter 0.2s,
+    transform 0.2s;
+}
+.button:hover {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+}
+.outline {
+  background: transparent;
+}
+.orange {
+  background: #f1a56a;
+  border-color: #f1a56a;
+}
+.tagline {
+  height: 48.54vw;
+  position: relative;
+  isolation: isolate;
+}
+.clouds {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.leftClouds {
+  position: absolute;
+  left: 6.1%;
+  top: 2vw;
+  width: 21%;
+  height: auto;
+}
+.rightClouds {
+  position: absolute;
+  right: 5.5%;
+  top: 3vw;
+  width: 24%;
+  height: auto;
+}
+.taglineContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2.65vw;
+  position: relative;
+}
+.taglineLogo {
+  width: 10.13%;
+  height: auto;
+  margin-bottom: 1.2vw;
+}
+.taglineContent > p {
+  color: #ff8c5a;
+  font-size: 2.304vw;
+  font-weight: 700;
+  line-height: 1.26;
+}
+.taglineContent h2 {
+  font:
+    2.483vw/1.2 "Game-Of-Squid",
+    sans-serif;
+  text-shadow: 0 0 4.79px white;
+}
+.scroll {
+  display: flex;
+  align-items: center;
+  gap: 0.56vw;
+  font-size: 1.302vw;
+  margin-top: 2.7vw;
+}
+.scroll svg {
+  width: 1.875vw;
+  height: 1.875vw;
+}
+.events {
+  position: relative;
+  background: url("/assets/landing/imgMiddleSeparatorLine.svg") center / 100%
+    100% no-repeat;
+  scroll-margin-top: 24px;
+}
+.sideCircuit {
+  position: absolute;
+  pointer-events: none;
+}
+.sideCircuit span {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: center / contain no-repeat;
+}
+.topLeftCircuit {
+  left: -15.833vw;
+  top: 0;
+  width: 22.946vw;
+  height: 62.135vw;
+}
+.topLeftCircuit span {
+  width: 62.135vw;
+  height: 22.946vw;
+  background-image: url("/assets/landing/imgGroup791.svg");
+  transform: translate(-50%, -50%) rotate(90deg) scaleY(-1);
+}
+.topRightCircuit {
+  left: 92.917vw;
+  top: 0;
+  width: 18.317vw;
+  height: 59.948vw;
+}
+.topRightCircuit span {
+  width: 59.948vw;
+  height: 18.317vw;
+  background-image: url("/assets/landing/imgGroup297.svg");
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.bottomLeftCircuit {
+  left: -8.802vw;
+  top: 66.719vw;
+  width: 15.357vw;
+  height: 50.26vw;
+}
+.bottomLeftCircuit span {
+  width: 50.26vw;
+  height: 15.357vw;
+  background-image: url("/assets/landing/imgGroup790.svg");
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+.bottomRightCircuit {
+  left: 92.917vw;
+  top: 60.887vw;
+  width: 13.958vw;
+  height: 50.649vw;
+}
+.bottomRightCircuit span {
+  width: 50.649vw;
+  height: 13.958vw;
+  background-image: url("/assets/landing/imgGroup792.svg");
+  transform: translate(-50%, -50%) rotate(-90deg) scaleY(-1);
+}
+.competition {
+  width: 72.71%;
+  margin: 0 auto;
+  min-height: 58.5vw;
+  border-inline: 0.3125vw solid #92c2d0;
+  padding-top: 7.97vw;
+}
+.heading {
+  font:
+    4.479vw/0.872 "Game-Of-Squid",
+    sans-serif;
+  text-align: center;
+  text-shadow: 0 0 6px white;
+}
+.subtitle {
+  font:
+    bold 1.25vw/1 "Creato Display",
+    sans-serif;
+  color: #92c2d0;
+}
+.competition > .subtitle {
+  max-width: 43.44vw;
+  margin: 1.6vw auto 0;
+  text-align: center;
+}
+.carousel {
+  margin-top: 4.9vw;
+}
+.carousel :global(.swiper-slide) {
+  height: auto;
+}
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  align-items: center;
+  gap: 1.8vw;
+  min-height: 18.125vw;
+  padding: 1.5vw 3.2vw;
+  border: 4px solid black;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ed7c80, #f5b57e);
+}
+.card p {
+  font-size: 1.042vw;
+  line-height: 1.4;
+}
+.cardIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cardIcon img {
+  width: 100%;
+  height: auto;
+}
+.cardAction .button {
+  margin-top: 1.2vw;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.9vw;
+  margin: 2vw 0;
+}
+.pagination button {
+  width: 3.3vw;
+  height: 0.73vw;
+  border-radius: 5px;
+  background: #92c2d0;
+}
+.pagination button[aria-current="true"] {
+  background: linear-gradient(#ed7c80, #f9c883);
+}
+.competitionName {
+  text-align: center;
+  font:
+    3.4vw/1.2 AVA,
+    sans-serif;
+  color: #2a93c2;
+  -webkit-text-stroke: 1.5px white;
+  padding: 0 12px;
+}
+.workshop {
+  position: relative;
+  min-height: 58.5vw;
+  padding-top: 12.6vw;
+}
+.workshopInner {
+  width: 72.71%;
+  margin: auto;
+}
+.workshop::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 13.645%;
+  right: 13.645%;
+  border-inline: 0.3125vw solid #92c2d0;
+  pointer-events: none;
+}
+.topSeparator,
+.bottomSeparator {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  left: 0;
+  pointer-events: none;
+}
+.topSeparator {
+  top: 0;
+}
+.bottomSeparator {
+  bottom: 0;
+}
+.topSeparator,
+.bottomSeparator {
+  display: none;
+}
+.competition {
+  border-color: transparent;
+}
+.workshop::before {
+  border-color: transparent;
+}
+.workshop .subtitle {
+  text-align: center;
+  margin-top: 1.2vw;
+}
+.workshopContent {
+  display: grid;
+  grid-template-columns: 55% 32%;
+  gap: 3%;
+  align-items: center;
+  margin-top: 1.9vw;
+}
+.academy {
+  position: relative;
+  height: 30vw;
+}
+.workshopPanel {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  bottom: 0;
+}
+.academyImage {
+  position: absolute;
+  width: 73%;
+  height: auto;
+  left: 10%;
+  top: 0;
+}
+.workshopCopy {
+  font-size: 1.042vw;
+  line-height: 1.4;
+}
+.workshopCopy .button {
+  margin-top: 1.5vw;
+}
+.partners {
+  position: relative;
+  height: 58vw;
+  padding-top: 17.2vw;
+}
+.sponsorStars {
+  position: absolute;
+  inset: 8.7vw 0 auto;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+.planetLeft,
+.planetRight {
+  position: absolute;
+  width: 5.73%;
+  height: auto;
+}
+.planetLeft {
+  top: 13.5vw;
+  left: 4.84%;
+}
+.planetRight {
+  bottom: 0;
+  right: 12%;
+}
+.partnerHeading {
+  display: flex;
+  align-items: center;
+  width: 72.7%;
+  margin: auto;
+  gap: 2.2vw;
+}
+.partnerHeading h2 {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+  white-space: nowrap;
+}
+.partnerHeading h2 span {
+  border: 0.3125vw solid #92c2d0;
+  border-radius: 18px;
+  padding: 1.5vw 2vw;
+}
+.partnerHeading p {
+  flex: 1;
+}
+.sponsors {
+  position: relative;
+  width: 80.68%;
+  height: 22.3vw;
+  margin: 6.25vw auto 0;
+  border-radius: 32px 32px 0 0;
+  background: linear-gradient(#92c2d0 22%, #2a93c2);
+}
+.teleperformance {
+  position: absolute;
+  width: 23.15%;
+  height: auto;
+  left: 29.8%;
+  top: 4.65vw;
+}
+.raxsaco {
+  position: absolute;
+  width: 10.46%;
+  height: auto;
+  left: 60%;
+  top: 4.65vw;
+}
+.questions {
+  position: relative;
+  height: 30.5vw;
+  overflow: hidden;
+}
+.questionPanel {
+  position: absolute;
+  top: 12.5vw;
+  left: 21.2%;
+  width: 55.9%;
+  height: 28.16vw;
+  background: url("/assets/landing/question-panel.svg") top center / 100% auto
+    no-repeat;
+}
+.questionMascot {
+  position: absolute;
+  width: 57.3%;
+  height: auto;
+  left: -6.7%;
+  top: -9vw;
+  transform: scaleX(-1);
+}
+.questionCopy {
+  position: relative;
+  margin-left: 43.4%;
+  padding-top: 4vw;
+}
+.questionCopy h2 {
+  font:
+    3.732vw/0.834 "Game-Of-Squid",
+    sans-serif;
+  margin-bottom: 2.6vw;
+}
+.circuitLeft,
+.circuitRight {
+  position: absolute;
+  width: 24%;
+  height: auto;
+  top: 8vw;
+  opacity: 0.3;
+}
+.circuitLeft {
+  left: -2%;
+}
+.circuitRight {
+  right: -4%;
+}
+@media (max-width: 1023px) {
+  .events {
+    background: none;
+  }
+  .sideCircuit {
+    display: none;
+  }
+  .topSeparator,
+  .bottomSeparator {
+    display: block;
+  }
+  .competition,
+  .workshop::before {
+    border-color: #92c2d0;
+  }
+  .hero {
+    height: auto;
+    padding: 20px 16px 0;
+  }
+  .prizeGroup img {
+    width: 115vw;
+  }
+  .year {
+    font-size: 36px;
+    padding: 0;
+  }
+  .theme {
+    font-size: 14px;
+    margin: 12px 0;
+  }
+  .heroTitle {
+    position: relative;
+    top: auto;
+    font-size: 17vw;
+    line-height: 1.5;
+  }
+  .heroMascot {
+    top: 155px;
+    left: 25%;
+    width: 50%;
+  }
+  .heroPanel {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    margin-top: 145px;
+    padding: 65px 24px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 2px solid #f1a56a;
+    border-radius: 20px;
+    background: linear-gradient(#ed7c80, #f9c883);
+  }
+  .intro,
+  .heroAction {
+    font-size: 14px;
+  }
+  .heroAction .buttons {
+    margin-top: 18px;
+  }
+  .buttons {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .button {
+    font-size: 11px;
+    min-height: 44px;
+    padding: 8px 14px;
+    border-width: 2px;
+  }
+  .tagline {
+    height: 570px;
+    margin-top: 30px;
+  }
+  .taglineContent {
+    padding-top: 45px;
+  }
+  .taglineLogo {
+    width: 100px;
+    margin-bottom: 24px;
+  }
+  .taglineContent > p {
+    font-size: 22px;
+  }
+  .taglineContent h2 {
+    font-size: 22px;
+    text-align: center;
+    max-width: 90%;
+  }
+  .scroll {
+    font-size: 15px;
+    margin-top: 30px;
+    gap: 8px;
+  }
+  .scroll svg {
+    width: 24px;
+    height: 24px;
+  }
+  .clouds {
+    height: 360px;
+    object-fit: cover;
+    object-position: bottom;
+  }
+  .leftClouds {
+    top: 5px;
+    width: 28%;
+    left: -5%;
+  }
+  .rightClouds {
+    top: 55px;
+    width: 27%;
+    right: -3%;
+  }
+  .competition {
+    width: 92%;
+    min-height: auto;
+    padding: 70px 0 80px;
+    border-width: 2px;
+  }
+  .heading {
+    font-size: 9vw;
+    line-height: 1.2;
+  }
+  .subtitle {
+    font-size: 16px;
+    line-height: 1.3;
+  }
+  .competition > .subtitle {
+    max-width: 88%;
+    margin-top: 20px;
+  }
+  .carousel {
+    margin-top: 35px;
+  }
+  .card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 24px;
+    border-width: 3px;
+    height: 100%;
+  }
+  .cardIcon {
+    grid-row: 1;
+  }
+  .cardIcon img {
+    width: 190px;
+  }
+  .card p {
+    font-size: 14px;
+    text-align: center;
+  }
+  .cardAction {
+    text-align: center;
+  }
+  .cardAction .button {
+    margin-top: 16px;
+  }
+  .pagination {
+    margin: 22px 0;
+    gap: 8px;
+  }
+  .pagination button {
+    width: 26px;
+    height: 10px;
+  }
+  .competitionName {
+    font-size: 7vw;
+  }
+  .workshop {
+    padding: 85px 0 65px;
+  }
+  .workshopInner {
+    width: 86%;
+  }
+  .workshop::before {
+    left: 4%;
+    right: 4%;
+    border-width: 2px;
+  }
+  .workshop .subtitle {
+    margin-top: 18px;
+  }
+  .workshopContent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+  }
+  .academy {
+    width: 100%;
+    height: 73vw;
+  }
+  .workshopCopy {
+    font-size: 15px;
+    padding: 24px 12px;
+  }
+  .workshopCopy .button {
+    margin-top: 22px;
+  }
+  .partners {
+    height: auto;
+    padding: 80px 0 35px;
+  }
+  .partnerHeading {
+    width: 86%;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  .partnerHeading h2 {
+    gap: 15px;
+  }
+  .partnerHeading h2 span {
+    padding: 12px 16px;
+    border-width: 3px;
+    border-radius: 12px;
+  }
+  .sponsors {
+    width: 90%;
+    height: 220px;
+    margin-top: 35px;
+  }
+  .teleperformance {
+    width: 45%;
+    left: 12%;
+    top: 50px;
+  }
+  .raxsaco {
+    width: 25%;
+    left: 65%;
+    top: 55px;
+  }
+  .planetLeft,
+  .planetRight {
+    width: 40px;
+  }
+  .questions {
+    height: 480px;
+  }
+  .questionPanel {
+    top: 140px;
+    left: 5%;
+    width: 90%;
+    height: 400px;
+    background: linear-gradient(#ed7c80, #f9c883);
+    border: 3px solid black;
+    border-radius: 20px;
+  }
+  .questionMascot {
+    width: 220px;
+    left: calc(50% - 110px);
+    top: -150px;
+  }
+  .questionCopy {
+    margin: 0;
+    padding: 125px 16px 30px;
+    text-align: center;
+  }
+  .questionCopy h2 {
+    font-size: 38px;
+    line-height: 1;
+    margin-bottom: 26px;
+  }
+  .circuitLeft,
+  .circuitRight {
+    width: 45%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .heroTitle {
+    font-size: 120px;
+  }
+  .heroMascot {
+    width: 300px;
+    left: calc(50% - 150px);
+    top: 190px;
+  }
+  .heroPanel {
+    margin-top: 170px;
+    padding-inline: 80px;
+  }
+  .taglineContent h2 {
+    font-size: 30px;
+  }
+  .heading {
+    font-size: 64px;
+  }
+  .card {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cardIcon {
+    grid-row: 1 / 3;
+  }
+  .cardAction {
+    grid-column: 2;
+  }
+  .academy {
+    max-width: 600px;
+    height: 480px;
+  }
+  .workshopCopy {
+    max-width: 600px;
+  }
+  .sponsors {
+    max-width: 700px;
+    height: 300px;
+  }
+  .questionPanel {
+    max-width: 650px;
+    left: calc(50% - 325px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing *,
+  .landing *::before,
+  .landing *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

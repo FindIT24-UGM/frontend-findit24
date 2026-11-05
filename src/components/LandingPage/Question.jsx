@@ -20,9 +20,10 @@ export default function Question() {
     };
 
     updateWindowsWidth();
+    window.addEventListener("resize", updateWindowsWidth);
 
     return () => {
-      window.addEventListener("resize", updateWindowsWidth);
+      window.removeEventListener("resize", updateWindowsWidth);
     };
   }, []);
 

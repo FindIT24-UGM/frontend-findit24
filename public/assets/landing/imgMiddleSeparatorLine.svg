@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="1923.5" height="2253" viewBox="0 0 1923.5 2253" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="MiddleSeparatorLine">
+<path id="separatorLine" d="M0 2249L1302.24 2249C1314.47 2249 1326.09 2243.67 1334.07 2234.41L1401.93 2155.59C1409.91 2146.33 1421.53 2141 1433.76 2141H1923.5" stroke-width="8" stroke="#92C2D0"/>
+<path id="leftLine" d="M265 0V2245.5" stroke-width="8" stroke="#92C2D0"/>
+<path id="rightLine" d="M1661 0V2136.5" stroke-width="8" stroke="#92C2D0"/>
+<path id="SeparatorLine" d="M1923.5 1123H622.742C610.237 1123 598.382 1128.57 590.403 1138.2L526.097 1215.8C518.118 1225.43 506.263 1231 493.758 1231H0" stroke-width="8" stroke="#92C2D0"/>
+</g>
+</svg>
