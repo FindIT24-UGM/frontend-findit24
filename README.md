@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Use Node.js 26 (also specified in `.nvmrc` and `package.json`). Install dependencies with `npm ci` before starting the development server.
+
 First, run the development server:
 
 ```bash
@@ -30,6 +32,10 @@ To learn more about Next.js, take a look at the following resources:
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
+
+The project pins Node.js `26.x` through `engines.node` in `package.json`.
+In Vercel, set **Project Settings → Build and Deployment → Node.js Version** to **26.x** as well.
+Commit and push the runtime configuration changes, then deploy the new commit. Redeploying an older commit will not include the updated `package.json`.
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
